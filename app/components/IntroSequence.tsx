@@ -22,12 +22,22 @@ const slides = [
   { src: "https://www.figma.com/api/mcp/asset/8b2d80b7-ed3a-41da-a7a8-2e8c5453e7ac.png", start: 3520, end: STACK_START, zoomFrom: 1.07, zoomEnd: 4040, x: -29.2, y: 40.4, stack: 1, position: "center center" },
 ] as const;
 
-// During the final collapse, keep these three images visibly on top of their stacks:
-// KOVE (0), Postcard Designs / DOPE (2), and Unimotors (6).
+// Final three-card arrangement mirrors the Selected Work row below:
+// LEFT = KOVE, CENTER = UNIMOTORS, RIGHT = DOPE.
+const finalStackX: Record<number, number> = {
+  0: -29.2, // KOVE — visible top card on the left
+  1: -29.2,
+  3: -29.2,
+  4: 0,
+  6: 0,     // UNIMOTORS — visible top card in the center
+  2: 29.2,  // DOPE Postcard Designs — visible top card on the right
+  5: 29.2,
+};
+
 const finalStackZ: Record<number, number> = {
-  0: 82,
-  2: 81,
-  6: 83,
+  0: 90,
+  6: 90,
+  2: 90,
 };
 
 const clamp = (value: number, min = 0, max = 1) => Math.min(max, Math.max(min, value));
@@ -156,7 +166,8 @@ export default function IntroSequence() {
           const stackDelay = (slides.length - 1 - index) * STACK_STAGGER;
           const stackProgress = easeInOut(clamp((time - (STACK_START + stackDelay)) / STACK_DURATION));
           const cardScale = lerp(sceneScale, .285, stackProgress);
-          const x = slide.x * stackProgress;
+          const targetX = finalStackX[index] ?? slide.x;
+          const x = targetX * stackProgress;
           const baseY = slide.y * stackProgress;
           const y = baseY + out * 92;
           const radius = 22 * stackProgress;
