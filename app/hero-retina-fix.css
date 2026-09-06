@@ -42,6 +42,7 @@
   .hero-portrait img{
     transform:scale(1.18)!important;
     transform-origin:center bottom!important;
+    image-rendering:auto!important;
   }
   .portrait-aura{
     right:-1%!important;
@@ -71,14 +72,15 @@
     background:linear-gradient(180deg,transparent 0 81%,rgba(5,6,7,.04) 90%,#050607 100%)!important;
   }
 
+  /* Keep the portrait dominant, but let the headline only skim its left edge. */
   .hero-portrait{
     display:block!important;
-    left:4vw!important;
+    left:36vw!important;
     right:auto!important;
-    top:-78px!important;
+    top:-72px!important;
     bottom:auto!important;
-    width:123vw!important;
-    height:154vw!important;
+    width:110vw!important;
+    height:137.5vw!important;
     max-width:none!important;
     overflow:visible!important;
     transform:none!important;
@@ -94,14 +96,15 @@
     transform:none!important;
     transform-origin:center top!important;
     filter:none!important;
+    image-rendering:auto!important;
   }
   .portrait-aura{
     display:block!important;
-    right:0!important;
+    right:-4%!important;
     top:-1%!important;
-    width:80%!important;
+    width:84%!important;
     height:66%!important;
-    opacity:.46!important;
+    opacity:.44!important;
     filter:blur(24px)!important;
     background:radial-gradient(ellipse at 56% 28%,rgba(255,25,31,.50) 0%,rgba(202,7,13,.21) 34%,transparent 70%)!important;
   }
@@ -116,10 +119,10 @@
   .hero-copy::after{
     left:-18px!important;
     top:42px!important;
-    width:74%!important;
+    width:69%!important;
     height:486px!important;
     opacity:1!important;
-    background:linear-gradient(90deg,rgba(5,6,7,.82) 0%,rgba(5,6,7,.56) 44%,rgba(5,6,7,.20) 74%,transparent 100%)!important;
+    background:linear-gradient(90deg,rgba(5,6,7,.80) 0%,rgba(5,6,7,.50) 46%,rgba(5,6,7,.14) 76%,transparent 100%)!important;
     filter:none!important;
   }
 
