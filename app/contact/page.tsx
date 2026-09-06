@@ -4,13 +4,13 @@ import type { FormEvent } from "react";
 import SiteNav from "../components/SiteNav";
 import SiteFooter from "../components/SiteFooter";
 import Reveal from "../components/Reveal";
+import { ArrowIcon } from "../components/UiIcons";
 import styles from "./contact.module.css";
 
 const assets = {
   mail: "https://www.figma.com/api/mcp/asset/0fac5e46-a302-4771-870b-4587376af814.svg",
   phone: "https://www.figma.com/api/mcp/asset/a694da1b-bd4b-4be8-ad9e-34ebc766faf1.svg",
   pin: "https://www.figma.com/api/mcp/asset/aaaa66db-2ac2-4ad5-a3ed-6121adc2ec96.svg",
-  arrow: "https://www.figma.com/api/mcp/asset/5133c010-9fa1-4086-811b-52d82330f76c.svg",
   lock: "https://www.figma.com/api/mcp/asset/7bf6b676-7f07-4db0-bcdf-be1f0c646b91.svg",
 };
 
@@ -50,7 +50,7 @@ export default function ContactPage() {
             </div>
             <label>Subject<input name="subject" placeholder="What’s this about?" required /></label>
             <label>Message<textarea name="message" placeholder="Tell me more about your project..." required /></label>
-            <button type="submit">Send Message <img src={assets.arrow} alt="" /></button>
+            <button type="submit">Send Message <ArrowIcon size={17} /></button>
             <p className={styles.secure}><img src={assets.lock} alt="" />Your information is secure and will never be shared.</p>
           </form>
         </Reveal>
