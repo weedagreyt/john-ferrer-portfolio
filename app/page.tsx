@@ -45,10 +45,13 @@ export default function HomePage() {
               <div className="hero-intro-rule"><span>01</span><i /></div>
               <p>Hi, I’m John Ferrer</p>
             </div>
-            <h1>
-              <span>Creative Thinker<span className="dot">.</span></span>
-              <span className="hero-red">Problem Solver<span className="dot">.</span></span>
-              <span>Visual Storyteller<span className="dot">.</span></span>
+            <h1 aria-label="Creative Thinker. Problem Solver. Visual Storyteller.">
+              <span className="hero-line">Creative</span>
+              <span className="hero-line">Thinker<span className="dot">.</span></span>
+              <span className="hero-line hero-red">Problem</span>
+              <span className="hero-line hero-red">Solver<span className="dot">.</span></span>
+              <span className="hero-line">Visual</span>
+              <span className="hero-line">Storyteller<span className="dot">.</span></span>
             </h1>
             <p className="hero-sub">
               I turn ideas into impactful visual experiences that connect, inspire, and leave a lasting impression.
