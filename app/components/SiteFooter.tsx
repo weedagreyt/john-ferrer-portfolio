@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "./site-footer.module.css";
 import { resumeUrl, services, siteAssets } from "../lib/portfolio";
 
