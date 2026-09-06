@@ -31,9 +31,12 @@ body main:not(.race-home){
   background-position:center top!important;
 }
 
-body main:not(.race-home) p{color:inherit}
-body main:not(.race-home) h1,
-body main:not(.race-home) h2{text-shadow:0 6px 24px rgba(0,0,0,.72)}
+body main:not(.race-home) h1{
+  line-height:.88!important;
+  text-shadow:0 6px 24px rgba(0,0,0,.72);
+}
+body main:not(.race-home) h1 span{color:var(--race-red)!important;text-shadow:0 0 22px rgba(240,24,32,.25),0 6px 24px rgba(0,0,0,.72)}
+body main:not(.race-home) h2{line-height:.92!important;text-shadow:0 6px 24px rgba(0,0,0,.58)}
 
 /* Make the generated atmosphere visible in the homepage supporting sections too. */
 .race-home .work-section::after{opacity:.48!important}
@@ -57,10 +60,9 @@ body main:not(.race-home) h2{text-shadow:0 6px 24px rgba(0,0,0,.72)}
     background-position:center top!important;
   }
 
-  main h1,main h2{
-    line-height:.9!important;
-    letter-spacing:-.006em!important;
-  }
+  main h1,main h2{letter-spacing:-.004em!important}
+  body main:not(.race-home) h1{line-height:.87!important}
+  body main:not(.race-home) h2{line-height:.9!important}
 
   .race-home .work-section::after{opacity:.42!important}
   .race-home .approach-section::before{opacity:.34!important}
