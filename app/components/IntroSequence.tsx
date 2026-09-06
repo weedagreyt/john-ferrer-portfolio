@@ -31,6 +31,7 @@ const easeInOut = (t: number) => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 
 
 export default function IntroSequence() {
   const [visible, setVisible] = useState(true);
+  const [ready, setReady] = useState(false);
   const [time, setTime] = useState(0);
   const frameRef = useRef<number | null>(null);
   const startRef = useRef(0);
@@ -40,17 +41,43 @@ export default function IntroSequence() {
   const skipFromRef = useRef(0);
 
   const fastForward = useCallback(() => {
-    if (!visible || skippingRef.current) return;
+    if (!visible || !ready || skippingRef.current) return;
     skippingRef.current = true;
     skipStartRef.current = performance.now();
     skipFromRef.current = timeRef.current;
-  }, [visible]);
+  }, [visible, ready]);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setVisible(false);
       return;
     }
+
+    let cancelled = false;
+
+    const preload = async () => {
+      await Promise.allSettled(
+        slides.map((slide) => new Promise<void>((resolve) => {
+          const image = new Image();
+          image.src = slide.src;
+          image.decoding = "async";
+          image.onload = async () => {
+            try { await image.decode(); } catch { /* already loaded; continue */ }
+            resolve();
+          };
+          image.onerror = () => resolve();
+        }))
+      );
+
+      if (!cancelled) setReady(true);
+    };
+
+    preload();
+    return () => { cancelled = true; };
+  }, []);
+
+  useEffect(() => {
+    if (!ready || !visible) return;
 
     startRef.current = performance.now();
 
@@ -92,13 +119,14 @@ export default function IntroSequence() {
       window.removeEventListener("wheel", onWheel);
       window.removeEventListener("touchmove", onTouchMove);
     };
-  }, [fastForward]);
+  }, [fastForward, ready, visible]);
 
   if (!visible) return null;
 
-  const curtain = easeIn(clamp(time / CURTAIN_END));
+  const curtain = ready ? easeIn(clamp(time / CURTAIN_END)) : 0;
   const out = easeInOut(clamp((time - OUT_START) / OUT_DURATION));
   const overlayFade = smooth(clamp((time - (OUT_START + OUT_DURATION - 70)) / 120));
+  const stacking = time >= STACK_START;
 
   return (
     <div
@@ -114,8 +142,6 @@ export default function IntroSequence() {
     >
       <div className={styles.stage}>
         {slides.map((slide, index) => {
-          if (time < slide.start) return null;
-
           const zoomProgress = smooth(clamp((time - slide.start) / Math.max(1, slide.zoomEnd - slide.start)));
           const sceneScale = lerp(slide.zoomFrom, 1, zoomProgress);
 
@@ -128,18 +154,31 @@ export default function IntroSequence() {
           const radius = 22 * stackProgress;
           const finalScale = lerp(cardScale, .255, out);
 
+          const isCurrentScene = time >= slide.start && time < slide.end;
+          const show = ready && (stacking || isCurrentScene);
+
           return (
             <div
               className={styles.slide}
               key={slide.src}
+              aria-hidden={!show}
               style={{
                 zIndex: 20 + index,
+                opacity: show ? 1 : 0,
+                visibility: show ? "visible" : "hidden",
                 borderRadius: `${radius}px`,
                 transform: `translate3d(${x}vw, ${y}vh, 0) scale(${finalScale})`,
                 boxShadow: stackProgress > .08 ? `0 ${12 + slide.stack * 3}px 42px rgba(0,0,0,.30)` : "none",
               }}
             >
-              <img src={slide.src} alt="" style={{ objectPosition: slide.position }} />
+              <img
+                src={slide.src}
+                alt=""
+                loading="eager"
+                decoding="async"
+                fetchPriority={index < 2 ? "high" : "auto"}
+                style={{ objectPosition: slide.position }}
+              />
             </div>
           );
         })}
@@ -156,10 +195,12 @@ export default function IntroSequence() {
         />
       </div>
 
-      <div className={styles.skipHint} aria-hidden="true">
-        <span>Skip animation</span>
-        <i>Click or scroll</i>
-      </div>
+      {ready && (
+        <div className={styles.skipHint} aria-hidden="true">
+          <span>Skip animation</span>
+          <i>Click or scroll</i>
+        </div>
+      )}
     </div>
   );
 }
