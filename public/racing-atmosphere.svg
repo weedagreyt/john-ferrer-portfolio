@@ -23,10 +23,15 @@
 <path d="M-150 1035 C280 850 600 920 955 715 S1460 300 1900 135" fill="none" stroke="url(#beam)" stroke-width="24" opacity=".66" filter="url(#blur12)"/>
 <path d="M-150 1027 C280 842 600 912 955 707 S1460 292 1900 127" fill="none" stroke="#ff232b" stroke-width="2.5" opacity=".94"/>
 <path d="M40 970 C410 855 690 855 980 670" fill="none" stroke="#8d070c" stroke-width="7" opacity=".25" filter="url(#glow)"/>
-<g stroke="#ff2a31" fill="none">
-  <path d="M720 930 1340 610" opacity=".18"/>
-  <path d="M900 1000 1490 690" opacity=".10"/>
-  <path d="M1210 260 1770 60" opacity=".20"/>
+<g stroke="#ff2a31" fill="none"><path d="M720 930 1340 610" opacity=".18"/><path d="M900 1000 1490 690" opacity=".10"/><path d="M1210 260 1770 60" opacity=".20"/></g>
+
+<!-- restrained lower-city silhouette to extend the reference composition -->
+<g transform="translate(0 825)" opacity=".9">
+  <path d="M0 192V120h32v-22h28v24h34V83h22v39h28v-58h34v58h31v-25h27v25h38v-77h29v77h31v-42h26v42h42v-93h36v93h26v-38h24v38h46v-64h31v64h35v-32h27v32h44v70H0z" fill="#050607"/>
+  <g fill="#c20d14" opacity=".38"><rect x="103" y="95" width="3" height="7"/><rect x="163" y="84" width="3" height="7"/><rect x="293" y="74" width="3" height="7"/><rect x="392" y="51" width="3" height="7"/><rect x="502" y="78" width="3" height="7"/><rect x="611" y="101" width="3" height="7"/></g>
 </g>
+<path d="M-60 1020 C130 950 300 950 515 980" fill="none" stroke="#f32027" stroke-width="3" opacity=".58" filter="url(#glow)"/>
+<path d="M-80 1042 C160 984 315 991 580 1018" fill="none" stroke="#65070a" stroke-width="12" opacity=".38" filter="url(#blur12)"/>
+
 <rect width="1800" height="1100" filter="url(#noise)" opacity=".38"/>
 </svg>
