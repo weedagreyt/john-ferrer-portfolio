@@ -89,6 +89,7 @@ export default function HomePage() {
             </div>
             <a className="button outline large-action" href="/work">View All Projects →</a>
           </div>
+          <p className="mobile-swipe-hint">Swipe through selected work →</p>
           <div className="project-grid">
             {projects.map((project) => (
               <a className="project-card" key={project.name} href={project.href} aria-label={`View ${project.name} case study`}>
@@ -166,6 +167,73 @@ export default function HomePage() {
       </section>
 
       <SiteFooter />
+
+      <style>{`
+        .mobile-swipe-hint { display: none; }
+
+        @media (max-width: 620px) {
+          .shell { width: min(100% - 28px, 1240px); }
+
+          /* Mobile hero: editorial copy first, portrait as a deliberate second beat. */
+          .hero { height: 780px; min-height: 780px; }
+          .hero-shell { height: calc(100% - 92px); }
+          .hero-copy { top: 18px; width: 100%; }
+          .hero-eyebrow { margin-bottom: 10px; font-size: 13px; letter-spacing: .08em; }
+          .hero h1 { max-width: 350px; font-size: clamp(39px, 11.3vw, 48px); line-height: 1.01; letter-spacing: -.055em; }
+          .hero-sub { width: min(335px, 94%); margin-top: 15px; font-size: 15px; line-height: 1.48; }
+          .hero-button { width: 174px; min-height: 48px; margin-top: 21px; font-size: 16px; }
+          .hero-portrait { left: 50%; right: auto; bottom: -18px; width: 455px; max-width: 122vw; height: 390px; transform: translateX(-43%); opacity: .96; }
+          .hero-portrait::before { content: ""; position: absolute; left: 17%; bottom: 34px; width: 270px; height: 270px; border: 1px solid rgba(198,17,17,.18); border-radius: 50%; z-index: -1; }
+
+          /* Selected work: swipeable portfolio reel with a visible next-card cue. */
+          .work-section { padding: 54px 0 60px; overflow: hidden; }
+          .work-head { gap: 20px; margin-bottom: 0; }
+          .section-head h2, .capability-heading h2, .experience-title h2, .testimonial-heading h2 { font-size: 36px; line-height: 1.02; }
+          .work-head .large-action { order: 2; width: 100%; min-height: 52px; margin-top: 2px; font-size: 15px; }
+          .mobile-swipe-hint { display: block; margin: 24px 0 12px; color: rgba(255,255,255,.52); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+          .project-grid { display: flex; gap: 14px; overflow-x: auto; margin-right: -14px; padding: 0 14px 12px 0; scroll-snap-type: x mandatory; scrollbar-width: none; }
+          .project-grid::-webkit-scrollbar { display: none; }
+          .project-card, .project-card:last-child { flex: 0 0 min(82vw, 330px); width: min(82vw, 330px); aspect-ratio: 4 / 5; scroll-snap-align: start; border-radius: 16px; }
+          .project-card-copy { padding: 20px; }
+          .project-card-copy h3 { font-size: 25px; }
+          .project-card-copy span { font-size: 12px; line-height: 1.45; }
+          .project-card-copy b { margin-top: 12px; }
+
+          /* Capabilities: compact two-column index instead of a long one-column stack. */
+          .capabilities { padding: 58px 0 66px; }
+          .capability-heading { margin-bottom: 28px; }
+          .capability-grid { grid-template-columns: 1fr 1fr; }
+          .capability { min-height: 112px; padding: 15px; }
+          .capability strong { font-size: 16px; line-height: 1.18; }
+          .capability span { font-size: 10px; }
+
+          /* Experience: swipeable career cards keep the page from becoming overly tall. */
+          .experience-section { min-height: 0; padding: 54px 0 62px; }
+          .experience-title { margin-bottom: 20px; }
+          .experience-resume { width: 100%; min-height: 52px; margin-bottom: 28px; font-size: 15px; }
+          .experience-track { display: flex; gap: 12px; overflow-x: auto; margin-right: -14px; padding: 0 14px 10px 0; scroll-snap-type: x mandatory; scrollbar-width: none; }
+          .experience-track::-webkit-scrollbar { display: none; }
+          .experience-item { flex: 0 0 min(76vw, 285px); min-width: min(76vw, 285px); min-height: 158px; padding: 20px; border: 1px solid rgba(247,247,247,.13); border-radius: 14px; background: rgba(247,247,247,.045); opacity: 1 !important; transform: none !important; scroll-snap-align: start; }
+          .experience-item::before { width: 34px; height: 3px; left: 20px; top: 20px; border-radius: 10px; }
+          .experience-copy { max-width: 235px; padding-top: 28px; }
+          .experience-copy h3 { font-size: 14px; }
+          .experience-copy p, .experience-copy small { white-space: normal; }
+          .experience-connector { display: none; }
+          .experience-watermark { width: 390px; right: -150px; top: -20px; }
+
+          /* Testimonials: cards instead of two large stacked quotes. */
+          .testimonials { padding: 56px 0 64px; overflow: hidden; }
+          .testimonial-heading { margin-bottom: 22px; }
+          .quote-grid { display: flex; gap: 12px; overflow-x: auto; margin-right: -14px; padding: 0 14px 10px 0; scroll-snap-type: x mandatory; scrollbar-width: none; }
+          .quote-grid::-webkit-scrollbar { display: none; }
+          blockquote, blockquote + blockquote { flex: 0 0 min(86vw, 330px); min-height: 0; padding: 22px 18px; border: 1px solid var(--line); border-radius: 14px; scroll-snap-align: start; grid-template-columns: 34px 1fr; }
+          blockquote + blockquote { border-left: 1px solid var(--line); }
+          .quote-mark { margin-top: 12px; font-size: 64px; }
+          blockquote p { font-size: 16px; line-height: 1.55; }
+          blockquote footer { margin-top: 20px; font-size: 13px; }
+          blockquote footer small { font-size: 12px; }
+        }
+      `}</style>
     </main>
   );
 }
