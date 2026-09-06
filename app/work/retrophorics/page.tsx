@@ -2,6 +2,7 @@ import SiteNav from "../../components/SiteNav";
 import SiteFooter from "../../components/SiteFooter";
 import Reveal from "../../components/Reveal";
 import CaseStudyStory from "../../components/CaseStudyStory";
+import { PlayIcon } from "../../components/UiIcons";
 import styles from "../case-study.module.css";
 import local from "./retrophorics.module.css";
 
@@ -31,7 +32,7 @@ function VideoPlaceholder({ src, alt, label, className = "" }: { src: string; al
   return (
     <div className={`${local.videoStill} ${className}`}>
       <img src={src} alt={alt} />
-      <span className={local.play} aria-hidden="true">▶</span>
+      <span className={local.play} aria-hidden="true"><PlayIcon size={21} /></span>
       <div className={local.videoLabel}><b>{label}</b><small>Video will replace this preview</small></div>
     </div>
   );
