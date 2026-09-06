@@ -2,7 +2,7 @@
   --race-display:var(--font-race-display),"Arial Narrow",Impact,sans-serif;
 }
 
-/* Final fidelity pass against the approved generated poster. */
+/* Fidelity pass against the approved racing poster. */
 .hero-art{filter:saturate(1.13) contrast(1.07) brightness(1.015)!important}
 .hero h1{font-family:var(--race-display)!important;font-weight:900!important;letter-spacing:-.014em!important;font-stretch:condensed!important}
 .hero-sub{color:rgba(255,255,255,.84)!important}
@@ -16,6 +16,9 @@
     background-image:linear-gradient(90deg,#050607 0%,rgba(5,6,7,.95) 22%,rgba(5,6,7,.66) 42%,rgba(5,6,7,.08) 70%,rgba(5,6,7,.02)),url('/hero-bg-desktop.avif')!important;
   }
   .hero h1{
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:flex-start!important;
     max-width:660px!important;
     font-size:clamp(72px,5.9vw,94px)!important;
     line-height:.79!important;
@@ -24,7 +27,6 @@
   body .race-home .hero h1>span{margin-bottom:10px!important}
   .hero-copy::after{opacity:.80!important}
 
-  /* Let the portrait dominate the composition like the approved poster. */
   .hero-portrait{
     right:-10%!important;
     top:-88px!important;
@@ -45,44 +47,141 @@
 }
 
 @media(max-width:760px){
+  /* Match the poster's 941 × 1672 composition instead of relying on a pre-composited smaller portrait. */
+  .hero{
+    height:clamp(698px,177.68vw,800px)!important;
+    min-height:698px!important;
+    max-height:800px!important;
+  }
+  .hero-shell{height:calc(100% - 76px)!important}
+
   .hero-art{
-    background-image:linear-gradient(90deg,rgba(5,6,7,.43) 0%,rgba(5,6,7,.27) 24%,rgba(5,6,7,.12) 43%,rgba(5,6,7,.02) 64%,transparent 79%),url('/hero-mobile-retina.avif')!important;
+    background-image:linear-gradient(90deg,rgba(5,6,7,.62) 0%,rgba(5,6,7,.47) 27%,rgba(5,6,7,.20) 47%,rgba(5,6,7,.04) 66%,transparent 82%),url('/hero-bg-mobile.avif')!important;
     background-size:auto 112%!important;
-    background-position:58% -8px!important;
+    background-position:center -4px!important;
     background-repeat:no-repeat!important;
-    filter:saturate(1.18) contrast(1.08) brightness(1.025)!important;
+    filter:saturate(1.18) contrast(1.08) brightness(1.02)!important;
+  }
+  .hero-art::after{
+    background:linear-gradient(180deg,transparent 0 80%,rgba(5,6,7,.04) 89%,#050607 100%)!important;
   }
 
-  .hero-copy::after{
-    width:57%!important;
-    background:linear-gradient(90deg,rgba(5,6,7,.46) 0%,rgba(5,6,7,.22) 56%,transparent 100%)!important;
+  /* Use the dedicated high-resolution portrait as an independent layer so it can overlap the typography exactly like the poster. */
+  .hero-portrait{
+    display:block!important;
+    left:6.5vw!important;
+    right:auto!important;
+    top:-15px!important;
+    bottom:auto!important;
+    width:112vw!important;
+    height:140vw!important;
+    max-width:none!important;
+    overflow:visible!important;
+    transform:none!important;
+    z-index:5!important;
   }
-
-  /* Taller, heavier and more condensed — closer to the race-poster display face. */
-  .hero h1{
+  .hero-portrait img{
+    position:absolute!important;
+    inset:0!important;
     width:100%!important;
-    max-width:352px!important;
-    font-size:clamp(57px,14.45vw,66px)!important;
-    line-height:.79!important;
-    letter-spacing:-.018em!important;
+    height:100%!important;
+    object-fit:contain!important;
+    object-position:center top!important;
+    transform:none!important;
+    transform-origin:center top!important;
+    filter:none!important;
   }
-  body .race-home .hero h1>span{margin-bottom:9px!important}
+  .portrait-aura{
+    display:block!important;
+    right:4%!important;
+    top:0!important;
+    width:74%!important;
+    height:61%!important;
+    opacity:.40!important;
+    filter:blur(24px)!important;
+    background:radial-gradient(ellipse at 56% 28%,rgba(255,25,31,.42) 0%,rgba(202,7,13,.18) 32%,transparent 69%)!important;
+  }
+  .hero-portrait::before,.hero-portrait::after{content:none!important}
 
-  .hero-intro-rule{max-width:88%!important}
-  .hero-intro p{letter-spacing:.30em!important}
+  .hero-copy{
+    top:0!important;
+    width:100%!important;
+    max-width:none!important;
+    z-index:8!important;
+  }
+  .hero-copy::after{
+    left:-18px!important;
+    top:42px!important;
+    width:76%!important;
+    height:470px!important;
+    opacity:1!important;
+    background:linear-gradient(90deg,rgba(5,6,7,.78) 0%,rgba(5,6,7,.52) 46%,rgba(5,6,7,.22) 72%,transparent 100%)!important;
+    filter:none!important;
+  }
+
+  .hero-intro{margin:0 0 17px!important}
+  .hero-intro-rule{width:330px!important;max-width:88%!important;gap:15px!important;margin-bottom:12px!important}
+  .hero-intro-rule span{font-size:9px!important}
+  .hero-intro p{font-size:9px!important;letter-spacing:.30em!important}
+
+  .hero h1{
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:flex-start!important;
+    width:100%!important;
+    max-width:330px!important;
+    margin:0!important;
+    font-size:clamp(50px,13.05vw,56px)!important;
+    line-height:.79!important;
+    letter-spacing:-.016em!important;
+    text-shadow:1px 2px 0 rgba(0,0,0,.34),0 5px 17px rgba(0,0,0,.94)!important;
+  }
+  body .race-home .hero h1>span{
+    display:block!important;
+    margin:0!important;
+    white-space:nowrap!important;
+    transform:scaleX(1.055)!important;
+    transform-origin:left center!important;
+  }
+
   .hero-sub{
-    width:342px!important;
-    max-width:89%!important;
-    margin-top:25px!important;
-    font-size:14.5px!important;
-    line-height:1.54!important;
+    width:326px!important;
+    max-width:87%!important;
+    margin-top:20px!important;
+    font-size:13px!important;
+    line-height:1.50!important;
+    color:rgba(255,255,255,.82)!important;
+    text-shadow:0 2px 10px rgba(0,0,0,.94)!important;
   }
   .hero .race-button{
-    width:214px!important;
-    height:56px!important;
-    margin-top:19px!important;
+    width:178px!important;
+    height:50px!important;
+    margin-top:17px!important;
+    padding:0 18px!important;
+    font-size:13px!important;
   }
-  .hero-location{margin-top:31px!important}
-  .hero-side-note{top:60%!important;right:7px!important;letter-spacing:.30em!important}
-  .hero-scroll{right:15px!important;bottom:56px!important}
+  .hero-location{
+    margin-top:27px!important;
+    font-size:8px!important;
+    letter-spacing:.17em!important;
+  }
+
+  .hero-side-note{
+    top:55.5%!important;
+    right:15px!important;
+    font-size:7px!important;
+    line-height:1.25!important;
+    letter-spacing:.30em!important;
+    z-index:9!important;
+  }
+  .hero-side-note i{width:19px!important;margin-top:4px!important}
+  .hero-scroll{display:grid!important;right:15px!important;bottom:51px!important}
+  .hero-bottom-mark{
+    display:block!important;
+    left:2%!important;
+    bottom:58px!important;
+    width:52vw!important;
+    max-width:205px!important;
+    opacity:.032!important;
+  }
 }
