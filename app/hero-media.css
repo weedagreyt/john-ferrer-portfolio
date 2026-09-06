@@ -57,30 +57,30 @@ body .race-home .hero h1 .dot{color:var(--race-red)!important}
 
 @media(max-width:760px){
   .race-home .shell{width:min(100% - 28px,1240px)!important}
-  .hero{height:clamp(800px,100svh,900px)!important;min-height:800px!important;max-height:900px!important}
+  .hero{height:clamp(690px,175.4vw,800px)!important;min-height:690px!important;max-height:800px!important}
   .hero-shell{height:calc(100% - 88px)!important}
 
-  /* Mobile is intentionally art-directed as one image: portrait, rim light, smoke, skyline and racing streaks stay locked together. */
-  .hero-art{background-image:linear-gradient(90deg,rgba(5,6,7,.97) 0%,rgba(5,6,7,.82) 35%,rgba(5,6,7,.25) 57%,rgba(5,6,7,.02) 78%),url('/hero-mobile-composite.avif')!important;background-size:cover!important;background-position:center top!important;filter:saturate(1.03) contrast(1.03)!important}
-  .hero-art::after{background:linear-gradient(180deg,transparent 0 76%,rgba(5,6,7,.1) 86%,#050607 100%)!important}
+  /* Mobile is deliberately art-directed as one cinematic image so the portrait, rim light, skyline and racing streaks cannot drift apart. */
+  .hero-art{background-image:linear-gradient(90deg,rgba(5,6,7,.58) 0%,rgba(5,6,7,.43) 24%,rgba(5,6,7,.24) 42%,rgba(5,6,7,.05) 62%,transparent 76%),url('/hero-mobile-composite.avif')!important;background-size:cover!important;background-position:center top!important;filter:saturate(1.02) contrast(1.03)!important}
+  .hero-art::after{background:linear-gradient(180deg,transparent 0 82%,rgba(5,6,7,.04) 90%,#050607 100%)!important}
   .hero-portrait{display:none!important}
   .portrait-aura{display:none!important}
 
-  .hero-copy{top:10px!important;width:100%!important;max-width:none!important;z-index:8!important}
-  .hero-copy::after{left:-18px!important;top:82px!important;width:70%!important;height:520px!important;background:linear-gradient(90deg,rgba(5,6,7,.68) 0%,rgba(5,6,7,.42) 52%,transparent 100%)!important}
-  .hero-intro{margin:0 0 30px!important}
+  .hero-copy{top:8px!important;width:100%!important;max-width:none!important;z-index:8!important}
+  .hero-copy::after{left:-18px!important;top:76px!important;width:66%!important;height:505px!important;background:linear-gradient(90deg,rgba(5,6,7,.62) 0%,rgba(5,6,7,.36) 54%,transparent 100%)!important}
+  .hero-intro{margin:0 0 20px!important}
   .hero-intro-rule{width:330px!important;max-width:94%!important;gap:15px!important;margin-bottom:14px!important}
   .hero-intro-rule span{font-size:10px!important}
   .hero-intro p{font-size:10px!important;letter-spacing:.27em!important}
 
-  .hero h1{width:100%!important;max-width:350px!important;font-size:clamp(51px,13.8vw,60px)!important;line-height:.86!important;letter-spacing:-.014em!important;text-shadow:0 5px 18px rgba(0,0,0,.96)!important}
-  body .race-home .hero h1>span{margin-bottom:8px!important}
-  .hero-sub{width:330px!important;max-width:87%!important;margin-top:25px!important;font-size:14px!important;line-height:1.55!important}
-  .hero .race-button{width:205px!important;height:54px!important;margin-top:22px!important}
-  .hero-location{margin-top:31px!important}
-  .hero-side-note{top:56%!important;right:5px!important;font-size:7px!important;z-index:9!important}
-  .hero-scroll{display:grid!important;right:14px!important;bottom:28px!important}
-  .hero-bottom-mark{left:2%!important;bottom:-12px!important;width:285px!important;max-width:68vw!important;opacity:.035!important}
+  .hero h1{width:100%!important;max-width:350px!important;font-size:clamp(50px,13.2vw,57px)!important;line-height:.88!important;letter-spacing:-.014em!important;text-shadow:0 5px 18px rgba(0,0,0,.96)!important}
+  body .race-home .hero h1>span{margin-bottom:7px!important}
+  .hero-sub{width:330px!important;max-width:87%!important;margin-top:24px!important;font-size:14px!important;line-height:1.55!important}
+  .hero .race-button{width:205px!important;height:54px!important;margin-top:18px!important}
+  .hero-location{margin-top:30px!important}
+  .hero-side-note{top:57%!important;right:5px!important;font-size:7px!important;z-index:9!important}
+  .hero-scroll{display:grid!important;right:14px!important;bottom:76px!important}
+  .hero-bottom-mark{left:2%!important;bottom:8px!important;width:285px!important;max-width:68vw!important;opacity:.035!important}
 
   .work-section::after{background:linear-gradient(180deg,rgba(7,8,9,.95),rgba(7,8,9,.985)),url('/hero-bg-mobile.avif') center/cover no-repeat!important;opacity:.3!important}
   .approach-section::before{background:linear-gradient(180deg,rgba(7,8,9,.97),rgba(7,8,9,.92)),url('/hero-bg-mobile.avif') center/cover no-repeat!important;opacity:.25!important}
