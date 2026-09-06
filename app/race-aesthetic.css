@@ -4,17 +4,20 @@
   --race-red:#f01820;
   --race-white:#fafafa;
   --race-muted:rgba(250,250,250,.68);
-  --race-display:var(--font-race-display),"Arial Narrow",Impact,sans-serif;
 }
 
 html{background:var(--race-black)}
-body{background:var(--race-black);color:var(--race-white)}
+body{
+  --race-display:var(--font-race-display),"Arial Narrow",Impact,sans-serif;
+  background:var(--race-black);
+  color:var(--race-white)
+}
 ::selection{background:var(--race-red);color:#fff}
 
 /* One display language across every route. Keep the real Teko face intact. */
 main h1,
 main h2{
-  font-family:var(--race-display)!important;
+  font-family:var(--font-race-display),"Arial Narrow",Impact,sans-serif!important;
   font-style:normal!important;
   font-weight:700!important;
   text-transform:uppercase!important;
