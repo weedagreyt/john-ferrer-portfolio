@@ -22,6 +22,14 @@ const slides = [
   { src: "https://www.figma.com/api/mcp/asset/8b2d80b7-ed3a-41da-a7a8-2e8c5453e7ac.png", start: 3520, end: STACK_START, zoomFrom: 1.07, zoomEnd: 4040, x: -29.2, y: 40.4, stack: 1, position: "center center" },
 ] as const;
 
+// During the final collapse, keep these three images visibly on top of their stacks:
+// KOVE (0), Postcard Designs / DOPE (2), and Unimotors (6).
+const finalStackZ: Record<number, number> = {
+  0: 82,
+  2: 81,
+  6: 83,
+};
+
 const clamp = (value: number, min = 0, max = 1) => Math.min(max, Math.max(min, value));
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
 const smooth = (t: number) => t * t * (3 - 2 * t);
@@ -156,6 +164,7 @@ export default function IntroSequence() {
 
           const isCurrentScene = time >= slide.start && time < slide.end;
           const show = ready && (stacking || isCurrentScene);
+          const zIndex = stacking ? (finalStackZ[index] ?? 20 + index) : 20 + index;
 
           return (
             <div
@@ -163,7 +172,7 @@ export default function IntroSequence() {
               key={slide.src}
               aria-hidden={!show}
               style={{
-                zIndex: 20 + index,
+                zIndex,
                 opacity: show ? 1 : 0,
                 visibility: show ? "visible" : "hidden",
                 borderRadius: `${radius}px`,
