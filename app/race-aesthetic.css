@@ -11,15 +11,16 @@ html{background:var(--race-black)}
 body{background:var(--race-black);color:var(--race-white)}
 ::selection{background:var(--race-red);color:#fff}
 
-/* One display language across every route. */
+/* One display language across every route. Keep the real Teko face intact. */
 main h1,
 main h2{
   font-family:var(--race-display)!important;
-  font-style:italic!important;
-  font-weight:900!important;
+  font-style:normal!important;
+  font-weight:700!important;
   text-transform:uppercase!important;
-  letter-spacing:-.012em!important;
+  letter-spacing:-.006em!important;
   text-rendering:geometricPrecision;
+  font-synthesis:none!important;
 }
 
 /* Carry the generated black/red atmosphere beyond the homepage without touching case-study image geometry. */
@@ -60,7 +61,7 @@ body main:not(.race-home) h2{line-height:.92!important;text-shadow:0 6px 24px rg
     background-position:center top!important;
   }
 
-  main h1,main h2{letter-spacing:-.004em!important}
+  main h1,main h2{letter-spacing:-.003em!important}
   body main:not(.race-home) h1{line-height:.87!important}
   body main:not(.race-home) h2{line-height:.9!important}
 
