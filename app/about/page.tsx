@@ -21,7 +21,7 @@ export default function AboutPage() {
         <div className={styles.content}>
           <Reveal className={styles.copy}>
             <p className={styles.eyebrow}>About Me</p>
-            <h1>More than just pixels.</h1>
+            <h1>More than just <span>pixels.</span></h1>
             <p className={styles.intro}>I’m a graphic designer with a passion for storytelling through design. I believe great design is not just about looking good — it’s about solving problems and making a real impact.</p>
             <ul>
               <li>Detail-oriented</li>
