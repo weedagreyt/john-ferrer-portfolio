@@ -1,0 +1,24 @@
+.intro { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: start; margin-bottom: 48px; }
+.cover { width: 100%; height: auto; margin-top: 32px; }
+.brandLogo { width: 100%; height: auto; max-height: 531px; object-fit: contain; }
+.gallery { display: grid; gap: 30px; }
+.three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 50px; align-items: start; }
+.three img { width: 100%; height: auto; display: block; }
+.featureRow { display: grid; grid-template-columns: 2.15fr 1fr; gap: 52px; align-items: start; }
+.sizeChart { width: 100%; height: auto; }
+.stack { display: grid; gap: 50px; }
+.stack img { width: 100%; height: auto; }
+.bottom { display: grid; grid-template-columns: .9fr 1.12fr; gap: 52px; align-items: start; }
+.bottom img { width: 100%; height: auto; }
+@media (max-width: 900px) {
+  .intro { grid-template-columns: 1fr; }
+  .brandLogo { max-width: 520px; }
+  .three { gap: 22px; }
+  .featureRow { gap: 24px; }
+  .stack { gap: 24px; }
+  .bottom { gap: 24px; }
+}
+@media (max-width: 620px) {
+  .three, .featureRow, .bottom { grid-template-columns: 1fr; gap: 18px; }
+  .stack { grid-template-columns: 1fr 1fr; gap: 18px; }
+}
