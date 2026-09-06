@@ -1,0 +1,25 @@
+.intro { display: grid; grid-template-columns: 411px 1fr; gap: 39px; align-items: start; margin-bottom: 42px; }
+.brandLogo { width: 100%; height: auto; margin-top: 48px; }
+.gallery { display: grid; gap: 32px; }
+.three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 41px; }
+.three img { width: 100%; height: auto; }
+.characters { display: grid; grid-template-columns: repeat(6, 1fr); gap: 35px; }
+.characters img { width: 100%; height: auto; }
+.videoStill { position: relative; overflow: hidden; width: 100%; }
+.videoStill > img { width: 100%; height: auto; display: block; }
+.videoStill > span { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 64px; height: 64px; border-radius: 50%; background: rgba(247,247,247,.95); color: #c61111; display: grid; place-items: center; padding-left: 4px; font-size: 22px; box-shadow: 0 8px 30px rgba(0,0,0,.22); transition: transform .25s ease; }
+.videoStill:hover > span { transform: translate(-50%, -50%) scale(1.08); }
+.socialGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.socialGrid img { width: 100%; height: auto; }
+@media (max-width: 900px) {
+  .intro { grid-template-columns: 1fr; }
+  .brandLogo { max-width: 411px; margin-top: 30px; }
+  .three { gap: 22px; }
+  .characters { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .socialGrid { gap: 22px; }
+}
+@media (max-width: 620px) {
+  .three, .socialGrid { grid-template-columns: 1fr; gap: 18px; }
+  .characters { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .videoStill > span { width: 52px; height: 52px; font-size: 18px; }
+}
