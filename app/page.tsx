@@ -7,7 +7,7 @@ import { projectSummaries, services, siteAssets } from "./lib/portfolio";
 
 const assets = {
   portrait: "https://www.figma.com/api/mcp/asset/444382a5-690d-483b-a881-9ec4956476c0.png",
-  heroPortrait: "/john-hero-rimlight.webp",
+  heroPortrait: "/hero-portrait-red.webp",
   kove: "https://www.figma.com/api/mcp/asset/a4f118aa-caf3-42cf-91e1-aae3af51fc05.png",
   unimotors: "https://www.figma.com/api/mcp/asset/c0d21f3a-2bd4-4f1b-994f-f494084d10d2.png",
   dope: "https://www.figma.com/api/mcp/asset/5d08bcf7-f229-4889-9d34-08401c51103e.png",
@@ -134,128 +134,6 @@ export default function HomePage() {
       </section>
 
       <SiteFooter />
-
-      <style>{`
-        .hero-eyebrow{display:none!important}
-        .hero-intro{margin:0 0 30px;color:#fff;text-transform:uppercase}
-        .hero-intro-rule{display:flex;align-items:center;width:min(330px,90%);gap:17px;margin-bottom:16px}
-        .hero-intro-rule span{color:#ef171f;font-size:10px;font-weight:900;letter-spacing:.18em}
-        .hero-intro-rule i{display:block;flex:1;height:1px;background:rgba(255,255,255,.7)}
-        .hero-intro p{margin:0;color:#fff;font-size:10px;font-weight:800;letter-spacing:.29em}
-        .hero-bottom-mark{display:none}
-
-        .hero-portrait {
-          right: -3% !important;
-          top: 18px !important;
-          width: min(830px, 61vw) !important;
-          height: 800px !important;
-        }
-        .hero-portrait img {
-          filter: brightness(.98) contrast(1.04) !important;
-          transform: scale(1.16) !important;
-          transform-origin: center bottom !important;
-        }
-        .portrait-aura {
-          opacity: .34 !important;
-          right: 7% !important;
-          top: 5% !important;
-          width: 70% !important;
-          height: 72% !important;
-          filter: blur(32px) !important;
-        }
-        .hero-portrait::before { opacity: .52; }
-        .hero-portrait::after {
-          left: -8% !important;
-          width: 29% !important;
-          background: linear-gradient(90deg,#050607 0%,rgba(5,6,7,.68) 48%,transparent 100%) !important;
-        }
-
-        @media (max-width: 760px) {
-          .hero { height: 1120px !important; min-height: 1120px !important; }
-          .hero-shell { height: calc(100% - 88px) !important; }
-          .hero-art {
-            background-position: 68% 45% !important;
-            background-size: auto 100% !important;
-            background-image: linear-gradient(90deg,#050607 0%,#050607 30%,rgba(5,6,7,.96) 42%,rgba(5,6,7,.44) 63%,rgba(5,6,7,.12) 100%),url('/racing-atmosphere.svg') !important;
-          }
-          .hero-art::after {
-            background: linear-gradient(180deg,rgba(5,6,7,.02) 0 62%,rgba(5,6,7,.16) 76%,#050607 100%) !important;
-          }
-          .hero-copy {
-            top: 14px !important;
-            width: 100% !important;
-            max-width: none !important;
-            z-index: 9 !important;
-          }
-          .hero-copy::after {
-            left: -18px !important;
-            top: 100px !important;
-            width: 108% !important;
-            height: 630px !important;
-            background: linear-gradient(90deg,rgba(5,6,7,.995) 0%,rgba(5,6,7,.93) 44%,rgba(5,6,7,.55) 64%,rgba(5,6,7,.12) 87%,transparent 100%) !important;
-          }
-          .hero-intro{margin-bottom:44px!important}
-          .hero-intro-rule{width:340px;max-width:93%;gap:16px;margin-bottom:17px}
-          .hero-intro-rule span{font-size:10px}
-          .hero-intro p{font-size:10px;letter-spacing:.28em}
-          .hero h1 {
-            width: 111% !important;
-            max-width: none !important;
-            font-family: Impact, Haettenschweiler, "Arial Narrow Bold", "Arial Black", sans-serif !important;
-            font-size: clamp(50px, 13.25vw, 58px) !important;
-            line-height: 1.03 !important;
-            letter-spacing: -.012em !important;
-            font-style: oblique 12deg !important;
-            text-shadow: 0 5px 18px rgba(0,0,0,.9) !important;
-          }
-          .hero h1>span{margin-bottom:3px!important}
-          .hero-sub {
-            width: 345px !important;
-            max-width: 86% !important;
-            margin-top: 32px !important;
-            font-size: 14px !important;
-            line-height: 1.6 !important;
-          }
-          .hero .race-button{margin-top:26px!important;width:205px!important;height:54px!important}
-          .hero-location{margin-top:57px!important}
-
-          .hero-portrait {
-            left: 50% !important;
-            right: auto !important;
-            top: -16px !important;
-            bottom: auto !important;
-            width: 178vw !important;
-            height: 1060px !important;
-            transform: translateX(-37%) !important;
-            z-index: 5 !important;
-          }
-          .hero-portrait img {
-            object-position: center bottom !important;
-            transform: scale(1.0) !important;
-            filter: brightness(.98) contrast(1.04) !important;
-          }
-          .portrait-aura {
-            right: 18% !important;
-            top: 7% !important;
-            width: 57% !important;
-            height: 50% !important;
-            opacity: .2 !important;
-            filter: blur(38px)!important;
-          }
-          .hero-portrait::before{opacity:.34!important}
-          .hero-portrait::after {
-            left: 0 !important;
-            width: 45% !important;
-            background: linear-gradient(90deg,#050607 0%,rgba(5,6,7,.84) 42%,rgba(5,6,7,.25) 76%,transparent 100%) !important;
-          }
-          .hero-side-note { top: 58% !important; right: 8px !important; }
-          .hero-scroll { display:grid!important; right:18px!important; bottom:66px!important; }
-          .hero-bottom-mark{
-            display:block;position:absolute;left:3%;bottom:34px;width:310px;max-width:72vw;z-index:2;
-            opacity:.045;filter:brightness(0) invert(1);pointer-events:none;
-          }
-        }
-      `}</style>
     </main>
   );
 }
