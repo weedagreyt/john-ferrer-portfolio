@@ -1,18 +1,38 @@
-.intro { display: grid; grid-template-columns: 1fr 1.1fr; gap: 34px; align-items: start; margin-bottom: 32px; }
-.intro > img { width: 100%; height: auto; }
-.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; align-items: start; }
-.grid img { width: 100%; height: auto; display: block; }
-.postcards { grid-column: span 1; }
-.targeted { grid-column: span 2; }
-.mascot { grid-column: 3; grid-row: 2 / span 2; align-self: end; }
-.brochure { grid-column: span 2; }
+.intro {
+  display: grid;
+  grid-template-columns: .92fr 1.08fr;
+  gap: 48px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.intro > img { width: 100%; height: auto; border-radius: 12px; }
+.gallery { display: grid; gap: 34px; }
+.gallery img { width: 100%; height: auto; display: block; border-radius: 12px; }
+.heroPair { display: grid; grid-template-columns: .82fr 1.35fr; gap: 34px; align-items: start; }
+.mascotFeature { display: grid; grid-template-columns: 1.4fr .72fr; gap: 34px; align-items: stretch; }
+.mascotFeature > div {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 24px;
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid rgba(247,247,247,.1);
+  background: #141516;
+}
+.mascotFeature p { margin: 0; max-width: 620px; color: rgba(247,247,247,.68); font-size: 15px; line-height: 1.7; }
+.mascotFeature > div img { align-self: end; }
+.mascotFeature > img { height: 100%; max-height: 820px; object-fit: contain; background: #171819; }
+.productionRow { display: grid; grid-template-columns: 1fr 1.25fr .78fr; gap: 28px; align-items: start; }
+.brochureRow { display: grid; grid-template-columns: 1.45fr .8fr; gap: 34px; align-items: start; }
+.socialRow { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; }
 @media (max-width: 900px) {
-  .intro { grid-template-columns: 1fr; }
-  .grid { grid-template-columns: 1fr 1fr; gap: 22px; }
-  .targeted, .brochure { grid-column: span 2; }
-  .mascot { grid-column: auto; grid-row: auto; }
+  .intro, .heroPair, .mascotFeature, .brochureRow { grid-template-columns: 1fr; gap: 22px; }
+  .productionRow { grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  .productionRow img:last-child { grid-column: span 2; max-height: 600px; object-fit: contain; }
 }
 @media (max-width: 620px) {
-  .grid { grid-template-columns: 1fr; gap: 18px; }
-  .targeted, .brochure { grid-column: auto; }
+  .gallery { gap: 18px; }
+  .productionRow, .socialRow { grid-template-columns: 1fr; gap: 18px; }
+  .productionRow img:last-child { grid-column: auto; }
+  .mascotFeature > div { padding: 22px; }
 }
