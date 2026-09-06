@@ -1,6 +1,7 @@
 "use client";
 
 import styles from "./site-footer.module.css";
+import { ArrowIcon } from "./UiIcons";
 import { resumeUrl, services, siteAssets } from "../lib/portfolio";
 
 export default function SiteFooter() {
@@ -13,7 +14,7 @@ export default function SiteFooter() {
             <p className={styles.kicker}>Available for creative opportunities</p>
             <h2>Have something worth building?</h2>
           </div>
-          <a className={styles.cta} href="/contact">Let’s work together <span>↗</span></a>
+          <a className={styles.cta} href="/contact">Let’s work together <span><ArrowIcon diagonal size={20} /></span></a>
         </div>
 
         <div className={styles.divider} />
@@ -37,7 +38,7 @@ export default function SiteFooter() {
             <a href="/">Home</a>
             <a href="/work">Work</a>
             <a href="/about">About</a>
-            <a href={resumeUrl} target="_blank" rel="noreferrer">Résumé ↗</a>
+            <a href={resumeUrl} target="_blank" rel="noreferrer">Résumé <ArrowIcon diagonal size={12} style={{ verticalAlign: "-1px", marginLeft: 3 }} /></a>
           </div>
 
           <div className={styles.servicesCol}>
