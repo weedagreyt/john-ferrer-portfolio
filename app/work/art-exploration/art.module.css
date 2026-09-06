@@ -1,0 +1,21 @@
+.intro { display: grid; grid-template-columns: 1fr 1.25fr; gap: 58px; align-items: start; margin-bottom: 34px; }
+.intro > img { width: 100%; height: auto; }
+.masonry { display: grid; grid-template-columns: 552px 1fr; gap: 35px; align-items: start; }
+.leftCol, .rightArea, .stack { display: grid; gap: 32px; }
+.leftCol img, .rightArea img { width: 100%; height: auto; display: block; }
+.topPair { display: grid; grid-template-columns: 1.24fr 1fr; gap: 29px; align-items: start; }
+.midPair { display: grid; grid-template-columns: 1fr 1fr; gap: 21px; align-items: start; }
+.lower { display: grid; grid-template-columns: 1.38fr 1fr; gap: 30px; align-items: start; }
+.bottomPair { display: grid; grid-template-columns: 1fr 1.08fr; gap: 36px; align-items: start; }
+.tall { align-self: stretch; }
+@media (max-width: 1000px) {
+  .intro { grid-template-columns: 1fr; }
+  .intro > img { max-width: 656px; }
+  .masonry { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .topPair, .midPair, .lower, .bottomPair { gap: 18px; }
+}
+@media (max-width: 650px) {
+  .masonry { grid-template-columns: 1fr; gap: 18px; }
+  .leftCol, .rightArea, .stack { gap: 18px; }
+  .topPair, .midPair, .lower, .bottomPair { grid-template-columns: 1fr 1fr; gap: 14px; }
+}
