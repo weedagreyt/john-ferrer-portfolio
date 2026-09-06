@@ -6,51 +6,42 @@
   --race-black:#050607;
 }
 
-/* Generated artwork is now the primary visual layer. CSS only composes it. */
 .race-home{background:var(--race-black)!important;color:#f7f7f7}
 .hero{position:relative!important;height:900px!important;min-height:900px!important;background:var(--race-black)!important;overflow:hidden!important;isolation:isolate}
-.hero-art{position:absolute!important;inset:0!important;z-index:0!important;background-image:linear-gradient(90deg,#050607 0%,rgba(5,6,7,.99) 24%,rgba(5,6,7,.82) 40%,rgba(5,6,7,.23) 68%,rgba(5,6,7,.12) 100%),url('/hero-bg-desktop.avif')!important;background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important;filter:saturate(1.08) contrast(1.03)}
-.hero-art::before{content:""!important;position:absolute!important;inset:0!important;background:radial-gradient(ellipse at 72% 31%,rgba(239,23,31,.19),transparent 31%)!important;mix-blend-mode:screen!important;pointer-events:none}
-.hero-art::after{content:""!important;position:absolute!important;inset:0!important;background:linear-gradient(180deg,rgba(5,6,7,.02) 0 70%,rgba(5,6,7,.34) 88%,#050607 100%)!important;pointer-events:none}
+.hero-art{position:absolute!important;inset:0!important;z-index:0!important;background-image:linear-gradient(90deg,#050607 0%,rgba(5,6,7,.98) 23%,rgba(5,6,7,.78) 41%,rgba(5,6,7,.14) 70%,rgba(5,6,7,.04)),url('/hero-bg-desktop.avif')!important;background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important;filter:saturate(1.04) contrast(1.04)}
+.hero-art::after{content:""!important;position:absolute!important;inset:0!important;background:linear-gradient(180deg,transparent 0 72%,rgba(5,6,7,.28) 88%,#050607 100%)!important;pointer-events:none}
 
-.hero-intro{margin:0 0 25px;color:#fff;text-transform:uppercase}
+.hero-intro{margin:0 0 26px;color:#fff;text-transform:uppercase}
 .hero-intro-rule{display:flex;align-items:center;width:min(330px,92%);gap:17px;margin-bottom:14px}
 .hero-intro-rule span{color:var(--race-red);font-size:10px;font-weight:900;letter-spacing:.18em}
-.hero-intro-rule i{display:block;flex:1;height:1px;background:rgba(255,255,255,.68)}
+.hero-intro-rule i{display:block;flex:1;height:1px;background:rgba(255,255,255,.7)}
 .hero-intro p{margin:0;color:#fff;font-size:10px;font-weight:800;letter-spacing:.29em}
 .hero-eyebrow{display:none!important}
 
-.hero-copy{top:34px!important;width:52%!important;max-width:650px!important;z-index:8!important}
-.hero-copy::after{content:""!important;position:absolute!important;z-index:-1!important;left:-52px!important;top:82px!important;width:610px!important;height:565px!important;background:linear-gradient(90deg,rgba(5,6,7,.98) 0%,rgba(5,6,7,.86) 42%,rgba(5,6,7,.31) 72%,transparent 100%)!important;filter:blur(1px)!important;pointer-events:none}
-.hero h1,.race-heading h2,.approach-copy h2,.build-inner h2,.project-card-overlay h3,.project-card-copy h3{
-  font-family:var(--race-display)!important;
-  font-style:italic!important;
-  font-weight:900!important;
-  text-transform:uppercase!important;
-}
+.hero-copy{top:30px!important;width:52%!important;max-width:650px!important;z-index:8!important}
+.hero-copy::after{content:""!important;position:absolute!important;z-index:-1!important;left:-54px!important;top:78px!important;width:620px!important;height:575px!important;background:linear-gradient(90deg,rgba(5,6,7,.98) 0%,rgba(5,6,7,.84) 43%,rgba(5,6,7,.25) 73%,transparent 100%)!important;pointer-events:none}
+.hero h1,.race-heading h2,.approach-copy h2,.build-inner h2,.project-card-overlay h3,.project-card-copy h3{font-family:var(--race-display)!important;font-style:italic!important;font-weight:900!important;text-transform:uppercase!important}
 .hero h1{max-width:650px!important;font-size:clamp(62px,5.25vw,82px)!important;line-height:.86!important;letter-spacing:-.018em!important;text-shadow:0 5px 18px rgba(0,0,0,.88)!important;transform:none!important}
-body .race-home .hero h1>span{display:block!important;margin-bottom:9px!important;color:#f8f8f6!important}
-body .race-home .hero h1>span.hero-red{color:#f01820!important;text-shadow:0 0 22px rgba(240,24,32,.26),0 5px 18px rgba(0,0,0,.9)!important}
+body .race-home .hero h1>span{display:block!important;margin-bottom:9px!important;color:#fafafa!important}
+body .race-home .hero h1>span.hero-red{color:#f01820!important;text-shadow:0 0 22px rgba(240,24,32,.24),0 5px 18px rgba(0,0,0,.9)!important}
 body .race-home .hero h1 .dot{color:var(--race-red)!important}
 .hero-sub{width:390px!important;max-width:92%!important;margin-top:26px!important;color:rgba(255,255,255,.78)!important;font-size:15px!important;line-height:1.58!important;text-shadow:0 2px 10px rgba(0,0,0,.92)!important}
-.hero .race-button{margin-top:22px!important;background:rgba(4,5,6,.46)!important;backdrop-filter:blur(8px)!important}
+.hero .race-button{margin-top:22px!important;background:rgba(4,5,6,.52)!important;backdrop-filter:blur(8px)!important}
 .hero-location{margin-top:34px!important}
 
-.hero-portrait{position:absolute!important;right:-7%!important;top:-30px!important;bottom:auto!important;width:min(860px,63vw)!important;height:855px!important;z-index:5!important;overflow:visible!important;pointer-events:none!important}
-.hero-portrait img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:contain!important;object-position:center bottom!important;transform:scale(1.04)!important;transform-origin:center bottom!important;filter:none!important;z-index:2!important}
-.portrait-aura{position:absolute!important;right:5%!important;top:4%!important;width:74%!important;height:72%!important;z-index:0!important;background:radial-gradient(ellipse at 51% 28%,rgba(255,20,25,.42),rgba(195,5,11,.13) 35%,transparent 68%)!important;filter:blur(34px)!important;opacity:.62!important;mix-blend-mode:screen!important}
-.hero-portrait::before{content:""!important;position:absolute!important;inset:-3% -2% 0 15%!important;z-index:0!important;background:linear-gradient(146deg,transparent 0 36%,rgba(239,23,31,.10) 45%,rgba(239,23,31,.03) 60%,transparent 61%)!important;border-right:1px solid rgba(255,30,36,.25)!important;clip-path:polygon(23% 0,100% 0,77% 100%,0 100%)!important;opacity:.6!important}
+.hero-portrait{position:absolute!important;right:-5%!important;top:-48px!important;bottom:auto!important;width:min(900px,66vw)!important;height:875px!important;z-index:5!important;overflow:visible!important;pointer-events:none!important}
+.hero-portrait img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:contain!important;object-position:center bottom!important;transform:scale(1.06)!important;transform-origin:center bottom!important;filter:none!important;z-index:2!important}
+.portrait-aura{position:absolute!important;right:4%!important;top:2%!important;width:76%!important;height:73%!important;z-index:0!important;background:radial-gradient(ellipse at 52% 28%,rgba(255,20,25,.38),rgba(195,5,11,.11) 35%,transparent 68%)!important;filter:blur(32px)!important;opacity:.54!important;mix-blend-mode:screen!important}
+.hero-portrait::before{content:""!important;position:absolute!important;inset:-2% -2% 0 17%!important;z-index:0!important;border-right:1px solid rgba(255,30,36,.25)!important;clip-path:polygon(23% 0,100% 0,77% 100%,0 100%)!important;opacity:.55!important}
 .hero-portrait::after{content:none!important}
 .hero-side-note{right:0!important;top:36%!important;z-index:9!important}
 .hero-scroll{display:grid!important;right:18px!important;bottom:28px!important;z-index:9!important}
 .hero-bottom-mark{display:block!important;position:absolute!important;left:31%!important;bottom:-52px!important;width:410px!important;z-index:1!important;opacity:.025!important;filter:brightness(0) invert(1)!important;pointer-events:none!important}
 
-/* Generated texture continues through the portfolio instead of stopping at the hero. */
 .work-section,.approach-section,.build-section{isolation:isolate!important}
-.work-section::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(7,8,9,.94),rgba(7,8,9,.985)),url('/hero-bg-desktop.avif') center/cover no-repeat;opacity:.42;pointer-events:none}
-.approach-section::before{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(90deg,rgba(7,8,9,.98),rgba(7,8,9,.88)),url('/hero-bg-desktop.avif') 68% center/cover no-repeat;opacity:.34;pointer-events:none}
-.build-art{background-image:linear-gradient(90deg,#050607 0%,rgba(5,6,7,.82) 38%,rgba(5,6,7,.22) 74%,rgba(5,6,7,.34)),url('/hero-bg-desktop.avif')!important;background-size:cover!important;background-position:center 68%!important;filter:saturate(1.06)!important}
-
+.work-section::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(7,8,9,.94),rgba(7,8,9,.985)),url('/hero-bg-desktop.avif') center/cover no-repeat;opacity:.38;pointer-events:none}
+.approach-section::before{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(90deg,rgba(7,8,9,.98),rgba(7,8,9,.88)),url('/hero-bg-desktop.avif') 68% center/cover no-repeat;opacity:.3;pointer-events:none}
+.build-art{background-image:linear-gradient(90deg,#050607 0%,rgba(5,6,7,.82) 38%,rgba(5,6,7,.22) 74%,rgba(5,6,7,.34)),url('/hero-bg-desktop.avif')!important;background-size:cover!important;background-position:center 68%!important;filter:saturate(1.04)!important}
 .race-heading h2{font-size:clamp(48px,4.6vw,64px)!important;line-height:.86!important;letter-spacing:-.012em!important}
 .approach-copy h2{font-size:clamp(44px,4.05vw,58px)!important;line-height:.88!important;letter-spacing:-.012em!important}
 .build-inner h2{font-size:clamp(48px,4.7vw,66px)!important;line-height:.88!important;letter-spacing:-.012em!important}
@@ -61,41 +52,38 @@ body .race-home .hero h1 .dot{color:var(--race-red)!important}
 @media(max-width:1050px){
   .hero-copy{width:56%!important}
   .hero h1{font-size:clamp(58px,6vw,74px)!important}
-  .hero-portrait{right:-14%!important;width:73vw!important}
+  .hero-portrait{right:-13%!important;width:76vw!important}
 }
 
 @media(max-width:760px){
   .race-home .shell{width:min(100% - 28px,1240px)!important}
-  .hero{height:940px!important;min-height:940px!important}
+  .hero{height:clamp(800px,100svh,900px)!important;min-height:800px!important;max-height:900px!important}
   .hero-shell{height:calc(100% - 88px)!important}
-  .hero-art{background-image:linear-gradient(90deg,#050607 0%,rgba(5,6,7,.98) 27%,rgba(5,6,7,.76) 47%,rgba(5,6,7,.18) 72%,rgba(5,6,7,.08) 100%),url('/hero-bg-mobile.avif')!important;background-size:cover!important;background-position:center!important}
-  .hero-art::before{background:radial-gradient(ellipse at 71% 25%,rgba(239,23,31,.16),transparent 28%)!important}
-  .hero-art::after{background:linear-gradient(180deg,rgba(5,6,7,.02) 0 66%,rgba(5,6,7,.18) 82%,#050607 100%)!important}
 
-  .hero-copy{top:12px!important;width:100%!important;max-width:none!important;z-index:8!important}
-  .hero-copy::after{left:-18px!important;top:104px!important;width:76%!important;height:565px!important;background:linear-gradient(90deg,rgba(5,6,7,.98) 0%,rgba(5,6,7,.86) 46%,rgba(5,6,7,.26) 78%,transparent 100%)!important;filter:none!important}
-  .hero-intro{margin:0 0 36px!important}
-  .hero-intro-rule{width:330px!important;max-width:94%!important;gap:15px!important;margin-bottom:16px!important}
+  /* Mobile is intentionally art-directed as one image: portrait, rim light, smoke, skyline and racing streaks stay locked together. */
+  .hero-art{background-image:linear-gradient(90deg,rgba(5,6,7,.97) 0%,rgba(5,6,7,.82) 35%,rgba(5,6,7,.25) 57%,rgba(5,6,7,.02) 78%),url('/hero-mobile-composite.avif')!important;background-size:cover!important;background-position:center top!important;filter:saturate(1.03) contrast(1.03)!important}
+  .hero-art::after{background:linear-gradient(180deg,transparent 0 76%,rgba(5,6,7,.1) 86%,#050607 100%)!important}
+  .hero-portrait{display:none!important}
+  .portrait-aura{display:none!important}
+
+  .hero-copy{top:10px!important;width:100%!important;max-width:none!important;z-index:8!important}
+  .hero-copy::after{left:-18px!important;top:82px!important;width:70%!important;height:520px!important;background:linear-gradient(90deg,rgba(5,6,7,.68) 0%,rgba(5,6,7,.42) 52%,transparent 100%)!important}
+  .hero-intro{margin:0 0 30px!important}
+  .hero-intro-rule{width:330px!important;max-width:94%!important;gap:15px!important;margin-bottom:14px!important}
   .hero-intro-rule span{font-size:10px!important}
   .hero-intro p{font-size:10px!important;letter-spacing:.27em!important}
 
-  .hero h1{width:100%!important;max-width:365px!important;font-size:clamp(55px,14.4vw,64px)!important;line-height:.86!important;letter-spacing:-.012em!important;text-shadow:0 5px 16px rgba(0,0,0,.92)!important}
+  .hero h1{width:100%!important;max-width:350px!important;font-size:clamp(51px,13.8vw,60px)!important;line-height:.86!important;letter-spacing:-.014em!important;text-shadow:0 5px 18px rgba(0,0,0,.96)!important}
   body .race-home .hero h1>span{margin-bottom:8px!important}
-  .hero-sub{width:340px!important;max-width:88%!important;margin-top:27px!important;font-size:14px!important;line-height:1.55!important}
+  .hero-sub{width:330px!important;max-width:87%!important;margin-top:25px!important;font-size:14px!important;line-height:1.55!important}
   .hero .race-button{width:205px!important;height:54px!important;margin-top:22px!important}
-  .hero-location{margin-top:39px!important}
+  .hero-location{margin-top:31px!important}
+  .hero-side-note{top:56%!important;right:5px!important;font-size:7px!important;z-index:9!important}
+  .hero-scroll{display:grid!important;right:14px!important;bottom:28px!important}
+  .hero-bottom-mark{left:2%!important;bottom:-12px!important;width:285px!important;max-width:68vw!important;opacity:.035!important}
 
-  /* Head rises behind the headline; the generated red rim stays unobscured. */
-  .hero-portrait{left:50%!important;right:auto!important;top:-82px!important;bottom:auto!important;width:150vw!important;height:965px!important;transform:translateX(-29%)!important;z-index:5!important}
-  .hero-portrait img{object-position:center bottom!important;transform:scale(1.06)!important;filter:none!important}
-  .portrait-aura{right:17%!important;top:5%!important;width:58%!important;height:49%!important;opacity:.48!important;filter:blur(30px)!important}
-  .hero-portrait::before{inset:-2% -3% 0 18%!important;opacity:.38!important}
-  .hero-side-note{top:57%!important;right:5px!important;font-size:7px!important;z-index:9!important}
-  .hero-scroll{display:grid!important;right:14px!important;bottom:32px!important}
-  .hero-bottom-mark{left:2%!important;bottom:-15px!important;width:300px!important;max-width:72vw!important;opacity:.04!important}
-
-  .work-section::after{background:linear-gradient(180deg,rgba(7,8,9,.95),rgba(7,8,9,.985)),url('/hero-bg-mobile.avif') center/cover no-repeat!important;opacity:.34!important}
-  .approach-section::before{background:linear-gradient(180deg,rgba(7,8,9,.97),rgba(7,8,9,.92)),url('/hero-bg-mobile.avif') center/cover no-repeat!important;opacity:.28!important}
+  .work-section::after{background:linear-gradient(180deg,rgba(7,8,9,.95),rgba(7,8,9,.985)),url('/hero-bg-mobile.avif') center/cover no-repeat!important;opacity:.3!important}
+  .approach-section::before{background:linear-gradient(180deg,rgba(7,8,9,.97),rgba(7,8,9,.92)),url('/hero-bg-mobile.avif') center/cover no-repeat!important;opacity:.25!important}
   .build-art{background-image:linear-gradient(90deg,#050607 0%,rgba(5,6,7,.69) 55%,rgba(5,6,7,.18)),url('/hero-bg-mobile.avif')!important;background-position:center!important}
   .race-heading h2{font-size:43px!important;line-height:.88!important}
   .approach-copy h2{font-size:39px!important;line-height:.9!important}
