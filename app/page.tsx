@@ -130,6 +130,88 @@ export default function HomePage() {
       </section>
 
       <SiteFooter />
+
+      <style>{`
+        /* The rim light is baked into the real portrait asset now. CSS only supports it. */
+        .hero-portrait {
+          right: -3% !important;
+          top: 26px !important;
+          width: min(820px, 60vw) !important;
+          height: 790px !important;
+        }
+        .hero-portrait img {
+          filter: brightness(.97) contrast(1.03) !important;
+          transform: scale(1.14) !important;
+          transform-origin: center bottom !important;
+        }
+        .portrait-aura {
+          opacity: .42 !important;
+          right: 7% !important;
+          top: 5% !important;
+          width: 70% !important;
+          height: 72% !important;
+          filter: blur(32px) !important;
+        }
+        .hero-portrait::before { opacity: .66; }
+        .hero-portrait::after {
+          left: -8% !important;
+          width: 31% !important;
+          background: linear-gradient(90deg,#050607 0%,rgba(5,6,7,.72) 48%,transparent 100%) !important;
+        }
+
+        @media (max-width: 760px) {
+          .hero { height: 920px !important; min-height: 920px !important; }
+          .hero-art {
+            background-position: 62% 46% !important;
+            background-image: linear-gradient(90deg,#050607 0%,#050607 31%,rgba(5,6,7,.93) 44%,rgba(5,6,7,.32) 67%,rgba(5,6,7,.12) 100%),url('/racing-atmosphere.svg') !important;
+          }
+          .hero-copy {
+            top: 14px !important;
+            width: 100% !important;
+            z-index: 9 !important;
+          }
+          .hero-copy::after {
+            left: -18px !important;
+            top: 54px !important;
+            width: 104% !important;
+            height: 520px !important;
+            background: linear-gradient(90deg,rgba(5,6,7,.99) 0%,rgba(5,6,7,.94) 48%,rgba(5,6,7,.34) 78%,transparent 100%) !important;
+          }
+          .hero h1 {
+            max-width: 380px !important;
+            font-size: clamp(40px, 10.7vw, 48px) !important;
+            line-height: 1.01 !important;
+          }
+          .hero-sub { max-width: 340px !important; }
+          .hero-portrait {
+            left: 50% !important;
+            right: auto !important;
+            top: 245px !important;
+            bottom: auto !important;
+            width: 122vw !important;
+            height: 675px !important;
+            transform: translateX(-39%) !important;
+            z-index: 5 !important;
+          }
+          .hero-portrait img {
+            object-position: center bottom !important;
+            transform: scale(1.18) !important;
+          }
+          .portrait-aura {
+            right: 15% !important;
+            top: 7% !important;
+            width: 64% !important;
+            height: 58% !important;
+            opacity: .34 !important;
+          }
+          .hero-portrait::after {
+            left: 0 !important;
+            width: 42% !important;
+            background: linear-gradient(90deg,#050607 0%,rgba(5,6,7,.73) 46%,rgba(5,6,7,.12) 88%,transparent 100%) !important;
+          }
+          .hero-side-note { top: 51% !important; right: 6px !important; }
+        }
+      `}</style>
     </main>
   );
 }
