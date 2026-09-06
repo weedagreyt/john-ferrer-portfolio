@@ -9,7 +9,7 @@
 /* Generated artwork is now the primary visual layer. CSS only composes it. */
 .race-home{background:var(--race-black)!important;color:#f7f7f7}
 .hero{position:relative!important;height:900px!important;min-height:900px!important;background:var(--race-black)!important;overflow:hidden!important;isolation:isolate}
-.hero-art{position:absolute!important;inset:0!important;z-index:0!important;background-image:linear-gradient(90deg,#050607 0%,rgba(5,6,7,.99) 24%,rgba(5,6,7,.82) 40%,rgba(5,6,7,.23) 68%,rgba(5,6,7,.12) 100%),url('/hero-bg-desktop.webp')!important;background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important;filter:saturate(1.08) contrast(1.03)}
+.hero-art{position:absolute!important;inset:0!important;z-index:0!important;background-image:linear-gradient(90deg,#050607 0%,rgba(5,6,7,.99) 24%,rgba(5,6,7,.82) 40%,rgba(5,6,7,.23) 68%,rgba(5,6,7,.12) 100%),url('/hero-bg-desktop.avif')!important;background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important;filter:saturate(1.08) contrast(1.03)}
 .hero-art::before{content:""!important;position:absolute!important;inset:0!important;background:radial-gradient(ellipse at 72% 31%,rgba(239,23,31,.19),transparent 31%)!important;mix-blend-mode:screen!important;pointer-events:none}
 .hero-art::after{content:""!important;position:absolute!important;inset:0!important;background:linear-gradient(180deg,rgba(5,6,7,.02) 0 70%,rgba(5,6,7,.34) 88%,#050607 100%)!important;pointer-events:none}
 
@@ -47,9 +47,9 @@ body .race-home .hero h1 .dot{color:var(--race-red)!important}
 
 /* Generated texture continues through the portfolio instead of stopping at the hero. */
 .work-section,.approach-section,.build-section{isolation:isolate!important}
-.work-section::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(7,8,9,.94),rgba(7,8,9,.985)),url('/hero-bg-desktop.webp') center/cover no-repeat;opacity:.42;pointer-events:none}
-.approach-section::before{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(90deg,rgba(7,8,9,.98),rgba(7,8,9,.88)),url('/hero-bg-desktop.webp') 68% center/cover no-repeat;opacity:.34;pointer-events:none}
-.build-art{background-image:linear-gradient(90deg,#050607 0%,rgba(5,6,7,.82) 38%,rgba(5,6,7,.22) 74%,rgba(5,6,7,.34)),url('/hero-bg-desktop.webp')!important;background-size:cover!important;background-position:center 68%!important;filter:saturate(1.06)!important}
+.work-section::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(7,8,9,.94),rgba(7,8,9,.985)),url('/hero-bg-desktop.avif') center/cover no-repeat;opacity:.42;pointer-events:none}
+.approach-section::before{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(90deg,rgba(7,8,9,.98),rgba(7,8,9,.88)),url('/hero-bg-desktop.avif') 68% center/cover no-repeat;opacity:.34;pointer-events:none}
+.build-art{background-image:linear-gradient(90deg,#050607 0%,rgba(5,6,7,.82) 38%,rgba(5,6,7,.22) 74%,rgba(5,6,7,.34)),url('/hero-bg-desktop.avif')!important;background-size:cover!important;background-position:center 68%!important;filter:saturate(1.06)!important}
 
 .race-heading h2{font-size:clamp(48px,4.6vw,64px)!important;line-height:.86!important;letter-spacing:-.012em!important}
 .approach-copy h2{font-size:clamp(44px,4.05vw,58px)!important;line-height:.88!important;letter-spacing:-.012em!important}
@@ -68,7 +68,7 @@ body .race-home .hero h1 .dot{color:var(--race-red)!important}
   .race-home .shell{width:min(100% - 28px,1240px)!important}
   .hero{height:940px!important;min-height:940px!important}
   .hero-shell{height:calc(100% - 88px)!important}
-  .hero-art{background-image:linear-gradient(90deg,#050607 0%,rgba(5,6,7,.98) 27%,rgba(5,6,7,.76) 47%,rgba(5,6,7,.18) 72%,rgba(5,6,7,.08) 100%),url('/hero-bg-mobile.webp')!important;background-size:cover!important;background-position:center!important}
+  .hero-art{background-image:linear-gradient(90deg,#050607 0%,rgba(5,6,7,.98) 27%,rgba(5,6,7,.76) 47%,rgba(5,6,7,.18) 72%,rgba(5,6,7,.08) 100%),url('/hero-bg-mobile.avif')!important;background-size:cover!important;background-position:center!important}
   .hero-art::before{background:radial-gradient(ellipse at 71% 25%,rgba(239,23,31,.16),transparent 28%)!important}
   .hero-art::after{background:linear-gradient(180deg,rgba(5,6,7,.02) 0 66%,rgba(5,6,7,.18) 82%,#050607 100%)!important}
 
@@ -94,9 +94,9 @@ body .race-home .hero h1 .dot{color:var(--race-red)!important}
   .hero-scroll{display:grid!important;right:14px!important;bottom:32px!important}
   .hero-bottom-mark{left:2%!important;bottom:-15px!important;width:300px!important;max-width:72vw!important;opacity:.04!important}
 
-  .work-section::after{background:linear-gradient(180deg,rgba(7,8,9,.95),rgba(7,8,9,.985)),url('/hero-bg-mobile.webp') center/cover no-repeat!important;opacity:.34!important}
-  .approach-section::before{background:linear-gradient(180deg,rgba(7,8,9,.97),rgba(7,8,9,.92)),url('/hero-bg-mobile.webp') center/cover no-repeat!important;opacity:.28!important}
-  .build-art{background-image:linear-gradient(90deg,#050607 0%,rgba(5,6,7,.69) 55%,rgba(5,6,7,.18)),url('/hero-bg-mobile.webp')!important;background-position:center!important}
+  .work-section::after{background:linear-gradient(180deg,rgba(7,8,9,.95),rgba(7,8,9,.985)),url('/hero-bg-mobile.avif') center/cover no-repeat!important;opacity:.34!important}
+  .approach-section::before{background:linear-gradient(180deg,rgba(7,8,9,.97),rgba(7,8,9,.92)),url('/hero-bg-mobile.avif') center/cover no-repeat!important;opacity:.28!important}
+  .build-art{background-image:linear-gradient(90deg,#050607 0%,rgba(5,6,7,.69) 55%,rgba(5,6,7,.18)),url('/hero-bg-mobile.avif')!important;background-position:center!important}
   .race-heading h2{font-size:43px!important;line-height:.88!important}
   .approach-copy h2{font-size:39px!important;line-height:.9!important}
   .build-inner h2{font-size:43px!important;line-height:.9!important}
