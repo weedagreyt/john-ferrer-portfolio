@@ -1,24 +1,23 @@
-.intro { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: start; margin-bottom: 48px; }
-.cover { width: 100%; height: auto; margin-top: 32px; }
-.brandLogo { width: 100%; height: auto; max-height: 531px; object-fit: contain; }
+.intro { display: grid; grid-template-columns: 1.15fr .85fr; gap: 52px; align-items: start; margin-bottom: 28px; }
+.cover { width: 100%; height: auto; margin-top: 34px; border-radius: 12px; }
+.brandLogo { width: 100%; height: auto; max-height: 520px; object-fit: contain; border-radius: 12px; }
 .gallery { display: grid; gap: 30px; }
-.three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 50px; align-items: start; }
+.gallery img { border-radius: 12px; }
+.three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; align-items: start; }
 .three img { width: 100%; height: auto; display: block; }
-.featureRow { display: grid; grid-template-columns: 2.15fr 1fr; gap: 52px; align-items: start; }
+.featureRow { display: grid; grid-template-columns: 2.1fr 1fr; gap: 30px; align-items: start; }
 .sizeChart { width: 100%; height: auto; }
-.stack { display: grid; gap: 50px; }
+.stack { display: grid; gap: 30px; }
 .stack img { width: 100%; height: auto; }
-.bottom { display: grid; grid-template-columns: .9fr 1.12fr; gap: 52px; align-items: start; }
+.bottom { display: grid; grid-template-columns: .9fr 1.12fr; gap: 30px; align-items: start; }
 .bottom img { width: 100%; height: auto; }
 @media (max-width: 900px) {
-  .intro { grid-template-columns: 1fr; }
-  .brandLogo { max-width: 520px; }
-  .three { gap: 22px; }
-  .featureRow { gap: 24px; }
-  .stack { gap: 24px; }
-  .bottom { gap: 24px; }
+  .intro { grid-template-columns: 1fr; gap: 24px; }
+  .brandLogo { max-width: 500px; }
+  .three, .featureRow, .stack, .bottom { gap: 20px; }
 }
 @media (max-width: 620px) {
+  .gallery { gap: 18px; }
   .three, .featureRow, .bottom { grid-template-columns: 1fr; gap: 18px; }
   .stack { grid-template-columns: 1fr 1fr; gap: 18px; }
 }
