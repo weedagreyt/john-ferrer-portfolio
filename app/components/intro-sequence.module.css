@@ -5,17 +5,27 @@
   overflow: hidden;
   background: #101112;
   cursor: pointer;
-  will-change: transform, opacity;
+  will-change: opacity;
+  touch-action: none;
 }
-.stage { position: absolute; inset: 0; overflow: hidden; }
+
+.stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #101112;
+}
+
 .slide {
   position: absolute;
   inset: 0;
   overflow: hidden;
   transform-origin: center center;
-  will-change: transform, opacity, border-radius;
+  will-change: transform, border-radius;
   background: #161719;
+  backface-visibility: hidden;
 }
+
 .slide img {
   width: 100%;
   height: 100%;
@@ -24,26 +34,58 @@
   display: block;
   user-select: none;
   pointer-events: none;
+  transform: translateZ(0);
 }
+
+.curtain {
+  position: absolute;
+  z-index: 90;
+  left: 0;
+  width: 100%;
+  height: 50.08%;
+  background: #f7f7f7;
+  will-change: transform;
+  pointer-events: none;
+}
+
+.curtainTop { top: 0; }
+.curtainBottom { bottom: 0; }
+
 .skipHint {
   position: absolute;
   z-index: 100;
-  right: 26px;
-  bottom: 24px;
+  right: 28px;
+  bottom: 26px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 3px;
+  gap: 4px;
   color: #fff;
   text-transform: uppercase;
-  letter-spacing: .09em;
-  text-shadow: 0 1px 18px rgba(0,0,0,.55);
+  letter-spacing: .1em;
+  text-shadow: 0 2px 16px rgba(0,0,0,.5);
+  pointer-events: none;
+  mix-blend-mode: difference;
 }
-.skipHint span { font-size: 10px; font-weight: 800; }
-.skipHint i { font-size: 9px; font-style: normal; opacity: .55; }
+
+.skipHint span {
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.skipHint i {
+  font-size: 9px;
+  font-style: normal;
+  opacity: .58;
+}
+
 @media (max-width: 720px) {
-  .skipHint { right: 18px; bottom: 18px; }
+  .skipHint {
+    right: 18px;
+    bottom: 18px;
+  }
 }
+
 @media (prefers-reduced-motion: reduce) {
   .overlay { display: none; }
 }
