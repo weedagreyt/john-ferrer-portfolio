@@ -47,7 +47,7 @@
 }
 
 @media(max-width:760px){
-  /* Match the poster's 941 × 1672 composition instead of relying on a pre-composited smaller portrait. */
+  /* Match the poster's tall mobile composition instead of scaling a pre-composited portrait. */
   .hero{
     height:clamp(698px,177.68vw,800px)!important;
     min-height:698px!important;
@@ -66,12 +66,12 @@
     background:linear-gradient(180deg,transparent 0 80%,rgba(5,6,7,.04) 89%,#050607 100%)!important;
   }
 
-  /* Use the dedicated high-resolution portrait as an independent layer so it can overlap the typography exactly like the poster. */
+  /* The portrait intentionally begins behind the navigation, crosses the headline and continues beyond the CTA. */
   .hero-portrait{
     display:block!important;
     left:6.5vw!important;
     right:auto!important;
-    top:-15px!important;
+    top:-55px!important;
     bottom:auto!important;
     width:112vw!important;
     height:140vw!important;
@@ -148,20 +148,21 @@
     width:326px!important;
     max-width:87%!important;
     margin-top:20px!important;
-    font-size:13px!important;
-    line-height:1.50!important;
+    font-size:12px!important;
+    line-height:1.22!important;
     color:rgba(255,255,255,.82)!important;
     text-shadow:0 2px 10px rgba(0,0,0,.94)!important;
   }
   .hero .race-button{
-    width:178px!important;
-    height:50px!important;
-    margin-top:17px!important;
-    padding:0 18px!important;
-    font-size:13px!important;
+    width:150px!important;
+    height:44px!important;
+    margin-top:8px!important;
+    padding:0 16px!important;
+    font-size:12px!important;
   }
+  .hero .race-button .race-arrow{width:15px!important;height:15px!important}
   .hero-location{
-    margin-top:27px!important;
+    margin-top:20px!important;
     font-size:8px!important;
     letter-spacing:.17em!important;
   }
