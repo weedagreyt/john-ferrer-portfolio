@@ -1,0 +1,67 @@
+.background {
+  position: absolute;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+.hero {
+  left: 8%;
+  right: -4%;
+  top: 118px;
+  height: 1120px;
+  opacity: .19;
+}
+.about {
+  left: -31%;
+  right: -34%;
+  top: -520px;
+  height: 1500px;
+  opacity: .18;
+}
+.line {
+  position: absolute;
+  max-width: none;
+  opacity: 0;
+  will-change: clip-path, opacity;
+}
+.main {
+  width: 156%;
+  left: -28%;
+  top: 41%;
+  animation: traceAcross 1.4s cubic-bezier(.5,0,.5,1) .14s forwards;
+}
+.top {
+  width: 61.3%;
+  left: 0;
+  top: 0;
+  animation: traceDown 1.65s cubic-bezier(.971,.002,1,1) .08s forwards;
+}
+.bottom {
+  width: 61.3%;
+  right: 0;
+  bottom: 0;
+  transform: rotate(180deg);
+  animation: traceUp 1.75s cubic-bezier(.991,0,1,1) .34s forwards;
+}
+@keyframes traceAcross {
+  0% { opacity: 0; clip-path: inset(0 100% 0 0); }
+  10% { opacity: 1; }
+  100% { opacity: 1; clip-path: inset(0 0 0 0); }
+}
+@keyframes traceDown {
+  0% { opacity: 0; clip-path: inset(0 0 100% 0); }
+  10% { opacity: 1; }
+  100% { opacity: 1; clip-path: inset(0 0 0 0); }
+}
+@keyframes traceUp {
+  0% { opacity: 0; clip-path: inset(100% 0 0 0); }
+  10% { opacity: 1; }
+  100% { opacity: 1; clip-path: inset(0 0 0 0); }
+}
+@media (max-width: 900px) {
+  .hero { left: -10%; right: -35%; top: 120px; height: 1100px; opacity: .11; }
+  .about { left: -70%; right: -80%; top: -400px; height: 1400px; opacity: .1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .line { opacity: 1; animation: none; clip-path: none; }
+}
