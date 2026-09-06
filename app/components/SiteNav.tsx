@@ -26,13 +26,13 @@ export default function SiteNav({ theme = "light" }: Props) {
         </a>
 
         <nav className={styles.desktopNav} aria-label="Primary navigation">
-          <div className={styles.navPill}>
+          <div className={styles.navLinks}>
             <a className={isActive("/") ? styles.active : ""} href="/">Home</a>
             <a className={isActive("/work") ? styles.active : ""} href="/work">Work</a>
             <a className={isActive("/about") ? styles.active : ""} href="/about">About</a>
             <a href={resumeUrl} target="_blank" rel="noreferrer">Résumé</a>
           </div>
-          <a className={styles.contact} href="/contact">Contact Me <span>↗</span></a>
+          <a className={styles.contact} href="/contact">Contact Me</a>
         </nav>
 
         <button
@@ -52,7 +52,7 @@ export default function SiteNav({ theme = "light" }: Props) {
         <a className={isActive("/work") ? styles.active : ""} href="/work" onClick={() => setOpen(false)}>Work</a>
         <a className={isActive("/about") ? styles.active : ""} href="/about" onClick={() => setOpen(false)}>About</a>
         <a href={resumeUrl} target="_blank" rel="noreferrer" onClick={() => setOpen(false)}>Résumé</a>
-        <a className={styles.mobileContact} href="/contact" onClick={() => setOpen(false)}>Contact Me →</a>
+        <a className={styles.mobileContact} href="/contact" onClick={() => setOpen(false)}>Contact Me</a>
       </div>
     </header>
   );
