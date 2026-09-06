@@ -66,12 +66,12 @@
     background:linear-gradient(180deg,transparent 0 80%,rgba(5,6,7,.04) 89%,#050607 100%)!important;
   }
 
-  /* The portrait intentionally begins behind the navigation, crosses the headline and continues beyond the CTA. */
+  /* The portrait begins behind the navigation, crosses the headline and continues beyond the CTA. */
   .hero-portrait{
     display:block!important;
     left:6.5vw!important;
     right:auto!important;
-    top:-55px!important;
+    top:-45px!important;
     bottom:auto!important;
     width:112vw!important;
     height:140vw!important;
@@ -140,7 +140,7 @@
     display:block!important;
     margin:0!important;
     white-space:nowrap!important;
-    transform:scaleX(1.055)!important;
+    transform:scaleX(.90)!important;
     transform-origin:left center!important;
   }
 
@@ -156,7 +156,7 @@
   .hero .race-button{
     width:150px!important;
     height:44px!important;
-    margin-top:8px!important;
+    margin-top:15px!important;
     padding:0 16px!important;
     font-size:12px!important;
   }
