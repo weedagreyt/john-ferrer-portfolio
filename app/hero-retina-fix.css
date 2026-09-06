@@ -2,18 +2,65 @@
   --race-display:var(--font-race-display),"Arial Narrow",Impact,sans-serif;
 }
 
+/* Final fidelity pass against the approved generated poster. */
+.hero-art{filter:saturate(1.13) contrast(1.07) brightness(1.015)!important}
+.hero h1{font-family:var(--race-display)!important;font-weight:900!important;letter-spacing:-.006em!important}
+.hero-sub{color:rgba(255,255,255,.84)!important}
+.hero-side-note{color:rgba(255,255,255,.78)!important}
+.hero-side-note i{box-shadow:0 0 16px rgba(240,24,32,.86)!important}
+.hero-scroll{color:rgba(255,255,255,.55)!important}
+.hero .race-button{border-color:#f01820!important;box-shadow:0 0 0 1px rgba(240,24,32,.06),0 0 22px rgba(240,24,32,.06)!important}
+
+@media(min-width:761px){
+  .hero-art{
+    background-image:linear-gradient(90deg,#050607 0%,rgba(5,6,7,.95) 22%,rgba(5,6,7,.66) 42%,rgba(5,6,7,.08) 70%,rgba(5,6,7,.02)),url('/hero-bg-desktop.avif')!important;
+  }
+  .hero h1{
+    max-width:690px!important;
+    font-size:clamp(66px,5.5vw,86px)!important;
+    line-height:.855!important;
+  }
+  body .race-home .hero h1>span{margin-bottom:8px!important}
+  .hero-copy::after{opacity:.82!important}
+}
+
 @media(max-width:760px){
   .hero-art{
-    background-image:linear-gradient(90deg,rgba(5,6,7,.58) 0%,rgba(5,6,7,.43) 24%,rgba(5,6,7,.24) 42%,rgba(5,6,7,.05) 62%,transparent 76%),url('/hero-mobile-retina.avif')!important;
+    background-image:linear-gradient(90deg,rgba(5,6,7,.46) 0%,rgba(5,6,7,.31) 24%,rgba(5,6,7,.15) 43%,rgba(5,6,7,.03) 64%,transparent 78%),url('/hero-mobile-retina.avif')!important;
     background-size:cover!important;
     background-position:center top!important;
+    filter:saturate(1.16) contrast(1.07) brightness(1.02)!important;
+  }
+
+  .hero-copy::after{
+    width:60%!important;
+    background:linear-gradient(90deg,rgba(5,6,7,.50) 0%,rgba(5,6,7,.27) 56%,transparent 100%)!important;
   }
 
   .hero h1{
-    max-width:350px!important;
-    font-size:clamp(48px,12.7vw,55px)!important;
-    line-height:.88!important;
-    letter-spacing:-.012em!important;
-    font-weight:900!important;
+    width:100%!important;
+    max-width:368px!important;
+    font-size:clamp(51px,13.25vw,59px)!important;
+    line-height:.855!important;
+    letter-spacing:-.004em!important;
   }
+  body .race-home .hero h1>span{margin-bottom:6px!important}
+
+  .hero-intro-rule{max-width:88%!important}
+  .hero-intro p{letter-spacing:.30em!important}
+  .hero-sub{
+    width:342px!important;
+    max-width:89%!important;
+    margin-top:22px!important;
+    font-size:14.5px!important;
+    line-height:1.54!important;
+  }
+  .hero .race-button{
+    width:214px!important;
+    height:56px!important;
+    margin-top:18px!important;
+  }
+  .hero-location{margin-top:31px!important}
+  .hero-side-note{top:59%!important;right:7px!important;letter-spacing:.30em!important}
+  .hero-scroll{right:15px!important;bottom:64px!important}
 }
