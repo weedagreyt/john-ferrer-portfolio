@@ -1,0 +1,1 @@
+Generated cinematic hero composites are stored as binary blobs in Git history and referenced by hero-media.css.
