@@ -4,7 +4,7 @@
 
 /* Final fidelity pass against the approved generated poster. */
 .hero-art{filter:saturate(1.13) contrast(1.07) brightness(1.015)!important}
-.hero h1{font-family:var(--race-display)!important;font-weight:900!important;letter-spacing:-.006em!important}
+.hero h1{font-family:var(--race-display)!important;font-weight:900!important;letter-spacing:-.014em!important;font-stretch:condensed!important}
 .hero-sub{color:rgba(255,255,255,.84)!important}
 .hero-side-note{color:rgba(255,255,255,.78)!important}
 .hero-side-note i{box-shadow:0 0 16px rgba(240,24,32,.86)!important}
@@ -16,51 +16,73 @@
     background-image:linear-gradient(90deg,#050607 0%,rgba(5,6,7,.95) 22%,rgba(5,6,7,.66) 42%,rgba(5,6,7,.08) 70%,rgba(5,6,7,.02)),url('/hero-bg-desktop.avif')!important;
   }
   .hero h1{
-    max-width:690px!important;
-    font-size:clamp(66px,5.5vw,86px)!important;
-    line-height:.855!important;
+    max-width:660px!important;
+    font-size:clamp(72px,5.9vw,94px)!important;
+    line-height:.79!important;
+    letter-spacing:-.018em!important;
   }
-  body .race-home .hero h1>span{margin-bottom:8px!important}
-  .hero-copy::after{opacity:.82!important}
+  body .race-home .hero h1>span{margin-bottom:10px!important}
+  .hero-copy::after{opacity:.80!important}
+
+  /* Let the portrait dominate the composition like the approved poster. */
+  .hero-portrait{
+    right:-10%!important;
+    top:-88px!important;
+    width:min(1000px,73vw)!important;
+    height:950px!important;
+  }
+  .hero-portrait img{
+    transform:scale(1.14)!important;
+    transform-origin:center bottom!important;
+  }
+  .portrait-aura{
+    right:0!important;
+    top:-1%!important;
+    width:82%!important;
+    height:78%!important;
+    opacity:.64!important;
+  }
 }
 
 @media(max-width:760px){
   .hero-art{
-    background-image:linear-gradient(90deg,rgba(5,6,7,.46) 0%,rgba(5,6,7,.31) 24%,rgba(5,6,7,.15) 43%,rgba(5,6,7,.03) 64%,transparent 78%),url('/hero-mobile-retina.avif')!important;
-    background-size:cover!important;
-    background-position:center top!important;
-    filter:saturate(1.16) contrast(1.07) brightness(1.02)!important;
+    background-image:linear-gradient(90deg,rgba(5,6,7,.43) 0%,rgba(5,6,7,.27) 24%,rgba(5,6,7,.12) 43%,rgba(5,6,7,.02) 64%,transparent 79%),url('/hero-mobile-retina.avif')!important;
+    background-size:auto 112%!important;
+    background-position:58% -8px!important;
+    background-repeat:no-repeat!important;
+    filter:saturate(1.18) contrast(1.08) brightness(1.025)!important;
   }
 
   .hero-copy::after{
-    width:60%!important;
-    background:linear-gradient(90deg,rgba(5,6,7,.50) 0%,rgba(5,6,7,.27) 56%,transparent 100%)!important;
+    width:57%!important;
+    background:linear-gradient(90deg,rgba(5,6,7,.46) 0%,rgba(5,6,7,.22) 56%,transparent 100%)!important;
   }
 
+  /* Taller, heavier and more condensed — closer to the race-poster display face. */
   .hero h1{
     width:100%!important;
-    max-width:368px!important;
-    font-size:clamp(51px,13.25vw,59px)!important;
-    line-height:.855!important;
-    letter-spacing:-.004em!important;
+    max-width:352px!important;
+    font-size:clamp(57px,14.45vw,66px)!important;
+    line-height:.79!important;
+    letter-spacing:-.018em!important;
   }
-  body .race-home .hero h1>span{margin-bottom:6px!important}
+  body .race-home .hero h1>span{margin-bottom:9px!important}
 
   .hero-intro-rule{max-width:88%!important}
   .hero-intro p{letter-spacing:.30em!important}
   .hero-sub{
     width:342px!important;
     max-width:89%!important;
-    margin-top:22px!important;
+    margin-top:25px!important;
     font-size:14.5px!important;
     line-height:1.54!important;
   }
   .hero .race-button{
     width:214px!important;
     height:56px!important;
-    margin-top:18px!important;
+    margin-top:19px!important;
   }
   .hero-location{margin-top:31px!important}
-  .hero-side-note{top:59%!important;right:7px!important;letter-spacing:.30em!important}
-  .hero-scroll{right:15px!important;bottom:64px!important}
+  .hero-side-note{top:60%!important;right:7px!important;letter-spacing:.30em!important}
+  .hero-scroll{right:15px!important;bottom:56px!important}
 }
