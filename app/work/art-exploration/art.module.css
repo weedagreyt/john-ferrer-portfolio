@@ -1,13 +1,18 @@
-.intro { display: grid; grid-template-columns: .9fr 1.1fr; gap: 56px; align-items: center; margin-bottom: 28px; }
-.intro > img { width: 100%; height: auto; max-height: 620px; object-fit: contain; border-radius: 12px; }
-.masonry { display: grid; grid-template-columns: .82fr 1fr; gap: 28px; align-items: start; }
-.leftCol, .rightArea, .stack { display: grid; gap: 28px; }
+.intro { display: grid; grid-template-columns: 525fr 656fr; gap: 59px; align-items: center; margin-bottom: 28px; }
+.intro > img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 12px; }
+.masonry { display: grid; grid-template-columns: 552fr 653fr; gap: 35px; align-items: start; }
+.leftCol, .rightArea, .stack { display: grid; gap: 33px; }
 .leftCol img, .rightArea img { width: 100%; height: auto; display: block; border-radius: 12px; }
-.topPair { display: grid; grid-template-columns: 1.24fr 1fr; gap: 24px; align-items: start; }
-.midPair { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
-.lower { display: grid; grid-template-columns: 1.38fr 1fr; gap: 24px; align-items: start; }
-.bottomPair { display: grid; grid-template-columns: 1fr 1.08fr; gap: 24px; align-items: start; }
+.topPair { display: grid; grid-template-columns: 346fr 278fr; gap: 29px; align-items: start; }
+.midPair { display: grid; grid-template-columns: 317fr 315fr; gap: 21px; align-items: start; }
+.lower { display: grid; grid-template-columns: 361fr 262fr; gap: 30px; align-items: start; }
+.lower .stack { gap: 30px; }
+.bottomPair { display: grid; grid-template-columns: 298fr 319fr; gap: 36px; align-items: start; }
 .tall { align-self: stretch; }
+.poster5Crop { position: relative; width: 100%; aspect-ratio: 262 / 218; overflow: hidden; border-radius: 12px; background: #171819; }
+.poster5Crop img { position: absolute; height: 103.79%; width: 100.28%; left: -.14%; top: -1.83%; max-width: none; border-radius: 0; }
+.poster6Crop { position: relative; width: 100%; aspect-ratio: 553 / 671; overflow: hidden; border-radius: 12px; background: #171819; }
+.poster6Crop img { position: absolute; height: 111.62%; width: 100.08%; left: -.04%; top: 0; max-width: none; border-radius: 0; }
 @media (max-width: 1000px) {
   .intro { grid-template-columns: 1fr; gap: 24px; }
   .intro > img { max-width: 620px; }

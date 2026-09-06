@@ -38,13 +38,22 @@ export default function UnimotorsPage() {
         />
 
         <div className={styles.gallery}>
-          <Reveal><div className={styles.full}><img src={assets.hero} alt="UNIMOTORS garage identity" /></div></Reveal>
-          <Reveal><div className={styles.full}><img src={assets.direction1} alt="UNIMOTORS brand direction one" /></div></Reveal>
-          <Reveal><div className={styles.full}><img src={assets.direction2} alt="UNIMOTORS brand direction two" /></div></Reveal>
-          <Reveal><div className={styles.full}><img src={assets.direction3} alt="UNIMOTORS brand direction three" /></div></Reveal>
-          <Reveal><p className={styles.copyWide}>Once the client chose the strongest direction, the focus shifted from broad exploration to refinement — building a logo and visual system that felt cohesive, memorable and practical to use.</p></Reveal>
-          <Reveal><div className={styles.twoUp}><img src={assets.hang} alt="UNIMOTORS mirror hang" /><img src={assets.card} alt="UNIMOTORS business card" /></div></Reveal>
-          <Reveal><div className={styles.full}><img src={assets.vehicle} alt="UNIMOTORS vehicle branding" /></div></Reveal>
+          <Reveal><div className={styles.unimotorsHero}><img src={assets.hero} alt="UNIMOTORS garage identity" /></div></Reveal>
+          <Reveal><div className={styles.unimotorsStrip}><img src={assets.direction1} alt="UNIMOTORS brand direction one" /></div></Reveal>
+          <Reveal><div className={styles.unimotorsStrip}><img src={assets.direction2} alt="UNIMOTORS brand direction two" /></div></Reveal>
+          <Reveal><div className={styles.unimotorsStrip}><img src={assets.direction3} alt="UNIMOTORS brand direction three" /></div></Reveal>
+
+          <Reveal>
+            <div className={styles.unimotorsDetail}>
+              <div className={styles.unimotorsDetailLeft}>
+                <p className={styles.copyWide}>Once the client chose the strongest direction, the focus shifted from broad exploration to refinement — building a logo and visual system that felt cohesive, memorable and practical to use.</p>
+                <div className={styles.unimotorsMirror}><img src={assets.hang} alt="UNIMOTORS mirror hang" /></div>
+              </div>
+              <div className={styles.unimotorsCard}><img src={assets.card} alt="UNIMOTORS business card" /></div>
+            </div>
+          </Reveal>
+
+          <Reveal><div className={styles.unimotorsVehicle}><img src={assets.vehicle} alt="UNIMOTORS vehicle branding" /></div></Reveal>
         </div>
       </article>
 

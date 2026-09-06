@@ -28,11 +28,14 @@ export default function DopeMarketingPage() {
 
       <article className={styles.case}>
         <Reveal className={local.intro}>
-          <div className={styles.titleBlock}>
-            <h1>DOPE MARKETING</h1>
-            <p>DOPE Marketing is a Minnesota-based direct print and mail company serving local businesses. I worked remotely with the team for five years, starting as one of their early designers and later becoming Senior Graphic Designer.</p>
+          <div className={local.introLeft}>
+            <div className={styles.titleBlock}>
+              <h1>DOPE MARKETING</h1>
+              <p>DOPE Marketing is a Minnesota-based direct print and mail company serving local businesses. I worked remotely with the team for five years, starting as one of their early designers and later becoming Senior Graphic Designer.</p>
+            </div>
+            <div className={local.postcards}><img src={assets.postcards} alt="DOPE postcard designs" /></div>
           </div>
-          <img src={assets.printProducts} alt="DOPE Marketing print products" />
+          <div className={local.printProducts}><img src={assets.printProducts} alt="DOPE Marketing print products" /></div>
         </Reveal>
 
         <CaseStudyStory
@@ -44,20 +47,10 @@ export default function DopeMarketingPage() {
         />
 
         <div className={local.gallery}>
-          <Reveal><div className={local.heroPair}><img src={assets.postcards} alt="DOPE postcard designs" /><img src={assets.targeted} alt="DOPE targeted postcards campaign" /></div></Reveal>
-
-          <Reveal>
-            <div className={local.mascotFeature}>
-              <div><p>Campaign work ranged from direct-response postcard concepts to internal brand assets. The goal was always the same: make the message easy to understand without making the design feel generic.</p><img src={assets.social1} alt="DOPE social media design" /></div>
-              <img src={assets.mascot} alt="DOPE mascot" />
-            </div>
-          </Reveal>
-
-          <Reveal><div className={local.productionRow}><img src={assets.sign} alt="DOPE sign mockup" /><img src={assets.yardsigns} alt="DOPE yard signs" /><img src={assets.rollup} alt="DOPE roll-up banner" /></div></Reveal>
-
-          <Reveal><div className={local.brochureRow}><img src={assets.brochure} alt="DOPE brochure mockup" /><img src={assets.flyer} alt="DOPE flyer mockup" /></div></Reveal>
-
-          <Reveal><div className={local.socialRow}><img src={assets.social2} alt="DOPE social media design" /><img src={assets.social3} alt="DOPE social media design" /></div></Reveal>
+          <Reveal><div className={local.leadGrid}><div className={local.targeted}><img src={assets.targeted} alt="DOPE targeted postcards campaign" /></div><div className={local.mascot}><img src={assets.mascot} alt="DOPE mascot" /></div></div></Reveal>
+          <Reveal><div className={local.productionRow}><img src={assets.sign} alt="DOPE sign mockup" /><img src={assets.yardsigns} alt="DOPE yard signs" /><div className={local.rollup}><img src={assets.rollup} alt="DOPE roll-up banner" /></div></div></Reveal>
+          <Reveal><div className={local.brochureRow}><img src={assets.brochure} alt="DOPE brochure mockup" /><img src={assets.social1} alt="DOPE social media design" /></div></Reveal>
+          <Reveal><div className={local.socialRow}><img src={assets.flyer} alt="DOPE flyer mockup" /><img src={assets.social2} alt="DOPE social media design" /><img src={assets.social3} alt="DOPE social media design" /></div></Reveal>
         </div>
       </article>
 

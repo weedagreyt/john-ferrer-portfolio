@@ -42,26 +42,32 @@ export default function KovePage() {
         />
 
         <div className={styles.gallery}>
-          <Reveal><div className={styles.full}><img src={assets.hero} alt="KOVE Kafe and Karwash exterior at night" /></div></Reveal>
+          <Reveal><div className={styles.koveHero}><img src={assets.hero} alt="KOVE Kafe and Karwash exterior at night" /></div></Reveal>
 
           <Reveal>
             <div className={styles.splitTextMedia}>
               <div>
                 <p className={styles.text}>The early exploration focused on finding the right balance between construction-inspired structure, premium finishes and an approachable café personality.</p>
-                <img src={assets.moodPhoto} alt="KOVE brand exploration" />
+                <div className={styles.koveMoodPhoto}><img src={assets.moodPhoto} alt="KOVE brand exploration" /></div>
               </div>
-              <img src={assets.moodboards} alt="KOVE mood board options" />
+              <div className={styles.koveMoodboards}><img src={assets.moodboards} alt="KOVE mood board options" /></div>
             </div>
           </Reveal>
 
-          <Reveal><div className={styles.twoUp}><img src={assets.product} alt="KOVE branded product" /><img src={assets.exterior} alt="KOVE cafe exterior" /></div></Reveal>
-
-          <Reveal><p className={styles.copyWide}>I extended the identity into campaign materials for KOVE’s EDM event, shifting the energy toward nightlife and promotion while keeping enough of the original system to make the event feel connected to the brand.</p></Reveal>
+          <Reveal>
+            <div className={styles.twoUp}>
+              <div className={styles.koveProduct}><img src={assets.product} alt="KOVE branded product" /></div>
+              <div className={styles.koveExterior}><img src={assets.exterior} alt="KOVE cafe exterior" /></div>
+            </div>
+          </Reveal>
 
           <Reveal>
             <div className={styles.eventGrid}>
-              <div className={styles.eventLeft}><img src={assets.eventPhoto} alt="KOVE EDM event" /></div>
-              <div className={styles.eventRight}><img src={assets.poster} alt="KOVE EDM event poster" /></div>
+              <div className={styles.eventLeft}>
+                <p className={styles.copyWide}>I extended the identity into campaign materials for KOVE’s EDM event, shifting the energy toward nightlife and promotion while keeping enough of the original system to make the event feel connected to the brand.</p>
+                <div className={styles.koveEventPhoto}><img src={assets.eventPhoto} alt="KOVE EDM event" /></div>
+              </div>
+              <div className={styles.eventRight}><div className={styles.kovePoster}><img src={assets.poster} alt="KOVE EDM event poster" /></div></div>
             </div>
           </Reveal>
 

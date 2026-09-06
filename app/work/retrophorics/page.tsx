@@ -27,9 +27,9 @@ const assets = {
 
 const characterTiles = [assets.sexy, assets.flirty, assets.business, assets.rockabilly, assets.hippy, assets.posh];
 
-function VideoPlaceholder({ src, alt, label }: { src: string; alt: string; label: string }) {
+function VideoPlaceholder({ src, alt, label, className = "" }: { src: string; alt: string; label: string; className?: string }) {
   return (
-    <div className={local.videoStill}>
+    <div className={`${local.videoStill} ${className}`}>
       <img src={src} alt={alt} />
       <span className={local.play} aria-hidden="true">▶</span>
       <div className={local.videoLabel}><b>{label}</b><small>Video will replace this preview</small></div>
@@ -49,7 +49,7 @@ export default function RetrophoricsPage() {
             <p>Retrophorics is a fashion brand focused on retro-style tops for women ages 25–35. I built the brand identity, visual direction and marketing language around nostalgia, but kept the execution energetic enough to feel like a contemporary fashion brand.</p>
             <img className={local.brandLogo} src={assets.brandLogo} alt="Retrophorics logo" />
           </div>
-          <VideoPlaceholder src={assets.hero} alt="Retrophorics brand presentation" label="Brand Film" />
+          <VideoPlaceholder className={local.heroVideo} src={assets.hero} alt="Retrophorics brand presentation" label="Brand Film" />
         </Reveal>
 
         <CaseStudyStory
@@ -63,7 +63,7 @@ export default function RetrophoricsPage() {
         <div className={local.gallery}>
           <Reveal><div className={local.three}><img src={assets.kfc} alt="Retrophorics KFC-inspired style board" /><img src={assets.hershey} alt="Retrophorics Hershey-inspired style board" /><img src={assets.johnnie} alt="Retrophorics Johnnie Walker-inspired style board" /></div></Reveal>
           <Reveal><div className={local.characters}>{characterTiles.map((src, i) => <img src={src} alt={`Retrophorics brand character ${i + 1}`} key={src} />)}</div></Reveal>
-          <Reveal><VideoPlaceholder src={assets.motion} alt="Retrophorics motion design preview" label="Motion Exploration" /></Reveal>
+          <Reveal><VideoPlaceholder className={local.motionVideo} src={assets.motion} alt="Retrophorics motion design preview" label="Motion Exploration" /></Reveal>
           <Reveal><div className={local.socialGrid}><img src={assets.denim} alt="Retrophorics denim social post" /><img src={assets.coco} alt="Retrophorics Coco Chanel social post" /><img src={assets.priority} alt="Retrophorics make yourself a priority social post" /><img src={assets.express} alt="Retrophorics dress to express social post" /></div></Reveal>
         </div>
       </article>

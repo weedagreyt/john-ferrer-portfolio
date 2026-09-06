@@ -1,18 +1,22 @@
-.intro { display: grid; grid-template-columns: .86fr 1.38fr; gap: 42px; align-items: start; margin-bottom: 28px; }
-.brandLogo { width: 100%; max-width: 410px; height: auto; margin-top: 38px; border-radius: 12px; }
+.intro { display: grid; grid-template-columns: 411fr 753fr; gap: 39px; align-items: start; margin-bottom: 28px; }
+.brandLogo { width: 100%; max-width: 411px; aspect-ratio: 1; object-fit: cover; margin-top: 38px; border-radius: 12px; }
 .gallery { display: grid; gap: 32px; }
-.three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 41px; }
 .three img { width: 100%; height: auto; border-radius: 12px; }
-.characters { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; }
+.characters { display: grid; grid-template-columns: repeat(6, 1fr); gap: 35px; }
 .characters img { width: 100%; height: auto; border-radius: 10px; }
 .videoStill { position: relative; overflow: hidden; width: 100%; border-radius: 14px; background: #171819; isolation: isolate; }
 .videoStill::after { content: ""; position: absolute; inset: 55% 0 0; z-index: 1; background: linear-gradient(180deg, transparent, rgba(10,11,12,.72)); pointer-events: none; }
 .videoStill > img { width: 100%; height: auto; display: block; }
+.heroVideo { aspect-ratio: 752.941 / 680; }
+.heroVideo > img { position: absolute; left: -21.04%; top: -.04%; width: 205.63%; height: 100%; max-width: none; object-fit: fill; }
+.motionVideo { aspect-ratio: 1203 / 700; }
+.motionVideo > img { width: 100%; height: 100%; object-fit: cover; }
 .play { position: absolute; z-index: 3; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 64px; height: 64px; border-radius: 50%; background: rgba(247,247,247,.96); color: #c61111; display: grid; place-items: center; padding-left: 4px; font-size: 21px; box-shadow: 0 8px 30px rgba(0,0,0,.22); }
 .videoLabel { position: absolute; z-index: 3; left: 24px; bottom: 22px; display: flex; flex-direction: column; gap: 4px; color: #fff; }
 .videoLabel b { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; }
 .videoLabel small { color: rgba(255,255,255,.62); font-size: 11px; }
-.socialGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.socialGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 31px; }
 .socialGrid img { width: 100%; height: auto; border-radius: 12px; }
 @media (max-width: 900px) {
   .intro { grid-template-columns: 1fr; }
