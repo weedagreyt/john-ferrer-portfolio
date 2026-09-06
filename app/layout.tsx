@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
-import { Barlow_Condensed } from "next/font/google";
+import { Teko } from "next/font/google";
 import "./globals.css";
 import "./hero-polish.css";
 import "./hero-media.css";
 import "./hero-retina-fix.css";
 import "./race-aesthetic.css";
 
-const raceDisplay = Barlow_Condensed({
+const raceDisplay = Teko({
   subsets: ["latin"],
-  weight: ["800", "900"],
-  style: ["italic"],
+  weight: ["600", "700"],
   variable: "--font-race-display",
   display: "swap",
 });
