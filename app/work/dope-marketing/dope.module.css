@@ -1,0 +1,18 @@
+.intro { display: grid; grid-template-columns: 1fr 1.1fr; gap: 34px; align-items: start; margin-bottom: 32px; }
+.intro > img { width: 100%; height: auto; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; align-items: start; }
+.grid img { width: 100%; height: auto; display: block; }
+.postcards { grid-column: span 1; }
+.targeted { grid-column: span 2; }
+.mascot { grid-column: 3; grid-row: 2 / span 2; align-self: end; }
+.brochure { grid-column: span 2; }
+@media (max-width: 900px) {
+  .intro { grid-template-columns: 1fr; }
+  .grid { grid-template-columns: 1fr 1fr; gap: 22px; }
+  .targeted, .brochure { grid-column: span 2; }
+  .mascot { grid-column: auto; grid-row: auto; }
+}
+@media (max-width: 620px) {
+  .grid { grid-template-columns: 1fr; gap: 18px; }
+  .targeted, .brochure { grid-column: auto; }
+}
