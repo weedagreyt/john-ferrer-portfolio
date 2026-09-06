@@ -1,0 +1,213 @@
+/* Homepage hero composition polish.
+   Loaded after globals.css and intentionally scoped to the hero only. */
+
+.hero {
+  height: 790px !important;
+  min-height: 790px !important;
+}
+
+.hero-shell {
+  height: calc(100% - 126px) !important;
+}
+
+.hero-copy {
+  top: 54px !important;
+  width: min(610px, 52%) !important;
+}
+
+.hero h1 {
+  max-width: 610px !important;
+  font-size: clamp(54px, 4.8vw, 68px) !important;
+  line-height: 1.04 !important;
+  letter-spacing: -.052em !important;
+}
+
+.hero-sub {
+  width: min(390px, 92%) !important;
+  margin-top: 22px !important;
+  font-size: 18px !important;
+  line-height: 1.56 !important;
+}
+
+.hero-button {
+  width: 210px !important;
+  min-height: 56px !important;
+  margin-top: 28px !important;
+  font-size: 17px !important;
+}
+
+.hero-portrait {
+  right: 8px !important;
+  left: auto !important;
+  bottom: 0 !important;
+  width: min(610px, 48vw) !important;
+  max-width: none !important;
+  height: 610px !important;
+  transform: none !important;
+  opacity: 1 !important;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  isolation: isolate;
+}
+
+.hero-portrait::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  bottom: auto !important;
+  width: min(500px, 42vw) !important;
+  height: min(500px, 42vw) !important;
+  border-radius: 50% !important;
+  border: 1px solid rgba(198,17,17,.18) !important;
+  background: rgba(255,255,255,.18) !important;
+  transform: translate(-47%, -42%) !important;
+  z-index: -2 !important;
+}
+
+.hero-portrait::after {
+  content: "";
+  position: absolute;
+  left: 13%;
+  right: 4%;
+  bottom: 14px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(16,17,18,.16) 24%, rgba(198,17,17,.45) 74%, transparent);
+  z-index: -1;
+}
+
+.hero-portrait img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  object-position: center bottom !important;
+  filter: grayscale(1) contrast(1.06) !important;
+}
+
+@media (max-width: 1100px) {
+  .hero {
+    height: 780px !important;
+    min-height: 780px !important;
+  }
+
+  .hero-copy {
+    top: 44px !important;
+    width: 56% !important;
+  }
+
+  .hero h1 {
+    font-size: clamp(50px, 5.5vw, 62px) !important;
+  }
+
+  .hero-portrait {
+    right: -10px !important;
+    width: 48vw !important;
+    height: 570px !important;
+  }
+}
+
+@media (max-width: 850px) {
+  .hero {
+    height: 870px !important;
+    min-height: 870px !important;
+  }
+
+  .hero-shell {
+    height: calc(100% - 100px) !important;
+  }
+
+  .hero-copy {
+    top: 28px !important;
+    width: 100% !important;
+  }
+
+  .hero h1 {
+    max-width: 650px !important;
+    font-size: clamp(46px, 7.6vw, 60px) !important;
+    line-height: 1.03 !important;
+  }
+
+  .hero-sub {
+    width: min(500px, 70%) !important;
+  }
+
+  .hero-portrait {
+    right: -28px !important;
+    bottom: -4px !important;
+    width: min(560px, 67vw) !important;
+    height: 490px !important;
+  }
+
+  .hero-portrait::before {
+    width: min(420px, 51vw) !important;
+    height: min(420px, 51vw) !important;
+  }
+}
+
+@media (max-width: 620px) {
+  .hero {
+    height: 760px !important;
+    min-height: 760px !important;
+  }
+
+  .hero-shell {
+    height: calc(100% - 88px) !important;
+  }
+
+  .hero-copy {
+    top: 12px !important;
+    width: 100% !important;
+  }
+
+  .hero-eyebrow {
+    margin-bottom: 9px !important;
+    font-size: 12px !important;
+    letter-spacing: .09em !important;
+  }
+
+  .hero h1 {
+    max-width: 350px !important;
+    font-size: clamp(38px, 10.8vw, 46px) !important;
+    line-height: 1 !important;
+    letter-spacing: -.055em !important;
+  }
+
+  .hero-sub {
+    width: min(330px, 94%) !important;
+    margin-top: 14px !important;
+    font-size: 14px !important;
+    line-height: 1.48 !important;
+  }
+
+  .hero-button {
+    width: 164px !important;
+    min-height: 46px !important;
+    margin-top: 18px !important;
+    font-size: 15px !important;
+  }
+
+  .hero-portrait {
+    left: 50% !important;
+    right: auto !important;
+    bottom: -6px !important;
+    width: min(390px, 105vw) !important;
+    height: 338px !important;
+    transform: translateX(-50%) !important;
+  }
+
+  .hero-portrait::before {
+    left: 50% !important;
+    top: 53% !important;
+    width: 286px !important;
+    height: 286px !important;
+    transform: translate(-50%, -50%) !important;
+    background: rgba(255,255,255,.14) !important;
+  }
+
+  .hero-portrait::after {
+    left: 10%;
+    right: 10%;
+    bottom: 8px;
+  }
+}
