@@ -1,6 +1,7 @@
 import SiteNav from "../components/SiteNav";
 import SiteFooter from "../components/SiteFooter";
 import Reveal from "../components/Reveal";
+import { ArrowIcon } from "../components/UiIcons";
 import { projectSummaries } from "../lib/portfolio";
 import styles from "./work.module.css";
 
@@ -43,7 +44,7 @@ export default function WorkPage() {
                 <p>{project.type}</p>
                 <h2>{project.name}</h2>
                 <span>{project.description}</span>
-                <b>Explore project <i>↗</i></b>
+                <b>Explore project <i><ArrowIcon diagonal size={16} /></i></b>
               </div>
             </a>
           </Reveal>
