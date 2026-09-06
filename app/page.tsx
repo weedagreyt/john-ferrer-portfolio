@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import IntroSequence from "./components/IntroSequence";
-import BrandBackground from "./components/BrandBackground";
 import SiteNav from "./components/SiteNav";
 import SiteFooter from "./components/SiteFooter";
 import { projectSummaries, resumeUrl, services, siteAssets } from "./lib/portfolio";
@@ -18,15 +17,9 @@ function ArrowIcon({ diagonal = false }: { diagonal?: boolean }) {
   return (
     <svg className="ui-arrow" viewBox="0 0 20 20" aria-hidden="true">
       {diagonal ? (
-        <>
-          <path d="M5 15 15 5" />
-          <path d="M8 5h7v7" />
-        </>
+        <><path d="M5 15 15 5" /><path d="M8 5h7v7" /></>
       ) : (
-        <>
-          <path d="M3.5 10h12" />
-          <path d="m11.5 6 4 4-4 4" />
-        </>
+        <><path d="M3.5 10h12" /><path d="m11.5 6 4 4-4 4" /></>
       )}
     </svg>
   );
@@ -62,7 +55,6 @@ export default function HomePage() {
       const raw = (start - rect.top) / (start - end);
       setExperienceProgress(Math.max(0, Math.min(1, raw)));
     };
-
     updateExperience();
     window.addEventListener("scroll", updateExperience, { passive: true });
     window.addEventListener("resize", updateExperience);
@@ -73,28 +65,35 @@ export default function HomePage() {
   }, []);
 
   return (
-    <main>
+    <main className="race-home">
       <IntroSequence />
 
       <section id="top" className="hero">
-        <BrandBackground variant="hero" />
         <SiteNav theme="light" />
+        <div className="hero-speed hero-speed-a" aria-hidden="true" />
+        <div className="hero-speed hero-speed-b" aria-hidden="true" />
+        <div className="hero-glow" aria-hidden="true" />
+        <img className="hero-mark" src={siteAssets.logo} alt="" aria-hidden="true" />
 
         <div className="hero-shell shell">
           <div className="hero-copy">
             <p className="hero-eyebrow">Hi, I’m John Ferrer</p>
             <h1>
-              Creative Thinker<span>.</span><br />
-              Problem Solver<span>.</span><br />
-              Visual Storyteller<span>.</span>
+              <span className="hero-line">Creative Thinker<span className="dot">.</span></span>
+              <span className="hero-line hero-red">Problem Solver<span className="dot">.</span></span>
+              <span className="hero-line">Visual Storyteller<span className="dot">.</span></span>
             </h1>
             <p className="hero-sub">I turn ideas into impactful visual experiences that connect, inspire, and leave a lasting impression.</p>
             <a className="button hero-button icon-link" href="/contact"><span>Let’s Talk</span><ArrowIcon /></a>
+            <div className="hero-location"><i /> <span>Arlington, VA<br />USA</span></div>
           </div>
 
           <div className="hero-portrait" aria-label="Portrait of John Ferrer">
             <img src={assets.portrait} alt="John Ferrer" />
           </div>
+
+          <div className="hero-side-note" aria-hidden="true"><span>Ideas</span><span>Interfaces</span><span>Impact</span><i /></div>
+          <div className="hero-scroll" aria-hidden="true"><span>Scroll</span><i /></div>
         </div>
       </section>
 
@@ -102,15 +101,16 @@ export default function HomePage() {
         <div className="shell">
           <div className="section-head work-head">
             <div>
-              <p className="eyebrow">Selected Work</p>
-              <h2>Design that speaks.<br />Stories that connect.</h2>
+              <p className="eyebrow section-index">02</p>
+              <h2>Selected <span>Work</span></h2>
             </div>
             <a className="button outline large-action icon-link" href="/work"><span>View All Projects</span><ArrowIcon /></a>
           </div>
           <div className="mobile-swipe-hint"><span>Swipe through selected work</span><ArrowIcon /></div>
           <div className="project-grid">
-            {projects.map((project) => (
+            {projects.map((project, index) => (
               <a className="project-card" key={project.name} href={project.href} aria-label={`View ${project.name} case study`}>
+                <span className="project-number">0{index + 1}</span>
                 <img src={project.image} alt={`${project.name} project`} />
                 <div className="project-card-copy">
                   <p>{project.type}</p>
@@ -124,18 +124,23 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="capabilities shell">
-        <div className="capability-heading">
-          <p className="eyebrow">Capabilities</p>
-          <h2>Built around ideas,<br />not just software.</h2>
-        </div>
-        <div className="capability-grid">
-          {services.map((item, index) => (
-            <div className="capability" key={item}>
-              <span>0{index + 1}</span>
-              <strong>{item}</strong>
+      <section className="approach-section">
+        <div className="shell approach-shell">
+          <div className="approach-visual">
+            <div className="approach-frame" aria-hidden="true" />
+            <img src={assets.portrait} alt="John Ferrer" />
+            <p>“Good design should feel inevitable.”</p>
+          </div>
+          <div className="approach-copy">
+            <p className="eyebrow section-index">03 · My Approach</p>
+            <h2>Human-centered.<br /><span>Outcome-driven.</span></h2>
+            <p className="approach-intro">I combine strategy, visual craft, and practical problem-solving to create work that looks strong and works hard.</p>
+            <div className="approach-grid">
+              {services.slice(0, 4).map((item, index) => (
+                <div className="approach-item" key={item}><span>0{index + 1}</span><strong>{item}</strong></div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </section>
 
@@ -143,22 +148,17 @@ export default function HomePage() {
         <div className="experience-watermark" aria-hidden="true"><img src={siteAssets.logo} alt="" /></div>
         <div className="shell experience-shell">
           <div className="experience-title">
-            <p className="eyebrow">Experience</p>
-            <h2>My Journey</h2>
+            <p className="eyebrow section-index">04 · Experience</p>
+            <h2>Built through <span>doing.</span></h2>
           </div>
           <a className="button outline experience-resume icon-link" href={resumeUrl} target="_blank" rel="noreferrer"><span>Download Résumé</span><ArrowIcon diagonal /></a>
-
           <div className="experience-track" aria-label="Professional experience timeline">
             {experience.map(([role, company, dates], index) => {
-              const threshold = index / experience.length;
-              const visible = experienceProgress > threshold + .04;
+              const visible = experienceProgress > index / experience.length + .04;
               return (
                 <article className={`experience-item${visible ? " is-visible" : ""}`} key={role}>
-                  <div className="experience-copy">
-                    <h3>{role}</h3>
-                    <p>{company}</p>
-                    <small>{dates}</small>
-                  </div>
+                  <span className="experience-number">0{index + 1}</span>
+                  <div className="experience-copy"><h3>{role}</h3><p>{company}</p><small>{dates}</small></div>
                   {index < experience.length - 1 && <div className="experience-connector" aria-hidden="true"><span /><i /></div>}
                 </article>
               );
@@ -167,105 +167,23 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="testimonials shell">
-        <div className="testimonial-heading">
-          <p className="eyebrow">Kind Words</p>
-          <h2>What they say.</h2>
-        </div>
-        <div className="quote-grid">
-          <blockquote>
-            <span className="quote-mark">“</span>
-            <div><p>John is a talented designer who brings ideas to life with creativity and precision. He understands the brief quickly and delivers beyond expectations.</p><footer>— Grace Hare<small>DOPE Design Manager</small></footer></div>
-          </blockquote>
-          <blockquote>
-            <span className="quote-mark">“</span>
-            <div><p>Professional, reliable, and easy to work with. The designs were modern, clean, and exactly what our brand needed.</p><footer>— April Justo<small>KOVE Owner</small></footer></div>
-          </blockquote>
+      <section className="testimonials">
+        <div className="shell">
+          <div className="testimonial-heading"><p className="eyebrow section-index">05 · Kind Words</p><h2>Proof in the <span>work.</span></h2></div>
+          <div className="quote-grid">
+            <blockquote><span className="quote-mark">“</span><div><p>John is a talented designer who brings ideas to life with creativity and precision. He understands the brief quickly and delivers beyond expectations.</p><footer>— Grace Hare<small>DOPE Design Manager</small></footer></div></blockquote>
+            <blockquote><span className="quote-mark">“</span><div><p>Professional, reliable, and easy to work with. The designs were modern, clean, and exactly what our brand needed.</p><footer>— April Justo<small>KOVE Owner</small></footer></div></blockquote>
+          </div>
         </div>
       </section>
 
       <SiteFooter />
 
       <style>{`
-        .mobile-swipe-hint { display: none; }
-        .ui-arrow {
-          width: 18px;
-          height: 18px;
-          flex: 0 0 auto;
-          fill: none;
-          stroke: currentColor;
-          stroke-width: 1.65;
-          stroke-linecap: round;
-          stroke-linejoin: round;
-          transition: transform .28s cubic-bezier(.2,.8,.2,1);
-        }
-        .icon-link { gap: 10px; }
-        .icon-link:hover .ui-arrow { transform: translateX(3px); }
-        .experience-resume:hover .ui-arrow,
-        .case-study-link .ui-arrow { transform: none; }
-        .experience-resume:hover .ui-arrow,
-        .project-card:hover .case-study-link .ui-arrow { transform: translate(2px,-2px); }
-        .case-study-link { display: inline-flex !important; align-items: center; gap: 6px; width: fit-content; }
-        .case-study-link .ui-arrow { width: 14px; height: 14px; }
-
-        @media (max-width: 620px) {
-          .shell { width: min(100% - 28px, 1240px); }
-
-          .hero { height: 780px; min-height: 780px; }
-          .hero-shell { height: calc(100% - 92px); }
-          .hero-copy { top: 18px; width: 100%; }
-          .hero-eyebrow { margin-bottom: 10px; font-size: 13px; letter-spacing: .08em; }
-          .hero h1 { max-width: 350px; font-size: clamp(39px, 11.3vw, 48px); line-height: 1.01; letter-spacing: -.055em; }
-          .hero-sub { width: min(335px, 94%); margin-top: 15px; font-size: 15px; line-height: 1.48; }
-          .hero-button { width: 174px; min-height: 48px; margin-top: 21px; font-size: 16px; }
-          .hero-portrait { left: 50%; right: auto; bottom: -18px; width: 455px; max-width: 122vw; height: 390px; transform: translateX(-43%); opacity: .96; }
-          .hero-portrait::before { content: ""; position: absolute; left: 17%; bottom: 34px; width: 270px; height: 270px; border: 1px solid rgba(198,17,17,.18); border-radius: 50%; z-index: -1; }
-
-          .work-section { padding: 54px 0 60px; overflow: hidden; }
-          .work-head { gap: 20px; margin-bottom: 0; }
-          .section-head h2, .capability-heading h2, .experience-title h2, .testimonial-heading h2 { font-size: 36px; line-height: 1.02; }
-          .work-head .large-action { order: 2; width: 100%; min-height: 52px; margin-top: 2px; font-size: 15px; }
-          .mobile-swipe-hint { display: flex; align-items: center; gap: 7px; margin: 24px 0 12px; color: rgba(255,255,255,.52); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
-          .mobile-swipe-hint .ui-arrow { width: 14px; height: 14px; }
-          .project-grid { display: flex; gap: 14px; overflow-x: auto; margin-right: -14px; padding: 0 14px 12px 0; scroll-snap-type: x mandatory; scrollbar-width: none; }
-          .project-grid::-webkit-scrollbar { display: none; }
-          .project-card, .project-card:last-child { flex: 0 0 min(82vw, 330px); width: min(82vw, 330px); aspect-ratio: 4 / 5; scroll-snap-align: start; border-radius: 16px; }
-          .project-card-copy { padding: 20px; }
-          .project-card-copy h3 { font-size: 25px; }
-          .project-card-copy span { font-size: 12px; line-height: 1.45; }
-          .project-card-copy b { margin-top: 12px; }
-
-          .capabilities { padding: 58px 0 66px; }
-          .capability-heading { margin-bottom: 28px; }
-          .capability-grid { grid-template-columns: 1fr 1fr; }
-          .capability { min-height: 112px; padding: 15px; }
-          .capability strong { font-size: 16px; line-height: 1.18; }
-          .capability span { font-size: 10px; }
-
-          .experience-section { min-height: 0; padding: 54px 0 62px; }
-          .experience-title { margin-bottom: 20px; }
-          .experience-resume { width: 100%; min-height: 52px; margin-bottom: 28px; font-size: 15px; }
-          .experience-track { display: flex; gap: 12px; overflow-x: auto; margin-right: -14px; padding: 0 14px 10px 0; scroll-snap-type: x mandatory; scrollbar-width: none; }
-          .experience-track::-webkit-scrollbar { display: none; }
-          .experience-item { flex: 0 0 min(76vw, 285px); min-width: min(76vw, 285px); min-height: 158px; padding: 20px; border: 1px solid rgba(247,247,247,.13); border-radius: 14px; background: rgba(247,247,247,.045); opacity: 1 !important; transform: none !important; scroll-snap-align: start; }
-          .experience-item::before { width: 34px; height: 3px; left: 20px; top: 20px; border-radius: 10px; }
-          .experience-copy { max-width: 235px; padding-top: 28px; }
-          .experience-copy h3 { font-size: 14px; }
-          .experience-copy p, .experience-copy small { white-space: normal; }
-          .experience-connector { display: none; }
-          .experience-watermark { width: 390px; right: -150px; top: -20px; }
-
-          .testimonials { padding: 56px 0 64px; overflow: hidden; }
-          .testimonial-heading { margin-bottom: 22px; }
-          .quote-grid { display: flex; gap: 12px; overflow-x: auto; margin-right: -14px; padding: 0 14px 10px 0; scroll-snap-type: x mandatory; scrollbar-width: none; }
-          .quote-grid::-webkit-scrollbar { display: none; }
-          blockquote, blockquote + blockquote { flex: 0 0 min(86vw, 330px); min-height: 0; padding: 22px 18px; border: 1px solid var(--line); border-radius: 14px; scroll-snap-align: start; grid-template-columns: 34px 1fr; }
-          blockquote + blockquote { border-left: 1px solid var(--line); }
-          .quote-mark { margin-top: 12px; font-size: 64px; }
-          blockquote p { font-size: 16px; line-height: 1.55; }
-          blockquote footer { margin-top: 20px; font-size: 13px; }
-          blockquote footer small { font-size: 12px; }
-        }
+        .ui-arrow{width:18px;height:18px;flex:0 0 auto;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round;transition:transform .28s cubic-bezier(.2,.8,.2,1)}
+        .icon-link{gap:10px}.icon-link:hover .ui-arrow{transform:translateX(3px)}
+        .case-study-link{display:inline-flex!important;align-items:center;gap:6px;width:fit-content}.case-study-link .ui-arrow{width:14px;height:14px}
+        .mobile-swipe-hint{display:none}
       `}</style>
     </main>
   );
