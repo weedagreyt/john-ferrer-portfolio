@@ -1,9 +1,9 @@
-.intro { display: grid; grid-template-columns: 411fr 753fr; gap: 39px; align-items: start; margin-bottom: 28px; }
-.brandLogo { width: 100%; max-width: 411px; aspect-ratio: 1; object-fit: cover; margin-top: 38px; border-radius: 12px; }
-.gallery { display: grid; gap: 32px; }
-.three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 41px; }
+.intro { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--case-grid-gap); align-items: start; margin-bottom: var(--case-grid-gap); }
+.brandLogo { width: 100%; max-width: 411px; aspect-ratio: 1; object-fit: cover; margin-top: var(--case-grid-gap); border-radius: 12px; }
+.gallery { display: grid; gap: var(--case-grid-gap); }
+.three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--case-grid-gap); }
 .three img { width: 100%; height: auto; border-radius: 12px; }
-.characters { display: grid; grid-template-columns: repeat(6, 1fr); gap: 35px; }
+.characters { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: var(--case-grid-gap); }
 .characters img { width: 100%; height: auto; border-radius: 10px; }
 .videoStill { position: relative; overflow: hidden; width: 100%; border-radius: 14px; background: #171819; isolation: isolate; }
 .videoStill::after { content: ""; position: absolute; inset: 55% 0 0; z-index: 1; background: linear-gradient(180deg, transparent, rgba(10,11,12,.72)); pointer-events: none; }
@@ -16,18 +16,16 @@
 .videoLabel { position: absolute; z-index: 3; left: 24px; bottom: 22px; display: flex; flex-direction: column; gap: 4px; color: #fff; }
 .videoLabel b { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; }
 .videoLabel small { color: rgba(255,255,255,.62); font-size: 11px; }
-.socialGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 31px; }
+.socialGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--case-grid-gap); }
 .socialGrid img { width: 100%; height: auto; border-radius: 12px; }
 @media (max-width: 900px) {
   .intro { grid-template-columns: 1fr; }
-  .brandLogo { margin-top: 28px; }
-  .three { gap: 18px; }
-  .characters { grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  .socialGrid { gap: 20px; }
+  .brandLogo { margin-top: 0; }
+  .characters { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 @media (max-width: 620px) {
-  .three, .socialGrid { grid-template-columns: 1fr; gap: 18px; }
-  .characters { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .three, .socialGrid { grid-template-columns: 1fr; }
+  .characters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .play { width: 52px; height: 52px; font-size: 18px; }
   .videoLabel { left: 18px; bottom: 16px; }
 }
