@@ -30,7 +30,7 @@ export default function WorkPage() {
 
       <section className={styles.hero}>
         <p>Selected Work</p>
-        <h1>Design that speaks.<br />Stories that connect.</h1>
+        <h1>Design that speaks.<br /><span>Stories that connect.</span></h1>
         <span>A selection of identity, campaign, marketing and exploratory work — each built around a different creative problem.</span>
       </section>
 
