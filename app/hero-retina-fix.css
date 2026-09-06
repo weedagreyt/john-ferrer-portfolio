@@ -4,7 +4,7 @@
 
 /* Fidelity pass against the approved racing poster. */
 .hero-art{filter:saturate(1.13) contrast(1.07) brightness(1.015)!important}
-.hero h1{font-family:var(--race-display)!important;font-weight:900!important;letter-spacing:-.014em!important;font-stretch:condensed!important}
+.hero h1{font-family:var(--race-display)!important;font-weight:700!important;font-style:normal!important;letter-spacing:-.006em!important;font-stretch:condensed!important}
 .hero-sub{color:rgba(255,255,255,.84)!important}
 .hero-side-note{color:rgba(255,255,255,.78)!important}
 .hero-side-note i{box-shadow:0 0 16px rgba(240,24,32,.86)!important}
@@ -19,62 +19,66 @@
     display:flex!important;
     flex-direction:column!important;
     align-items:flex-start!important;
-    max-width:660px!important;
-    font-size:clamp(72px,5.9vw,94px)!important;
-    line-height:.79!important;
-    letter-spacing:-.018em!important;
+    max-width:690px!important;
+    font-size:clamp(86px,6.6vw,108px)!important;
+    line-height:.72!important;
+    letter-spacing:-.004em!important;
   }
-  body .race-home .hero h1>span{margin-bottom:10px!important}
+  body .race-home .hero h1>span{
+    margin-bottom:10px!important;
+    transform:skewX(-6deg) scaleX(.96)!important;
+    transform-origin:left center!important;
+  }
   .hero-copy::after{opacity:.80!important}
 
   .hero-portrait{
-    right:-10%!important;
-    top:-88px!important;
-    width:min(1000px,73vw)!important;
-    height:950px!important;
+    right:-12%!important;
+    top:-118px!important;
+    width:min(1080px,78vw)!important;
+    height:1010px!important;
   }
   .hero-portrait img{
-    transform:scale(1.14)!important;
+    transform:scale(1.18)!important;
     transform-origin:center bottom!important;
   }
   .portrait-aura{
-    right:0!important;
-    top:-1%!important;
-    width:82%!important;
-    height:78%!important;
-    opacity:.64!important;
+    right:-1%!important;
+    top:-3%!important;
+    width:86%!important;
+    height:82%!important;
+    opacity:.68!important;
   }
 }
 
 @media(max-width:760px){
   /* Match the poster's tall mobile composition instead of scaling a pre-composited portrait. */
   .hero{
-    height:clamp(698px,177.68vw,800px)!important;
-    min-height:698px!important;
-    max-height:800px!important;
+    height:clamp(720px,177.68vw,820px)!important;
+    min-height:720px!important;
+    max-height:820px!important;
   }
   .hero-shell{height:calc(100% - 76px)!important}
 
   .hero-art{
     background-image:linear-gradient(90deg,rgba(5,6,7,.62) 0%,rgba(5,6,7,.47) 27%,rgba(5,6,7,.20) 47%,rgba(5,6,7,.04) 66%,transparent 82%),url('/hero-bg-mobile.avif')!important;
-    background-size:auto 112%!important;
-    background-position:center -4px!important;
+    background-size:auto 114%!important;
+    background-position:center -8px!important;
     background-repeat:no-repeat!important;
-    filter:saturate(1.18) contrast(1.08) brightness(1.02)!important;
+    filter:saturate(1.20) contrast(1.09) brightness(1.02)!important;
   }
   .hero-art::after{
-    background:linear-gradient(180deg,transparent 0 80%,rgba(5,6,7,.04) 89%,#050607 100%)!important;
+    background:linear-gradient(180deg,transparent 0 81%,rgba(5,6,7,.04) 90%,#050607 100%)!important;
   }
 
-  /* The portrait begins behind the navigation, crosses the headline and continues beyond the CTA. */
+  /* Oversized portrait: begins behind the headline and carries below the CTA like the poster. */
   .hero-portrait{
     display:block!important;
-    left:6.5vw!important;
+    left:4vw!important;
     right:auto!important;
-    top:-45px!important;
+    top:-78px!important;
     bottom:auto!important;
-    width:112vw!important;
-    height:140vw!important;
+    width:123vw!important;
+    height:154vw!important;
     max-width:none!important;
     overflow:visible!important;
     transform:none!important;
@@ -93,13 +97,13 @@
   }
   .portrait-aura{
     display:block!important;
-    right:4%!important;
-    top:0!important;
-    width:74%!important;
-    height:61%!important;
-    opacity:.40!important;
+    right:0!important;
+    top:-1%!important;
+    width:80%!important;
+    height:66%!important;
+    opacity:.46!important;
     filter:blur(24px)!important;
-    background:radial-gradient(ellipse at 56% 28%,rgba(255,25,31,.42) 0%,rgba(202,7,13,.18) 32%,transparent 69%)!important;
+    background:radial-gradient(ellipse at 56% 28%,rgba(255,25,31,.50) 0%,rgba(202,7,13,.21) 34%,transparent 70%)!important;
   }
   .hero-portrait::before,.hero-portrait::after{content:none!important}
 
@@ -112,15 +116,15 @@
   .hero-copy::after{
     left:-18px!important;
     top:42px!important;
-    width:76%!important;
-    height:470px!important;
+    width:74%!important;
+    height:486px!important;
     opacity:1!important;
-    background:linear-gradient(90deg,rgba(5,6,7,.78) 0%,rgba(5,6,7,.52) 46%,rgba(5,6,7,.22) 72%,transparent 100%)!important;
+    background:linear-gradient(90deg,rgba(5,6,7,.82) 0%,rgba(5,6,7,.56) 44%,rgba(5,6,7,.20) 74%,transparent 100%)!important;
     filter:none!important;
   }
 
-  .hero-intro{margin:0 0 17px!important}
-  .hero-intro-rule{width:330px!important;max-width:88%!important;gap:15px!important;margin-bottom:12px!important}
+  .hero-intro{margin:0 0 14px!important}
+  .hero-intro-rule{width:330px!important;max-width:88%!important;gap:15px!important;margin-bottom:10px!important}
   .hero-intro-rule span{font-size:9px!important}
   .hero-intro p{font-size:9px!important;letter-spacing:.30em!important}
 
@@ -129,35 +133,35 @@
     flex-direction:column!important;
     align-items:flex-start!important;
     width:100%!important;
-    max-width:330px!important;
+    max-width:352px!important;
     margin:0!important;
-    font-size:clamp(50px,13.05vw,56px)!important;
-    line-height:.79!important;
-    letter-spacing:-.016em!important;
-    text-shadow:1px 2px 0 rgba(0,0,0,.34),0 5px 17px rgba(0,0,0,.94)!important;
+    font-size:clamp(57px,14.6vw,64px)!important;
+    line-height:.72!important;
+    letter-spacing:-.002em!important;
+    text-shadow:1px 2px 0 rgba(0,0,0,.36),0 5px 17px rgba(0,0,0,.96)!important;
   }
   body .race-home .hero h1>span{
     display:block!important;
-    margin:0!important;
+    margin:0 0 2px!important;
     white-space:nowrap!important;
-    transform:scaleX(.90)!important;
+    transform:skewX(-6deg) scaleX(.96)!important;
     transform-origin:left center!important;
   }
 
   .hero-sub{
     width:326px!important;
     max-width:87%!important;
-    margin-top:20px!important;
+    margin-top:19px!important;
     font-size:12px!important;
-    line-height:1.22!important;
-    color:rgba(255,255,255,.82)!important;
-    text-shadow:0 2px 10px rgba(0,0,0,.94)!important;
+    line-height:1.28!important;
+    color:rgba(255,255,255,.86)!important;
+    text-shadow:0 2px 10px rgba(0,0,0,.96)!important;
   }
   .hero .race-button{
-    width:150px!important;
-    height:44px!important;
+    width:158px!important;
+    height:45px!important;
     margin-top:15px!important;
-    padding:0 16px!important;
+    padding:0 17px!important;
     font-size:12px!important;
   }
   .hero .race-button .race-arrow{width:15px!important;height:15px!important}
@@ -168,7 +172,7 @@
   }
 
   .hero-side-note{
-    top:55.5%!important;
+    top:56%!important;
     right:15px!important;
     font-size:7px!important;
     line-height:1.25!important;
