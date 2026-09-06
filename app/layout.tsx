@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Barlow_Semi_Condensed } from "next/font/google";
+import { Barlow_Condensed } from "next/font/google";
 import "./globals.css";
 import "./hero-polish.css";
 import "./hero-media.css";
 import "./hero-retina-fix.css";
 import "./race-aesthetic.css";
 
-const raceDisplay = Barlow_Semi_Condensed({
+const raceDisplay = Barlow_Condensed({
   subsets: ["latin"],
   weight: ["800", "900"],
   style: ["italic"],
