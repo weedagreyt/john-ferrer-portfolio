@@ -3,13 +3,13 @@
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import styles from "./intro-sequence.module.css";
 
-const TOTAL = 5900;
+const TOTAL = 5750;
 const CURTAIN_END = 650;
 const STACK_START = 4400;
 const STACK_STAGGER = 55;
 const STACK_DURATION = 540;
-const OUT_START = 5250;
-const OUT_DURATION = 530;
+const OUT_START = 5180;
+const OUT_DURATION = 390;
 const SKIP_DURATION = 480;
 
 const slides = [
@@ -142,8 +142,8 @@ export default function IntroSequence() {
   if (!visible) return null;
 
   const curtain = ready ? easeIn(clamp(time / CURTAIN_END)) : 0;
-  const out = easeInOut(clamp((time - OUT_START) / OUT_DURATION));
-  const overlayFade = smooth(clamp((time - (OUT_START + OUT_DURATION - 70)) / 120));
+  const out = easeIn(clamp((time - OUT_START) / OUT_DURATION));
+  const overlayFade = smooth(clamp((time - (OUT_START + OUT_DURATION - 55)) / 95));
   const stacking = time >= STACK_START;
 
   return (
@@ -169,9 +169,9 @@ export default function IntroSequence() {
           const targetX = finalStackX[index] ?? slide.x;
           const x = targetX * stackProgress;
           const baseY = slide.y * stackProgress;
-          const y = baseY + out * 92;
+          const y = baseY + out * 108;
           const radius = 22 * stackProgress;
-          const finalScale = lerp(cardScale, .255, out);
+          const finalScale = lerp(cardScale, .245, out);
 
           const isCurrentScene = time >= slide.start && time < slide.end;
           const show = ready && (stacking || isCurrentScene);
