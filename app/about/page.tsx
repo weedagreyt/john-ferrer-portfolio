@@ -2,6 +2,7 @@ import SiteNav from "../components/SiteNav";
 import SiteFooter from "../components/SiteFooter";
 import BrandBackground from "../components/BrandBackground";
 import Reveal from "../components/Reveal";
+import { ArrowIcon } from "../components/UiIcons";
 import { resumeUrl } from "../lib/portfolio";
 import styles from "./about.module.css";
 
@@ -27,7 +28,7 @@ export default function AboutPage() {
               <li>Deadline-driven</li>
               <li>Always Learning</li>
             </ul>
-            <a className={styles.learnButton} href={resumeUrl} target="_blank" rel="noreferrer">View My Résumé →</a>
+            <a className={styles.learnButton} href={resumeUrl} target="_blank" rel="noreferrer">View My Résumé <ArrowIcon diagonal size={17} style={{ marginLeft: 10 }} /></a>
           </Reveal>
 
           <Reveal className={styles.visual} delay={90}>
