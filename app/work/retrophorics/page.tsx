@@ -1,11 +1,11 @@
+import SiteNav from "../../components/SiteNav";
+import SiteFooter from "../../components/SiteFooter";
+import Reveal from "../../components/Reveal";
+import CaseStudyStory from "../../components/CaseStudyStory";
 import styles from "../case-study.module.css";
 import local from "./retrophorics.module.css";
 
-const resumeUrl = "https://drive.google.com/file/d/1JzH0wXGffM_iplyQ8bkOOlfRHDjreQxp/view?usp=sharing";
-
 const assets = {
-  logo: "https://www.figma.com/api/mcp/asset/e6f17525-d6f7-4bce-a20b-99b57a6f19e0.svg",
-  watermark: "https://www.figma.com/api/mcp/asset/dedca485-a822-44de-a7d3-6cbe32910513.svg",
   hero: "https://www.figma.com/api/mcp/asset/8cc442b5-09f9-44b7-9fae-d238e36f2235.png",
   brandLogo: "https://www.figma.com/api/mcp/asset/33791493-6c2e-4c5f-b937-babf95001946.png",
   kfc: "https://www.figma.com/api/mcp/asset/b237ee62-a79b-4c81-9537-fdfd8835be66.png",
@@ -23,55 +23,53 @@ const assets = {
   denim: "https://www.figma.com/api/mcp/asset/2866d887-b523-4fa2-b562-dfe91adf06c7.png",
   express: "https://www.figma.com/api/mcp/asset/97b20cc9-aa3a-4f19-98e5-63579a872c90.png",
   next: "https://www.figma.com/api/mcp/asset/c7db8172-413d-4e5a-8a9a-695da195534d.svg",
-  behance: "https://www.figma.com/api/mcp/asset/009ea467-ad7b-48d4-9183-a6198ca4f818.png",
-  designs99: "https://www.figma.com/api/mcp/asset/4ea3b79b-4521-4f07-b005-85aeed2adf2f.png",
-  designhill: "https://www.figma.com/api/mcp/asset/feb2ace7-2c63-4f96-8bac-710ec74b4be9.png",
 };
 
-const services = ["Branding & Identity", "Marketing Design", "Campaign Design", "Social Media Design", "Print & Editorial", "Art Direction"];
 const characterTiles = [assets.sexy, assets.flirty, assets.business, assets.rockabilly, assets.hippy, assets.posh];
 
-function PlayImage({ src, alt }: { src: string; alt: string }) {
-  return <div className={local.videoStill}><img src={src} alt={alt} /><span aria-hidden="true">▶</span></div>;
+function VideoPlaceholder({ src, alt, label }: { src: string; alt: string; label: string }) {
+  return (
+    <div className={local.videoStill}>
+      <img src={src} alt={alt} />
+      <span className={local.play} aria-hidden="true">▶</span>
+      <div className={local.videoLabel}><b>{label}</b><small>Video will replace this preview</small></div>
+    </div>
+  );
 }
 
 export default function RetrophoricsPage() {
   return (
     <main className={styles.page}>
-      <header className={styles.header}>
-        <a href="/" className={styles.logo}><img src={assets.logo} alt="John Ferrer logo" /></a>
-        <nav className={styles.nav}><a href="/">Home</a><a className={styles.active} href="/work">Work</a><a href="/about">About</a><a href={resumeUrl} target="_blank" rel="noreferrer">Résumé</a><a className={styles.contactButton} href="/contact">Contact Me</a></nav>
-      </header>
+      <SiteNav theme="dark" />
 
       <article className={styles.case}>
-        <div className={local.intro}>
+        <Reveal className={local.intro}>
           <div className={styles.titleBlock}>
             <h1>RETROPHORICS</h1>
-            <p>Retrophorics is a fashion brand focused on retro-style tops for women ages 25–35. I developed the brand identity from the ground up, including the logo, visual direction, marketing materials, and social media content, creating a consistent look across the brand and its marketing.</p>
+            <p>Retrophorics is a fashion brand focused on retro-style tops for women ages 25–35. I built the brand identity, visual direction and marketing language around nostalgia, but kept the execution energetic enough to feel like a contemporary fashion brand.</p>
             <img className={local.brandLogo} src={assets.brandLogo} alt="Retrophorics logo" />
           </div>
-          <PlayImage src={assets.hero} alt="Retrophorics brand presentation" />
-        </div>
+          <VideoPlaceholder src={assets.hero} alt="Retrophorics brand presentation" label="Brand Film" />
+        </Reveal>
+
+        <CaseStudyStory
+          challenge="Create a distinctive fashion identity that feels genuinely retro without looking like a copy of one specific era or becoming visually dated."
+          role="Brand identity, art direction, marketing design, campaign design and social content."
+          thinking="Mix recognizable retro cues with a more modern editorial rhythm. Bold type, collage, color and character-based styling gave the system range while keeping a consistent attitude."
+          execution="Developed the logo, visual references, character directions, campaign artwork, social posts and motion concepts that could support both brand storytelling and product marketing."
+          outcome="A flexible fashion identity with a distinctive retro voice that can stretch across static campaigns, social content and motion."
+        />
 
         <div className={local.gallery}>
-          <div className={local.three}><img src={assets.kfc} alt="Retrophorics KFC-inspired style board" /><img src={assets.hershey} alt="Retrophorics Hershey-inspired style board" /><img src={assets.johnnie} alt="Retrophorics Johnnie Walker-inspired style board" /></div>
-          <div className={local.characters}>{characterTiles.map((src, i) => <img src={src} alt={`Retrophorics brand character ${i + 1}`} key={src} />)}</div>
-          <PlayImage src={assets.motion} alt="Retrophorics motion design preview" />
-          <div className={local.socialGrid}><img src={assets.denim} alt="Retrophorics denim social post" /><img src={assets.coco} alt="Retrophorics Coco Chanel social post" /><img src={assets.priority} alt="Retrophorics make yourself a priority social post" /><img src={assets.express} alt="Retrophorics dress to express social post" /></div>
+          <Reveal><div className={local.three}><img src={assets.kfc} alt="Retrophorics KFC-inspired style board" /><img src={assets.hershey} alt="Retrophorics Hershey-inspired style board" /><img src={assets.johnnie} alt="Retrophorics Johnnie Walker-inspired style board" /></div></Reveal>
+          <Reveal><div className={local.characters}>{characterTiles.map((src, i) => <img src={src} alt={`Retrophorics brand character ${i + 1}`} key={src} />)}</div></Reveal>
+          <Reveal><VideoPlaceholder src={assets.motion} alt="Retrophorics motion design preview" label="Motion Exploration" /></Reveal>
+          <Reveal><div className={local.socialGrid}><img src={assets.denim} alt="Retrophorics denim social post" /><img src={assets.coco} alt="Retrophorics Coco Chanel social post" /><img src={assets.priority} alt="Retrophorics make yourself a priority social post" /><img src={assets.express} alt="Retrophorics dress to express social post" /></div></Reveal>
         </div>
       </article>
 
-      <div className={styles.next}><small>Next Project</small><a href="/work/art-exploration"><h2>ART &amp; EXPLORATION</h2><img src={assets.next} alt="" /></a></div>
-
-      <footer className={styles.footer}>
-        <img className={styles.footerWatermark} src={assets.watermark} alt="" />
-        <div className={styles.footerGrid}>
-          <div className={styles.footerBrand}><a className={styles.wordmark} href="/"><img src={assets.logo} alt="" /><span><em>John Ferrer</em><strong>Design</strong></span></a><p>Graphic designer focused on creating visual solutions that inspire and deliver results.</p><div className={styles.socials}><a href="https://www.behance.net/weedagreyt" target="_blank" rel="noreferrer"><img src={assets.behance} alt="Behance" /></a><a href="https://99designs.com/profiles/3055278" target="_blank" rel="noreferrer"><img src={assets.designs99} alt="99designs" /></a><a href="https://www.designhill.com/member/weedagreyt" target="_blank" rel="noreferrer"><img src={assets.designhill} alt="Designhill" /></a></div><small>© 2026 John Ferrer Design. All rights reserved.</small></div>
-          <div className={styles.footerColumn}><b>Quick Links</b><a href="/">Home</a><a href="/work">Work</a><a href="/about">About</a><a href={resumeUrl} target="_blank" rel="noreferrer">Résumé</a></div>
-          <div className={styles.footerColumn}><b>Services</b>{services.map((service) => <span key={service}>{service}</span>)}</div>
-          <div className={styles.footerColumn}><b>Let’s Work Together</b><p>Have a project in mind?<br />Let’s create something amazing.</p><a className={styles.footerContact} href="/contact">Contact Me</a><a href="mailto:weetotwee@gmail.com">weetotwee@gmail.com</a><a href="tel:+16893400216">+1 689 340 0216</a><span>Arlington, VA</span></div>
-        </div>
-      </footer>
+      <Reveal className={styles.next}><small>Next Project</small><a href="/work/art-exploration"><h2>ART &amp; EXPLORATION</h2><img src={assets.next} alt="" /></a></Reveal>
+      <SiteFooter />
     </main>
   );
 }
