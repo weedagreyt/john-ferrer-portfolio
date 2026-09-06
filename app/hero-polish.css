@@ -14,15 +14,7 @@
 .hero-copy { top:54px!important; width:min(690px,57%)!important; }
 .hero-eyebrow { margin-bottom:18px!important; color:#f7f7f7!important; font-size:11px!important; font-weight:800!important; letter-spacing:.24em!important; }
 .hero-eyebrow::before { content:"01"; display:inline-block; margin-right:18px; padding-right:46px; border-right:44px solid #c61111; color:#c61111; }
-
-/* Racing display type needs air around the glyphs. Keep it aggressive, never compressed. */
-.hero h1 {
-  max-width:690px!important; margin:0!important; color:#f7f7f7!important;
-  font-family:Arial Black,Arial,Helvetica,sans-serif!important;
-  font-size:clamp(54px,4.9vw,72px)!important; line-height:1.04!important;
-  letter-spacing:-.025em!important; font-weight:900!important; font-style:italic;
-  text-transform:uppercase; transform:skewX(-4deg); transform-origin:left center;
-}
+.hero h1 { max-width:690px!important; margin:0!important; color:#f7f7f7!important; font-family:Arial Black,Arial,Helvetica,sans-serif!important; font-size:clamp(54px,4.9vw,72px)!important; line-height:1.04!important; letter-spacing:-.025em!important; font-weight:900!important; font-style:italic; text-transform:uppercase; transform:skewX(-4deg); transform-origin:left center; }
 .hero h1 span { color:#c61111!important; }
 .hero-sub { width:min(430px,90%)!important; margin-top:28px!important; color:rgba(247,247,247,.72)!important; font-size:16px!important; line-height:1.65!important; }
 .hero-button { width:218px!important; min-height:54px!important; margin-top:28px!important; border:1px solid #c61111!important; border-radius:999px!important; background:transparent!important; color:#fff!important; font-size:15px!important; font-weight:700!important; }
@@ -34,10 +26,7 @@
 
 .work-section { position:relative; background:#f3f0eb!important; color:#101112!important; padding:70px 0 92px!important; border-top:8px solid #c61111; }
 .work-section .eyebrow,.capabilities .eyebrow { color:#c61111!important; }
-.work-section .section-head h2,.capability-heading h2,.experience-title h2,.testimonial-heading h2 {
-  font-family:Arial Black,Arial,sans-serif; font-style:italic; text-transform:uppercase;
-  letter-spacing:-.02em!important; line-height:1.08!important;
-}
+.work-section .section-head h2,.capability-heading h2,.experience-title h2,.testimonial-heading h2 { font-family:Arial Black,Arial,sans-serif; font-style:italic; text-transform:uppercase; letter-spacing:-.02em!important; line-height:1.08!important; }
 .work-section .section-head h2 { font-size:clamp(42px,4.5vw,62px)!important; line-height:1.06!important; }
 .work-head .large-action { border-color:#101112!important; color:#101112!important; border-radius:999px; }
 .work-head .large-action:hover { background:#101112!important; color:#fff!important; }
@@ -76,25 +65,29 @@ blockquote p { font-size:19px!important; }
   .hero-portrait { right:-40px!important; width:52vw!important; height:590px!important; }
 }
 @media (max-width:850px) {
-  .hero { height:890px!important; min-height:890px!important; }
+  .hero { height:900px!important; min-height:900px!important; }
   .hero-shell { height:calc(100% - 100px)!important; }
   .hero-copy { top:24px!important; width:100%!important; }
   .hero h1 { max-width:650px!important; font-size:clamp(44px,7.3vw,59px)!important; line-height:1.06!important; }
   .hero-sub { width:min(520px,72%)!important; }
-  .hero-portrait { right:-36px!important; bottom:-4px!important; width:min(590px,72vw)!important; height:500px!important; }
+  .hero-portrait { left:50%!important; right:auto!important; bottom:-8px!important; width:min(560px,78vw)!important; height:500px!important; transform:translateX(-50%)!important; }
+  .hero-portrait::before { left:12%!important; top:12%!important; width:78%!important; height:76%!important; }
+  .hero-portrait::after { right:2%!important; top:19%!important; width:30%!important; height:42%!important; }
   .project-card { clip-path:polygon(5% 0,100% 0,95% 100%,0 100%); }
 }
 @media (max-width:620px) {
-  .hero { height:805px!important; min-height:805px!important; }
+  .hero { height:850px!important; min-height:850px!important; }
   .hero-shell { height:calc(100% - 88px)!important; }
-  .hero-copy { top:8px!important; }
+  .hero-copy { top:6px!important; width:100%!important; text-align:left!important; }
   .hero-eyebrow { margin-bottom:12px!important; font-size:10px!important; }
   .hero-eyebrow::before { margin-right:10px; padding-right:24px; border-right-width:24px; }
-  .hero h1 { max-width:365px!important; font-size:clamp(37px,10.2vw,45px)!important; line-height:1.08!important; letter-spacing:-.015em!important; }
-  .hero-sub { width:min(330px,94%)!important; margin-top:18px!important; font-size:14px!important; line-height:1.5!important; }
-  .hero-button { width:170px!important; min-height:46px!important; margin-top:18px!important; font-size:14px!important; }
-  .hero-portrait { left:50%!important; right:auto!important; bottom:-8px!important; width:min(420px,110vw)!important; height:355px!important; transform:translateX(-50%)!important; }
-  .hero-portrait::before { left:15%!important; top:9%!important; width:76%!important; height:80%!important; }
+  .hero h1 { max-width:360px!important; font-size:clamp(36px,9.9vw,44px)!important; line-height:1.09!important; letter-spacing:-.012em!important; transform:skewX(-3deg); }
+  .hero-sub { width:min(328px,94%)!important; margin-top:16px!important; font-size:14px!important; line-height:1.52!important; }
+  .hero-button { width:168px!important; min-height:46px!important; margin-top:17px!important; font-size:14px!important; }
+  .hero-portrait { left:50%!important; right:auto!important; bottom:-12px!important; width:min(390px,100vw)!important; height:360px!important; transform:translateX(-50%)!important; }
+  .hero-portrait::before { left:10%!important; top:13%!important; width:82%!important; height:73%!important; border-color:rgba(198,17,17,.65)!important; background:rgba(198,17,17,.11)!important; clip-path:polygon(20% 0,100% 0,80% 100%,0 100%)!important; }
+  .hero-portrait::after { right:4%!important; top:22%!important; width:28%!important; height:36%!important; border-top-width:2px!important; transform:skewX(-16deg)!important; }
+  .hero-portrait img { object-position:center bottom!important; filter:grayscale(1) contrast(1.1) brightness(.92)!important; }
   .work-section { padding:52px 0 66px!important; border-top-width:5px; }
   .work-section .section-head h2,.capability-heading h2,.experience-title h2,.testimonial-heading h2 { line-height:1.1!important; letter-spacing:-.01em!important; }
   .project-card { clip-path:polygon(4% 0,100% 0,96% 100%,0 100%); }
