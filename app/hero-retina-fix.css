@@ -1,10 +1,12 @@
-:root{
-  --race-display:var(--font-race-display),"Arial Narrow",Impact,sans-serif;
-}
-
 /* Fidelity pass against the approved racing poster. */
 .hero-art{filter:saturate(1.13) contrast(1.07) brightness(1.015)!important}
-.hero h1{font-family:var(--race-display)!important;font-weight:700!important;font-style:normal!important;letter-spacing:-.006em!important;font-stretch:condensed!important}
+.hero h1{
+  font-family:var(--font-race-display),"Arial Narrow",Impact,sans-serif!important;
+  font-weight:700!important;
+  font-style:normal!important;
+  font-synthesis:none!important;
+  letter-spacing:-.006em!important;
+}
 .hero-sub{color:rgba(255,255,255,.84)!important}
 .hero-side-note{color:rgba(255,255,255,.78)!important}
 .hero-side-note i{box-shadow:0 0 16px rgba(240,24,32,.86)!important}
@@ -26,7 +28,7 @@
   }
   body .race-home .hero h1>span{
     margin-bottom:10px!important;
-    transform:skewX(-6deg) scaleX(.96)!important;
+    transform:skewX(-7deg) scaleX(.96)!important;
     transform-origin:left center!important;
   }
   .hero-copy::after{opacity:.80!important}
@@ -51,7 +53,6 @@
 }
 
 @media(max-width:760px){
-  /* Match the poster's tall mobile composition instead of scaling a pre-composited portrait. */
   .hero{
     height:clamp(720px,177.68vw,820px)!important;
     min-height:720px!important;
@@ -70,7 +71,6 @@
     background:linear-gradient(180deg,transparent 0 81%,rgba(5,6,7,.04) 90%,#050607 100%)!important;
   }
 
-  /* Oversized portrait: begins behind the headline and carries below the CTA like the poster. */
   .hero-portrait{
     display:block!important;
     left:4vw!important;
@@ -144,7 +144,7 @@
     display:block!important;
     margin:0 0 2px!important;
     white-space:nowrap!important;
-    transform:skewX(-6deg) scaleX(.96)!important;
+    transform:skewX(-7deg) scaleX(.96)!important;
     transform-origin:left center!important;
   }
 
