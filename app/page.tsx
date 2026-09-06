@@ -14,6 +14,24 @@ const assets = {
   dope: "https://www.figma.com/api/mcp/asset/5d08bcf7-f229-4889-9d34-08401c51103e.png",
 };
 
+function ArrowIcon({ diagonal = false }: { diagonal?: boolean }) {
+  return (
+    <svg className="ui-arrow" viewBox="0 0 20 20" aria-hidden="true">
+      {diagonal ? (
+        <>
+          <path d="M5 15 15 5" />
+          <path d="M8 5h7v7" />
+        </>
+      ) : (
+        <>
+          <path d="M3.5 10h12" />
+          <path d="m11.5 6 4 4-4 4" />
+        </>
+      )}
+    </svg>
+  );
+}
+
 const experience = [
   ["Print Production / Designer", "Bothends Computer Solutions", "Nov 2015 – Jul 2019"],
   ["Founder", "SciHigh Clothing", "Feb 2016"],
@@ -71,7 +89,7 @@ export default function HomePage() {
               Visual Storyteller<span>.</span>
             </h1>
             <p className="hero-sub">I turn ideas into impactful visual experiences that connect, inspire, and leave a lasting impression.</p>
-            <a className="button hero-button" href="/contact">Let’s Talk →</a>
+            <a className="button hero-button icon-link" href="/contact"><span>Let’s Talk</span><ArrowIcon /></a>
           </div>
 
           <div className="hero-portrait" aria-label="Portrait of John Ferrer">
@@ -87,9 +105,9 @@ export default function HomePage() {
               <p className="eyebrow">Selected Work</p>
               <h2>Design that speaks.<br />Stories that connect.</h2>
             </div>
-            <a className="button outline large-action" href="/work">View All Projects →</a>
+            <a className="button outline large-action icon-link" href="/work"><span>View All Projects</span><ArrowIcon /></a>
           </div>
-          <p className="mobile-swipe-hint">Swipe through selected work →</p>
+          <div className="mobile-swipe-hint"><span>Swipe through selected work</span><ArrowIcon /></div>
           <div className="project-grid">
             {projects.map((project) => (
               <a className="project-card" key={project.name} href={project.href} aria-label={`View ${project.name} case study`}>
@@ -98,7 +116,7 @@ export default function HomePage() {
                   <p>{project.type}</p>
                   <h3>{project.name}</h3>
                   <span>{project.description}</span>
-                  <b>View case study ↗</b>
+                  <b className="case-study-link"><span>View case study</span><ArrowIcon diagonal /></b>
                 </div>
               </a>
             ))}
@@ -128,7 +146,7 @@ export default function HomePage() {
             <p className="eyebrow">Experience</p>
             <h2>My Journey</h2>
           </div>
-          <a className="button outline experience-resume" href={resumeUrl} target="_blank" rel="noreferrer">Download Résumé →</a>
+          <a className="button outline experience-resume icon-link" href={resumeUrl} target="_blank" rel="noreferrer"><span>Download Résumé</span><ArrowIcon diagonal /></a>
 
           <div className="experience-track" aria-label="Professional experience timeline">
             {experience.map(([role, company, dates], index) => {
@@ -170,11 +188,29 @@ export default function HomePage() {
 
       <style>{`
         .mobile-swipe-hint { display: none; }
+        .ui-arrow {
+          width: 18px;
+          height: 18px;
+          flex: 0 0 auto;
+          fill: none;
+          stroke: currentColor;
+          stroke-width: 1.65;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+          transition: transform .28s cubic-bezier(.2,.8,.2,1);
+        }
+        .icon-link { gap: 10px; }
+        .icon-link:hover .ui-arrow { transform: translateX(3px); }
+        .experience-resume:hover .ui-arrow,
+        .case-study-link .ui-arrow { transform: none; }
+        .experience-resume:hover .ui-arrow,
+        .project-card:hover .case-study-link .ui-arrow { transform: translate(2px,-2px); }
+        .case-study-link { display: inline-flex !important; align-items: center; gap: 6px; width: fit-content; }
+        .case-study-link .ui-arrow { width: 14px; height: 14px; }
 
         @media (max-width: 620px) {
           .shell { width: min(100% - 28px, 1240px); }
 
-          /* Mobile hero: editorial copy first, portrait as a deliberate second beat. */
           .hero { height: 780px; min-height: 780px; }
           .hero-shell { height: calc(100% - 92px); }
           .hero-copy { top: 18px; width: 100%; }
@@ -185,12 +221,12 @@ export default function HomePage() {
           .hero-portrait { left: 50%; right: auto; bottom: -18px; width: 455px; max-width: 122vw; height: 390px; transform: translateX(-43%); opacity: .96; }
           .hero-portrait::before { content: ""; position: absolute; left: 17%; bottom: 34px; width: 270px; height: 270px; border: 1px solid rgba(198,17,17,.18); border-radius: 50%; z-index: -1; }
 
-          /* Selected work: swipeable portfolio reel with a visible next-card cue. */
           .work-section { padding: 54px 0 60px; overflow: hidden; }
           .work-head { gap: 20px; margin-bottom: 0; }
           .section-head h2, .capability-heading h2, .experience-title h2, .testimonial-heading h2 { font-size: 36px; line-height: 1.02; }
           .work-head .large-action { order: 2; width: 100%; min-height: 52px; margin-top: 2px; font-size: 15px; }
-          .mobile-swipe-hint { display: block; margin: 24px 0 12px; color: rgba(255,255,255,.52); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+          .mobile-swipe-hint { display: flex; align-items: center; gap: 7px; margin: 24px 0 12px; color: rgba(255,255,255,.52); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+          .mobile-swipe-hint .ui-arrow { width: 14px; height: 14px; }
           .project-grid { display: flex; gap: 14px; overflow-x: auto; margin-right: -14px; padding: 0 14px 12px 0; scroll-snap-type: x mandatory; scrollbar-width: none; }
           .project-grid::-webkit-scrollbar { display: none; }
           .project-card, .project-card:last-child { flex: 0 0 min(82vw, 330px); width: min(82vw, 330px); aspect-ratio: 4 / 5; scroll-snap-align: start; border-radius: 16px; }
@@ -199,7 +235,6 @@ export default function HomePage() {
           .project-card-copy span { font-size: 12px; line-height: 1.45; }
           .project-card-copy b { margin-top: 12px; }
 
-          /* Capabilities: compact two-column index instead of a long one-column stack. */
           .capabilities { padding: 58px 0 66px; }
           .capability-heading { margin-bottom: 28px; }
           .capability-grid { grid-template-columns: 1fr 1fr; }
@@ -207,7 +242,6 @@ export default function HomePage() {
           .capability strong { font-size: 16px; line-height: 1.18; }
           .capability span { font-size: 10px; }
 
-          /* Experience: swipeable career cards keep the page from becoming overly tall. */
           .experience-section { min-height: 0; padding: 54px 0 62px; }
           .experience-title { margin-bottom: 20px; }
           .experience-resume { width: 100%; min-height: 52px; margin-bottom: 28px; font-size: 15px; }
@@ -221,7 +255,6 @@ export default function HomePage() {
           .experience-connector { display: none; }
           .experience-watermark { width: 390px; right: -150px; top: -20px; }
 
-          /* Testimonials: cards instead of two large stacked quotes. */
           .testimonials { padding: 56px 0 64px; overflow: hidden; }
           .testimonial-heading { margin-bottom: 22px; }
           .quote-grid { display: flex; gap: 12px; overflow-x: auto; margin-right: -14px; padding: 0 14px 10px 0; scroll-snap-type: x mandatory; scrollbar-width: none; }
