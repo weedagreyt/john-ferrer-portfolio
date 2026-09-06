@@ -1,21 +1,23 @@
-.intro { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--case-grid-gap); align-items: start; margin-bottom: var(--case-grid-gap); }
-.cover { width: 100%; aspect-ratio: 660 / 290; object-fit: cover; margin-top: var(--case-grid-gap); border-radius: 12px; }
+.intro { display: grid; grid-template-columns: 660fr 531fr; gap: 48px; align-items: start; margin-bottom: 28px; }
+.cover { width: 100%; aspect-ratio: 660 / 290; object-fit: cover; margin-top: 34px; border-radius: 12px; }
 .brandLogo { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 12px; }
-.gallery { display: grid; gap: var(--case-grid-gap); }
+.gallery { display: grid; gap: 30px; }
 .gallery img { border-radius: 12px; }
-.three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--case-grid-gap); align-items: start; }
+.three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 51px; align-items: start; }
 .three img { width: 100%; height: auto; display: block; }
-.featureRow { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--case-grid-gap); align-items: start; }
+.featureRow { display: grid; grid-template-columns: 811fr 377fr; gap: 52px; align-items: start; }
 .sizeChart { width: 100%; height: auto; }
-.stack { display: grid; gap: var(--case-grid-gap); }
+.stack { display: grid; gap: 51px; }
 .stack img { width: 100%; height: auto; }
-.bottom { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--case-grid-gap); align-items: start; }
+.bottom { display: grid; grid-template-columns: 529fr 659fr; gap: 52px; align-items: start; }
 .bottom img { width: 100%; height: auto; }
 @media (max-width: 900px) {
-  .intro { grid-template-columns: 1fr; }
+  .intro { grid-template-columns: 1fr; gap: 24px; }
   .brandLogo { max-width: 500px; }
+  .three, .featureRow, .stack, .bottom { gap: 20px; }
 }
 @media (max-width: 620px) {
-  .three, .featureRow, .bottom { grid-template-columns: 1fr; }
-  .stack { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .gallery { gap: 18px; }
+  .three, .featureRow, .bottom { grid-template-columns: 1fr; gap: 18px; }
+  .stack { grid-template-columns: 1fr 1fr; gap: 18px; }
 }

@@ -1,45 +1,47 @@
 .intro {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--case-grid-gap);
+  grid-template-columns: 552fr 683fr;
+  gap: 5px;
   align-items: start;
-  margin-bottom: var(--case-grid-gap);
+  margin-bottom: 24px;
 }
 .introLeft { display: flex; flex-direction: column; }
-.postcards { position: relative; width: 100%; aspect-ratio: 552 / 420; margin-top: var(--case-grid-gap); overflow: hidden; border-radius: 12px; background: #171819; }
+.postcards { position: relative; width: 100%; aspect-ratio: 552 / 420; margin-top: 32px; overflow: hidden; border-radius: 12px; background: #171819; }
 .postcards img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .printProducts { position: relative; width: 100%; aspect-ratio: 1; overflow: hidden; border-radius: 12px; background: #171819; }
 .printProducts img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.gallery { display: grid; gap: var(--case-grid-gap); }
+.gallery { display: grid; gap: 34px; }
 .gallery img { display: block; }
 .leadGrid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--case-grid-gap);
-  width: 100%;
+  grid-template-columns: 781fr 564fr;
+  gap: 0;
+  width: calc(100% + 100px);
   align-items: start;
 }
 .targeted { position: relative; aspect-ratio: 1; overflow: hidden; border-radius: 12px; background: #171819; }
 .targeted img { width: 100%; height: 100%; object-fit: cover; }
-.mascot { position: relative; width: 100%; aspect-ratio: 564 / 980; overflow: hidden; border-radius: 12px; background: #171819; }
+.mascot { position: relative; aspect-ratio: 564 / 980; margin-top: -135px; overflow: hidden; }
 .mascot img { width: 100%; height: 100%; object-fit: contain; }
-.productionRow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--case-grid-gap); align-items: start; }
+.productionRow { display: grid; grid-template-columns: 381fr 477fr 300fr; gap: 41px; align-items: start; }
 .productionRow > img { width: 100%; height: auto; border-radius: 12px; }
 .rollup { position: relative; width: 100%; aspect-ratio: 300 / 473.267; overflow: hidden; border-radius: 12px; background: #171819; }
 .rollup img { position: absolute; height: 100%; width: 157.62%; left: -28.81%; top: 0; max-width: none; }
-.brochureRow { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--case-grid-gap); align-items: start; }
+.brochureRow { display: grid; grid-template-columns: 706fr 492fr; gap: 42px; align-items: start; }
 .brochureRow img { width: 100%; height: auto; border-radius: 12px; }
-.socialRow { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--case-grid-gap); align-items: start; }
+.socialRow { display: grid; grid-template-columns: 386fr 386fr 385fr; gap: 42px; align-items: start; }
 .socialRow img { width: 100%; height: auto; border-radius: 12px; }
 @media (max-width: 900px) {
-  .intro { grid-template-columns: 1fr; }
-  .leadGrid { grid-template-columns: 1fr; }
-  .mascot { max-height: 720px; aspect-ratio: auto; }
-  .productionRow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .intro { grid-template-columns: 1fr; gap: 22px; }
+  .postcards { margin-top: 24px; }
+  .leadGrid { width: 100%; grid-template-columns: 1fr; gap: 22px; }
+  .mascot { margin-top: 0; max-height: 720px; aspect-ratio: auto; }
+  .productionRow { grid-template-columns: repeat(2, 1fr); gap: 22px; }
   .productionRow .rollup { grid-column: span 2; max-width: 460px; }
-  .brochureRow { grid-template-columns: 1fr; }
+  .brochureRow { grid-template-columns: 1fr; gap: 22px; }
 }
 @media (max-width: 620px) {
-  .productionRow, .socialRow { grid-template-columns: 1fr; }
+  .gallery { gap: 18px; }
+  .productionRow, .socialRow { grid-template-columns: 1fr; gap: 18px; }
   .productionRow .rollup { grid-column: auto; max-width: none; }
 }

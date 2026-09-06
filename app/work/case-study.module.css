@@ -1,9 +1,9 @@
-.page { --case-grid-gap: 30px; min-height: 100vh; background: #101112; color: #f7f7f7; }
+.page { min-height: 100vh; background: #101112; color: #f7f7f7; }
 .case { width: min(1240px, calc(100% - 48px)); margin: 0 auto; padding: 58px 0 96px; }
 .introRow {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--case-grid-gap);
+  grid-template-columns: 1fr 1.02fr;
+  gap: 64px;
   align-items: center;
   margin-bottom: 52px;
 }
@@ -22,7 +22,7 @@
 .titleBlock p { margin: 0; max-width: 570px; color: rgba(247,247,247,.7); font-size: 15px; line-height: 1.72; }
 .brandLogo { width: 100%; min-height: 180px; display: flex; align-items: center; justify-content: flex-end; }
 .brandLogo img { max-height: 180px; max-width: 92%; width: auto; object-fit: contain; }
-.gallery { display: grid; gap: var(--case-grid-gap); }
+.gallery { display: grid; gap: 34px; }
 .full, .mediaSurface { width: 100%; border-radius: 12px; overflow: hidden; background: #171819; }
 .full img, .mediaSurface img { width: 100%; height: auto; display: block; }
 .gallery img { transition: transform .65s cubic-bezier(.2,.8,.2,1); }
@@ -49,11 +49,11 @@
 .koveHero { aspect-ratio: 1240 / 698.2428; }
 .koveHero img { position: absolute; left: 0; top: -22.28%; width: 100%; height: 133.15%; max-width: none; }
 
-.splitTextMedia { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--case-grid-gap); align-items: start; }
+.splitTextMedia { display: grid; grid-template-columns: 335fr 854fr; gap: 51px; align-items: start; }
 .splitTextMedia > div:first-child {
   display: flex;
   flex-direction: column;
-  gap: var(--case-grid-gap);
+  gap: 31px;
 }
 .splitTextMedia .text { margin: 0; color: rgba(247,247,247,.68); font-size: 15px; line-height: 1.72; }
 .koveMoodPhoto { aspect-ratio: 335 / 487; }
@@ -61,7 +61,7 @@
 .koveMoodboards { aspect-ratio: 854 / 596.6166; }
 .koveMoodboards img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-.twoUp { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--case-grid-gap); align-items: start; }
+.twoUp { display: grid; grid-template-columns: 594fr 600fr; gap: 46px; align-items: start; }
 .koveProduct { aspect-ratio: 1; }
 .koveProduct img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .koveExterior { aspect-ratio: 600 / 582.353; }
@@ -76,21 +76,21 @@
   font-size: 16px;
   line-height: 1.7;
 }
-.eventGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--case-grid-gap); align-items: start; }
-.eventLeft { display: grid; gap: var(--case-grid-gap); }
+.eventGrid { display: grid; grid-template-columns: 731fr 465fr; gap: 44px; align-items: start; }
+.eventLeft { display: grid; gap: 61px; }
 .eventRight { display: block; }
 .eventLeft .copyWide { margin: 0; }
 .koveEventPhoto { aspect-ratio: 731 / 488; }
 .kovePoster { aspect-ratio: 465 / 620; }
 .koveEventPhoto img, .kovePoster img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.eventBottom { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--case-grid-gap); align-items: start; }
+.eventBottom { display: grid; grid-template-columns: 789fr 210fr 197fr; gap: 22px; align-items: start; }
 .eventBottom img { width: 100%; height: auto; display: block; border-radius: 12px; }
 
 .unimotorsHero { aspect-ratio: 1209 / 916; }
 .unimotorsHero img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .unimotorsStrip { aspect-ratio: 1208 / 285; }
 .unimotorsStrip img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.unimotorsDetail { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--case-grid-gap); align-items: start; }
+.unimotorsDetail { display: grid; grid-template-columns: 596fr 559fr; gap: 54px; align-items: start; }
 .unimotorsDetailLeft { display: grid; gap: 0; }
 .unimotorsDetailLeft .copyWide { margin: 0; min-height: 147px; box-sizing: border-box; max-width: none; }
 .unimotorsMirror { aspect-ratio: 596 / 472; }
@@ -113,17 +113,17 @@
 .next a:hover img { transform: translateX(6px) rotate(4deg); }
 
 @media (max-width: 920px) {
-  .page { --case-grid-gap: 22px; }
-  .introRow { grid-template-columns: 1fr; }
+  .introRow { grid-template-columns: 1fr; gap: 28px; }
   .brandLogo { justify-content: flex-start; min-height: 100px; }
-  .splitTextMedia, .twoUp, .eventGrid, .unimotorsDetail { grid-template-columns: 1fr; }
-  .unimotorsDetailLeft .copyWide { min-height: 0; margin-bottom: var(--case-grid-gap); }
+  .splitTextMedia, .twoUp, .eventGrid, .unimotorsDetail { grid-template-columns: 1fr; gap: 22px; }
+  .eventLeft { gap: 22px; }
+  .unimotorsDetailLeft .copyWide { min-height: 0; margin-bottom: 22px; }
 }
 @media (max-width: 650px) {
-  .page { --case-grid-gap: 18px; }
   .case { width: min(100% - 32px, 1240px); padding: 46px 0 70px; }
   .titleBlock h1 { font-size: 38px; }
-  .eventBottom { grid-template-columns: 1fr; }
+  .gallery { gap: 18px; }
+  .eventBottom { grid-template-columns: 1fr; gap: 18px; }
   .copyWide { font-size: 15px; margin-top: 14px; }
   .next { width: min(100% - 32px, 1240px); margin-bottom: 70px; }
   .next img { width: 52px; height: 52px; }
