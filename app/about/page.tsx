@@ -11,7 +11,7 @@ export default function AboutPage() {
       <SiteNav theme="light" />
       <section className={styles.hero} aria-labelledby="about-title">
         <div className={styles.visual}>
-          <img src="/about/john-workspace-premium.webp" alt="John Ferrer seated at his laptop" width={1586} height={992} fetchPriority="high" />
+          <img src="/about/john-workspace-clean.webp" alt="John Ferrer seated at his laptop" width={1586} height={992} fetchPriority="high" />
         </div>
         <div className={styles.copy}>
           <p className={styles.eyebrow}>About me</p>
