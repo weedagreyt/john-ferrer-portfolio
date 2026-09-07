@@ -22,15 +22,13 @@ const slides = [
   { src: "https://www.figma.com/api/mcp/asset/8b2d80b7-ed3a-41da-a7a8-2e8c5453e7ac.png", start: 3520, end: STACK_START, zoomFrom: 1.07, zoomEnd: 4040, x: -29.2, y: 40.4, stack: 1, position: "center center" },
 ] as const;
 
-// Final three-card arrangement mirrors the Selected Work row below:
-// LEFT = KOVE, CENTER = UNIMOTORS, RIGHT = DOPE.
 const finalStackX: Record<number, number> = {
-  0: -29.2, // KOVE — visible top card on the left
+  0: -29.2,
   1: -29.2,
   3: -29.2,
   4: 0,
-  6: 0,     // UNIMOTORS — visible top card in the center
-  2: 29.2,  // DOPE Postcard Designs — visible top card on the right
+  6: 0,
+  2: 29.2,
   5: 29.2,
 };
 
@@ -62,15 +60,18 @@ export default function IntroSequence() {
     const isHomeTop = window.location.pathname === "/" && (!window.location.hash || window.location.hash === "#top");
     if (!isHomeTop) return;
 
+    const scrollingElement = document.scrollingElement;
+    if (scrollingElement) scrollingElement.scrollTop = 0;
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
   }, []);
 
   const finishIntro = useCallback(() => {
     snapHomeToTop();
     setVisible(false);
-    requestAnimationFrame(snapHomeToTop);
+    requestAnimationFrame(() => {
+      snapHomeToTop();
+      window.setTimeout(snapHomeToTop, 80);
+    });
   }, [snapHomeToTop]);
 
   const fastForward = useCallback(() => {
@@ -81,18 +82,25 @@ export default function IntroSequence() {
   }, [visible, ready]);
 
   useEffect(() => {
-    // Mobile Safari can restore the previous scroll position after navigation/reload.
-    // Snap the homepage to the actual top on initial load and on bfcache restores.
+    const previousRestoration = "scrollRestoration" in window.history
+      ? window.history.scrollRestoration
+      : undefined;
+
+    if (previousRestoration !== undefined) {
+      window.history.scrollRestoration = "manual";
+    }
+
     snapHomeToTop();
     const firstFrame = requestAnimationFrame(snapHomeToTop);
-    const delayedReset = window.setTimeout(snapHomeToTop, 180);
-    const onPageShow = () => snapHomeToTop();
+    const onPageShow = () => requestAnimationFrame(snapHomeToTop);
 
     window.addEventListener("pageshow", onPageShow);
     return () => {
       cancelAnimationFrame(firstFrame);
-      window.clearTimeout(delayedReset);
       window.removeEventListener("pageshow", onPageShow);
+      if (previousRestoration !== undefined) {
+        window.history.scrollRestoration = previousRestoration;
+      }
     };
   }, [snapHomeToTop]);
 
@@ -151,22 +159,21 @@ export default function IntroSequence() {
 
     frameRef.current = requestAnimationFrame(tick);
 
+    const allowWheelSkip = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
     const onWheel = (event: WheelEvent) => {
       event.preventDefault();
       fastForward();
     };
-    const onTouchMove = (event: TouchEvent) => {
-      event.preventDefault();
-      fastForward();
-    };
 
-    window.addEventListener("wheel", onWheel, { passive: false });
-    window.addEventListener("touchmove", onTouchMove, { passive: false });
+    if (allowWheelSkip) {
+      window.addEventListener("wheel", onWheel, { passive: false });
+    }
 
     return () => {
       if (frameRef.current) cancelAnimationFrame(frameRef.current);
-      window.removeEventListener("wheel", onWheel);
-      window.removeEventListener("touchmove", onTouchMove);
+      if (allowWheelSkip) {
+        window.removeEventListener("wheel", onWheel);
+      }
     };
   }, [fastForward, finishIntro, ready, visible]);
 
@@ -181,10 +188,10 @@ export default function IntroSequence() {
     <div
       className={styles.overlay}
       style={{ opacity: 1 - overlayFade } as CSSProperties}
-      onPointerDown={fastForward}
+      onClick={fastForward}
       role="button"
       tabIndex={0}
-      aria-label="Portfolio intro animation. Click or scroll to skip."
+      aria-label="Portfolio intro animation. Tap or click to skip."
       onKeyDown={(event) => {
         if (event.key === "Enter" || event.key === " ") fastForward();
       }}
@@ -249,7 +256,7 @@ export default function IntroSequence() {
       {ready && (
         <div className={styles.skipHint} aria-hidden="true">
           <span>Skip animation</span>
-          <i>Click or scroll</i>
+          <i>Tap or click</i>
         </div>
       )}
     </div>
