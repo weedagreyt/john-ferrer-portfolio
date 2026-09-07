@@ -30,21 +30,9 @@ const homeEntryGuard = `
 
     const style = document.createElement("style");
     style.id = "home-entry-lock-style";
-    style.textContent = `
-      html.home-entry-lock {
-        overflow: hidden !important;
-        overscroll-behavior: none !important;
-        scroll-behavior: auto !important;
-      }
-      html.home-entry-lock body {
-        position: fixed !important;
-        inset: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-        overflow: hidden !important;
-        overscroll-behavior: none !important;
-      }
-    `;
+    style.textContent =
+      "html.home-entry-lock{overflow:hidden!important;overscroll-behavior:none!important;scroll-behavior:auto!important;}" +
+      "html.home-entry-lock body{position:fixed!important;inset:0!important;width:100%!important;height:100%!important;overflow:hidden!important;overscroll-behavior:none!important;}";
     document.head.appendChild(style);
 
     const reset = () => {
