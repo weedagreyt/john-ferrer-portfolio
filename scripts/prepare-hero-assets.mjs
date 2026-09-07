@@ -34,7 +34,8 @@ decodeChunks(
 
 decodeChunks(
   [
-    "public/hero-portrait-retina.part00.b64",
+    "public/hero-portrait-retina.part00a.b64",
+    "public/hero-portrait-retina.part00b.b64",
     "public/hero-portrait-retina.part01.b64",
     "public/hero-portrait-retina.part02.b64",
     "public/hero-portrait-retina.part03.b64",
