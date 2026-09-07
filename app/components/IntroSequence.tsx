@@ -58,6 +58,21 @@ export default function IntroSequence() {
   const skipStartRef = useRef(0);
   const skipFromRef = useRef(0);
 
+  const snapHomeToTop = useCallback(() => {
+    const isHomeTop = window.location.pathname === "/" && (!window.location.hash || window.location.hash === "#top");
+    if (!isHomeTop) return;
+
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, []);
+
+  const finishIntro = useCallback(() => {
+    snapHomeToTop();
+    setVisible(false);
+    requestAnimationFrame(snapHomeToTop);
+  }, [snapHomeToTop]);
+
   const fastForward = useCallback(() => {
     if (!visible || !ready || skippingRef.current) return;
     skippingRef.current = true;
@@ -66,8 +81,24 @@ export default function IntroSequence() {
   }, [visible, ready]);
 
   useEffect(() => {
+    // Mobile Safari can restore the previous scroll position after navigation/reload.
+    // Snap the homepage to the actual top on initial load and on bfcache restores.
+    snapHomeToTop();
+    const firstFrame = requestAnimationFrame(snapHomeToTop);
+    const delayedReset = window.setTimeout(snapHomeToTop, 180);
+    const onPageShow = () => snapHomeToTop();
+
+    window.addEventListener("pageshow", onPageShow);
+    return () => {
+      cancelAnimationFrame(firstFrame);
+      window.clearTimeout(delayedReset);
+      window.removeEventListener("pageshow", onPageShow);
+    };
+  }, [snapHomeToTop]);
+
+  useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setVisible(false);
+      finishIntro();
       return;
     }
 
@@ -92,7 +123,7 @@ export default function IntroSequence() {
 
     preload();
     return () => { cancelled = true; };
-  }, []);
+  }, [finishIntro]);
 
   useEffect(() => {
     if (!ready || !visible) return;
@@ -112,7 +143,7 @@ export default function IntroSequence() {
       setTime(next);
 
       if (next >= TOTAL - 1) {
-        setVisible(false);
+        finishIntro();
         return;
       }
       frameRef.current = requestAnimationFrame(tick);
@@ -137,7 +168,7 @@ export default function IntroSequence() {
       window.removeEventListener("wheel", onWheel);
       window.removeEventListener("touchmove", onTouchMove);
     };
-  }, [fastForward, ready, visible]);
+  }, [fastForward, finishIntro, ready, visible]);
 
   if (!visible) return null;
 
