@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState, type CSSProperties } from "re
 import { siteAssets } from "../lib/portfolio";
 
 const TOTAL_MS = 4400;
-const INTRO_VERSION = "jf:intro:v10";
+const INTRO_VERSION = "jf:intro:v11";
 
 const projectScenes = [
   {
@@ -17,8 +17,8 @@ const projectScenes = [
     y0: "2.5%",
     x1: "-4%",
     y1: "-2%",
-    s0: "1.07",
-    s1: "1.16",
+    s0: "1.04",
+    s1: "1.1",
     r0: "-0.45deg",
     r1: "0.18deg",
   },
@@ -32,8 +32,8 @@ const projectScenes = [
     y0: "-1%",
     x1: "3.5%",
     y1: "2.5%",
-    s0: "1.12",
-    s1: "1.2",
+    s0: "1.06",
+    s1: "1.1",
     r0: "0.35deg",
     r1: "-0.18deg",
   },
@@ -47,8 +47,8 @@ const projectScenes = [
     y0: "-2%",
     x1: "-2.5%",
     y1: "1.5%",
-    s0: "1.34",
-    s1: "1.13",
+    s0: "1.08",
+    s1: "1.04",
     r0: "-0.2deg",
     r1: "0.12deg",
   },
@@ -62,8 +62,8 @@ const projectScenes = [
     y0: "2%",
     x1: "4%",
     y1: "-1.5%",
-    s0: "1.09",
-    s1: "1.18",
+    s0: "1.05",
+    s1: "1.1",
     r0: "0.35deg",
     r1: "-0.15deg",
   },
@@ -78,8 +78,8 @@ const projectScenes = [
     y0: "1.5%",
     x1: "-1%",
     y1: "-2%",
-    s0: "1.1",
-    s1: "1.2",
+    s0: "1.05",
+    s1: "1.1",
     r0: "-0.32deg",
     r1: "0.16deg",
   },
@@ -160,9 +160,9 @@ export default function IntroSequence() {
     }
 
     let cancelled = false;
-    const critical = Promise.all(projectScenes.slice(0, 2).map((scene) => preloadImage(sceneSource(scene))));
+    const critical = Promise.all(projectScenes.map((scene) => preloadImage(sceneSource(scene))));
     const timeout = new Promise<"timeout">((resolve) => {
-      window.setTimeout(() => resolve("timeout"), 650);
+      window.setTimeout(() => resolve("timeout"), 2500);
     });
 
     Promise.race([critical.then(() => "ready" as const), timeout]).then((result) => {
@@ -174,9 +174,6 @@ export default function IntroSequence() {
       }
     });
 
-    projectScenes.slice(2).forEach((scene) => {
-      void preloadImage(sceneSource(scene));
-    });
     void preloadImage(siteAssets.logo);
 
     return () => {
@@ -281,8 +278,6 @@ export default function IntroSequence() {
           ))}
         </div>
 
-        <div className="jf-intro__type jf-intro__type--create">CREATE.</div>
-        <div className="jf-intro__type jf-intro__type--solve">SOLVE.</div>
         <div className="jf-intro__microcopy">DESIGN / DIRECTION / IMPACT</div>
       </div>
 
@@ -434,7 +429,7 @@ const INTRO_CSS = String.raw`
 .jf-intro__scenes{position:absolute;inset:0;z-index:8;pointer-events:none}
 .jf-intro__scene{
   position:absolute;
-  inset:-6%;
+  inset:-3%;
   margin:0;
   overflow:hidden;
   opacity:0;
@@ -449,7 +444,7 @@ const INTRO_CSS = String.raw`
   max-width:none;
   object-fit:cover;
   display:block;
-  transform:scale(1.015);
+  transform:scale(1);
   filter:saturate(1.04) contrast(1.04) brightness(.88);
 }
 .jf-intro__scene::before{
