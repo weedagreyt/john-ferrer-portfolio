@@ -1,0 +1,16 @@
+/* Final mobile hero cleanup based on the approved poster feedback. */
+
+/* Remove the decorative logo slash and secondary hero markers. */
+header a[href="/"]::after,
+.hero-intro-rule,
+.hero-side-note,
+.hero-scroll {
+  display: none !important;
+}
+
+@media (max-width: 760px) {
+  /* Rebalance the subject so the headline only brushes the portrait edge. */
+  .hero-portrait {
+    left: 18vw !important;
+  }
+}

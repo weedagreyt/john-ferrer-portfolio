@@ -1,34 +1,28 @@
 # Design QA
 
-- Source visual truth: `/mnt/data/creative_thinker_problem_solver.png`
-- Current user requirement: remove visible portrait pixelation and reposition the mobile portrait so the headline only slightly overlaps its left edge.
-- Target viewport: mobile / iPhone-class width.
-- Implementation: `https://john-ferrer-portfolio.vercel.app`
-- Implementation screenshot: blocked — the connected Vercel fetch path does not provide a renderable screenshot in this environment.
-- State: homepage, default mobile hero.
+- Source visual: latest user-supplied mobile homepage screenshot and the approved racing-poster direction.
+- Target: mobile homepage hero.
+- Requested changes: remove the red logo slash; remove the `01` marker and rule; shift the portrait slightly left; soften the portrait bottom into a fade; remove `Ideas / Interfaces / Impact`; remove `Scroll`.
+- Typography: existing Teko headline intentionally preserved.
 
-**Full-view comparison evidence**
-- The approved poster remains the composition source of truth.
-- The supplied high-resolution cutout was inspected directly and is visibly sharper than the previous highly compressed hero portrait asset.
-- The mobile portrait position was adjusted from a broad headline/portrait collision to a right-shifted composition where the headline should only skim the portrait's left edge.
+## Implementation evidence
 
-**Focused-region comparison evidence**
-- Image quality: replaced the previous tiny compressed portrait source with a 1200 px wide AVIF reconstructed at build time from the high-resolution transparent portrait, using Lanczos resampling plus light sharpening before AVIF encoding. The source is large enough for an iPhone-class Retina viewport without the severe upscaling of the old asset.
-- Portrait layout: mobile placement changed from `left: 4vw; width: 123vw; height: 154vw` to `left: 36vw; width: 110vw; height: 137.5vw`, preserving a dominant portrait while reducing text intrusion across the face.
-- Typography: Teko headline configuration is intentionally unchanged from the last approved correction.
-- Contrast: the left-side copy mask was narrowed slightly so the portrait is more visible without sacrificing headline readability.
+- The decorative logo slash and the requested secondary hero markers are hidden in the final cascade layer.
+- Mobile portrait placement moves from `left: 36vw` to `left: 18vw`, preserving the existing scale while rebalancing the right-heavy composition.
+- The portrait asset is rebuilt from the higher-resolution cutout and now contains a baked alpha fade beginning near the lower fifth of the subject, eliminating the previous hard lower crop without relying on a CSS mask.
+- Existing headline, CTA, background art, and hero dimensions remain unchanged.
 
-**Findings**
-- [P2] Final post-deploy visual confirmation is unavailable.
-  - Evidence: source asset and implementation code are available, but this environment cannot capture the deployed mobile page for same-viewport comparison.
-  - Impact: image sharpness and intended overlap are addressed in the implementation, but exact visual parity cannot be signed off without a fresh rendered mobile screenshot.
-  - Fix: compare a fresh mobile screenshot after deployment against the approved poster and adjust the portrait by small horizontal increments only if needed.
+## Fidelity surfaces
 
-**Implementation checklist**
-- Use the reconstructed high-resolution portrait asset.
-- Keep Teko headline unchanged.
-- Shift portrait right and reduce scale enough to limit overlap to the left edge.
-- Preserve portrait extension below the CTA.
-- Verify production deployment status.
+- Fonts and typography: Teko 700 remains unchanged from the approved correction.
+- Spacing and layout rhythm: portrait shifted left only; no unrelated spacing changes.
+- Colors and visual tokens: unchanged.
+- Image quality and asset fidelity: high-resolution portrait retained; bottom fade baked into the raster alpha.
+- Copy/content: requested auxiliary labels removed from view; primary intro, headline, body copy, CTA, and location remain.
+
+## Finding
+
+- [P2] Same-viewport rendered comparison is blocked in this environment because a browser screenshot of the production deployment is not available through the connected deployment tooling.
+- Required follow-up: compare one fresh mobile production screenshot against the supplied reference and adjust only small horizontal portrait offsets if needed.
 
 final result: blocked

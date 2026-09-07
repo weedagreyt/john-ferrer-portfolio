@@ -4,6 +4,7 @@ import "./globals.css";
 import "./hero-polish.css";
 import "./hero-media.css";
 import "./hero-retina-fix.css";
+import "./hero-cleanup.css";
 import "./race-aesthetic.css";
 
 const raceDisplay = Teko({
