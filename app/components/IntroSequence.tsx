@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState, type CSSProperties } from "re
 import { siteAssets } from "../lib/portfolio";
 
 const TOTAL_MS = 4400;
-const INTRO_VERSION = "jf:intro:v8";
+const INTRO_VERSION = "jf:intro:v9";
 
 const projectScenes = [
   {
@@ -72,7 +72,7 @@ const projectScenes = [
     delay: 2.9,
     duration: 0.96,
     position: "51% 51%",
-    mobilePosition: "53% 50%",
+    mobilePosition: "78% 50%",
     x0: "1%",
     y0: "1.5%",
     x1: "-1%",
