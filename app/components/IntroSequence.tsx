@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState, type CSSProperties } from "re
 import { siteAssets } from "../lib/portfolio";
 
 const TOTAL_MS = 4400;
-const INTRO_VERSION = "jf:intro:v6";
+const INTRO_VERSION = "jf:intro:v7";
 
 const projectScenes = [
   {
@@ -53,11 +53,11 @@ const projectScenes = [
     r1: "0.12deg",
   },
   {
-    src: "https://www.figma.com/api/mcp/asset/955c43f1-8a4f-4fd4-a587-c83b8d53a7ab.png",
+    src: "https://www.figma.com/api/mcp/asset/c0d21f3a-2bd4-4f1b-994f-f494084d10d2.png",
     delay: 2.34,
     duration: 0.86,
-    position: "50% 48%",
-    mobilePosition: "100% 44%",
+    position: "50% 50%",
+    mobilePosition: "50% 50%",
     x0: "-4%",
     y0: "2%",
     x1: "4%",
@@ -72,10 +72,10 @@ const projectScenes = [
     delay: 2.9,
     duration: 0.96,
     position: "51% 51%",
-    mobilePosition: "0% 48%",
-    x0: "3%",
+    mobilePosition: "28% 50%",
+    x0: "1%",
     y0: "1.5%",
-    x1: "-4.5%",
+    x1: "-1%",
     y1: "-2%",
     s0: "1.1",
     s1: "1.2",
