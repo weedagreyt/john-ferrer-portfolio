@@ -11,14 +11,14 @@ header a[href="/"]::after,
 @media (max-width: 760px) {
   /* Let the hero occupy the real mobile screen without capping taller phones. */
   .hero {
-    height: 100svh !important;
-    min-height: 720px !important;
+    height: calc(100svh + 16px + env(safe-area-inset-top, 0px)) !important;
+    min-height: calc(736px + env(safe-area-inset-top, 0px)) !important;
     max-height: none !important;
   }
 
-  /* The nav consumes 76px; center the content inside everything below it. */
+  /* Include the mobile header inset while preserving the content area below it. */
   .hero-shell {
-    height: calc(100% - 76px) !important;
+    height: calc(100% - 92px - env(safe-area-inset-top, 0px)) !important;
     min-height: 0 !important;
   }
 
