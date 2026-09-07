@@ -161,3 +161,212 @@ header a[href="/"]::after,
     background-position: 62% center !important;
   }
 }
+
+
+/* Selected work: consistent editorial cards */
+.race-home .project-grid{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:18px!important;
+  align-items:stretch!important;
+}
+.race-home .project-card,
+.race-home .project-card:nth-child(2),
+.race-home .project-card:nth-child(3){
+  width:100%!important;
+  min-width:0!important;
+  aspect-ratio:4/5!important;
+  clip-path:polygon(4% 0,100% 0,96% 100%,0 100%)!important;
+}
+.race-home .project-card-overlay{
+  left:0!important;
+  right:0!important;
+  bottom:0!important;
+  padding:30px 32px 28px!important;
+}
+.race-home .project-card-overlay h3{
+  max-width:calc(100% - 42px)!important;
+  margin:0 0 8px!important;
+  font-size:clamp(22px,2vw,30px)!important;
+  line-height:.95!important;
+  overflow-wrap:anywhere!important;
+}
+.race-home .project-card-overlay p{
+  max-width:calc(100% - 42px)!important;
+  font-size:10px!important;
+  line-height:1.45!important;
+}
+.race-home .project-card-overlay .race-arrow{right:32px!important;bottom:29px!important}
+.race-home .project-card::after{inset:38% 0 0!important}
+
+/* My Journey: vertical scroll timeline */
+.experience-home{
+  position:relative!important;
+  padding:92px 0 108px!important;
+  background:
+    radial-gradient(circle at 88% 16%,rgba(239,23,31,.11),transparent 27%),
+    #070809!important;
+}
+.experience-home::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(112deg,transparent 0 71%,rgba(239,23,31,.08) 71.2%,transparent 71.5%);
+}
+.experience-home-head{
+  position:relative;
+  z-index:2;
+  align-items:flex-end!important;
+  margin-bottom:62px!important;
+}
+.experience-home-track{
+  position:relative;
+  z-index:2;
+  display:block!important;
+  width:min(100%,980px);
+  margin:0 auto;
+  border:0!important;
+}
+.experience-home-track::before{
+  content:"";
+  position:absolute;
+  left:31%;
+  top:0;
+  bottom:0;
+  width:1px;
+  background:linear-gradient(180deg,#ef171f 0%,rgba(239,23,31,.42) 55%,rgba(255,255,255,.12) 100%);
+  box-shadow:0 0 18px rgba(239,23,31,.18);
+}
+.experience-home-item,
+.experience-home-item:not(:last-child){
+  position:relative;
+  display:grid!important;
+  grid-template-columns:27% minmax(0,1fr);
+  grid-template-areas:
+    "index role"
+    "date company";
+  column-gap:10%;
+  align-items:start;
+  min-height:154px;
+  margin:0!important;
+  padding:10px 0 44px!important;
+  border:0!important;
+  opacity:.55;
+  transform:translateY(22px);
+  transition:opacity .55s ease,transform .55s cubic-bezier(.2,.8,.2,1);
+  animation:journeyReveal linear both;
+  animation-timeline:view();
+  animation-range:entry 10% cover 34%;
+}
+.experience-home-item::after{
+  content:"";
+  position:absolute;
+  left:31%;
+  top:17px;
+  width:clamp(70px,10vw,150px);
+  height:1px;
+  background:linear-gradient(90deg,#ef171f,transparent);
+  transform-origin:left;
+  transform:scaleX(.35);
+  transition:transform .4s ease;
+}
+.experience-home-item:hover{opacity:1;transform:translateX(8px)}
+.experience-home-item:hover::after{transform:scaleX(1)}
+.experience-home-dot{
+  left:calc(31% - 6px)!important;
+  top:11px!important;
+  width:13px!important;
+  height:13px!important;
+  border:3px solid #070809;
+  box-shadow:0 0 0 1px #ef171f,0 0 20px rgba(239,23,31,.8)!important;
+}
+.experience-home-index{
+  grid-area:index;
+  color:rgba(255,255,255,.28);
+  font-family:var(--font-race-display),"Arial Narrow",Impact,sans-serif;
+  font-size:clamp(42px,5vw,68px);
+  font-weight:700;
+  line-height:.72;
+  letter-spacing:-.02em;
+}
+.experience-home-item h3{
+  grid-area:role;
+  min-height:0!important;
+  max-width:620px;
+  margin:0 0 11px!important;
+  color:#fff!important;
+  font-family:var(--font-race-display),"Arial Narrow",Impact,sans-serif;
+  font-size:clamp(25px,2.6vw,38px)!important;
+  font-weight:700;
+  line-height:.96!important;
+  letter-spacing:.01em;
+}
+.experience-home-item p{
+  grid-area:company;
+  margin:0!important;
+  color:rgba(255,255,255,.68)!important;
+  font-size:14px!important;
+  line-height:1.5!important;
+}
+.experience-home-item time{
+  grid-area:date;
+  align-self:start;
+  margin-top:8px;
+  color:#ef171f!important;
+  font-size:10px!important;
+  letter-spacing:.1em!important;
+}
+@keyframes journeyReveal{
+  from{opacity:.35;transform:translateY(28px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+@media(max-width:820px){
+  .race-home .project-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  .race-home .project-card:nth-child(3){grid-column:1/-1!important;aspect-ratio:2/1!important}
+}
+@media(max-width:620px){
+  .race-home .project-grid{
+    display:flex!important;
+    gap:14px!important;
+    overflow-x:auto!important;
+    padding:0 18px 12px 0!important;
+    scroll-snap-type:x mandatory;
+  }
+  .race-home .project-card,
+  .race-home .project-card:nth-child(2),
+  .race-home .project-card:nth-child(3){
+    flex:0 0 84vw!important;
+    aspect-ratio:4/5!important;
+    scroll-snap-align:start;
+  }
+  .race-home .project-card-overlay{padding:24px 25px 24px!important}
+  .race-home .project-card-overlay h3{font-size:24px!important}
+  .race-home .project-card-overlay p{font-size:9px!important}
+  .race-home .project-card-overlay .race-arrow{right:25px!important;bottom:24px!important}
+
+  .experience-home{padding:64px 0 76px!important}
+  .experience-home-head{margin-bottom:48px!important}
+  .experience-home-track::before{left:12px}
+  .experience-home-item,
+  .experience-home-item:not(:last-child){
+    grid-template-columns:48px minmax(0,1fr);
+    grid-template-areas:
+      "index date"
+      "index role"
+      "index company";
+    column-gap:20px;
+    min-height:0;
+    padding:2px 0 52px 34px!important;
+  }
+  .experience-home-item::after{left:12px;top:7px;width:54px}
+  .experience-home-dot{left:6px!important;top:1px!important}
+  .experience-home-index{font-size:37px}
+  .experience-home-item time{margin:0 0 12px;font-size:9px!important}
+  .experience-home-item h3{font-size:27px!important}
+  .experience-home-item p{font-size:13px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .experience-home-item{animation:none;opacity:1;transform:none}
+}
