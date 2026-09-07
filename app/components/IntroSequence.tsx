@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState, type CSSProperties } from "re
 import { siteAssets } from "../lib/portfolio";
 
 const TOTAL_MS = 4400;
-const INTRO_VERSION = "jf:intro:v4";
+const INTRO_VERSION = "jf:intro:v5";
 
 const projectScenes = [
   {
@@ -12,6 +12,7 @@ const projectScenes = [
     delay: 0.52,
     duration: 0.92,
     position: "52% 50%",
+    mobilePosition: "64% 42%",
     x0: "4.5%",
     y0: "2.5%",
     x1: "-4%",
@@ -26,6 +27,7 @@ const projectScenes = [
     delay: 1.12,
     duration: 0.88,
     position: "48% 48%",
+    mobilePosition: "42% 46%",
     x0: "-5%",
     y0: "-1%",
     x1: "3.5%",
@@ -40,6 +42,7 @@ const projectScenes = [
     delay: 1.74,
     duration: 0.9,
     position: "54% 50%",
+    mobilePosition: "58% 47%",
     x0: "2%",
     y0: "-2%",
     x1: "-2.5%",
@@ -54,6 +57,7 @@ const projectScenes = [
     delay: 2.34,
     duration: 0.86,
     position: "50% 48%",
+    mobilePosition: "46% 44%",
     x0: "-4%",
     y0: "2%",
     x1: "4%",
@@ -68,6 +72,7 @@ const projectScenes = [
     delay: 2.9,
     duration: 0.96,
     position: "51% 51%",
+    mobilePosition: "60% 48%",
     x0: "3%",
     y0: "1.5%",
     x1: "-4.5%",
@@ -220,6 +225,7 @@ export default function IntroSequence() {
     ({
       "--delay": `${scene.delay}s`,
       "--duration": `${scene.duration}s`,
+      "--mobile-position": scene.mobilePosition,
       "--x0": scene.x0,
       "--y0": scene.y0,
       "--x1": scene.x1,
@@ -600,6 +606,7 @@ const INTRO_CSS = String.raw`
   .jf-intro__ignition{left:5vw;right:5vw}
   .jf-intro__ignition-copy{font-size:7px;letter-spacing:.18em}
   .jf-intro__scene{inset:-8%}
+  .jf-intro .jf-intro__scene img{object-position:var(--mobile-position)!important}
   .jf-intro__type{font-size:clamp(94px,29vw,144px)}
   .jf-intro__type--create{left:-5vw;top:59%}
   .jf-intro__type--solve{right:-6vw;top:40%}
