@@ -1,37 +1,35 @@
 # Design QA
 
-- Source visual: latest user-supplied mobile homepage screenshot and the approved racing-poster direction.
+- Source visual truth: latest user-supplied mobile homepage screenshot and approved racing-poster direction.
 - Target: mobile homepage hero, iPhone-class viewport.
-- Current request: reduce top-heavy cramping and distribute the primary hero content more evenly across the mobile screen while preserving the approved Teko typography, portrait position/fade, CTA, and background art.
+- Current request: make the hero visibly less top-heavy by increasing spacing between the navigation, intro, headline, body copy, CTA, and location while preserving the approved Teko typography, portrait balance/fade, and background art.
 - Implementation: `https://john-ferrer-portfolio.vercel.app`
 
 ## Full-view comparison evidence
 
-- The user-provided screenshot shows the intended hierarchy: navigation at the top, a clear breathing gap before `HI, I’M JOHN FERRER`, then the six-line headline, body copy, CTA, location, and a visually quieter lower third.
-- After the prior cleanup removed the `01`/rule block, the remaining intro collapsed upward, making the live composition feel too concentrated in the top half.
-- This pass restores that missing vertical rhythm without changing the approved headline scale or portrait art direction.
+- The supplied mobile screenshot shows the primary content compressed into the upper portion of the hero.
+- The prior pass only moved the copy about 30px and used modest margin changes, which was not visually strong enough on-device.
+- This pass increases the copy offset and all major vertical gaps, and moves the cleanup stylesheet to the end of the global import order so the spacing overrides are guaranteed to win.
 
 ## Focused-region comparison evidence
 
-- Fonts and typography: Teko 700 remains unchanged; headline line breaks, weight, slant, and red/white hierarchy are preserved.
-- Spacing and layout rhythm: mobile hero now uses `100svh` (bounded to 720–900px), hero copy starts 30px lower, and spacing is redistributed across intro → headline → paragraph → CTA → location.
+- Fonts and typography: Teko 700, line breaks, scale, and red/white hierarchy are unchanged.
+- Spacing and layout rhythm: mobile copy now begins at `clamp(50px, 7svh, 70px)` below the hero shell start; intro-to-headline gap is 28px; headline-to-body gap is 30px; body-to-CTA gap is 24px; CTA-to-location gap is 34px. Hero minimum height is raised to 760px with `100svh` sizing.
 - Colors and visual tokens: unchanged.
-- Image quality and asset fidelity: high-resolution portrait and baked lower fade remain unchanged; portrait stays at the approved `left: 18vw` placement.
-- Copy/content: no copy changes; previously removed auxiliary markers remain hidden.
+- Image quality and asset fidelity: high-resolution portrait, left offset, and baked lower fade are unchanged.
+- Copy/content: unchanged.
 
 ## Finding
 
-- [P2] Same-viewport rendered comparison is still blocked because the connected environment does not provide a browser-rendered screenshot of the production Vercel page.
-  - Impact: the spacing correction is grounded in the supplied screenshot and current CSS measurements, but pixel-level post-deploy confirmation cannot be signed off here.
-  - Follow-up: use a fresh mobile production screenshot only if another small spacing correction is needed.
+- [P2] Same-viewport rendered comparison remains blocked because the connected environment cannot capture the production mobile page as a browser-rendered screenshot.
+- The implementation and deployment can be verified, but pixel-level visual sign-off still requires a rendered mobile capture.
 
 ## Implementation checklist
 
-- Use the full mobile viewport height for the hero.
-- Add breathing room between navigation and intro.
-- Preserve headline size and portrait overlap.
-- Increase spacing after the headline and before the CTA/location.
-- Keep the watermark visually low in the composition.
-- Verify GitHub build and Vercel deployment status.
+- Make the final mobile spacing override the last stylesheet in the cascade.
+- Increase nav-to-intro breathing room visibly.
+- Increase intro-to-headline, headline-to-body, body-to-CTA, and CTA-to-location gaps.
+- Preserve approved typography and portrait composition.
+- Verify GitHub build and Vercel deployment.
 
 final result: blocked
