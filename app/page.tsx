@@ -120,9 +120,10 @@ export default function HomePage() {
             <a className="experience-resume-link" href={resumeUrl} target="_blank" rel="noreferrer">Download Résumé <ArrowIcon /></a>
           </div>
           <div className="experience-home-track">
-            {experience.map((item) => (
+            {experience.map((item, index) => (
               <article className="experience-home-item" key={`${item.company}-${item.dates}`}>
                 <span className="experience-home-dot" aria-hidden="true" />
+                <span className="experience-home-index" aria-hidden="true">0{index + 1}</span>
                 <h3>{item.role}</h3>
                 <p>{item.company}</p>
                 <time>{item.dates}</time>
