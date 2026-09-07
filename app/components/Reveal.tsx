@@ -24,7 +24,12 @@ export default function Reveal({ children, className = "", delay = 0 }: Props) {
     }
 
     const observer = new IntersectionObserver(
-      ([entry]) => setVisible(entry.isIntersecting),
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
       { threshold: 0.12, rootMargin: "-4% 0px -8%" },
     );
 

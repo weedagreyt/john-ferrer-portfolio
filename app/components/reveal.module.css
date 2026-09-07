@@ -1,17 +1,14 @@
 .reveal {
   opacity: 0;
-  transform: translateY(42px) scale(.988);
-  filter: blur(4px);
+  transform: translate3d(0, 32px, 0);
   transition:
     opacity .72s cubic-bezier(.2,.8,.2,1),
-    transform .72s cubic-bezier(.2,.8,.2,1),
-    filter .72s ease;
-  will-change: opacity, transform, filter;
+    transform .72s cubic-bezier(.2,.8,.2,1);
+  backface-visibility: hidden;
 }
 .visible {
   opacity: 1;
-  transform: translateY(0) scale(1);
-  filter: blur(0);
+  transform: translate3d(0, 0, 0);
 }
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; filter: none; transition: none; }
