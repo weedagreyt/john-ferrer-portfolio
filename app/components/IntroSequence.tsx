@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState, type CSSProperties } from "re
 import { siteAssets } from "../lib/portfolio";
 
 const TOTAL_MS = 4400;
-const INTRO_VERSION = "jf:intro:v9";
+const INTRO_VERSION = "jf:intro:v10";
 
 const projectScenes = [
   {
@@ -69,6 +69,7 @@ const projectScenes = [
   },
   {
     src: "https://www.figma.com/api/mcp/asset/87e28bf9-578b-4500-8862-f82e3cabd110.png",
+    mobileSrc: "/retrophorics-mobile-intro.jpg",
     delay: 2.9,
     duration: 0.96,
     position: "51% 51%",
@@ -117,6 +118,12 @@ function preloadImage(src: string) {
   });
 }
 
+function sceneSource(scene: (typeof projectScenes)[number]) {
+  return "mobileSrc" in scene && window.matchMedia("(max-width:760px)").matches
+    ? scene.mobileSrc
+    : scene.src;
+}
+
 export default function IntroSequence() {
   const [visible, setVisible] = useState(true);
   const [ready, setReady] = useState(false);
@@ -153,7 +160,7 @@ export default function IntroSequence() {
     }
 
     let cancelled = false;
-    const critical = Promise.all(projectScenes.slice(0, 2).map((scene) => preloadImage(scene.src)));
+    const critical = Promise.all(projectScenes.slice(0, 2).map((scene) => preloadImage(sceneSource(scene))));
     const timeout = new Promise<"timeout">((resolve) => {
       window.setTimeout(() => resolve("timeout"), 650);
     });
@@ -168,7 +175,7 @@ export default function IntroSequence() {
     });
 
     projectScenes.slice(2).forEach((scene) => {
-      void preloadImage(scene.src);
+      void preloadImage(sceneSource(scene));
     });
     void preloadImage(siteAssets.logo);
 
@@ -264,8 +271,11 @@ export default function IntroSequence() {
 
         <div className="jf-intro__scenes">
           {projectScenes.map((scene, index) => (
-            <figure className="jf-intro__scene" style={sceneStyle(scene)} key={scene.src}>
-              <img src={scene.src} alt="" style={{ objectPosition: scene.position }} />
+            <figure className="jf-intro__scene" data-mobile-framed={"mobileSrc" in scene ? "true" : undefined} style={sceneStyle(scene)} key={scene.src}>
+              <picture>
+                {"mobileSrc" in scene && <source media="(max-width:760px)" srcSet={scene.mobileSrc} />}
+                <img src={scene.src} alt="" style={{ objectPosition: scene.position }} />
+              </picture>
               <span className="jf-intro__scene-index">0{index + 1}</span>
             </figure>
           ))}
@@ -607,11 +617,16 @@ const INTRO_CSS = String.raw`
   .jf-intro__ignition-copy{font-size:7px;letter-spacing:.18em}
   .jf-intro__scene{inset:-8%}
   .jf-intro .jf-intro__scene img{object-position:var(--mobile-position)!important}
+  /* Keep the supplied mobile artwork intact inside the visible viewport. */
+  .jf-intro__scene[data-mobile-framed]{inset:0 10vw;background:#030405}
+  .jf-intro--play .jf-intro__scene[data-mobile-framed]{animation-name:jfMobileFramedScene}
+  .jf-intro .jf-intro__scene[data-mobile-framed] img{object-fit:contain;object-position:50% 50%!important;transform:none}
   .jf-intro__type{font-size:clamp(94px,29vw,144px)}
   .jf-intro__type--create{left:-5vw;top:59%}
   .jf-intro__type--solve{right:-6vw;top:40%}
   .jf-intro__microcopy{left:20px;bottom:22px;font-size:7px}
   .jf-intro__occluder{width:118px;left:-46vw}
 }
+@keyframes jfMobileFramedScene{0%,100%{opacity:0}8%,72%{opacity:1}}
 @media(prefers-reduced-motion:reduce){.jf-intro{display:none!important}}
 `;
