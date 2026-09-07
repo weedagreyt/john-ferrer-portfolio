@@ -29,7 +29,7 @@ main h2{
 /* Carry the generated black/red atmosphere beyond the homepage without touching case-study image geometry. */
 body main:not(.race-home){
   background-color:var(--race-black)!important;
-  background-image:linear-gradient(180deg,rgba(5,6,7,.70) 0%,rgba(5,6,7,.94) 32%,#050607 72%),url('/hero-bg-desktop.avif')!important;
+  background-image:linear-gradient(180deg,rgba(5,6,7,.70) 0%,rgba(5,6,7,.94) 32%,#050607 72%),url('/case-background-hd.png')!important;
   background-repeat:no-repeat!important;
   background-size:100% 980px,cover!important;
   background-position:center top!important;
@@ -59,7 +59,7 @@ body main:not(.race-home) h2{line-height:.92!important;text-shadow:0 6px 24px rg
 
 @media(max-width:760px){
   body main:not(.race-home){
-    background-image:linear-gradient(180deg,rgba(5,6,7,.58) 0%,rgba(5,6,7,.92) 36%,#050607 74%),url('/hero-bg-mobile.avif')!important;
+    background-image:linear-gradient(180deg,rgba(5,6,7,.58) 0%,rgba(5,6,7,.92) 36%,#050607 74%),url('/case-background-hd.png')!important;
     background-size:100% 820px,cover!important;
     background-position:center top!important;
   }
