@@ -282,8 +282,13 @@
 .card:nth-child(even) {
   height: 100%;
   aspect-ratio: 4 / 5;
-  clip-path: none;
-  border-radius: 12px;
+  border-radius: 0;
+}
+.grid > div:nth-child(odd) .card {
+  clip-path: polygon(7% 0, 100% 0, 93% 100%, 0 100%);
+}
+.grid > div:nth-child(even) .card {
+  clip-path: polygon(0 0, 93% 0, 100% 100%, 7% 100%);
 }
 .cardCopy {
   padding: 32px clamp(28px, 3vw, 40px) 36px;
@@ -304,7 +309,13 @@
   .card,
   .card:nth-child(even) {
     aspect-ratio: 4 / 5;
-    border-radius: 10px;
+    border-radius: 0;
+  }
+  .grid > div:nth-child(odd) .card {
+    clip-path: polygon(4% 0, 100% 0, 96% 100%, 0 100%);
+  }
+  .grid > div:nth-child(even) .card {
+    clip-path: polygon(0 0, 96% 0, 100% 100%, 4% 100%);
   }
   .cardCopy {
     padding: 24px 24px 28px;
