@@ -1,28 +1,37 @@
 # Design QA
 
 - Source visual: latest user-supplied mobile homepage screenshot and the approved racing-poster direction.
-- Target: mobile homepage hero.
-- Requested changes: remove the red logo slash; remove the `01` marker and rule; shift the portrait slightly left; soften the portrait bottom into a fade; remove `Ideas / Interfaces / Impact`; remove `Scroll`.
-- Typography: existing Teko headline intentionally preserved.
+- Target: mobile homepage hero, iPhone-class viewport.
+- Current request: reduce top-heavy cramping and distribute the primary hero content more evenly across the mobile screen while preserving the approved Teko typography, portrait position/fade, CTA, and background art.
+- Implementation: `https://john-ferrer-portfolio.vercel.app`
 
-## Implementation evidence
+## Full-view comparison evidence
 
-- The decorative logo slash and the requested secondary hero markers are hidden in the final cascade layer.
-- Mobile portrait placement moves from `left: 36vw` to `left: 18vw`, preserving the existing scale while rebalancing the right-heavy composition.
-- The portrait asset is rebuilt from the higher-resolution cutout and now contains a baked alpha fade beginning near the lower fifth of the subject, eliminating the previous hard lower crop without relying on a CSS mask.
-- Existing headline, CTA, background art, and hero dimensions remain unchanged.
+- The user-provided screenshot shows the intended hierarchy: navigation at the top, a clear breathing gap before `HI, I’M JOHN FERRER`, then the six-line headline, body copy, CTA, location, and a visually quieter lower third.
+- After the prior cleanup removed the `01`/rule block, the remaining intro collapsed upward, making the live composition feel too concentrated in the top half.
+- This pass restores that missing vertical rhythm without changing the approved headline scale or portrait art direction.
 
-## Fidelity surfaces
+## Focused-region comparison evidence
 
-- Fonts and typography: Teko 700 remains unchanged from the approved correction.
-- Spacing and layout rhythm: portrait shifted left only; no unrelated spacing changes.
+- Fonts and typography: Teko 700 remains unchanged; headline line breaks, weight, slant, and red/white hierarchy are preserved.
+- Spacing and layout rhythm: mobile hero now uses `100svh` (bounded to 720–900px), hero copy starts 30px lower, and spacing is redistributed across intro → headline → paragraph → CTA → location.
 - Colors and visual tokens: unchanged.
-- Image quality and asset fidelity: high-resolution portrait retained; bottom fade baked into the raster alpha.
-- Copy/content: requested auxiliary labels removed from view; primary intro, headline, body copy, CTA, and location remain.
+- Image quality and asset fidelity: high-resolution portrait and baked lower fade remain unchanged; portrait stays at the approved `left: 18vw` placement.
+- Copy/content: no copy changes; previously removed auxiliary markers remain hidden.
 
 ## Finding
 
-- [P2] Same-viewport rendered comparison is blocked in this environment because a browser screenshot of the production deployment is not available through the connected deployment tooling.
-- Required follow-up: compare one fresh mobile production screenshot against the supplied reference and adjust only small horizontal portrait offsets if needed.
+- [P2] Same-viewport rendered comparison is still blocked because the connected environment does not provide a browser-rendered screenshot of the production Vercel page.
+  - Impact: the spacing correction is grounded in the supplied screenshot and current CSS measurements, but pixel-level post-deploy confirmation cannot be signed off here.
+  - Follow-up: use a fresh mobile production screenshot only if another small spacing correction is needed.
+
+## Implementation checklist
+
+- Use the full mobile viewport height for the hero.
+- Add breathing room between navigation and intro.
+- Preserve headline size and portrait overlap.
+- Increase spacing after the headline and before the CTA/location.
+- Keep the watermark visually low in the composition.
+- Verify GitHub build and Vercel deployment status.
 
 final result: blocked

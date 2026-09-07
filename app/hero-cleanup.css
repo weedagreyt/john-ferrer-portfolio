@@ -9,8 +9,41 @@ header a[href="/"]::after,
 }
 
 @media (max-width: 760px) {
+  /* Let the hero breathe across the actual mobile viewport instead of compressing into the upper portion. */
+  .hero {
+    height: 100svh !important;
+    min-height: 720px !important;
+    max-height: 900px !important;
+  }
+
   /* Rebalance the subject so the headline only brushes the portrait edge. */
   .hero-portrait {
     left: 18vw !important;
+  }
+
+  /* Restore the poster-like vertical rhythm after removing the 01/rule block. */
+  .hero-copy {
+    top: 30px !important;
+  }
+
+  .hero-intro {
+    margin: 0 0 20px !important;
+  }
+
+  .hero-sub {
+    margin-top: 26px !important;
+  }
+
+  .hero .race-button {
+    margin-top: 20px !important;
+  }
+
+  .hero-location {
+    margin-top: 30px !important;
+  }
+
+  /* Keep the watermark low so the lower third still has visual weight. */
+  .hero-bottom-mark {
+    bottom: 34px !important;
   }
 }
