@@ -1,63 +1,82 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { siteAssets } from "../lib/portfolio";
 import styles from "./intro-sequence.module.css";
 
-const TOTAL = 5750;
-const CURTAIN_END = 650;
-const STACK_START = 4400;
-const STACK_STAGGER = 55;
-const STACK_DURATION = 540;
-const OUT_START = 5180;
-const OUT_DURATION = 390;
-const SKIP_DURATION = 480;
+const TOTAL = 4400;
+const SKIP_RATE = 8;
 
-const slides = [
-  { src: "https://www.figma.com/api/mcp/asset/0b093f40-9db8-4e28-94d1-3d0f70f9b02a.png", start: 0, end: 1450, zoomFrom: 1.10, zoomEnd: 1450, x: 29.2, y: 42.0, stack: 0, position: "center center" },
-  { src: "https://www.figma.com/api/mcp/asset/f00753b7-021b-409e-8319-3853d25d6864.png", start: 1450, end: 2100, zoomFrom: 1.09, zoomEnd: 2100, x: 29.2, y: 40.4, stack: 1, position: "center center" },
-  { src: "https://www.figma.com/api/mcp/asset/5875dd2d-14aa-4675-ae0b-a3602f9564c5.png", start: 2100, end: 2580, zoomFrom: 1.13, zoomEnd: 2580, x: 0, y: 42.0, stack: 0, position: "center center" },
-  { src: "https://www.figma.com/api/mcp/asset/955c43f1-8a4f-4fd4-a587-c83b8d53a7ab.png", start: 2580, end: 2960, zoomFrom: 1.10, zoomEnd: 2960, x: 0, y: 40.3, stack: 1, position: "center center" },
-  { src: "https://www.figma.com/api/mcp/asset/87e28bf9-578b-4500-8862-f82e3cabd110.png", start: 2960, end: 3270, zoomFrom: 1.10, zoomEnd: 3270, x: 0, y: 38.6, stack: 2, position: "center center" },
-  { src: "https://www.figma.com/api/mcp/asset/5c29087d-9312-4a09-a5cf-f270ce4514c0.png", start: 3270, end: 3520, zoomFrom: 1.09, zoomEnd: 3520, x: -29.2, y: 42.0, stack: 0, position: "center 68%" },
-  { src: "https://www.figma.com/api/mcp/asset/8b2d80b7-ed3a-41da-a7a8-2e8c5453e7ac.png", start: 3520, end: STACK_START, zoomFrom: 1.07, zoomEnd: 4040, x: -29.2, y: 40.4, stack: 1, position: "center center" },
+const montageSlides = [
+  "https://www.figma.com/api/mcp/asset/0b093f40-9db8-4e28-94d1-3d0f70f9b02a.png",
+  "https://www.figma.com/api/mcp/asset/f00753b7-021b-409e-8319-3853d25d6864.png",
+  "https://www.figma.com/api/mcp/asset/5875dd2d-14aa-4675-ae0b-a3602f9564c5.png",
+  "https://www.figma.com/api/mcp/asset/955c43f1-8a4f-4fd4-a587-c83b8d53a7ab.png",
+  "https://www.figma.com/api/mcp/asset/87e28bf9-578b-4500-8862-f82e3cabd110.png",
 ] as const;
 
-const finalStackX: Record<number, number> = {
-  0: -29.2,
-  1: -29.2,
-  3: -29.2,
-  4: 0,
-  6: 0,
-  2: 29.2,
-  5: 29.2,
-};
+const featuredProjects = [
+  {
+    name: "KOVE",
+    type: "BRAND IDENTITY · ART DIRECTION",
+    src: "https://www.figma.com/api/mcp/asset/a4f118aa-caf3-42cf-91e1-aae3af51fc05.png",
+  },
+  {
+    name: "UNIMOTORS",
+    type: "BRAND IDENTITY · MARKETING",
+    src: "https://www.figma.com/api/mcp/asset/c0d21f3a-2bd4-4f1b-994f-f494084d10d2.png",
+  },
+  {
+    name: "DOPE",
+    type: "CAMPAIGN · PRINT · MARKETING",
+    src: "https://www.figma.com/api/mcp/asset/5d08bcf7-f229-4889-9d34-08401c51103e.png",
+  },
+] as const;
 
-const finalStackZ: Record<number, number> = {
-  0: 90,
-  6: 90,
-  2: 90,
-};
+const montageStarts = [560, 1030, 1410, 1750, 2050] as const;
+const montageDurations = [790, 690, 620, 590, 560] as const;
 
-const clamp = (value: number, min = 0, max = 1) => Math.min(max, Math.max(min, value));
-const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
-const smooth = (t: number) => t * t * (3 - 2 * t);
-const easeIn = (t: number) => t * t * t;
-const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
-const easeInOut = (t: number) => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+function preloadImage(src: string) {
+  return new Promise<void>((resolve) => {
+    const image = new Image();
+    image.decoding = "async";
+    image.src = src;
+    image.onload = async () => {
+      try {
+        await image.decode();
+      } catch {
+        // The browser already has usable pixels; continue the intro.
+      }
+      resolve();
+    };
+    image.onerror = () => resolve();
+  });
+}
 
 export default function IntroSequence() {
   const [visible, setVisible] = useState(true);
   const [ready, setReady] = useState(false);
-  const [time, setTime] = useState(0);
-  const frameRef = useRef<number | null>(null);
-  const startRef = useRef(0);
-  const timeRef = useRef(0);
+
+  const rootRef = useRef<HTMLDivElement | null>(null);
+  const coverRef = useRef<HTMLDivElement | null>(null);
+  const atmosphereRef = useRef<HTMLImageElement | null>(null);
+  const logoRef = useRef<HTMLDivElement | null>(null);
+  const ignitionRef = useRef<HTMLDivElement | null>(null);
+  const createRef = useRef<HTMLDivElement | null>(null);
+  const solveRef = useRef<HTMLDivElement | null>(null);
+  const beamRef = useRef<HTMLDivElement | null>(null);
+  const skipHintRef = useRef<HTMLDivElement | null>(null);
+  const montageRefs = useRef<Array<HTMLElement | null>>([]);
+  const stackRefs = useRef<Array<HTMLElement | null>>([]);
+  const animationsRef = useRef<Animation[]>([]);
+  const masterRef = useRef<Animation | null>(null);
   const skippingRef = useRef(false);
-  const skipStartRef = useRef(0);
-  const skipFromRef = useRef(0);
 
   const snapHomeToTop = useCallback(() => {
-    const isHomeTop = window.location.pathname === "/" && (!window.location.hash || window.location.hash === "#top");
+    const isHomeTop =
+      window.location.pathname === "/" &&
+      (!window.location.hash || window.location.hash === "#top");
+
     if (!isHomeTop) return;
 
     const scrollingElement = document.scrollingElement;
@@ -70,21 +89,55 @@ export default function IntroSequence() {
     setVisible(false);
     requestAnimationFrame(() => {
       snapHomeToTop();
-      window.setTimeout(snapHomeToTop, 80);
+      window.setTimeout(snapHomeToTop, 60);
     });
   }, [snapHomeToTop]);
 
   const fastForward = useCallback(() => {
-    if (!visible || !ready || skippingRef.current) return;
+    if (!visible || skippingRef.current) return;
+
+    if (!ready) {
+      finishIntro();
+      return;
+    }
+
     skippingRef.current = true;
-    skipStartRef.current = performance.now();
-    skipFromRef.current = timeRef.current;
-  }, [visible, ready]);
+    animationsRef.current.forEach((animation) => {
+      animation.playbackRate = SKIP_RATE;
+    });
+
+    if (masterRef.current) {
+      masterRef.current.playbackRate = SKIP_RATE;
+    }
+  }, [finishIntro, ready, visible]);
 
   useEffect(() => {
-    const previousRestoration = "scrollRestoration" in window.history
-      ? window.history.scrollRestoration
-      : undefined;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      finishIntro();
+      return;
+    }
+
+    let cancelled = false;
+    const sources = [...montageSlides, ...featuredProjects.map((project) => project.src), siteAssets.logo];
+    const preloaders = sources.map(preloadImage);
+
+    Promise.race([
+      Promise.allSettled(preloaders.slice(0, 4)),
+      new Promise<void>((resolve) => window.setTimeout(resolve, 420)),
+    ]).then(() => {
+      if (!cancelled) setReady(true);
+    });
+
+    Promise.allSettled(preloaders).catch(() => undefined);
+
+    return () => {
+      cancelled = true;
+    };
+  }, [finishIntro]);
+
+  useEffect(() => {
+    const previousRestoration =
+      "scrollRestoration" in window.history ? window.history.scrollRestoration : undefined;
 
     if (previousRestoration !== undefined) {
       window.history.scrollRestoration = "manual";
@@ -95,6 +148,7 @@ export default function IntroSequence() {
     const onPageShow = () => requestAnimationFrame(snapHomeToTop);
 
     window.addEventListener("pageshow", onPageShow);
+
     return () => {
       cancelAnimationFrame(firstFrame);
       window.removeEventListener("pageshow", onPageShow);
@@ -105,59 +159,186 @@ export default function IntroSequence() {
   }, [snapHomeToTop]);
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      finishIntro();
-      return;
-    }
-
-    let cancelled = false;
-
-    const preload = async () => {
-      await Promise.allSettled(
-        slides.map((slide) => new Promise<void>((resolve) => {
-          const image = new Image();
-          image.src = slide.src;
-          image.decoding = "async";
-          image.onload = async () => {
-            try { await image.decode(); } catch { /* already loaded; continue */ }
-            resolve();
-          };
-          image.onerror = () => resolve();
-        }))
-      );
-
-      if (!cancelled) setReady(true);
-    };
-
-    preload();
-    return () => { cancelled = true; };
-  }, [finishIntro]);
-
-  useEffect(() => {
     if (!ready || !visible) return;
 
-    startRef.current = performance.now();
-
-    const tick = (now: number) => {
-      let next: number;
-      if (skippingRef.current) {
-        const p = clamp((now - skipStartRef.current) / SKIP_DURATION);
-        next = lerp(skipFromRef.current, TOTAL, easeOut(p));
-      } else {
-        next = Math.min(TOTAL, now - startRef.current);
-      }
-
-      timeRef.current = next;
-      setTime(next);
-
-      if (next >= TOTAL - 1) {
-        finishIntro();
-        return;
-      }
-      frameRef.current = requestAnimationFrame(tick);
+    const animations: Animation[] = [];
+    const animate = (
+      node: Element | null,
+      keyframes: Keyframe[],
+      options: KeyframeAnimationOptions,
+    ) => {
+      if (!node) return null;
+      const animation = node.animate(keyframes, {
+        fill: "both",
+        ...options,
+      });
+      animations.push(animation);
+      return animation;
     };
 
-    frameRef.current = requestAnimationFrame(tick);
+    animate(
+      atmosphereRef.current,
+      [
+        { opacity: 0.08, transform: "scale(1.01)" },
+        { opacity: 0.58, transform: "scale(1.07)" },
+      ],
+      { duration: TOTAL, easing: "linear" },
+    );
+
+    animate(
+      logoRef.current,
+      [
+        { opacity: 0, transform: "translate3d(0,8px,0) scale(.94)", filter: "blur(7px)" },
+        { opacity: 1, transform: "translate3d(0,0,0) scale(1)", filter: "blur(0px)", offset: 0.28 },
+        { opacity: 1, transform: "translate3d(0,0,0) scale(1)", filter: "blur(0px)", offset: 0.62 },
+        { opacity: 0.22, transform: "translate3d(0,-4px,0) scale(1.02)", filter: "blur(0px)" },
+      ],
+      { duration: 760, delay: 80, easing: "cubic-bezier(.16,1,.3,1)" },
+    );
+
+    animate(
+      ignitionRef.current,
+      [
+        { opacity: 0, transform: "translate3d(-72vw,0,0) skewX(-16deg) scaleX(.5)" },
+        { opacity: 1, transform: "translate3d(-8vw,0,0) skewX(-16deg) scaleX(1)", offset: 0.34 },
+        { opacity: 0.9, transform: "translate3d(18vw,0,0) skewX(-16deg) scaleX(1.15)", offset: 0.7 },
+        { opacity: 0, transform: "translate3d(84vw,0,0) skewX(-16deg) scaleX(.6)" },
+      ],
+      { duration: 760, delay: 120, easing: "cubic-bezier(.7,0,.2,1)" },
+    );
+
+    montageRefs.current.forEach((node, index) => {
+      const direction = index % 2 === 0 ? 1 : -1;
+      const enterX = direction * (82 + index * 4);
+      const exitX = -direction * (66 + index * 3);
+      const rotation = direction * -5.5;
+
+      animate(
+        node,
+        [
+          {
+            opacity: 0,
+            transform: `translate3d(${enterX}vw, ${direction * 5}vh, 0) rotate(${rotation - direction * 5}deg) scale(.9)`,
+            filter: "blur(5px) brightness(.72)",
+          },
+          {
+            opacity: 1,
+            transform: `translate3d(0, 0, 0) rotate(${rotation}deg) scale(1)`,
+            filter: "blur(0px) brightness(.94)",
+            offset: 0.22,
+          },
+          {
+            opacity: 1,
+            transform: `translate3d(${direction * -2}vw, ${direction}vh, 0) rotate(${rotation + direction}deg) scale(1.025)`,
+            filter: "blur(0px) brightness(.92)",
+            offset: 0.72,
+          },
+          {
+            opacity: 0,
+            transform: `translate3d(${exitX}vw, ${direction * -4}vh, 0) rotate(${rotation + direction * 7}deg) scale(.94)`,
+            filter: "blur(3px) brightness(.68)",
+          },
+        ],
+        {
+          duration: montageDurations[index],
+          delay: montageStarts[index],
+          easing: "cubic-bezier(.2,.8,.2,1)",
+        },
+      );
+    });
+
+    animate(
+      createRef.current,
+      [
+        { opacity: 0, transform: "translate3d(-8vw,36px,0) skewX(-8deg) scaleX(.88)", filter: "blur(7px)" },
+        { opacity: 1, transform: "translate3d(0,0,0) skewX(-8deg) scaleX(1)", filter: "blur(0px)", offset: 0.24 },
+        { opacity: 1, transform: "translate3d(2vw,0,0) skewX(-8deg) scaleX(1.015)", filter: "blur(0px)", offset: 0.72 },
+        { opacity: 0, transform: "translate3d(14vw,-16px,0) skewX(-8deg) scaleX(.96)", filter: "blur(3px)" },
+      ],
+      { duration: 720, delay: 930, easing: "cubic-bezier(.16,1,.3,1)" },
+    );
+
+    animate(
+      solveRef.current,
+      [
+        { opacity: 0, transform: "translate3d(12vw,40px,0) skewX(-8deg) scaleX(.9)", filter: "blur(7px)" },
+        { opacity: 1, transform: "translate3d(0,0,0) skewX(-8deg) scaleX(1)", filter: "blur(0px)", offset: 0.24 },
+        { opacity: 1, transform: "translate3d(-2vw,0,0) skewX(-8deg) scaleX(1.02)", filter: "blur(0px)", offset: 0.7 },
+        { opacity: 0, transform: "translate3d(-14vw,-18px,0) skewX(-8deg) scaleX(.95)", filter: "blur(3px)" },
+      ],
+      { duration: 720, delay: 1580, easing: "cubic-bezier(.16,1,.3,1)" },
+    );
+
+    const stackTargets = [
+      "translate3d(-8vw,-8vh,0) rotate(-9deg) scale(.86)",
+      "translate3d(0,0,0) rotate(-5deg) scale(.92)",
+      "translate3d(8vw,8vh,0) rotate(-1deg) scale(.98)",
+    ];
+    const stackEntries = [
+      "translate3d(-92vw,18vh,0) rotate(-19deg) scale(1.12)",
+      "translate3d(88vw,-16vh,0) rotate(10deg) scale(1.12)",
+      "translate3d(0,82vh,0) rotate(-12deg) scale(1.1)",
+    ];
+
+    stackRefs.current.forEach((node, index) => {
+      animate(
+        node,
+        [
+          { opacity: 0, transform: stackEntries[index], filter: "blur(5px) brightness(.68)" },
+          { opacity: 1, transform: stackTargets[index], filter: "blur(0px) brightness(.88)", offset: 0.68 },
+          { opacity: 1, transform: stackTargets[index], filter: "blur(0px) brightness(.9)" },
+        ],
+        {
+          duration: 820,
+          delay: 2220 + index * 70,
+          easing: "cubic-bezier(.14,.86,.18,1)",
+        },
+      );
+    });
+
+    animate(
+      skipHintRef.current,
+      [
+        { opacity: 0 },
+        { opacity: 0.68, offset: 0.16 },
+        { opacity: 0.68, offset: 0.76 },
+        { opacity: 0 },
+      ],
+      { duration: 3100, delay: 180, easing: "linear" },
+    );
+
+    animate(
+      beamRef.current,
+      [
+        { opacity: 0, transform: "translate3d(-38vw,0,0) rotate(-17deg) scaleX(.65)" },
+        { opacity: 1, transform: "translate3d(-5vw,0,0) rotate(-17deg) scaleX(1)", offset: 0.18 },
+        { opacity: 1, transform: "translate3d(84vw,0,0) rotate(-17deg) scaleX(1.18)", offset: 0.72 },
+        { opacity: 0, transform: "translate3d(128vw,0,0) rotate(-17deg) scaleX(.75)" },
+      ],
+      { duration: 900, delay: 3400, easing: "cubic-bezier(.72,0,.18,1)" },
+    );
+
+    animate(
+      coverRef.current,
+      [
+        { transform: "translate3d(0,0,0) skewX(0deg)" },
+        { transform: "translate3d(0,0,0) skewX(0deg)", offset: 0.04 },
+        { transform: "translate3d(116%,0,0) skewX(-7deg)" },
+      ],
+      { duration: 830, delay: 3520, easing: "cubic-bezier(.82,0,.18,1)" },
+    );
+
+    const master = rootRef.current?.animate([{ opacity: 1 }, { opacity: 1 }], {
+      duration: TOTAL,
+      fill: "both",
+    });
+
+    if (master) {
+      master.onfinish = finishIntro;
+      masterRef.current = master;
+    }
+
+    animationsRef.current = animations;
 
     const allowWheelSkip = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
     const onWheel = (event: WheelEvent) => {
@@ -170,7 +351,10 @@ export default function IntroSequence() {
     }
 
     return () => {
-      if (frameRef.current) cancelAnimationFrame(frameRef.current);
+      animations.forEach((animation) => animation.cancel());
+      if (master) master.cancel();
+      animationsRef.current = [];
+      masterRef.current = null;
       if (allowWheelSkip) {
         window.removeEventListener("wheel", onWheel);
       }
@@ -179,15 +363,10 @@ export default function IntroSequence() {
 
   if (!visible) return null;
 
-  const curtain = ready ? easeIn(clamp(time / CURTAIN_END)) : 0;
-  const out = easeIn(clamp((time - OUT_START) / OUT_DURATION));
-  const overlayFade = smooth(clamp((time - (OUT_START + OUT_DURATION - 55)) / 95));
-  const stacking = time >= STACK_START;
-
   return (
     <div
+      ref={rootRef}
       className={styles.overlay}
-      style={{ opacity: 1 - overlayFade } as CSSProperties}
       onClick={fastForward}
       role="button"
       tabIndex={0}
@@ -196,69 +375,73 @@ export default function IntroSequence() {
         if (event.key === "Enter" || event.key === " ") fastForward();
       }}
     >
-      <div className={styles.stage}>
-        {slides.map((slide, index) => {
-          const zoomProgress = smooth(clamp((time - slide.start) / Math.max(1, slide.zoomEnd - slide.start)));
-          const sceneScale = lerp(slide.zoomFrom, 1, zoomProgress);
+      <div ref={coverRef} className={styles.cover} aria-hidden="true">
+        <img
+          ref={atmosphereRef}
+          className={styles.atmosphere}
+          src="/racing-atmosphere.svg"
+          alt=""
+        />
 
-          const stackDelay = (slides.length - 1 - index) * STACK_STAGGER;
-          const stackProgress = easeInOut(clamp((time - (STACK_START + stackDelay)) / STACK_DURATION));
-          const cardScale = lerp(sceneScale, .285, stackProgress);
-          const targetX = finalStackX[index] ?? slide.x;
-          const x = targetX * stackProgress;
-          const baseY = slide.y * stackProgress;
-          const y = baseY + out * 108;
-          const radius = 22 * stackProgress;
-          const finalScale = lerp(cardScale, .245, out);
+        <div ref={logoRef} className={styles.logoFlash}>
+          <img src={siteAssets.logo} alt="" />
+          <span>JOHN FERRER · CREATIVE SYSTEM</span>
+        </div>
 
-          const isCurrentScene = time >= slide.start && time < slide.end;
-          const show = ready && (stacking || isCurrentScene);
-          const zIndex = stacking ? (finalStackZ[index] ?? 20 + index) : 20 + index;
+        <div ref={ignitionRef} className={styles.ignition}>
+          <i />
+          <span>IGNITION</span>
+        </div>
 
-          return (
-            <div
-              className={styles.slide}
-              key={slide.src}
-              aria-hidden={!show}
-              style={{
-                zIndex,
-                opacity: show ? 1 : 0,
-                visibility: show ? "visible" : "hidden",
-                borderRadius: `${radius}px`,
-                transform: `translate3d(${x}vw, ${y}vh, 0) scale(${finalScale})`,
-                boxShadow: stackProgress > .08 ? `0 ${12 + slide.stack * 3}px 42px rgba(0,0,0,.30)` : "none",
+        <div className={styles.montage}>
+          {montageSlides.map((src, index) => (
+            <figure
+              className={styles.montagePanel}
+              key={src}
+              ref={(node) => {
+                montageRefs.current[index] = node;
               }}
             >
-              <img
-                src={slide.src}
-                alt=""
-                loading="eager"
-                decoding="async"
-                fetchPriority={index < 2 ? "high" : "auto"}
-                style={{ objectPosition: slide.position }}
-              />
-            </div>
-          );
-        })}
+              <img src={src} alt="" loading="eager" decoding="async" />
+            </figure>
+          ))}
+        </div>
 
-        <div
-          className={`${styles.curtain} ${styles.curtainTop}`}
-          style={{ transform: `translate3d(0, ${-100 * curtain}%, 0)` }}
-          aria-hidden="true"
-        />
-        <div
-          className={`${styles.curtain} ${styles.curtainBottom}`}
-          style={{ transform: `translate3d(0, ${100 * curtain}%, 0)` }}
-          aria-hidden="true"
-        />
+        <div ref={createRef} className={`${styles.titleBeat} ${styles.createBeat}`}>
+          CREATE<span>.</span>
+        </div>
+        <div ref={solveRef} className={`${styles.titleBeat} ${styles.solveBeat}`}>
+          SOLVE<span>.</span>
+        </div>
+
+        <div className={styles.stack}>
+          {featuredProjects.map((project, index) => (
+            <figure
+              className={styles.stackCard}
+              key={project.name}
+              ref={(node) => {
+                stackRefs.current[index] = node;
+              }}
+            >
+              <img src={project.src} alt="" loading="eager" decoding="async" />
+              <b>0{index + 1}</b>
+              <figcaption>
+                <strong>{project.name}</strong>
+                <span>{project.type}</span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
       </div>
 
-      {ready && (
-        <div className={styles.skipHint} aria-hidden="true">
-          <span>Skip animation</span>
-          <i>Tap or click</i>
-        </div>
-      )}
+      <div ref={beamRef} className={styles.beam} aria-hidden="true">
+        <i />
+      </div>
+
+      <div ref={skipHintRef} className={styles.skipHint} aria-hidden="true">
+        <span>Skip intro</span>
+        <i>Tap / click</i>
+      </div>
     </div>
   );
 }
