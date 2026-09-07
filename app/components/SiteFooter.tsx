@@ -16,9 +16,9 @@ export default function SiteFooter() {
             <a href="/contact">Contact</a>
           </nav>
           <div className={styles.socials} aria-label="Social profiles">
-            <a href="https://www.behance.net/weedagreyt" target="_blank" rel="noreferrer">Be</a>
-            <a href="https://99designs.com/profiles/3055278" target="_blank" rel="noreferrer">99</a>
-            <a href="https://www.designhill.com/member/weedagreyt" target="_blank" rel="noreferrer">Dh</a>
+            <a href="https://www.behance.net/weedagreyt" target="_blank" rel="noreferrer" aria-label="Behance"><img src="/social-behance.png" alt="" /></a>
+            <a href="https://99designs.com/profiles/3055278" target="_blank" rel="noreferrer" aria-label="99designs"><img src="/social-99designs.png" alt="" /></a>
+            <a href="https://www.designhill.com/member/weedagreyt" target="_blank" rel="noreferrer" aria-label="Designhill"><img src="/social-designhill.png" alt="" /></a>
           </div>
         </div>
       </div>

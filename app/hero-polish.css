@@ -171,3 +171,22 @@ body .race-home .hero h1 .dot{display:inline;color:#ef171f!important}
  .build-inner .race-button{width:178px;height:47px;font-size:13px}
  .build-note{display:none}
 }
+
+/* Homepage experience timeline */
+.approach-section::after{display:none!important}
+.experience-home{padding:68px 0 76px}
+.experience-home-head{display:flex;align-items:flex-end;justify-content:space-between;gap:36px;margin-bottom:50px}
+.experience-home-head h2{margin:0;font-family:var(--race-display),Arial Black,Arial,sans-serif;font-size:clamp(44px,4.4vw,60px);font-style:italic;font-weight:900;line-height:.92;letter-spacing:-.02em;text-transform:uppercase}
+.experience-home-head h2 span{color:#ef171f}
+.experience-resume-link{display:inline-flex;align-items:center;gap:14px;padding-bottom:7px;color:#fff;font-size:9px;font-weight:800;letter-spacing:.13em;text-transform:uppercase}
+.experience-resume-link:hover{color:#ef171f}.experience-resume-link:hover .race-arrow{transform:translateX(3px)}
+.experience-home-track{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));border-top:1px solid rgba(255,255,255,.2)}
+.experience-home-item{position:relative;min-width:0;padding:26px 18px 4px 0}
+.experience-home-item:not(:last-child){border-right:1px solid rgba(255,255,255,.08);margin-right:18px}
+.experience-home-dot{position:absolute;left:0;top:-5px;width:9px;height:9px;border-radius:50%;background:#ef171f;box-shadow:0 0 13px rgba(239,23,31,.75)}
+.experience-home-item h3{min-height:47px;margin:0;color:#fff;font-size:13px;line-height:1.45;text-transform:uppercase}
+.experience-home-item p{margin:8px 0 2px;color:rgba(255,255,255,.68);font-size:11px;line-height:1.45}
+.experience-home-item time{color:#ef171f;font-size:9px;font-weight:900;line-height:1.45;letter-spacing:.04em;text-transform:uppercase}
+@media(max-width:1050px){.experience-home-track{grid-template-columns:repeat(3,1fr);row-gap:34px;border-top:0}.experience-home-item{border-top:1px solid rgba(255,255,255,.2)}}
+@media(max-width:820px){.experience-home-track{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.experience-home{padding:52px 0 58px}.experience-home-head{align-items:flex-start;flex-direction:column;margin-bottom:38px;gap:22px}.experience-home-head h2{font-size:37px}.experience-home-track{grid-template-columns:1fr;row-gap:0}.experience-home-item,.experience-home-item:not(:last-child){margin:0;padding:24px 0 25px;border-right:0;border-top:1px solid rgba(255,255,255,.18)}.experience-home-item h3{min-height:0;font-size:13px}}

@@ -3,7 +3,7 @@
 import IntroSequence from "./components/IntroSequence";
 import SiteNav from "./components/SiteNav";
 import SiteFooter from "./components/SiteFooter";
-import { projectSummaries, services, siteAssets } from "./lib/portfolio";
+import { projectSummaries, resumeUrl, siteAssets } from "./lib/portfolio";
 
 const assets = {
   portrait: "https://www.figma.com/api/mcp/asset/444382a5-690d-483b-a881-9ec4956476c0.png",
@@ -17,6 +17,15 @@ const projects = [
   { ...projectSummaries.kove, image: assets.kove, href: "/work/kove" },
   { ...projectSummaries.unimotors, image: assets.unimotors, href: "/work/unimotors" },
   { ...projectSummaries.dope, image: assets.dope, href: "/work/dope-marketing" },
+] as const;
+
+const experience = [
+  { role: "Print Production / Designer", company: "Bothends Computer Solutions", dates: "Nov 2015 – Jul 2019" },
+  { role: "Founder", company: "SciHigh Clothing", dates: "Feb 2016" },
+  { role: "Creative Director", company: "West Shadows Production", dates: "Aug 2016 – Sep 2019" },
+  { role: "Graphic Design Department Head", company: "Project Pentagon", dates: "Feb 2019 – Nov 2019" },
+  { role: "Freelance Graphic Designer", company: "Project-Based Work", dates: "Nov 2019 – Dec 2020" },
+  { role: "Senior Graphic Designer", company: "DOPE Marketing", dates: "Jan 2021 – Nov 2025" },
 ] as const;
 
 function ArrowIcon() {
@@ -80,7 +89,6 @@ export default function HomePage() {
         <div className="shell">
           <div className="race-heading">
             <div>
-              <p>02</p>
               <h2>Selected <span>Work</span></h2>
             </div>
             <a href="/work">View all projects <ArrowIcon /></a>
@@ -102,27 +110,24 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="approach-section">
+      <section className="approach-section experience-home">
         <div className="shell">
-          <p className="section-no">03</p>
-          <div className="approach-grid">
-            <div className="approach-photo">
-              <img src={assets.portrait} alt="John Ferrer" />
-              <blockquote>“Good design<br />should feel inevitable.”<small>— John Ferrer</small></blockquote>
+          <div className="experience-home-head">
+            <div>
+              <p className="micro-label">Experience</p>
+              <h2>My <span>Journey</span></h2>
             </div>
-
-            <div className="approach-copy">
-              <p className="micro-label">My Approach</p>
-              <h2>Human-centered.<br /><span>Outcome-driven.</span></h2>
-              <p className="approach-intro">
-                I combine research, strategy, and design to create work that not only looks good, but makes a real difference in people’s lives.
-              </p>
-              <div className="approach-steps">
-                {services.slice(0, 4).map((service, index) => (
-                  <div key={service}><b>0{index + 1}</b><strong>{service}</strong></div>
-                ))}
-              </div>
-            </div>
+            <a className="experience-resume-link" href={resumeUrl} target="_blank" rel="noreferrer">Download Résumé <ArrowIcon /></a>
+          </div>
+          <div className="experience-home-track">
+            {experience.map((item) => (
+              <article className="experience-home-item" key={`${item.company}-${item.dates}`}>
+                <span className="experience-home-dot" aria-hidden="true" />
+                <h3>{item.role}</h3>
+                <p>{item.company}</p>
+                <time>{item.dates}</time>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -130,7 +135,6 @@ export default function HomePage() {
       <section className="build-section">
         <div className="build-art" aria-hidden="true" />
         <div className="shell build-inner">
-          <p className="section-no">04</p>
           <h2>Build what’s <span>next.</span></h2>
           <p>Have a project in mind? Let’s create something great together.</p>
           <a className="race-button" href="/contact"><span>Let’s Talk</span><ArrowIcon /></a>
