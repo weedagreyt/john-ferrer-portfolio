@@ -9,11 +9,11 @@
 
 **Full-view comparison evidence**
 - The approved poster remains the composition source of truth.
-- The supplied high-resolution cutout was inspected directly and is visibly sharper than the existing highly compressed hero portrait asset.
+- The supplied high-resolution cutout was inspected directly and is visibly sharper than the previous highly compressed hero portrait asset.
 - The mobile portrait position was adjusted from a broad headline/portrait collision to a right-shifted composition where the headline should only skim the portrait's left edge.
 
 **Focused-region comparison evidence**
-- Image quality: replaced the previous tiny compressed hero portrait with a 1400 px wide AVIF derived from the high-resolution transparent portrait source, with high-quality resampling and light sharpening before encoding.
+- Image quality: replaced the previous tiny compressed portrait source with a 1200 px wide AVIF reconstructed at build time from the high-resolution transparent portrait, using Lanczos resampling plus light sharpening before AVIF encoding. The source is large enough for an iPhone-class Retina viewport without the severe upscaling of the old asset.
 - Portrait layout: mobile placement changed from `left: 4vw; width: 123vw; height: 154vw` to `left: 36vw; width: 110vw; height: 137.5vw`, preserving a dominant portrait while reducing text intrusion across the face.
 - Typography: Teko headline configuration is intentionally unchanged from the last approved correction.
 - Contrast: the left-side copy mask was narrowed slightly so the portrait is more visible without sacrificing headline readability.
@@ -25,7 +25,7 @@
   - Fix: compare a fresh mobile screenshot after deployment against the approved poster and adjust the portrait by small horizontal increments only if needed.
 
 **Implementation checklist**
-- Use the new high-resolution portrait asset.
+- Use the reconstructed high-resolution portrait asset.
 - Keep Teko headline unchanged.
 - Shift portrait right and reduce scale enough to limit overlap to the left edge.
 - Preserve portrait extension below the CTA.

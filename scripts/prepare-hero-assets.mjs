@@ -31,3 +31,14 @@ decodeChunks(
   ],
   "public/hero-mobile-retina.avif",
 );
+
+decodeChunks(
+  [
+    "public/hero-portrait-retina.part00.b64",
+    "public/hero-portrait-retina.part01.b64",
+    "public/hero-portrait-retina.part02.b64",
+    "public/hero-portrait-retina.part03.b64",
+    "public/hero-portrait-retina.part04.b64",
+  ],
+  "public/hero-portrait-retina.avif",
+);
