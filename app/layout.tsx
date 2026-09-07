@@ -4,8 +4,8 @@ import "./globals.css";
 import "./hero-polish.css";
 import "./hero-media.css";
 import "./hero-retina-fix.css";
-import "./hero-cleanup.css";
 import "./race-aesthetic.css";
+import "./hero-cleanup.css";
 
 const raceDisplay = Teko({
   subsets: ["latin"],
