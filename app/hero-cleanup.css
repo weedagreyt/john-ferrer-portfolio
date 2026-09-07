@@ -9,41 +9,49 @@ header a[href="/"]::after,
 }
 
 @media (max-width: 760px) {
-  /* Let the hero breathe across the actual mobile viewport instead of compressing into the upper portion. */
+  /* Use the full mobile screen and keep the composition from bunching into the top. */
   .hero {
     height: 100svh !important;
-    min-height: 720px !important;
-    max-height: 900px !important;
+    min-height: 760px !important;
+    max-height: 920px !important;
   }
 
-  /* Rebalance the subject so the headline only brushes the portrait edge. */
+  .hero-shell {
+    height: calc(100% - 76px) !important;
+  }
+
+  /* Keep the approved portrait balance. */
   .hero-portrait {
     left: 18vw !important;
   }
 
-  /* Restore the poster-like vertical rhythm after removing the 01/rule block. */
+  /* Stronger, visible vertical rhythm: nav -> intro -> headline -> body -> CTA -> location. */
   .hero-copy {
-    top: 30px !important;
+    top: clamp(50px, 7svh, 70px) !important;
   }
 
   .hero-intro {
-    margin: 0 0 20px !important;
+    margin: 0 0 28px !important;
+  }
+
+  .hero-intro p {
+    margin: 0 !important;
   }
 
   .hero-sub {
-    margin-top: 26px !important;
-  }
-
-  .hero .race-button {
-    margin-top: 20px !important;
-  }
-
-  .hero-location {
     margin-top: 30px !important;
   }
 
-  /* Keep the watermark low so the lower third still has visual weight. */
+  .hero .race-button {
+    margin-top: 24px !important;
+  }
+
+  .hero-location {
+    margin-top: 34px !important;
+  }
+
+  /* Keep the lower third visually quiet and weighted. */
   .hero-bottom-mark {
-    bottom: 34px !important;
+    bottom: 24px !important;
   }
 }
