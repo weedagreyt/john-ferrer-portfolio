@@ -145,3 +145,19 @@ header a[href="/"]::after,
       linear-gradient(112deg, transparent 0 78%, rgba(255, 35, 43, .78) 79%, rgba(94, 2, 8, .32) 83%, transparent 84%) !important;
   }
 }
+
+/* Keep the closing CTA sharp at every viewport size using vector artwork. */
+.build-art {
+  background-image:
+    linear-gradient(90deg, #050607 0%, rgba(5, 6, 7, .86) 40%, rgba(5, 6, 7, .28) 73%, rgba(5, 6, 7, .46)),
+    url('/racing-build.svg') !important;
+  background-size: cover !important;
+  background-position: center 60% !important;
+  background-repeat: no-repeat !important;
+  filter: saturate(1.08) contrast(1.04) !important;
+}
+@media (max-width: 760px) {
+  .build-art {
+    background-position: 62% center !important;
+  }
+}
