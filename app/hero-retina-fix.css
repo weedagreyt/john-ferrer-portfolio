@@ -15,7 +15,9 @@
 
 @media(min-width:761px){
   .hero-art{
-    background-image:linear-gradient(90deg,#050607 0%,rgba(5,6,7,.95) 22%,rgba(5,6,7,.66) 42%,rgba(5,6,7,.08) 70%,rgba(5,6,7,.02)),url('/hero-bg-desktop.avif')!important;
+    background-image:linear-gradient(90deg,#050607 0%,rgba(5,6,7,.95) 22%,rgba(5,6,7,.66) 42%,rgba(5,6,7,.08) 70%,rgba(5,6,7,.02)),url('/racing-atmosphere.svg')!important;
+    background-size:cover!important;
+    background-position:center!important;
   }
   .hero h1{
     display:flex!important;
@@ -32,6 +34,15 @@
     transform-origin:left center!important;
   }
   .hero-copy::after{opacity:.80!important}
+  .hero-location--mobile{display:none!important}
+  .hero-location--desktop{
+    display:flex!important;
+    position:absolute!important;
+    right:clamp(34px,7vw,112px)!important;
+    top:66%!important;
+    z-index:9!important;
+    margin:0!important;
+  }
 
   .hero-portrait{
     right:-12%!important;
@@ -54,6 +65,8 @@
 }
 
 @media(max-width:760px){
+  .hero-location--desktop{display:none!important}
+  .hero-location--mobile{display:flex!important}
   .hero{
     height:clamp(720px,177.68vw,820px)!important;
     min-height:720px!important;

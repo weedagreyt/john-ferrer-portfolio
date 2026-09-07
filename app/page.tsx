@@ -59,13 +59,15 @@ export default function HomePage() {
             <a className="race-button" href="/contact">
               <span>Let’s Talk</span><ArrowIcon />
             </a>
-            <div className="hero-location"><i /><span>Arlington, VA<br />USA</span></div>
+            <div className="hero-location hero-location--mobile"><i /><span>Arlington, VA<br />USA</span></div>
           </div>
 
           <div className="hero-portrait" aria-label="Portrait of John Ferrer">
             <div className="portrait-aura" aria-hidden="true" />
             <img src={assets.heroPortrait} alt="John Ferrer" />
           </div>
+
+          <div className="hero-location hero-location--desktop"><i /><span>Arlington, VA<br />USA</span></div>
 
           <div className="hero-side-note" aria-hidden="true">
             <span>Ideas</span><span>Interfaces</span><span>Impact</span><i />
