@@ -8,7 +8,7 @@ const INTRO_VERSION = "jf:intro:v11";
 
 const projectScenes = [
   {
-    src: "https://www.figma.com/api/mcp/asset/0b093f40-9db8-4e28-94d1-3d0f70f9b02a.png",
+    src: "/KOVE Kafe - Intro.png",
     delay: 0.52,
     duration: 0.92,
     position: "52% 50%",
@@ -38,7 +38,7 @@ const projectScenes = [
     r1: "-0.18deg",
   },
   {
-    src: "https://www.figma.com/api/mcp/asset/5875dd2d-14aa-4675-ae0b-a3602f9564c5.png",
+    src: "/DOPE - Intro.png",
     delay: 1.74,
     duration: 0.9,
     position: "54% 50%",
@@ -53,7 +53,7 @@ const projectScenes = [
     r1: "0.12deg",
   },
   {
-    src: "https://www.figma.com/api/mcp/asset/c0d21f3a-2bd4-4f1b-994f-f494084d10d2.png",
+    src: "/Unimotors - Intro.png",
     delay: 2.34,
     duration: 0.86,
     position: "50% 50%",
@@ -68,7 +68,7 @@ const projectScenes = [
     r1: "-0.15deg",
   },
   {
-    src: "https://www.figma.com/api/mcp/asset/87e28bf9-578b-4500-8862-f82e3cabd110.png",
+    src: "/Retrophorics - Intro.png",
     mobileSrc: "/retrophorics-mobile-intro.jpg",
     delay: 2.9,
     duration: 0.96,
