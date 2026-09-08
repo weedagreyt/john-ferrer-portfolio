@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState, type CSSProperties } from "re
 import { siteAssets } from "../lib/portfolio";
 
 const TOTAL_MS = 4400;
-const INTRO_VERSION = "jf:intro:v13";
+const INTRO_VERSION = "jf:intro:v14";
 
 const projectScenes = [
   {
@@ -452,8 +452,9 @@ const INTRO_CSS = String.raw`
   width:100%;
   height:100%;
   max-width:none;
-  object-fit:cover;
+  object-fit:contain;
   display:block;
+  background:#030405;
   transform:scale(1);
   filter:saturate(1.04) contrast(1.04) brightness(.88);
 }
