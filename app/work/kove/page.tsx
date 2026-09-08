@@ -78,7 +78,7 @@ export default function KovePage() {
             </div>
           </Reveal>
 
-          <Reveal><div className={styles.eventBottom}><div className={styles.eventBottomCrop}><img src={assets.countdown} alt="KOVE event countdown artwork" /></div><div className={`${styles.eventBottomCrop} ${styles.eventBottomCropSquare}`}><img src={assets.photobooth} alt="KOVE photobooth artwork" /></div><div className={`${styles.eventBottomCrop} ${styles.eventBottomCropSquare}`}><img src={assets.eventDetail} alt="KOVE event detail" /></div></div></Reveal>
+          <Reveal><div className={styles.eventBottom}><img src={assets.countdown} alt="KOVE event countdown artwork" /><img src={assets.photobooth} alt="KOVE photobooth artwork" /><img src={assets.eventDetail} alt="KOVE event detail" /></div></Reveal>
         </div>
       </article>
 

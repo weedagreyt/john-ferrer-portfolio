@@ -275,28 +275,12 @@
   display: grid;
   grid-template-columns: 789fr 210fr 197fr;
   gap: 18px;
-  align-items: stretch;
+  align-items: start;
 }
-/* Each image keeps its own natural aspect ratio so the row's height is
-   still driven by real content proportions; align-items:stretch then
-   grows whichever ends up shorter to match, cropped via object-fit. */
-.eventBottomCrop {
-  position: relative;
+.eventBottom img {
   width: 100%;
-  overflow: hidden;
-  background: #171819;
-  aspect-ratio: 1600 / 424;
-}
-.eventBottomCropSquare {
-  aspect-ratio: 1;
-}
-.eventBottomCrop img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  /* contain, not cover: shows the full artwork, never crops into it */
-  object-fit: contain;
+  height: auto;
+  display: block;
   border-radius: 0;
 }
 .unimotorsHero {
