@@ -479,3 +479,15 @@ header a[href="/"]::after,
   .experience-home-dot { top: 5px !important; }
   .experience-home-item::after { top: 11px; width: 16px; }
 }
+
+/* Override the desktop header alignment when the mobile header stacks. */
+@media (max-width: 620px) {
+  .experience-home-head {
+    align-items: flex-start !important;
+    text-align: left;
+  }
+  .experience-home-head > div {
+    width: 100%;
+    text-align: left;
+  }
+}
