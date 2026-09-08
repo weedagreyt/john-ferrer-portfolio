@@ -192,7 +192,9 @@
   max-width: none;
 }
 .koveMoodboards {
-  aspect-ratio: 854/596.6166;
+  /* Tuned so its bottom lines up with .koveMoodPhoto's, whose column
+     also carries the intro paragraph above it. */
+  aspect-ratio: 854/608;
   clip-path: polygon(3% 0, 100% 0, 97% 100%, 0 100%);
 }
 .koveMoodboards img {
@@ -261,7 +263,9 @@
   clip-path: polygon(4% 0, 100% 0, 96% 100%, 0 100%);
 }
 .kovePoster {
-  aspect-ratio: 465/620;
+  /* Tuned so its bottom lines up with .koveEventPhoto's, whose column
+     also carries the paragraph above it. */
+  aspect-ratio: 465/578;
   clip-path: polygon(0 0, 94% 0, 100% 100%, 6% 100%);
 }
 .koveEventPhoto img,
@@ -320,7 +324,9 @@
   max-width: none;
 }
 .unimotorsMirror {
-  aspect-ratio: 596/472;
+  /* Tuned so its bottom lines up with .unimotorsCard's, whose column
+     also carries the paragraph above it. */
+  aspect-ratio: 596/478;
   clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
 }
 .unimotorsMirror img {

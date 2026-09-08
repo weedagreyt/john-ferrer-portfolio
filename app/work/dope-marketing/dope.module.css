@@ -8,7 +8,9 @@
 .introLeft { display: flex; flex-direction: column; }
 .postcards { position: relative; width: 100%; aspect-ratio: 552 / 420; margin-top: 32px; overflow: hidden; border-radius: 12px; background: #171819; }
 .postcards img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.printProducts { position: relative; width: 100%; aspect-ratio: 1; overflow: hidden; border-radius: 12px; background: #171819; }
+/* aspect-ratio tuned (not a perfect square) so its bottom lines up with
+   .postcards + the paragraph above it in the other column. */
+.printProducts { position: relative; width: 100%; aspect-ratio: 1.071; overflow: hidden; border-radius: 12px; background: #171819; }
 .printProducts img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .gallery { display: grid; gap: 34px; }
 .gallery img { display: block; }

@@ -1,5 +1,7 @@
 .intro { display: grid; grid-template-columns: 411fr 753fr; gap: 39px; align-items: start; margin-bottom: 28px; }
-.brandLogo { width: 100%; max-width: 411px; aspect-ratio: 1; object-fit: cover; margin-top: 38px; border-radius: 12px; }
+/* aspect-ratio tuned (not a perfect square) so its bottom lines up with
+   the video beside it, whose column has no paragraph above it. */
+.brandLogo { width: 100%; max-width: 411px; aspect-ratio: 411 / 429; object-fit: cover; margin-top: 38px; border-radius: 12px; }
 .gallery { display: grid; gap: 32px; }
 .three { display: grid; grid-template-columns: repeat(3, 1fr); gap: 41px; }
 .three img { width: 100%; height: auto; border-radius: 12px; }
