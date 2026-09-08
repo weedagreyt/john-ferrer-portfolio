@@ -8,7 +8,7 @@ const INTRO_VERSION = "jf:intro:v15";
 
 const projectScenes = [
   {
-    src: "/intro/scene-01-hd.svg",
+    src: "/intro/scene-01.jpg",
     delay: 0.52,
     duration: 0.92,
     position: "52% 50%",
@@ -39,7 +39,7 @@ const projectScenes = [
     r1: "-0.18deg",
   },
   {
-    src: "/intro/scene-03-hd.svg",
+    src: "/intro/scene-03.jpg",
     delay: 1.74,
     duration: 0.9,
     position: "54% 50%",
@@ -54,7 +54,7 @@ const projectScenes = [
     r1: "0.12deg",
   },
   {
-    src: "/intro/scene-04-unimotors-hd.svg",
+    src: "/intro/scene-04-unimotors.jpg",
     delay: 2.34,
     duration: 0.86,
     position: "50% 50%",
@@ -69,7 +69,7 @@ const projectScenes = [
     r1: "-0.15deg",
   },
   {
-    src: "/intro/scene-05-hd.svg",
+    src: "/intro/scene-05.jpg",
     mobileSrc: "/retrophorics-mobile-intro.jpg",
     delay: 2.9,
     duration: 0.96,
