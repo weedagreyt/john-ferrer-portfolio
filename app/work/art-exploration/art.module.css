@@ -17,7 +17,7 @@
   /* Match the Figma gallery: the supporting mosaic is intentionally wider
      than the left feature column so both columns resolve on the same bottom
      edge without distributing extra space between rows. */
-  grid-template-columns: 62fr 95fr;
+  grid-template-columns: 62.65fr 95fr;
   gap: 34px;
   align-items: start;
 }
@@ -65,11 +65,6 @@
   grid-template-columns: 298fr 319fr;
   gap: 34px;
   align-items: start;
-}
-@media (min-width: 1001px) {
-  .leftCol {
-    padding-top: 22px;
-  }
 }
 .tall {
   align-self: stretch;
