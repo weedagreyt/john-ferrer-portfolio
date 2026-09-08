@@ -471,10 +471,10 @@ const INTRO_CSS = String.raw`
   position:absolute;
   z-index:3;
   left:-18%;
-  top:-6%;
+  top:14%;
   width:136%;
-  height:112%;
-  background:url(/intro/fx-flash.jpg) center/cover no-repeat;
+  height:64px;
+  background:url(/intro/sword-fx-h.svg) center/100% 100% no-repeat;
   mix-blend-mode:screen;
   transform:rotate(-17deg) translate3d(-35%,0,0);
   opacity:0;
@@ -552,14 +552,16 @@ const INTRO_CSS = String.raw`
 .jf-intro__occluder{
   position:absolute;
   z-index:90;
-  inset:-6% -20%;
+  left:-40vw;
+  top:-48vh;
+  width:clamp(220px,26vw,460px);
+  height:200vh;
   opacity:0;
-  background:url(/intro/fx-wipe.png) no-repeat;
-  background-size:160% auto;
-  background-position:-90% 46%;
+  transform:rotate(-17deg) translate3d(-40vw,0,0);
+  background:url(/intro/sword-fx-v.svg) center/100% 100% no-repeat;
   mix-blend-mode:screen;
   pointer-events:none;
-  will-change:background-position,opacity;
+  will-change:transform,opacity;
 }
 .jf-intro__occluder i{display:none}
 .jf-intro--play .jf-intro__occluder{animation:jfOccluder .76s cubic-bezier(.72,0,.18,1) 3.48s both}
@@ -599,7 +601,7 @@ const INTRO_CSS = String.raw`
 @keyframes jfMicro{0%,8%{opacity:0}18%,82%{opacity:.48}100%{opacity:0}}
 @keyframes jfLineCore{0%,5%{opacity:0;stroke-dashoffset:100}12%{opacity:1}76%{opacity:.82;stroke-dashoffset:8}91%{opacity:1;stroke-dashoffset:0}100%{opacity:0;stroke-dashoffset:-8}}
 @keyframes jfLineGlow{0%,7%{opacity:0;stroke-dashoffset:100}15%{opacity:.12}75%{opacity:.22;stroke-dashoffset:7}91%{opacity:.3;stroke-dashoffset:0}100%{opacity:0;stroke-dashoffset:-8}}
-@keyframes jfOccluder{0%{opacity:0;background-position:-90% 46%}16%{opacity:1}68%{opacity:1;background-position:150% 54%}100%{opacity:0;background-position:190% 54%}}
+@keyframes jfOccluder{0%{opacity:0;transform:rotate(-17deg) translate3d(-38vw,0,0)}16%{opacity:1}68%{opacity:1;transform:rotate(-17deg) translate3d(92vw,0,0)}100%{opacity:0;transform:rotate(-17deg) translate3d(146vw,0,0)}}
 @keyframes jfHeroFlare{0%{opacity:0}34%{opacity:.78}100%{opacity:0}}
 @keyframes jfCoverOut{0%,10%{transform:translate3d(0,0,0) skewX(0)}100%{transform:translate3d(116%,0,0) skewX(-6deg)}}
 @keyframes jfSkip{0%,8%{opacity:0}16%,82%{opacity:.68}100%{opacity:0}}
@@ -622,6 +624,7 @@ const INTRO_CSS = String.raw`
   .jf-intro__type--create{left:-5vw;top:59%}
   .jf-intro__type--solve{right:-6vw;top:40%}
   .jf-intro__microcopy{left:20px;bottom:22px;font-size:7px}
+  .jf-intro__occluder{width:118px;left:-46vw}
 }
 @keyframes jfMobileFramedScene{0%,100%{opacity:0}8%,72%{opacity:1}}
 @media(prefers-reduced-motion:reduce){.jf-intro{display:none!important}}
