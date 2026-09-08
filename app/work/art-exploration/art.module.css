@@ -66,6 +66,11 @@
   gap: 34px;
   align-items: start;
 }
+@media (min-width: 1001px) {
+  .leftCol {
+    padding-top: 22px;
+  }
+}
 .tall {
   align-self: stretch;
 }
