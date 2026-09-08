@@ -17,7 +17,7 @@ const assets = {
   unimotors: "/work/thumbs/unimotors.jpg",
   dope: "/work/thumbs/dope.jpg",
   yensanities: "/work/thumbs/yensanities.jpg",
-  retrophorics: "/work/retrophorics/hippy.jpg",
+  retrophorics: "/work/thumbs/retrophorics.jpg",
   art: "/work/thumbs/art.jpg",
 };
 
