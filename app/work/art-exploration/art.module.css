@@ -35,72 +35,47 @@
   display: grid;
   grid-template-columns: 346fr 278fr;
   gap: 29px;
-  align-items: stretch;
+  align-items: start;
 }
 .midPair {
   display: grid;
   grid-template-columns: 317fr 315fr;
   gap: 21px;
-  align-items: stretch;
+  align-items: start;
 }
 .lower {
   display: grid;
   grid-template-columns: 361fr 262fr;
   gap: 30px;
-  align-items: stretch;
+  align-items: start;
 }
 .lower .stack {
   gap: 30px;
-  display: flex;
-  flex-direction: column;
 }
 .bottomPair {
   display: grid;
   grid-template-columns: 298fr 319fr;
   gap: 36px;
-  align-items: stretch;
+  align-items: start;
 }
-/* Crops any image to fill its box (row height decided by the grid)
-   instead of relying on the image's own natural aspect ratio, so
-   paired/stacked images can stretch evenly without leaving a gap. */
-.cropFill {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  border-radius: 12px;
-  background: #171819;
-}
-.rightArea .cropFill img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  /* contain, not cover: shows the full artwork, never crops into it */
-  object-fit: contain;
-  border-radius: 0;
-}
-.lower .stack > .cropFill,
-.lower .stack > .poster5Crop {
-  flex: 1 1 0;
-  min-height: 0;
-  aspect-ratio: auto;
+.tall {
+  align-self: stretch;
 }
 .poster5Crop {
   position: relative;
   width: 100%;
+  aspect-ratio: 262 / 218;
   overflow: hidden;
   border-radius: 12px;
   background: #171819;
 }
 .poster5Crop img {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  /* contain, not a forced fill: this box's height is now flexible
-     (see .lower .stack above), so cropping would vary unpredictably
-     with viewport instead of using a fixed, chosen crop. */
-  object-fit: contain;
+  height: 103.79%;
+  width: 100.28%;
+  left: -0.14%;
+  top: -1.83%;
+  max-width: none;
   border-radius: 0;
 }
 .poster6Crop {
@@ -161,38 +136,19 @@
     grid-template-columns: 1fr 1fr;
     gap: 12px;
   }
-  /* Below this width .masonry stacks to one column, so rightArea is never
-     stretched to match leftCol's height (that only runs at 651px+) — these
-     boxes need their own fallback size instead of relying on stretch. */
-  .cropFill {
-    aspect-ratio: 4 / 5;
-  }
-  /* .lower .stack's cropFill is always flex-sized instead (see base rules),
-     so it must not pick up the fallback above. */
-  .lower .stack > .cropFill {
-    aspect-ratio: auto;
-  }
 }
 
-/* Match the right column's total height to the left column's by growing
-   each row equally (each row's images crop-fill their box via .cropFill),
-   instead of dumping all the leftover space as one gap before the last
-   row. Note .topPair/.midPair/.lower/.bottomPair sit one level below
-   rightArea's actual grid items (each is wrapped in a Reveal div), so
-   percentage heights are used here rather than align-self, which only
-   works on a direct grid/flex item. */
+/* Keep every image at its natural, uncropped size. Any leftover height
+   between rightArea's four natural-sized rows and leftCol's total height
+   is distributed as extra breathing room between the rows (not by
+   resizing or cropping any image) via align-content:space-between. */
 @media (min-width: 651px) {
   .masonry {
     align-items: stretch;
   }
   .rightArea {
     height: 100%;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-  }
-  .topPair,
-  .midPair,
-  .lower,
-  .bottomPair {
-    height: 100%;
+    grid-template-rows: repeat(4, auto);
+    align-content: space-between;
   }
 }

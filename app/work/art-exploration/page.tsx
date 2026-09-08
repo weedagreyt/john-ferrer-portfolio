@@ -62,10 +62,10 @@ export default function ArtExplorationPage() {
             <Reveal><div className={local.poster6Crop}><img src={assets.poster6} alt="Illustrated portrait artwork" /></div></Reveal>
           </div>
           <div className={local.rightArea}>
-            <Reveal><div className={local.topPair}><div className={local.cropFill}><img src={assets.portrait} alt="Illustration artwork" /></div><div className={local.cropFill}><img src={assets.unicorn1} alt="Unicorn character artwork" /></div></div></Reveal>
-            <Reveal><div className={local.midPair}><div className={local.cropFill}><img src={assets.poster1} alt="Poster illustration" /></div><div className={local.cropFill}><img src={assets.poster2} alt="Poster illustration" /></div></div></Reveal>
-            <Reveal><div className={local.lower}><div className={local.cropFill}><img src={assets.poster3} alt="Illustrated poster" /></div><div className={local.stack}><div className={local.cropFill}><img src={assets.poster4} alt="Illustrated artwork" /></div><div className={local.poster5Crop}><img src={assets.poster5} alt="Illustrated artwork" /></div></div></div></Reveal>
-            <Reveal><div className={local.bottomPair}><div className={local.cropFill}><img src={assets.poster7} alt="Illustrated poster" /></div><div className={local.cropFill}><img src={assets.poster8} alt="Illustrated poster" /></div></div></Reveal>
+            <Reveal><div className={local.topPair}><img src={assets.portrait} alt="Illustration artwork" /><img src={assets.unicorn1} alt="Unicorn character artwork" /></div></Reveal>
+            <Reveal><div className={local.midPair}><img src={assets.poster1} alt="Poster illustration" /><img src={assets.poster2} alt="Poster illustration" /></div></Reveal>
+            <Reveal><div className={local.lower}><img className={local.tall} src={assets.poster3} alt="Illustrated poster" /><div className={local.stack}><img src={assets.poster4} alt="Illustrated artwork" /><div className={local.poster5Crop}><img src={assets.poster5} alt="Illustrated artwork" /></div></div></div></Reveal>
+            <Reveal><div className={local.bottomPair}><img src={assets.poster7} alt="Illustrated poster" /><img src={assets.poster8} alt="Illustrated poster" /></div></Reveal>
           </div>
         </div>
       </article>
