@@ -319,14 +319,16 @@
 }
 .unimotorsDetailLeft .copyWide {
   margin: 0;
-  min-height: 147px;
   box-sizing: border-box;
   max-width: none;
 }
 .unimotorsMirror {
   /* Tuned so its bottom lines up with .unimotorsCard's, whose column
-     also carries the paragraph above it. */
-  aspect-ratio: 596/478;
+     also carries the paragraph above it. min-height on that paragraph
+     used to be 147px - way past its real ~76px, which pushed this
+     ratio too low and dragged the paragraph's red border-left past
+     the end of the actual text. */
+  aspect-ratio: 596/546;
   clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
 }
 .unimotorsMirror img {

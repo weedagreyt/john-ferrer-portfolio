@@ -15,14 +15,14 @@
 .masonry {
   display: grid;
   grid-template-columns: 552fr 653fr;
-  gap: 35px;
+  gap: 34px;
   align-items: start;
 }
 .leftCol,
 .rightArea,
 .stack {
   display: grid;
-  gap: 33px;
+  gap: 34px;
 }
 .leftCol img,
 .rightArea img,
@@ -33,31 +33,34 @@
   display: block;
   border-radius: 12px;
 }
+/* Every gap in this masonry - between columns, between rows, and between
+   images within a row - is the same size (per the Figma reference),
+   rather than each pair carrying its own one-off value. */
 .topPair {
   display: grid;
   grid-template-columns: 346fr 278fr;
-  gap: 29px;
+  gap: 34px;
   align-items: start;
 }
 .midPair {
   display: grid;
   grid-template-columns: 317fr 315fr;
-  gap: 21px;
+  gap: 34px;
   align-items: start;
 }
 .lower {
   display: grid;
   grid-template-columns: 361fr 262fr;
-  gap: 30px;
+  gap: 34px;
   align-items: start;
 }
 .lower .stack {
-  gap: 30px;
+  gap: 34px;
 }
 .bottomPair {
   display: grid;
   grid-template-columns: 298fr 319fr;
-  gap: 36px;
+  gap: 34px;
   align-items: start;
 }
 .tall {
@@ -118,7 +121,7 @@
   .midPair,
   .lower,
   .bottomPair {
-    gap: 16px;
+    gap: 20px;
   }
 }
 @media (max-width: 650px) {
@@ -136,7 +139,7 @@
   .lower,
   .bottomPair {
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    gap: 18px;
   }
 }
 
