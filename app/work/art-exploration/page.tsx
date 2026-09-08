@@ -18,8 +18,10 @@ const assets = {
   pgLogoPoster: "/work/art-exploration/pg-logo-poster.jpg",
   donut: "/work/art-exploration/donut.jpg",
   poster1: "/work/art-exploration/poster-1.jpg",
-  rainbow: "/work/art-exploration/rainbow.jpg",
-  unicorn2: "/work/art-exploration/unicorn-2.jpg",
+  rainbowVideo: "/work/art-exploration/rainbow.mp4",
+  rainbowPoster: "/work/art-exploration/rainbow-poster.jpg",
+  unicorn2Video: "/work/art-exploration/unicorn-2.mp4",
+  unicorn2Poster: "/work/art-exploration/unicorn-2-poster.jpg",
   unicorn1: "/work/art-exploration/unicorn-1.jpg",
   portrait: "/work/art-exploration/portrait.jpg",
   poster2: "/work/art-exploration/poster-2.jpg",
@@ -57,8 +59,8 @@ export default function ArtExplorationPage() {
         <div className={local.masonry}>
           <div className={local.leftCol}>
             <Reveal><img src={assets.donut} alt="3D donut artwork" /></Reveal>
-            <Reveal><img src={assets.unicorn2} alt="3D unicorn artwork" /></Reveal>
-            <Reveal><img src={assets.rainbow} alt="Rainbow illustration" /></Reveal>
+            <Reveal><AutoplayVideo src={assets.unicorn2Video} poster={assets.unicorn2Poster} alt="3D unicorn artwork" /></Reveal>
+            <Reveal><AutoplayVideo src={assets.rainbowVideo} poster={assets.rainbowPoster} alt="Rainbow illustration" /></Reveal>
             <Reveal><div className={local.poster6Crop}><img src={assets.poster6} alt="Illustrated portrait artwork" /></div></Reveal>
           </div>
           <div className={local.rightArea}>

@@ -25,7 +25,9 @@
   gap: 33px;
 }
 .leftCol img,
-.rightArea img {
+.rightArea img,
+.leftCol video,
+.rightArea video {
   width: 100%;
   height: auto;
   display: block;
