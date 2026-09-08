@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState, type CSSProperties } from "re
 import { siteAssets } from "../lib/portfolio";
 
 const TOTAL_MS = 4400;
-const INTRO_VERSION = "jf:intro:v12";
+const INTRO_VERSION = "jf:intro:v13";
 
 const projectScenes = [
   {
@@ -17,13 +17,14 @@ const projectScenes = [
     y0: "2.5%",
     x1: "-4%",
     y1: "-2%",
-    s0: "1.04",
-    s1: "1.1",
+    s0: "1.01",
+    s1: "1.035",
     r0: "-0.45deg",
     r1: "0.18deg",
   },
   {
     src: "/intro/scene-02.jpg",
+    videoSrc: "/work/art-exploration/unicorn-2.mp4",
     delay: 1.12,
     duration: 0.88,
     position: "48% 48%",
@@ -32,8 +33,8 @@ const projectScenes = [
     y0: "-1%",
     x1: "3.5%",
     y1: "2.5%",
-    s0: "1.06",
-    s1: "1.1",
+    s0: "1.01",
+    s1: "1.035",
     r0: "0.35deg",
     r1: "-0.18deg",
   },
@@ -47,13 +48,13 @@ const projectScenes = [
     y0: "-2%",
     x1: "-2.5%",
     y1: "1.5%",
-    s0: "1.08",
-    s1: "1.04",
+    s0: "1.015",
+    s1: "1.035",
     r0: "-0.2deg",
     r1: "0.12deg",
   },
   {
-    src: "/work/unimotors/card.jpg",
+    src: "/work/thumbs/unimotors.jpg",
     delay: 2.34,
     duration: 0.86,
     position: "50% 50%",
@@ -62,8 +63,8 @@ const projectScenes = [
     y0: "2%",
     x1: "4%",
     y1: "-1.5%",
-    s0: "1.05",
-    s1: "1.1",
+    s0: "1.01",
+    s1: "1.035",
     r0: "0.35deg",
     r1: "-0.15deg",
   },
@@ -118,6 +119,10 @@ function preloadImage(src: string) {
   });
 }
 
+function preloadScene(scene: (typeof projectScenes)[number]) {
+  return "videoSrc" in scene ? Promise.resolve() : preloadImage(sceneSource(scene));
+}
+
 function sceneSource(scene: (typeof projectScenes)[number]) {
   return "mobileSrc" in scene && window.matchMedia("(max-width:760px)").matches
     ? scene.mobileSrc
@@ -160,7 +165,7 @@ export default function IntroSequence() {
     }
 
     let cancelled = false;
-    const critical = Promise.all(projectScenes.map((scene) => preloadImage(sceneSource(scene))));
+    const critical = Promise.all(projectScenes.map(preloadScene));
     const timeout = new Promise<"timeout">((resolve) => {
       window.setTimeout(() => resolve("timeout"), 2500);
     });
@@ -269,10 +274,14 @@ export default function IntroSequence() {
         <div className="jf-intro__scenes">
           {projectScenes.map((scene, index) => (
             <figure className="jf-intro__scene" data-mobile-framed={"mobileSrc" in scene ? "true" : undefined} style={sceneStyle(scene)} key={scene.src}>
-              <picture>
-                {"mobileSrc" in scene && <source media="(max-width:760px)" srcSet={scene.mobileSrc} />}
-                <img src={scene.src} alt="" style={{ objectPosition: scene.position }} />
-              </picture>
+              {"videoSrc" in scene ? (
+                <video src={scene.videoSrc} autoPlay loop muted playsInline preload="auto" />
+              ) : (
+                <picture>
+                  {"mobileSrc" in scene && <source media="(max-width:760px)" srcSet={scene.mobileSrc} />}
+                  <img src={scene.src} alt="" style={{ objectPosition: scene.position }} />
+                </picture>
+              )}
               <span className="jf-intro__scene-index">0{index + 1}</span>
             </figure>
           ))}
@@ -436,7 +445,8 @@ const INTRO_CSS = String.raw`
   transform-origin:center;
   will-change:transform,opacity;
 }
-.jf-intro__scene img{
+.jf-intro__scene img,
+.jf-intro__scene video{
   position:absolute;
   inset:0;
   width:100%;
@@ -612,6 +622,7 @@ const INTRO_CSS = String.raw`
   .jf-intro__ignition-copy{font-size:7px;letter-spacing:.18em}
   .jf-intro__scene{inset:-8%}
   .jf-intro .jf-intro__scene img{object-position:var(--mobile-position)!important}
+  .jf-intro .jf-intro__scene video{object-position:50% 50%!important}
   /* Keep the supplied mobile artwork intact inside the visible viewport. */
   .jf-intro__scene[data-mobile-framed]{inset:0 10vw;background:#030405}
   .jf-intro--play .jf-intro__scene[data-mobile-framed]{animation-name:jfMobileFramedScene}
