@@ -428,3 +428,54 @@ header a[href="/"]::after,
 @supports not (animation-timeline: view()) {
   .experience-home-item { animation: none; opacity: 1; transform: none; }
 }
+
+/* Journey alignment: one fixed rail and compact content rows. */
+.experience-home-track {
+  --journey-rail: 220px;
+  width: 100%;
+  margin: 0;
+}
+.experience-home-track::before { left: var(--journey-rail); }
+.experience-home-item,
+.experience-home-item:not(:last-child) {
+  grid-template-columns: 196px minmax(0,1fr);
+  grid-template-rows: auto auto;
+  grid-template-areas: "index role" "date company";
+  column-gap: 64px;
+  row-gap: 10px;
+  align-content: start;
+  align-items: start;
+  min-height: 150px;
+  padding: 0 0 48px !important;
+  opacity: 1;
+  transform: none;
+  animation: none;
+}
+.experience-home-item:last-child { min-height: 0; padding-bottom: 0 !important; }
+.experience-home-index { font-size: 42px; line-height: 1; color: #8e9093; }
+.experience-home-item h3 { margin: 0 !important; line-height: 1.1 !important; padding-top: 3px; }
+.experience-home-item p { line-height: 1.5 !important; }
+.experience-home-item time { margin: 0; line-height: 1.5; }
+.experience-home-dot { left: calc(var(--journey-rail) - 6px) !important; top: 12px !important; }
+.experience-home-item::after { left: var(--journey-rail); top: 18px; width: 28px; transform: none; }
+.experience-home-item:hover { transform: none; }
+.experience-home-item:hover::after { transform: none; }
+.experience-home-item:hover .experience-home-index { color: #ef171f; }
+@media(max-width:820px) {
+  .experience-home-track { --journey-rail: 6px; }
+  .experience-home-item,
+  .experience-home-item:not(:last-child) {
+    grid-template-columns: 40px minmax(0,1fr);
+    grid-template-areas: "index date" "index role" "index company";
+    column-gap: 18px;
+    row-gap: 8px;
+    min-height: 0;
+    padding: 0 0 40px 30px !important;
+  }
+  .experience-home-item:last-child { padding-bottom: 0 !important; }
+  .experience-home-index { font-size: 34px; line-height: 1; }
+  .experience-home-item h3 { padding-top: 0; font-size: 27px !important; }
+  .experience-home-item time { margin: 0; }
+  .experience-home-dot { top: 5px !important; }
+  .experience-home-item::after { top: 11px; width: 16px; }
+}
