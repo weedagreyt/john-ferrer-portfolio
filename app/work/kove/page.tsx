@@ -3,6 +3,7 @@ import SiteNav from "../../components/SiteNav";
 import SiteFooter from "../../components/SiteFooter";
 import Reveal from "../../components/Reveal";
 import CaseStudyStory from "../../components/CaseStudyStory";
+import CaseStudyCta from "../../components/CaseStudyCta";
 import styles from "../case-study.module.css";
 
 export const metadata: Metadata = {
@@ -82,6 +83,7 @@ export default function KovePage() {
         </div>
       </article>
 
+      <Reveal><CaseStudyCta /></Reveal>
       <Reveal className={styles.next}><small>Next Project</small><a href="/work/unimotors"><h2>UNIMOTORS</h2><img src={assets.next} alt="" /></a></Reveal>
       <SiteFooter />
     </main>
