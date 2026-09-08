@@ -523,10 +523,10 @@
 .page.page {
   background-color: #050607 !important;
   background-image:
-    linear-gradient(180deg, rgba(5, 6, 7, .38) 0%, rgba(5, 6, 7, .72) 34%, #050607 1050px),
+    linear-gradient(180deg, rgba(5, 6, 7, .76) 0%, rgba(5, 6, 7, .94) 38%, #050607 650px),
     url('/bg-case-desktop.avif') !important;
   background-repeat: no-repeat !important;
-  background-size: 100% 1100px, auto 1100px !important;
+  background-size: 100% 700px, auto 700px !important;
   background-position: center top, center top !important;
 }
 .case img,
@@ -568,9 +568,26 @@
   }
   .page.page {
     background-image:
-      linear-gradient(180deg, rgba(5, 6, 7, .34) 0%, rgba(5, 6, 7, .78) 38%, #050607 920px),
+      linear-gradient(180deg, rgba(5, 6, 7, .8) 0%, rgba(5, 6, 7, .96) 38%, #050607 620px),
       url('/bg-build-mobile.avif') !important;
-    background-size: 100% 960px, cover !important;
+    background-size: 100% 660px, auto 660px !important;
     background-position: center top !important;
   }
+}
+
+/* Artwork retains its original color and sits on quiet, level surfaces. */
+.introRow::before, .introRow::after { display: none; }
+.case { min-width: 0; }
+.case > *, .introRow > *, .next a > * { min-width: 0; }
+.titleBlock h1, .next h2 { overflow-wrap: break-word; }
+.gallery img, .gallery img:hover { filter: none; transform: none; transition: none; }
+.gallery > div > div:hover { border-color: rgba(247,247,247,.08); box-shadow: none; }
+.case img { border-radius: 0 !important; }
+.case [class*="postcards"], .case [class*="printProducts"],
+.case [class*="targeted"], .case [class*="rollup"],
+.case [class*="Crop"] { border-radius: 0; }
+@media(max-width:650px) {
+  .titleBlock h1 { font-size: clamp(32px,9vw,39px); }
+  .next h2 { font-size: clamp(27px,8vw,34px); }
+  .next img { flex-shrink: 0; }
 }

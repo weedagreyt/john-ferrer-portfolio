@@ -45,3 +45,10 @@
   .productionRow, .socialRow { grid-template-columns: 1fr; gap: 18px; }
   .productionRow .rollup { grid-column: auto; max-width: none; }
 }
+
+/* Keep the mascot inside the same content boundary as the print work. */
+.intro { gap: 28px; }
+.leadGrid { width: 100%; gap: 28px; grid-template-columns: minmax(0,1.35fr) minmax(0,1fr); align-items: center; }
+.mascot { margin-top: 0; }
+.intro > *, .leadGrid > *, .productionRow > *, .brochureRow > *, .socialRow > * { min-width: 0; }
+@media(max-width:900px) { .leadGrid { grid-template-columns: minmax(0,1fr); gap: 22px; } }

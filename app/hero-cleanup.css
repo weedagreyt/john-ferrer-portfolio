@@ -419,3 +419,12 @@ header a[href="/"]::after,
     background-position: center !important;
   }
 }
+
+/* Preserve the portrait scale while keeping its head below the frame edge. */
+@media(min-width:761px) {
+  .race-home .hero-portrait { top: 50px !important; }
+}
+/* Fully readable timeline fallback where scroll-driven animations are unavailable. */
+@supports not (animation-timeline: view()) {
+  .experience-home-item { animation: none; opacity: 1; transform: none; }
+}

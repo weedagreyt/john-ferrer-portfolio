@@ -11,7 +11,7 @@ type Props = {
 
 export default function Reveal({ children, className = "", delay = 0 }: Props) {
   const ref = useRef<HTMLDivElement | null>(null);
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     const node = ref.current;
@@ -23,6 +23,10 @@ export default function Reveal({ children, className = "", delay = 0 }: Props) {
       return;
     }
 
+    // Content stays readable before hydration; only animate sections below the fold.
+    if (node.getBoundingClientRect().top < window.innerHeight) return;
+    setVisible(false);
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -30,7 +34,7 @@ export default function Reveal({ children, className = "", delay = 0 }: Props) {
           observer.disconnect();
         }
       },
-      { threshold: 0.12, rootMargin: "-4% 0px -8%" },
+      { threshold: 0, rootMargin: "0px 0px -24px" },
     );
 
     observer.observe(node);

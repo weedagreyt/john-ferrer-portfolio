@@ -321,3 +321,15 @@
     padding: 24px 24px 28px;
   }
 }
+
+/* Text stays inside the slanted edge, including on narrow touch screens. */
+.cardCopy { padding-left: max(9%,32px); padding-right: max(9%,32px); }
+.cardCopy h2 { overflow-wrap: normal; font-size: clamp(30px,3.2vw,46px); }
+@media(max-width:780px) {
+  .cardCopy { padding: 24px max(8%,26px) 28px; }
+  .cardCopy h2 { font-size: clamp(27px,8vw,42px); }
+}
+@media(hover:none) {
+  .cardCopy { transform: none; }
+  .cardCopy > span, .cardCopy b, .cardGradient { opacity: 1; }
+}
