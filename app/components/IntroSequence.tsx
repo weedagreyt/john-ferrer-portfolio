@@ -291,14 +291,22 @@ export default function IntroSequence() {
       </div>
 
       <svg className="jf-intro__line" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <filter id="jfLineTexture" x="-40%" y="-200%" width="180%" height="500%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.06 0.02" numOctaves="2" seed="17" result="n" />
+            <feDisplacementMap in="SourceGraphic" in2="n" scale="1.6" xChannelSelector="R" yChannelSelector="G" />
+          </filter>
+        </defs>
         <path
           className="jf-intro__line-glow"
           pathLength="100"
+          filter="url(#jfLineTexture)"
           d="M -8 82 C 12 72, 18 34, 42 44 S 68 78, 108 18"
         />
         <path
           className="jf-intro__line-core"
           pathLength="100"
+          filter="url(#jfLineTexture)"
           d="M -8 82 C 12 72, 18 34, 42 44 S 68 78, 108 18"
         />
       </svg>
@@ -471,11 +479,11 @@ const INTRO_CSS = String.raw`
   position:absolute;
   z-index:3;
   left:-18%;
-  top:14%;
+  top:8%;
   width:136%;
-  height:22px;
-  filter:blur(9px);
-  background:linear-gradient(90deg,transparent,rgba(240,24,32,.34),rgba(255,214,212,.6),rgba(240,24,32,.34),transparent);
+  height:60px;
+  background:url(/intro/beam-streak-h.svg) center/100% 100% no-repeat;
+  mix-blend-mode:screen;
   transform:rotate(-17deg) translate3d(-35%,0,0);
   opacity:0;
 }
@@ -552,30 +560,18 @@ const INTRO_CSS = String.raw`
 .jf-intro__occluder{
   position:absolute;
   z-index:90;
-  left:-36vw;
+  left:-40vw;
   top:-48vh;
-  width:clamp(160px,18vw,320px);
+  width:clamp(220px,26vw,460px);
   height:200vh;
   opacity:0;
-  filter:blur(22px);
   transform:rotate(-17deg) translate3d(-40vw,0,0);
-  background:linear-gradient(90deg,transparent,rgba(240,24,32,.04) 34%,rgba(240,36,42,.24) 47%,rgba(255,150,146,.32) 50%,rgba(240,36,42,.24) 53%,rgba(240,24,32,.04) 66%,transparent);
+  background:url(/intro/beam-streak.svg) center/100% 100% no-repeat;
+  mix-blend-mode:screen;
   pointer-events:none;
   will-change:transform,opacity;
 }
-.jf-intro__occluder i{
-  position:absolute;
-  left:50%;
-  top:0;
-  width:2px;
-  height:100%;
-  background:rgba(255,240,238,.9);
-  box-shadow:
-    0 0 6px rgba(255,255,255,.9),
-    0 0 22px rgba(255,255,255,.5),
-    0 0 60px rgba(240,24,32,.65),
-    0 0 130px rgba(240,24,32,.32);
-}
+.jf-intro__occluder i{display:none}
 .jf-intro--play .jf-intro__occluder{animation:jfOccluder .76s cubic-bezier(.72,0,.18,1) 3.48s both}
 .jf-intro__hero-flare{
   position:absolute;
