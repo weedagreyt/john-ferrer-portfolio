@@ -473,9 +473,9 @@ const INTRO_CSS = String.raw`
   left:-18%;
   top:14%;
   width:136%;
-  height:3px;
-  background:linear-gradient(90deg,transparent,rgba(240,24,32,.88),rgba(255,255,255,.88),transparent);
-  box-shadow:0 0 18px rgba(240,24,32,.72);
+  height:22px;
+  filter:blur(9px);
+  background:linear-gradient(90deg,transparent,rgba(240,24,32,.34),rgba(255,214,212,.6),rgba(240,24,32,.34),transparent);
   transform:rotate(-17deg) translate3d(-35%,0,0);
   opacity:0;
 }
@@ -545,8 +545,8 @@ const INTRO_CSS = String.raw`
   stroke-dashoffset:100;
   opacity:0;
 }
-.jf-intro__line-glow{stroke:#f01820;stroke-width:10;opacity:0}
-.jf-intro__line-core{stroke:#ff2730;stroke-width:2.2}
+.jf-intro__line-glow{stroke:#f01820;stroke-width:20;opacity:0;filter:blur(6px)}
+.jf-intro__line-core{stroke:rgba(255,164,164,.82);stroke-width:1.1;filter:blur(.3px)}
 .jf-intro--play .jf-intro__line-glow{animation:jfLineGlow 4.4s linear both}
 .jf-intro--play .jf-intro__line-core{animation:jfLineCore 4.4s linear both}
 .jf-intro__occluder{
@@ -554,12 +554,12 @@ const INTRO_CSS = String.raw`
   z-index:90;
   left:-36vw;
   top:-48vh;
-  width:clamp(110px,12vw,210px);
+  width:clamp(160px,18vw,320px);
   height:200vh;
   opacity:0;
+  filter:blur(18px);
   transform:rotate(-17deg) translate3d(-40vw,0,0);
-  background:linear-gradient(90deg,transparent,rgba(240,24,32,.14),#f01820 43%,#fff 50%,#f01820 57%,rgba(240,24,32,.12),transparent);
-  box-shadow:0 0 50px rgba(240,24,32,.5),0 0 110px rgba(240,24,32,.25);
+  background:linear-gradient(90deg,transparent,rgba(240,24,32,.06) 30%,rgba(240,36,42,.34) 46%,rgba(255,214,212,.5) 50%,rgba(240,36,42,.34) 54%,rgba(240,24,32,.06) 70%,transparent);
   pointer-events:none;
   will-change:transform,opacity;
 }
@@ -567,10 +567,10 @@ const INTRO_CSS = String.raw`
   position:absolute;
   left:50%;
   top:0;
-  width:2px;
+  width:1px;
   height:100%;
-  background:#fff;
-  box-shadow:0 0 12px #fff,0 0 30px #f01820;
+  background:rgba(255,255,255,.6);
+  box-shadow:0 0 24px rgba(255,255,255,.5),0 0 60px rgba(240,24,32,.35);
 }
 .jf-intro--play .jf-intro__occluder{animation:jfOccluder .76s cubic-bezier(.72,0,.18,1) 3.48s both}
 .jf-intro__hero-flare{

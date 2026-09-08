@@ -1,37 +1,33 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1100" preserveAspectRatio="xMidYMid slice">
 <defs>
-  <radialGradient id="halo" cx="76%" cy="34%" r="34%"><stop offset="0" stop-color="#ff242b" stop-opacity=".82"/><stop offset=".2" stop-color="#d20b12" stop-opacity=".42"/><stop offset=".48" stop-color="#650006" stop-opacity=".14"/><stop offset="1" stop-color="#050607" stop-opacity="0"/></radialGradient>
-  <radialGradient id="shoulder" cx="68%" cy="67%" r="34%"><stop offset="0" stop-color="#b8080e" stop-opacity=".20"/><stop offset=".55" stop-color="#430003" stop-opacity=".07"/><stop offset="1" stop-color="#050607" stop-opacity="0"/></radialGradient>
-  <linearGradient id="slash" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2a0003" stop-opacity=".06"/><stop offset=".25" stop-color="#6e0308" stop-opacity=".28"/><stop offset=".52" stop-color="#e7121a" stop-opacity=".82"/><stop offset=".66" stop-color="#8c050b" stop-opacity=".36"/><stop offset="1" stop-color="#190001" stop-opacity="0"/></linearGradient>
-  <linearGradient id="beam" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#ff1b22" stop-opacity="0"/><stop offset=".35" stop-color="#ff1b22" stop-opacity=".24"/><stop offset=".53" stop-color="#ff252b"/><stop offset=".57" stop-color="#fff5f5"/><stop offset=".60" stop-color="#ff252b"/><stop offset=".76" stop-color="#87070c" stop-opacity=".32"/><stop offset="1" stop-color="#ff1b22" stop-opacity="0"/></linearGradient>
-  <filter id="blur36"><feGaussianBlur stdDeviation="36"/></filter>
+  <radialGradient id="halo" cx="76%" cy="32%" r="46%"><stop offset="0" stop-color="#ff272d" stop-opacity=".58"/><stop offset=".22" stop-color="#c8090f" stop-opacity=".32"/><stop offset=".5" stop-color="#560005" stop-opacity=".12"/><stop offset="1" stop-color="#050607" stop-opacity="0"/></radialGradient>
+  <radialGradient id="shoulder" cx="66%" cy="70%" r="42%"><stop offset="0" stop-color="#9a070c" stop-opacity=".16"/><stop offset=".55" stop-color="#3a0003" stop-opacity=".06"/><stop offset="1" stop-color="#050607" stop-opacity="0"/></radialGradient>
+  <linearGradient id="flare" x1="0" y1="1" x2="1" y2="0">
+    <stop offset="0" stop-color="#ff2028" stop-opacity="0"/>
+    <stop offset=".42" stop-color="#e21620" stop-opacity=".22"/>
+    <stop offset=".56" stop-color="#ff9a96" stop-opacity=".5"/>
+    <stop offset=".7" stop-color="#c40e14" stop-opacity=".18"/>
+    <stop offset="1" stop-color="#ff2028" stop-opacity="0"/>
+  </linearGradient>
+  <radialGradient id="vignette" cx="50%" cy="46%" r="72%"><stop offset="0" stop-color="#050607" stop-opacity="0"/><stop offset=".72" stop-color="#050607" stop-opacity="0"/><stop offset="1" stop-color="#020203" stop-opacity=".62"/></radialGradient>
+  <filter id="blur60"><feGaussianBlur stdDeviation="60"/></filter>
+  <filter id="blur34"><feGaussianBlur stdDeviation="34"/></filter>
   <filter id="blur12"><feGaussianBlur stdDeviation="12"/></filter>
-  <filter id="glow"><feGaussianBlur stdDeviation="4.5"/></filter>
-  <filter id="noise" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".72" numOctaves="2" seed="9"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 .045"/></feComponentTransfer></filter>
+  <filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="7"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 .05"/></feComponentTransfer></filter>
 </defs>
+
 <rect width="1800" height="1100" fill="#050607"/>
 <rect width="1800" height="1100" fill="url(#halo)"/>
 <rect width="1800" height="1100" fill="url(#shoulder)"/>
-<g transform="rotate(-17 1420 520)">
-  <rect x="1235" y="-340" width="118" height="1760" fill="#310105" opacity=".28"/>
-  <rect x="1332" y="-340" width="28" height="1760" fill="#a6090f" opacity=".48"/>
-  <rect x="1380" y="-340" width="12" height="1760" fill="#ff1c24" opacity=".94"/>
-  <rect x="1438" y="-340" width="210" height="1760" fill="url(#slash)" opacity=".76"/>
-  <rect x="1665" y="-340" width="18" height="1760" fill="#df1017" opacity=".58"/>
-</g>
-<ellipse cx="1360" cy="375" rx="300" ry="255" fill="#e11218" opacity=".16" filter="url(#blur36)"/>
-<path d="M-150 1035 C280 850 600 920 955 715 S1460 300 1900 135" fill="none" stroke="url(#beam)" stroke-width="24" opacity=".66" filter="url(#blur12)"/>
-<path d="M-150 1027 C280 842 600 912 955 707 S1460 292 1900 127" fill="none" stroke="#ff232b" stroke-width="2.5" opacity=".94"/>
-<path d="M40 970 C410 855 690 855 980 670" fill="none" stroke="#8d070c" stroke-width="7" opacity=".25" filter="url(#glow)"/>
-<g stroke="#ff2a31" fill="none"><path d="M720 930 1340 610" opacity=".18"/><path d="M900 1000 1490 690" opacity=".10"/><path d="M1210 260 1770 60" opacity=".20"/></g>
 
-<!-- restrained lower-city silhouette to extend the reference composition -->
-<g transform="translate(0 825)" opacity=".9">
-  <path d="M0 192V120h32v-22h28v24h34V83h22v39h28v-58h34v58h31v-25h27v25h38v-77h29v77h31v-42h26v42h42v-93h36v93h26v-38h24v38h46v-64h31v64h35v-32h27v32h44v70H0z" fill="#050607"/>
-  <g fill="#c20d14" opacity=".38"><rect x="103" y="95" width="3" height="7"/><rect x="163" y="84" width="3" height="7"/><rect x="293" y="74" width="3" height="7"/><rect x="392" y="51" width="3" height="7"/><rect x="502" y="78" width="3" height="7"/><rect x="611" y="101" width="3" height="7"/></g>
+<g transform="rotate(-14 1400 480)" filter="url(#blur60)">
+  <rect x="1140" y="-420" width="420" height="1940" fill="url(#flare)" opacity=".85"/>
 </g>
-<path d="M-60 1020 C130 950 300 950 515 980" fill="none" stroke="#f32027" stroke-width="3" opacity=".58" filter="url(#glow)"/>
-<path d="M-80 1042 C160 984 315 991 580 1018" fill="none" stroke="#65070a" stroke-width="12" opacity=".38" filter="url(#blur12)"/>
+<ellipse cx="1350" cy="360" rx="340" ry="270" fill="#e11218" opacity=".14" filter="url(#blur60)"/>
 
-<rect width="1800" height="1100" filter="url(#noise)" opacity=".38"/>
+<path d="M-150 1035 C280 850 600 920 955 715 S1460 300 1900 135" fill="none" stroke="#ff232b" stroke-width="30" opacity=".16" filter="url(#blur34)"/>
+<path d="M-150 1030 C280 845 600 915 955 710 S1460 296 1900 130" fill="none" stroke="#ff5257" stroke-width="1.4" opacity=".5" filter="url(#blur12)"/>
+
+<rect width="1800" height="1100" fill="url(#vignette)"/>
+<rect width="1800" height="1100" filter="url(#grain)" opacity=".3"/>
 </svg>
