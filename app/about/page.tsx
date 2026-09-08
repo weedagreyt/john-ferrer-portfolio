@@ -1,9 +1,16 @@
+import type { Metadata } from "next";
 import SiteNav from "../components/SiteNav";
 import SiteFooter from "../components/SiteFooter";
 import Reveal from "../components/Reveal";
 import { ArrowIcon } from "../components/UiIcons";
 import { resumeUrl } from "../lib/portfolio";
 import styles from "./about.module.css";
+
+export const metadata: Metadata = {
+  title: "About — John Ferrer",
+  description:
+    "Self-taught graphic designer John Ferrer on his path from art to design — branding, campaigns, and visual storytelling shaped by a marketer's mindset.",
+};
 
 export default function AboutPage() {
   return (

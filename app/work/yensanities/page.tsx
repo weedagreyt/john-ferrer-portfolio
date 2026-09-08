@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import SiteNav from "../../components/SiteNav";
 import SiteFooter from "../../components/SiteFooter";
 import Reveal from "../../components/Reveal";
@@ -5,21 +6,27 @@ import CaseStudyStory from "../../components/CaseStudyStory";
 import styles from "../case-study.module.css";
 import local from "./yensanities.module.css";
 
+export const metadata: Metadata = {
+  title: "Yensanities — John Ferrer",
+  description:
+    "A bright tropical identity and flexible social system designed for a young swimwear audience.",
+};
+
 const assets = {
-  brandLogo: "https://www.figma.com/api/mcp/asset/ed3df94c-a2eb-42ec-b905-48d00af8f471.png",
-  cover: "https://www.figma.com/api/mcp/asset/2eeb50a0-b174-44e6-bfa0-d6a31cbd118b.png",
-  year2022: "https://www.figma.com/api/mcp/asset/e24866f4-2177-485f-ba7d-960a1ffb53df.png",
-  anniversary: "https://www.figma.com/api/mcp/asset/6ebb5c56-cac9-4d8c-8615-3fb82c4ec9b7.png",
-  bikini: "https://www.figma.com/api/mcp/asset/747b0096-884f-4d8d-8ac5-cd21bd3b754c.png",
-  summer: "https://www.figma.com/api/mcp/asset/a8bc06ab-5554-49fd-b43e-2a910492ce19.png",
-  watermelon: "https://www.figma.com/api/mcp/asset/15ccfa6b-a80d-4f34-97b0-e4b419bd7978.png",
-  swimming: "https://www.figma.com/api/mcp/asset/ac3e9e05-d6a4-46c4-b92b-8ed0709d6b72.png",
-  sizeChart: "https://www.figma.com/api/mcp/asset/50284b86-b442-4024-ae63-3b14a8610826.png",
-  song: "https://www.figma.com/api/mcp/asset/80bef956-4c85-4138-a794-7f5accfe5a2c.png",
-  sale: "https://www.figma.com/api/mcp/asset/b09d53f2-c12e-4fca-a2fe-2811890ef8b9.png",
-  image4: "https://www.figma.com/api/mcp/asset/64327711-c6ad-4202-a5e1-a07e7f925cbd.png",
-  image5: "https://www.figma.com/api/mcp/asset/9fb2a607-7cc4-417f-9e01-6974a57c9f79.png",
-  next: "https://www.figma.com/api/mcp/asset/104b1a9d-0139-47c6-9925-bb69397c39d5.svg",
+  brandLogo: "/work/yensanities/brand-logo.jpg",
+  cover: "/work/yensanities/cover.jpg",
+  year2022: "/work/yensanities/year-2022.jpg",
+  anniversary: "/work/yensanities/anniversary.jpg",
+  bikini: "/work/yensanities/bikini.jpg",
+  summer: "/work/yensanities/summer.jpg",
+  watermelon: "/work/yensanities/watermelon.jpg",
+  swimming: "/work/yensanities/swimming.jpg",
+  sizeChart: "/work/yensanities/size-chart.jpg",
+  song: "/work/yensanities/song.jpg",
+  sale: "/work/yensanities/sale.jpg",
+  image4: "/work/yensanities/image-4.jpg",
+  image5: "/work/yensanities/image-5.jpg",
+  next: "/work/yensanities/next.svg",
 };
 
 export default function YensanitiesPage() {

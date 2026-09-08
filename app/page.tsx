@@ -6,11 +6,10 @@ import SiteFooter from "./components/SiteFooter";
 import { projectSummaries, resumeUrl, siteAssets } from "./lib/portfolio";
 
 const assets = {
-  portrait: "https://www.figma.com/api/mcp/asset/444382a5-690d-483b-a881-9ec4956476c0.png",
   heroPortrait: "/hero-portrait-retina.avif",
-  kove: "https://www.figma.com/api/mcp/asset/a4f118aa-caf3-42cf-91e1-aae3af51fc05.png",
-  unimotors: "https://www.figma.com/api/mcp/asset/c0d21f3a-2bd4-4f1b-994f-f494084d10d2.png",
-  dope: "https://www.figma.com/api/mcp/asset/5d08bcf7-f229-4889-9d34-08401c51103e.png",
+  kove: "/work/thumbs/kove.jpg",
+  unimotors: "/work/thumbs/unimotors.jpg",
+  dope: "/work/thumbs/dope.jpg",
 };
 
 const projects = [

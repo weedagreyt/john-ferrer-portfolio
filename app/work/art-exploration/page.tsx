@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import SiteNav from "../../components/SiteNav";
 import SiteFooter from "../../components/SiteFooter";
 import Reveal from "../../components/Reveal";
@@ -5,22 +6,28 @@ import CaseStudyStory from "../../components/CaseStudyStory";
 import styles from "../case-study.module.css";
 import local from "./art.module.css";
 
+export const metadata: Metadata = {
+  title: "Art & Exploration — John Ferrer",
+  description:
+    "A self-directed creative lab for testing new ideas, tools and visual techniques beyond client work.",
+};
+
 const assets = {
-  pgLogo: "https://www.figma.com/api/mcp/asset/10c3177c-cf3d-4909-8da9-85c5ec5ab883.png",
-  donut: "https://www.figma.com/api/mcp/asset/e57047c5-8f6f-41f4-ad9b-802ae25c41f8.png",
-  poster1: "https://www.figma.com/api/mcp/asset/086b8519-2b2b-4984-b06d-1b4ed598162f.png",
-  rainbow: "https://www.figma.com/api/mcp/asset/967849af-18b1-484c-b048-13d0aa1be737.png",
-  unicorn2: "https://www.figma.com/api/mcp/asset/f81f69c7-caaa-4548-912e-deec98252487.png",
-  unicorn1: "https://www.figma.com/api/mcp/asset/8684d0a0-9d94-4c3c-99b6-9a17eda6b2ce.png",
-  portrait: "https://www.figma.com/api/mcp/asset/fcdd9bfc-c573-4114-9225-b606076e8996.png",
-  poster2: "https://www.figma.com/api/mcp/asset/1cb1eda5-a55c-4313-85d2-a98a5c50864a.png",
-  poster3: "https://www.figma.com/api/mcp/asset/7887b5c0-80a0-48c8-b29b-b7be5965b8b3.png",
-  poster4: "https://www.figma.com/api/mcp/asset/7289e13f-a6de-4c97-9c3b-ba3e781d31c5.png",
-  poster5: "https://www.figma.com/api/mcp/asset/e219da30-9376-4971-80c3-13ab9ae18e97.png",
-  poster6: "https://www.figma.com/api/mcp/asset/60d50d35-c98f-4da1-b58f-553722868526.png",
-  poster7: "https://www.figma.com/api/mcp/asset/56e5c623-cda4-4dcb-8928-7bdc0cdbcdea.png",
-  poster8: "https://www.figma.com/api/mcp/asset/a4dfe1e0-3613-4afe-aafb-2a9a10e4115f.png",
-  next: "https://www.figma.com/api/mcp/asset/354e5b17-f24b-409e-88ef-a4d923dbff96.svg",
+  pgLogo: "/work/art-exploration/pg-logo.jpg",
+  donut: "/work/art-exploration/donut.jpg",
+  poster1: "/work/art-exploration/poster-1.jpg",
+  rainbow: "/work/art-exploration/rainbow.jpg",
+  unicorn2: "/work/art-exploration/unicorn-2.jpg",
+  unicorn1: "/work/art-exploration/unicorn-1.jpg",
+  portrait: "/work/art-exploration/portrait.jpg",
+  poster2: "/work/art-exploration/poster-2.jpg",
+  poster3: "/work/art-exploration/poster-3.jpg",
+  poster4: "/work/art-exploration/poster-4.jpg",
+  poster5: "/work/art-exploration/poster-5.jpg",
+  poster6: "/work/art-exploration/poster-6.jpg",
+  poster7: "/work/art-exploration/poster-7.jpg",
+  poster8: "/work/art-exploration/poster-8.jpg",
+  next: "/work/art-exploration/next.svg",
 };
 
 export default function ArtExplorationPage() {

@@ -8,7 +8,7 @@ const INTRO_VERSION = "jf:intro:v11";
 
 const projectScenes = [
   {
-    src: "https://www.figma.com/api/mcp/asset/0b093f40-9db8-4e28-94d1-3d0f70f9b02a.png",
+    src: "/intro/scene-01.jpg",
     delay: 0.52,
     duration: 0.92,
     position: "52% 50%",
@@ -23,7 +23,7 @@ const projectScenes = [
     r1: "0.18deg",
   },
   {
-    src: "https://www.figma.com/api/mcp/asset/f00753b7-021b-409e-8319-3853d25d6864.png",
+    src: "/intro/scene-02.jpg",
     delay: 1.12,
     duration: 0.88,
     position: "48% 48%",
@@ -38,7 +38,7 @@ const projectScenes = [
     r1: "-0.18deg",
   },
   {
-    src: "https://www.figma.com/api/mcp/asset/5875dd2d-14aa-4675-ae0b-a3602f9564c5.png",
+    src: "/intro/scene-03.jpg",
     delay: 1.74,
     duration: 0.9,
     position: "54% 50%",
@@ -53,7 +53,7 @@ const projectScenes = [
     r1: "0.12deg",
   },
   {
-    src: "https://www.figma.com/api/mcp/asset/c0d21f3a-2bd4-4f1b-994f-f494084d10d2.png",
+    src: "/work/thumbs/unimotors.jpg",
     delay: 2.34,
     duration: 0.86,
     position: "50% 50%",
@@ -68,7 +68,7 @@ const projectScenes = [
     r1: "-0.15deg",
   },
   {
-    src: "https://www.figma.com/api/mcp/asset/87e28bf9-578b-4500-8862-f82e3cabd110.png",
+    src: "/intro/scene-05.jpg",
     mobileSrc: "/retrophorics-mobile-intro.jpg",
     delay: 2.9,
     duration: 0.96,

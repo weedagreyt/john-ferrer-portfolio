@@ -1,22 +1,29 @@
+import type { Metadata } from "next";
 import SiteNav from "../../components/SiteNav";
 import SiteFooter from "../../components/SiteFooter";
 import Reveal from "../../components/Reveal";
 import CaseStudyStory from "../../components/CaseStudyStory";
 import styles from "../case-study.module.css";
 
+export const metadata: Metadata = {
+  title: "KOVE — John Ferrer",
+  description:
+    "A bold, premium identity for a café + car wash, shaped by industrial cues and extended into event campaigns.",
+};
+
 const assets = {
-  brandLogo: "https://www.figma.com/api/mcp/asset/6bbc0805-89e2-4d1b-b3d1-b8973354a9f2.png",
-  hero: "https://www.figma.com/api/mcp/asset/e6146070-4f97-4e23-b368-71c3657ba4b9.png",
-  moodboards: "https://www.figma.com/api/mcp/asset/58e6085f-6946-470a-9b23-e1d3e8de98b7.png",
-  moodPhoto: "https://www.figma.com/api/mcp/asset/988c38e0-f017-4cda-9845-d36fc6bd9a7d.png",
-  product: "https://www.figma.com/api/mcp/asset/c3a1dfee-11d5-4946-aaad-af6ccc7556b7.png",
-  exterior: "https://www.figma.com/api/mcp/asset/74ebebf6-40fb-495f-a846-17b1f1078773.png",
-  poster: "https://www.figma.com/api/mcp/asset/2d71a627-31a6-4661-a57a-2e0bd9145124.png",
-  eventPhoto: "https://www.figma.com/api/mcp/asset/a46d7f4d-4257-4ffe-b995-a06b9169689f.png",
-  countdown: "https://www.figma.com/api/mcp/asset/3bba8acb-717a-4ebd-8362-4f21bd660d3f.png",
-  photobooth: "https://www.figma.com/api/mcp/asset/8c8f3321-3285-4740-b24e-5276d421f908.png",
-  eventDetail: "https://www.figma.com/api/mcp/asset/2c6c591a-f74a-4198-9f7b-0c5f4e5cbeb1.png",
-  next: "https://www.figma.com/api/mcp/asset/1ad79bf8-f49c-4cdb-8a27-ffdfb7a5ce7f.svg",
+  brandLogo: "/work/kove/brand-logo.png",
+  hero: "/work/kove/hero.jpg",
+  moodboards: "/work/kove/moodboards.jpg",
+  moodPhoto: "/work/kove/mood-photo.jpg",
+  product: "/work/kove/product.jpg",
+  exterior: "/work/kove/exterior.jpg",
+  poster: "/work/kove/poster.jpg",
+  eventPhoto: "/work/kove/event-photo.jpg",
+  countdown: "/work/kove/countdown.jpg",
+  photobooth: "/work/kove/photobooth.jpg",
+  eventDetail: "/work/kove/event-detail.jpg",
+  next: "/work/kove/next.svg",
 };
 
 export default function KovePage() {
