@@ -65,13 +65,10 @@
    paired/stacked images can stretch evenly without leaving a gap. */
 .cropFill {
   position: relative;
+  width: 100%;
   overflow: hidden;
   border-radius: 12px;
   background: #171819;
-  /* Fallback size below 1000px, where rightArea isn't stretched to match
-     leftCol and these boxes aren't given an explicit height — overridden
-     (moot) once an explicit height applies at 651px+. */
-  aspect-ratio: 4 / 5;
 }
 .rightArea .cropFill img {
   position: absolute;
@@ -160,6 +157,17 @@
   .bottomPair {
     grid-template-columns: 1fr 1fr;
     gap: 12px;
+  }
+  /* Below this width .masonry stacks to one column, so rightArea is never
+     stretched to match leftCol's height (that only runs at 651px+) — these
+     boxes need their own fallback size instead of relying on stretch. */
+  .cropFill {
+    aspect-ratio: 4 / 5;
+  }
+  /* .lower .stack's cropFill is always flex-sized instead (see base rules),
+     so it must not pick up the fallback above. */
+  .lower .stack > .cropFill {
+    aspect-ratio: auto;
   }
 }
 
