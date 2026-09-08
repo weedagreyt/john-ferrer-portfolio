@@ -142,18 +142,3 @@
     gap: 18px;
   }
 }
-
-/* Keep every image at its natural, uncropped size. Any leftover height
-   between rightArea's four natural-sized rows and leftCol's total height
-   is distributed as extra breathing room between the rows (not by
-   resizing or cropping any image) via align-content:space-between. */
-@media (min-width: 651px) {
-  .masonry {
-    align-items: stretch;
-  }
-  .rightArea {
-    height: 100%;
-    grid-template-rows: repeat(4, auto);
-    align-content: space-between;
-  }
-}
