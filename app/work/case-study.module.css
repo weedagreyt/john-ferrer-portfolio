@@ -295,7 +295,8 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  /* contain, not cover: shows the full artwork, never crops into it */
+  object-fit: contain;
   border-radius: 0;
 }
 .unimotorsHero {
