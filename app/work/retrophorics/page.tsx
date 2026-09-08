@@ -3,15 +3,15 @@ import SiteNav from "../../components/SiteNav";
 import SiteFooter from "../../components/SiteFooter";
 import Reveal from "../../components/Reveal";
 import CaseStudyStory from "../../components/CaseStudyStory";
-import { PlayIcon } from "../../components/UiIcons";
+import CaseVideo from "./CaseVideo";
 import styles from "../case-study.module.css";
+import local from "./retrophorics.module.css";
 
 export const metadata: Metadata = {
   title: "Retrophorics — John Ferrer",
   description:
     "A retro-fashion identity combining bold typography, collage, campaign art and social storytelling.",
 };
-import local from "./retrophorics.module.css";
 
 const assets = {
   hero: "/work/retrophorics/hero.jpg",
@@ -31,19 +31,10 @@ const assets = {
   denim: "/work/retrophorics/denim.jpg",
   express: "/work/retrophorics/express.jpg",
   next: "/work/retrophorics/next.svg",
+  brandFilmVideo: "/work/retrophorics/brand-film.mp4",
 };
 
 const characterTiles = [assets.sexy, assets.flirty, assets.business, assets.rockabilly, assets.hippy, assets.posh];
-
-function VideoPlaceholder({ src, alt, label, className = "" }: { src: string; alt: string; label: string; className?: string }) {
-  return (
-    <div className={`${local.videoStill} ${className}`}>
-      <img src={src} alt={alt} />
-      <span className={local.play} aria-hidden="true"><PlayIcon size={21} /></span>
-      <div className={local.videoLabel}><b>{label}</b><small>Video will replace this preview</small></div>
-    </div>
-  );
-}
 
 export default function RetrophoricsPage() {
   return (
@@ -57,7 +48,7 @@ export default function RetrophoricsPage() {
             <p>Retrophorics is a fashion brand focused on retro-style tops for women ages 25–35. I built the brand identity, visual direction and marketing language around nostalgia, but kept the execution energetic enough to feel like a contemporary fashion brand.</p>
             <img className={local.brandLogo} src={assets.brandLogo} alt="Retrophorics logo" />
           </div>
-          <VideoPlaceholder className={local.heroVideo} src={assets.hero} alt="Retrophorics brand presentation" label="Brand Film" />
+          <CaseVideo className={local.heroVideo} src={assets.hero} videoSrc={assets.brandFilmVideo} alt="Retrophorics brand presentation" />
         </Reveal>
 
         <CaseStudyStory
@@ -71,7 +62,7 @@ export default function RetrophoricsPage() {
         <div className={local.gallery}>
           <Reveal><div className={local.three}><img src={assets.kfc} alt="Retrophorics KFC-inspired style board" /><img src={assets.hershey} alt="Retrophorics Hershey-inspired style board" /><img src={assets.johnnie} alt="Retrophorics Johnnie Walker-inspired style board" /></div></Reveal>
           <Reveal><div className={local.characters}>{characterTiles.map((src, i) => <img src={src} alt={`Retrophorics brand character ${i + 1}`} key={src} />)}</div></Reveal>
-          <Reveal><VideoPlaceholder className={local.motionVideo} src={assets.motion} alt="Retrophorics motion design preview" label="Motion Exploration" /></Reveal>
+          <Reveal><CaseVideo className={local.motionVideo} src={assets.motion} alt="Retrophorics motion design preview" label="Motion Exploration" /></Reveal>
           <Reveal><div className={local.socialGrid}><img src={assets.denim} alt="Retrophorics denim social post" /><img src={assets.coco} alt="Retrophorics Coco Chanel social post" /><img src={assets.priority} alt="Retrophorics make yourself a priority social post" /><img src={assets.express} alt="Retrophorics dress to express social post" /></div></Reveal>
         </div>
       </article>
