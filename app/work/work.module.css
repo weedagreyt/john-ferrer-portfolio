@@ -281,7 +281,11 @@
   border-radius: 0;
 }
 .grid > div .card {
-  clip-path: polygon(7% 0, 100% 0, 93% 100%, 0 100%);
+  /* Gentler shear than the original 7%: a steeper diagonal drags a
+     large triangular void into the row gap below/above it (the void
+     reaches the full card height right at the corner), which read as
+     uneven top/bottom spacing next to the flat side-by-side gap. */
+  clip-path: polygon(4% 0, 100% 0, 96% 100%, 0 100%);
 }
 .cardCopy {
   padding: 32px clamp(28px, 3vw, 40px) 36px;
