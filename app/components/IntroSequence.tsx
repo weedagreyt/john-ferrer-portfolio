@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState, type CSSProperties } from "re
 import { siteAssets } from "../lib/portfolio";
 
 const TOTAL_MS = 4400;
-const INTRO_VERSION = "jf:intro:v11";
+const INTRO_VERSION = "jf:intro:v12";
 
 const projectScenes = [
   {
@@ -53,7 +53,7 @@ const projectScenes = [
     r1: "0.12deg",
   },
   {
-    src: "/work/thumbs/unimotors.jpg",
+    src: "/work/unimotors/card.jpg",
     delay: 2.34,
     duration: 0.86,
     position: "50% 50%",
