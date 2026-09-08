@@ -32,6 +32,7 @@ const assets = {
   express: "/work/retrophorics/express.jpg",
   next: "/work/retrophorics/next.svg",
   brandFilmVideo: "/work/retrophorics/brand-film.mp4",
+  motionVideo: "/work/retrophorics/motion-exploration.mp4",
 };
 
 const characterTiles = [assets.sexy, assets.flirty, assets.business, assets.rockabilly, assets.hippy, assets.posh];
@@ -62,7 +63,7 @@ export default function RetrophoricsPage() {
         <div className={local.gallery}>
           <Reveal><div className={local.three}><img src={assets.kfc} alt="Retrophorics KFC-inspired style board" /><img src={assets.hershey} alt="Retrophorics Hershey-inspired style board" /><img src={assets.johnnie} alt="Retrophorics Johnnie Walker-inspired style board" /></div></Reveal>
           <Reveal><div className={local.characters}>{characterTiles.map((src, i) => <img src={src} alt={`Retrophorics brand character ${i + 1}`} key={src} />)}</div></Reveal>
-          <Reveal><CaseVideo className={local.motionVideo} src={assets.motion} alt="Retrophorics motion design preview" label="Motion Exploration" /></Reveal>
+          <Reveal><CaseVideo className={local.motionVideo} src={assets.motion} videoSrc={assets.motionVideo} alt="Retrophorics motion design preview" /></Reveal>
           <Reveal><div className={local.socialGrid}><img src={assets.denim} alt="Retrophorics denim social post" /><img src={assets.coco} alt="Retrophorics Coco Chanel social post" /><img src={assets.priority} alt="Retrophorics make yourself a priority social post" /><img src={assets.express} alt="Retrophorics dress to express social post" /></div></Reveal>
         </div>
       </article>
