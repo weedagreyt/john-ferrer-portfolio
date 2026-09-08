@@ -5,7 +5,8 @@
   align-items: center;
   margin-bottom: 28px;
 }
-.intro > img {
+.intro > img,
+.intro > video {
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;

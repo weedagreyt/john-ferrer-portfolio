@@ -3,6 +3,7 @@ import SiteNav from "../../components/SiteNav";
 import SiteFooter from "../../components/SiteFooter";
 import Reveal from "../../components/Reveal";
 import CaseStudyStory from "../../components/CaseStudyStory";
+import AutoplayVideo from "../../components/AutoplayVideo";
 import styles from "../case-study.module.css";
 import local from "./art.module.css";
 
@@ -13,7 +14,8 @@ export const metadata: Metadata = {
 };
 
 const assets = {
-  pgLogo: "/work/art-exploration/pg-logo.jpg",
+  pgLogoVideo: "/work/art-exploration/pg-logo.mp4",
+  pgLogoPoster: "/work/art-exploration/pg-logo-poster.jpg",
   donut: "/work/art-exploration/donut.jpg",
   poster1: "/work/art-exploration/poster-1.jpg",
   rainbow: "/work/art-exploration/rainbow.jpg",
@@ -41,7 +43,7 @@ export default function ArtExplorationPage() {
             <h1>ART &amp; EXPLORATION</h1>
             <p>This is my self-directed creative lab — personal work made to explore new ideas, techniques and tools beyond client assignments. It includes illustration, vector work, 3D experiments and motion-driven thinking.</p>
           </div>
-          <img src={assets.pgLogo} alt="Personal project artwork" />
+          <AutoplayVideo src={assets.pgLogoVideo} poster={assets.pgLogoPoster} alt="Reel of personal 3D and illustration experiments" />
         </Reveal>
 
         <CaseStudyStory
