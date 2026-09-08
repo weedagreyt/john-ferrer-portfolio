@@ -3,6 +3,7 @@ import SiteNav from "../../components/SiteNav";
 import SiteFooter from "../../components/SiteFooter";
 import Reveal from "../../components/Reveal";
 import CaseStudyStory from "../../components/CaseStudyStory";
+import CaseStudyCta from "../../components/CaseStudyCta";
 import styles from "../case-study.module.css";
 import local from "./dope.module.css";
 
@@ -61,6 +62,7 @@ export default function DopeMarketingPage() {
         </div>
       </article>
 
+      <Reveal><CaseStudyCta /></Reveal>
       <Reveal className={styles.next}><small>Next Project</small><a href="/work/yensanities"><h2>YENSANITIES</h2><img src={assets.next} alt="" /></a></Reveal>
       <SiteFooter />
     </main>
