@@ -1,33 +1,91 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1100" preserveAspectRatio="xMidYMid slice">
 <defs>
-  <radialGradient id="halo" cx="76%" cy="32%" r="46%"><stop offset="0" stop-color="#ff272d" stop-opacity=".58"/><stop offset=".22" stop-color="#c8090f" stop-opacity=".32"/><stop offset=".5" stop-color="#560005" stop-opacity=".12"/><stop offset="1" stop-color="#050607" stop-opacity="0"/></radialGradient>
-  <radialGradient id="shoulder" cx="66%" cy="70%" r="42%"><stop offset="0" stop-color="#9a070c" stop-opacity=".16"/><stop offset=".55" stop-color="#3a0003" stop-opacity=".06"/><stop offset="1" stop-color="#050607" stop-opacity="0"/></radialGradient>
-  <linearGradient id="flare" x1="0" y1="1" x2="1" y2="0">
-    <stop offset="0" stop-color="#ff2028" stop-opacity="0"/>
-    <stop offset=".42" stop-color="#e21620" stop-opacity=".22"/>
-    <stop offset=".56" stop-color="#ff9a96" stop-opacity=".5"/>
-    <stop offset=".7" stop-color="#c40e14" stop-opacity=".18"/>
-    <stop offset="1" stop-color="#ff2028" stop-opacity="0"/>
+  <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#040405"/><stop offset="1" stop-color="#0a0203"/></linearGradient>
+
+  <radialGradient id="nebulaMask" cx="82%" cy="20%" r="62%">
+    <stop offset="0" stop-color="#fff"/>
+    <stop offset=".55" stop-color="#fff" stop-opacity=".65"/>
+    <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+  </radialGradient>
+  <mask id="nebulaClip"><rect width="1800" height="1100" fill="url(#nebulaMask)"/></mask>
+
+  <filter id="smoke" x="-30%" y="-30%" width="160%" height="160%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.011 0.019" numOctaves="4" seed="6" result="n"/>
+    <feColorMatrix in="n" type="matrix" values="0 0 0 0 1  0 0 0 0 0.08  0 0 0 0 0.09  0 0 0 1 0" result="tinted"/>
+    <feComponentTransfer in="tinted" result="cut">
+      <feFuncA type="gamma" amplitude="1.1" exponent="3.4" offset="0"/>
+    </feComponentTransfer>
+    <feGaussianBlur in="cut" stdDeviation="2.4"/>
+  </filter>
+
+  <filter id="beamCore" x="-60%" y="-60%" width="220%" height="220%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.006 0.014" numOctaves="3" seed="14" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="22" xChannelSelector="R" yChannelSelector="G" result="d"/>
+    <feGaussianBlur in="d" stdDeviation="1.6"/>
+  </filter>
+  <filter id="beamMed" x="-60%" y="-60%" width="220%" height="220%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.006 0.014" numOctaves="3" seed="14" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="38" xChannelSelector="R" yChannelSelector="G" result="d"/>
+    <feGaussianBlur in="d" stdDeviation="16"/>
+  </filter>
+  <filter id="beamWide" x="-80%" y="-80%" width="260%" height="260%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.006 0.014" numOctaves="3" seed="14" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="60" xChannelSelector="R" yChannelSelector="G" result="d"/>
+    <feGaussianBlur in="d" stdDeviation="46"/>
+  </filter>
+
+  <filter id="glint" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="7"/></filter>
+  <filter id="glintSoft" x="-300%" y="-300%" width="700%" height="700%"><feGaussianBlur stdDeviation="26"/></filter>
+
+  <linearGradient id="beamFill" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#ff2027" stop-opacity="0"/>
+    <stop offset=".5" stop-color="#ff3339" stop-opacity=".95"/>
+    <stop offset="1" stop-color="#ff2027" stop-opacity="0"/>
   </linearGradient>
-  <radialGradient id="vignette" cx="50%" cy="46%" r="72%"><stop offset="0" stop-color="#050607" stop-opacity="0"/><stop offset=".72" stop-color="#050607" stop-opacity="0"/><stop offset="1" stop-color="#020203" stop-opacity=".62"/></radialGradient>
-  <filter id="blur60"><feGaussianBlur stdDeviation="60"/></filter>
-  <filter id="blur34"><feGaussianBlur stdDeviation="34"/></filter>
-  <filter id="blur12"><feGaussianBlur stdDeviation="12"/></filter>
+
   <filter id="grain" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="7"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="table" tableValues="0 .05"/></feComponentTransfer></filter>
+
+  <radialGradient id="vignette" cx="50%" cy="46%" r="75%"><stop offset="0" stop-color="#050607" stop-opacity="0"/><stop offset=".7" stop-color="#050607" stop-opacity="0"/><stop offset="1" stop-color="#020203" stop-opacity=".68"/></radialGradient>
+
+  <g id="beamSet">
+    <rect x="1210" y="-460" width="52" height="1980" fill="url(#beamFill)" filter="url(#beamWide)" opacity=".55"/>
+    <rect x="1210" y="-460" width="52" height="1980" fill="url(#beamFill)" filter="url(#beamMed)" opacity=".7"/>
+    <rect x="1230" y="-460" width="10" height="1980" fill="#ffdcdb" filter="url(#beamCore)" opacity=".9"/>
+
+    <rect x="1400" y="-460" width="68" height="1980" fill="url(#beamFill)" filter="url(#beamWide)" opacity=".42"/>
+    <rect x="1400" y="-460" width="68" height="1980" fill="url(#beamFill)" filter="url(#beamMed)" opacity=".6"/>
+    <rect x="1428" y="-460" width="8" height="1980" fill="#ffcfcd" filter="url(#beamCore)" opacity=".78"/>
+
+    <rect x="1580" y="-460" width="46" height="1980" fill="url(#beamFill)" filter="url(#beamWide)" opacity=".34"/>
+    <rect x="1580" y="-460" width="46" height="1980" fill="url(#beamFill)" filter="url(#beamMed)" opacity=".5"/>
+  </g>
 </defs>
 
-<rect width="1800" height="1100" fill="#050607"/>
-<rect width="1800" height="1100" fill="url(#halo)"/>
-<rect width="1800" height="1100" fill="url(#shoulder)"/>
+<rect width="1800" height="1100" fill="url(#bg)"/>
 
-<g transform="rotate(-14 1400 480)" filter="url(#blur60)">
-  <rect x="1140" y="-420" width="420" height="1940" fill="url(#flare)" opacity=".85"/>
+<g mask="url(#nebulaClip)">
+  <rect width="1800" height="1100" filter="url(#smoke)" opacity=".85"/>
 </g>
-<ellipse cx="1350" cy="360" rx="340" ry="270" fill="#e11218" opacity=".14" filter="url(#blur60)"/>
 
-<path d="M-150 1035 C280 850 600 920 955 715 S1460 300 1900 135" fill="none" stroke="#ff232b" stroke-width="30" opacity=".16" filter="url(#blur34)"/>
-<path d="M-150 1030 C280 845 600 915 955 710 S1460 296 1900 130" fill="none" stroke="#ff5257" stroke-width="1.4" opacity=".5" filter="url(#blur12)"/>
+<g transform="rotate(-15 1400 480)">
+  <use href="#beamSet"/>
+</g>
+
+<ellipse cx="1298" cy="238" rx="34" ry="34" fill="#fff5f4" opacity=".92" filter="url(#glint)"/>
+<ellipse cx="1298" cy="238" rx="120" ry="120" fill="#ff3038" opacity=".38" filter="url(#glintSoft)"/>
+<ellipse cx="1108" cy="742" rx="20" ry="20" fill="#fff5f4" opacity=".8" filter="url(#glint)"/>
+<ellipse cx="1108" cy="742" rx="90" ry="90" fill="#ff3038" opacity=".3" filter="url(#glintSoft)"/>
+
+<g opacity=".55">
+  <path d="M-100 985 C 260 905 560 940 940 780 S 1520 430 1920 300" fill="none" stroke="#ff2229" stroke-width="3" opacity=".4" filter="url(#beamCore)"/>
+  <path d="M-100 995 C 260 918 560 952 940 792 S 1520 445 1920 315" fill="none" stroke="#ff2229" stroke-width="18" opacity=".28" filter="url(#beamMed)"/>
+</g>
+
+<g transform="translate(0,1100) scale(1,-1)" opacity=".16">
+  <use href="#beamSet" transform="translate(0,-660) rotate(-15 1400 480)"/>
+</g>
+<rect x="0" y="880" width="1800" height="220" fill="#020103" opacity=".55"/>
 
 <rect width="1800" height="1100" fill="url(#vignette)"/>
-<rect width="1800" height="1100" filter="url(#grain)" opacity=".3"/>
+<rect width="1800" height="1100" filter="url(#grain)" opacity=".32"/>
 </svg>
