@@ -103,6 +103,24 @@
   max-width: none;
   border-radius: 0;
 }
+/* On desktop, the final left portrait fills the exact remaining column
+   height so its lower edge stays level with the final right-hand mosaic row. */
+@media (min-width: 1001px) {
+  .masonry {
+    align-items: stretch;
+  }
+  .leftCol {
+    grid-template-rows: auto auto auto minmax(0, 1fr);
+  }
+  .leftCol > :last-child {
+    min-height: 0;
+  }
+  .leftCol > :last-child .poster6Crop {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+}
+
 @media (max-width: 1000px) {
   .intro {
     grid-template-columns: 1fr;
