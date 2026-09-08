@@ -14,7 +14,10 @@
 }
 .masonry {
   display: grid;
-  grid-template-columns: 552fr 653fr;
+  /* Match the Figma gallery: the supporting mosaic is intentionally wider
+     than the left feature column so both columns resolve on the same bottom
+     edge without distributing extra space between rows. */
+  grid-template-columns: 62fr 95fr;
   gap: 34px;
   align-items: start;
 }
