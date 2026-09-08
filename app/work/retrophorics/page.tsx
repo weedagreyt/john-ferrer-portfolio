@@ -3,6 +3,7 @@ import SiteNav from "../../components/SiteNav";
 import SiteFooter from "../../components/SiteFooter";
 import Reveal from "../../components/Reveal";
 import CaseStudyStory from "../../components/CaseStudyStory";
+import CaseStudyCta from "../../components/CaseStudyCta";
 import CaseVideo from "./CaseVideo";
 import styles from "../case-study.module.css";
 import local from "./retrophorics.module.css";
@@ -68,6 +69,7 @@ export default function RetrophoricsPage() {
         </div>
       </article>
 
+      <Reveal><CaseStudyCta /></Reveal>
       <Reveal className={styles.next}><small>Next Project</small><a href="/work/art-exploration"><h2>ART &amp; EXPLORATION</h2><img src={assets.next} alt="" /></a></Reveal>
       <SiteFooter />
     </main>
