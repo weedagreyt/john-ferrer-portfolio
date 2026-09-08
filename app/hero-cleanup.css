@@ -422,7 +422,7 @@ header a[href="/"]::after,
 
 /* Preserve the portrait scale while keeping its head below the frame edge. */
 @media(min-width:761px) {
-  .race-home .hero-portrait { top: 50px !important; }
+  .race-home .hero-portrait { top: 84px !important; }
 }
 /* Fully readable timeline fallback where scroll-driven animations are unavailable. */
 @supports not (animation-timeline: view()) {

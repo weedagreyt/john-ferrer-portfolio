@@ -1,8 +1,8 @@
 export const resumeUrl = "https://drive.google.com/file/d/1JzH0wXGffM_iplyQ8bkOOlfRHDjreQxp/view?usp=sharing";
 
 export const siteAssets = {
-  logo: "https://www.figma.com/api/mcp/asset/8517cfbf-f41d-49f9-a8c3-e200992cc00f.svg",
-  footerLogo: "https://www.figma.com/api/mcp/asset/8517cfbf-f41d-49f9-a8c3-e200992cc00f.svg",
+  logo: "/john-ferrer-logo.svg",
+  footerLogo: "/john-ferrer-logo.svg",
 };
 
 export const services = [
