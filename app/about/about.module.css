@@ -13,6 +13,7 @@
 .copy .button{margin-top:10px}
 .visual{position:absolute;top:-56px;bottom:0;left:12%;right:calc(-1 * ((100vw - min(1240px,100vw - 64px)) / 2));z-index:-1;display:flex;align-items:flex-end}
 .visual img{width:100%;height:100%;object-fit:cover;object-position:right bottom;filter:drop-shadow(8px -4px 12px #e1121233);mask-image:linear-gradient(to bottom,#000 88%,transparent 100%)}
+@media(min-width:761px){.visual img{transform:translateX(20%) scale(1.1);transform-origin:right bottom}}
 .visual::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#08090a 0%,#08090af5 15%,#08090a99 29%,transparent 49%);pointer-events:none}
 .journey{display:grid;grid-template-columns:1fr 1.08fr;gap:64px;padding:66px 0 44px}
 .journey h2{font-size:clamp(36px,3.5vw,50px)}
