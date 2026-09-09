@@ -520,10 +520,10 @@ const INTRO_CSS = String.raw`
   width:5px;
   height:5px;
   border-radius:50%;
-  background:#fff8f6;
+  background:#ff0a10;
   opacity:0;
   box-shadow:
-    0 0 2px 1px rgba(255,255,255,.75),
+    0 0 3px 1px rgba(255,10,16,.9),
     0 0 12px 4px rgba(255,10,16,.95),
     0 0 30px 11px rgba(138,0,8,.55);
 }
