@@ -17,6 +17,8 @@ jobs:
         with:
           node-version: 20
       - run: npm install
+      - name: Save tested production lockfile
+        run: cp package-lock.json /tmp/site-package-lock.json
       - run: npm install --no-save playwright@1.55.0
       - run: npx playwright install --with-deps chromium
       - run: npm run build
@@ -29,7 +31,12 @@ jobs:
             sleep 1
           done
           curl -fsS http://127.0.0.1:3000 >/dev/null
-          node scripts/final-rendered-qa.mjs
+          node scripts/final-rendered-qa-v2.mjs
+      - name: Preserve tested production lockfile
+        if: always()
+        run: |
+          mkdir -p qa-output
+          cp /tmp/site-package-lock.json qa-output/package-lock.json
       - name: Show server log on failure
         if: failure()
         run: cat /tmp/portfolio-server.log || true
