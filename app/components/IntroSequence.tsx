@@ -363,7 +363,7 @@ const INTRO_CSS = String.raw`
   pointer-events:none;
   will-change:transform,opacity;
 }
-.jf-intro__streaks--close{z-index:95;opacity:0}
+.jf-intro__streaks--close{z-index:95;opacity:0;filter:saturate(1.6) brightness(1.2) hue-rotate(-4deg)}
 .jf-intro--play .jf-intro__streaks--open{animation:jfStreaksOpen .8s cubic-bezier(.7,0,.2,1) 0s both}
 .jf-intro--play .jf-intro__streaks--close{animation:jfStreaksClose .9s cubic-bezier(.45,0,.3,1) 3.48s both}
 .jf-intro__cover::before{
@@ -543,6 +543,7 @@ const INTRO_CSS = String.raw`
   opacity:0;
   transform:rotate(-17deg) translate3d(-40vw,0,0);
   background:url(/intro/sword-fx-v.svg) center/100% 100% no-repeat;
+  filter:saturate(1.5) brightness(1.2) hue-rotate(-4deg);
   pointer-events:none;
   will-change:transform,opacity;
 }
@@ -559,7 +560,7 @@ const INTRO_CSS = String.raw`
   transform:rotate(-17deg) translate3d(-42vw,0,0);
   background:url(/intro/sword-fx-v.svg) center/100% 100% no-repeat;
   mix-blend-mode:screen;
-  filter:blur(24px);
+  filter:blur(24px) saturate(1.6) brightness(1.25) hue-rotate(-4deg);
   pointer-events:none;
   will-change:transform,opacity;
 }
@@ -570,7 +571,7 @@ const INTRO_CSS = String.raw`
   z-index:88;
   pointer-events:none;
   opacity:0;
-  background:radial-gradient(circle at 74% 35%,rgba(240,24,32,.26),transparent 28%);
+  background:radial-gradient(circle at 74% 35%,rgba(239,23,31,.42),transparent 30%);
 }
 .jf-intro--play .jf-intro__hero-flare{animation:jfHeroFlare .72s ease-out 3.7s both}
 .jf-intro__skip{
