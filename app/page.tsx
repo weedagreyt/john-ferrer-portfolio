@@ -19,12 +19,12 @@ const projects = [
 ] as const;
 
 const experience = [
-  { role: "Print Production / Designer", company: "Bothends Computer Solutions", dates: "Nov 2015 – Jul 2019" },
-  { role: "Founder", company: "SciHigh Clothing", dates: "Feb 2016" },
-  { role: "Creative Director", company: "West Shadows Production", dates: "Aug 2016 – Sep 2019" },
-  { role: "Graphic Design Department Head", company: "Project Pentagon", dates: "Feb 2019 – Nov 2019" },
-  { role: "Freelance Graphic Designer", company: "Project-Based Work", dates: "Nov 2019 – Dec 2020" },
-  { role: "Senior Graphic Designer", company: "DOPE Marketing", dates: "Jan 2021 – Nov 2025" },
+  { role: "Print Production / Designer", company: "Bothends Computer Solutions", years: "2015–2019" },
+  { role: "Founder", company: "SciHigh Clothing", years: "2016" },
+  { role: "Creative Director", company: "West Shadows Production", years: "2016–2019" },
+  { role: "Graphic Design Department Head", company: "Project Pentagon", years: "2019" },
+  { role: "Freelance Graphic Designer", company: "Project-Based Work", years: "2019–2020" },
+  { role: "Senior Graphic Designer", company: "DOPE Marketing", years: "2021–2025" },
 ] as const;
 
 function ArrowIcon() {
@@ -117,19 +117,24 @@ export default function HomePage() {
         <div className="shell">
           <div className="experience-home-head">
             <div>
-              <p className="micro-label">Experience</p>
-              <h2>My <span>Journey</span></h2>
+              <p className="micro-label">My Journey</p>
+              <h2 className="experience-tenure" aria-label="10 plus years of experience">
+                <span className="experience-tenure-number">10+</span>
+                <span className="experience-tenure-copy">
+                  <span>Years of</span>
+                  <span>Experience</span>
+                </span>
+              </h2>
             </div>
             <a className="experience-resume-link" href={resumeUrl} target="_blank" rel="noreferrer">Download Résumé <ArrowIcon /></a>
           </div>
           <div className="experience-home-track">
-            {experience.map((item, index) => (
-              <article className="experience-home-item" key={`${item.company}-${item.dates}`}>
+            {experience.map((item) => (
+              <article className="experience-home-item" key={`${item.company}-${item.years}`}>
                 <span className="experience-home-dot" aria-hidden="true" />
-                <span className="experience-home-index" aria-hidden="true">0{index + 1}</span>
+                <time>{item.years}</time>
                 <h3>{item.role}</h3>
                 <p>{item.company}</p>
-                <time>{item.dates}</time>
               </article>
             ))}
           </div>

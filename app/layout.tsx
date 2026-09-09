@@ -6,6 +6,7 @@ import "./hero-media.css";
 import "./hero-retina-fix.css";
 import "./race-aesthetic.css";
 import "./hero-cleanup.css";
+import "./experience-polish.css";
 
 // Keep document scrolling native; the intro overlay handles its own interaction.
 const raceDisplay = Teko({
