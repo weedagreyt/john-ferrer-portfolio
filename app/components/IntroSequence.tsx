@@ -271,10 +271,8 @@ export default function IntroSequence() {
       <div className="jf-intro__cover" aria-hidden="true">
         <img className="jf-intro__atmosphere" src="/racing-atmosphere.svg" alt="" />
         <img className="jf-intro__atmosphere jf-intro__atmosphere--far" src="/racing-atmosphere.svg" alt="" />
-        <div className="jf-intro__atmosphere-glint" />
 
         <div className="jf-intro__speedfx" aria-hidden="true">
-          <span />
           <span />
           <span />
         </div>
@@ -304,7 +302,6 @@ export default function IntroSequence() {
         <div className="jf-intro__microcopy">DESIGN / DIRECTION / IMPACT</div>
       </div>
 
-      <div className="jf-intro__occluder--trail" aria-hidden="true" />
       <div className="jf-intro__occluder" aria-hidden="true">
         <i />
       </div>
@@ -383,35 +380,10 @@ const INTRO_CSS = String.raw`
 }
 .jf-intro__atmosphere--far{
   opacity:.09;
-  filter:blur(1.5px) saturate(1.1);
   transform:scale(1.14);
 }
 .jf-intro--play .jf-intro__atmosphere--far{
   animation:jfAtmosphereFar 4.4s cubic-bezier(.25,.1,.4,1) both;
-}
-.jf-intro__atmosphere-glint{
-  position:absolute;
-  inset:-8%;
-  width:116%;
-  height:116%;
-  z-index:1;
-  pointer-events:none;
-  opacity:0;
-  mix-blend-mode:screen;
-  background:linear-gradient(115deg,transparent 42%,rgba(255,235,232,.9) 50%,transparent 58%);
-  background-size:280% 280%;
-  background-position:0% 0%;
-  mask-image:url(/racing-atmosphere.svg);
-  mask-size:cover;
-  mask-position:68% 48%;
-  mask-repeat:no-repeat;
-  -webkit-mask-image:url(/racing-atmosphere.svg);
-  -webkit-mask-size:cover;
-  -webkit-mask-position:68% 48%;
-  -webkit-mask-repeat:no-repeat;
-}
-.jf-intro--play .jf-intro__atmosphere-glint{
-  animation:jfAtmosphereGlint 4.4s linear both;
 }
 .jf-intro__speedfx{
   position:absolute;
@@ -426,16 +398,13 @@ const INTRO_CSS = String.raw`
   width:160%;
   height:10px;
   background:url(/intro/sword-fx-h.svg) center/100% 100% no-repeat;
-  mix-blend-mode:screen;
   transform:rotate(-20deg) translate3d(-60%,0,0);
   opacity:0;
 }
-.jf-intro__speedfx span:nth-child(1){top:22%}
-.jf-intro__speedfx span:nth-child(2){top:48%;height:16px}
-.jf-intro__speedfx span:nth-child(3){top:72%;height:8px}
+.jf-intro__speedfx span:nth-child(1){top:26%}
+.jf-intro__speedfx span:nth-child(2){top:56%;height:16px}
 .jf-intro--play .jf-intro__speedfx span:nth-child(1){animation:jfSpeedFx .5s cubic-bezier(.6,0,.2,1) 0s both}
 .jf-intro--play .jf-intro__speedfx span:nth-child(2){animation:jfSpeedFx .46s cubic-bezier(.6,0,.2,1) .04s both}
-.jf-intro--play .jf-intro__speedfx span:nth-child(3){animation:jfSpeedFx .42s cubic-bezier(.6,0,.2,1) .08s both}
 .jf-intro__ignition{
   position:absolute;
   left:7vw;
@@ -508,7 +477,6 @@ const INTRO_CSS = String.raw`
   width:calc(var(--slice-scale,1) * 136%);
   height:64px;
   background:url(/intro/sword-fx-h.svg) center/100% 100% no-repeat;
-  mix-blend-mode:screen;
   transform:rotate(var(--slice-angle,-17deg)) translate3d(-35%,0,0);
   opacity:0;
 }
@@ -574,28 +542,11 @@ const INTRO_CSS = String.raw`
   opacity:0;
   transform:rotate(-4deg) translate3d(-40vw,0,0);
   background:url(/intro/sword-fx-v.svg) center/100% 100% no-repeat;
-  mix-blend-mode:screen;
   pointer-events:none;
   will-change:transform,opacity;
 }
 .jf-intro__occluder i{display:none}
 .jf-intro--play .jf-intro__occluder{animation:jfOccluder .76s cubic-bezier(.72,0,.18,1) 3.48s both}
-.jf-intro__occluder--trail{
-  position:absolute;
-  z-index:89;
-  left:-40vw;
-  top:-48vh;
-  width:clamp(220px,26vw,460px);
-  height:200vh;
-  opacity:0;
-  transform:rotate(-4deg) translate3d(-42vw,0,0);
-  background:url(/intro/sword-fx-v.svg) center/100% 100% no-repeat;
-  mix-blend-mode:screen;
-  filter:blur(24px);
-  pointer-events:none;
-  will-change:transform,opacity;
-}
-.jf-intro--play .jf-intro__occluder--trail{animation:jfOccluderTrail .84s cubic-bezier(.72,0,.18,1) 3.56s both}
 .jf-intro__hero-flare{
   position:absolute;
   inset:0;
@@ -624,7 +575,6 @@ const INTRO_CSS = String.raw`
 .jf-intro__skip:focus-visible{outline:1px solid #fff;outline-offset:3px}
 @keyframes jfAtmosphere{0%{opacity:.08;transform:scale(1.02) translate3d(1.2%,.6%,0)}45%{opacity:.32;transform:scale(1.05) translate3d(-.8%,-.4%,0)}100%{opacity:.46;transform:scale(1.09) translate3d(-2.4%,-1%,0)}}
 @keyframes jfAtmosphereFar{0%{opacity:.05;transform:scale(1.14) translate3d(-1.6%,-.8%,0)}45%{opacity:.14;transform:scale(1.1) translate3d(1%,.5%,0)}100%{opacity:.2;transform:scale(1.05) translate3d(2.6%,1.2%,0)}}
-@keyframes jfAtmosphereGlint{0%{opacity:0;background-position:0% 0%}10%{opacity:.5}45%{opacity:.7;background-position:70% 70%}70%{opacity:.35}100%{opacity:0;background-position:130% 130%}}
 @keyframes jfSpeedFx{0%{opacity:0;transform:rotate(-20deg) translate3d(-60%,0,0)}18%{opacity:.9}70%{opacity:.5}100%{opacity:0;transform:rotate(-20deg) translate3d(70%,0,0)}}
 @keyframes jfIgnition{0%{opacity:0;transform:translate3d(-58vw,-50%,0)}22%{opacity:1}62%{opacity:1;transform:translate3d(3vw,-50%,0)}100%{opacity:0;transform:translate3d(82vw,-50%,0)}}
 @keyframes jfScene{0%{opacity:0;transform:translate3d(var(--x0),var(--y0),0) scale(var(--s0)) rotate(var(--r0))}8%{opacity:1}72%{opacity:1}100%{opacity:0;transform:translate3d(var(--x1),var(--y1),0) scale(var(--s1)) rotate(var(--r1))}}
@@ -633,7 +583,6 @@ const INTRO_CSS = String.raw`
 @keyframes jfTypeRight{0%{opacity:0;transform:translate3d(12vw,30px,0) skewX(-7deg) scaleX(.94)}20%,72%{opacity:.98;transform:translate3d(0,0,0) skewX(-7deg) scaleX(1)}100%{opacity:0;transform:translate3d(-10vw,-8px,0) skewX(-7deg) scaleX(.97)}}
 @keyframes jfMicro{0%,8%{opacity:0}18%,82%{opacity:.48}100%{opacity:0}}
 @keyframes jfOccluder{0%{opacity:0;transform:rotate(-4deg) translate3d(-38vw,0,0)}16%{opacity:1}68%{opacity:1;transform:rotate(-4deg) translate3d(92vw,0,0)}100%{opacity:0;transform:rotate(-4deg) translate3d(146vw,0,0)}}
-@keyframes jfOccluderTrail{0%{opacity:0;transform:rotate(-4deg) translate3d(-42vw,0,0)}18%{opacity:.4}70%{opacity:.4;transform:rotate(-4deg) translate3d(88vw,0,0)}100%{opacity:0;transform:rotate(-4deg) translate3d(142vw,0,0)}}
 @keyframes jfHeroFlare{0%{opacity:0}34%{opacity:.78}100%{opacity:0}}
 @keyframes jfCoverOut{0%,10%{transform:translate3d(0,0,0) skewX(0)}100%{transform:translate3d(116%,0,0) skewX(-6deg)}}
 @keyframes jfSkip{0%,8%{opacity:0}16%,82%{opacity:.68}100%{opacity:0}}
@@ -653,7 +602,7 @@ const INTRO_CSS = String.raw`
   .jf-intro__type--create{left:-5vw;top:59%}
   .jf-intro__type--solve{right:-6vw;top:40%}
   .jf-intro__microcopy{left:20px;bottom:22px;font-size:7px}
-  .jf-intro__occluder,.jf-intro__occluder--trail{width:118px;left:-46vw}
+  .jf-intro__occluder{width:118px;left:-46vw}
 }
 @keyframes jfMobileFramedScene{0%,100%{opacity:0}8%,72%{opacity:1}}
 @media(prefers-reduced-motion:reduce){.jf-intro{display:none!important}}
