@@ -363,7 +363,7 @@ const INTRO_CSS = String.raw`
   pointer-events:none;
   will-change:transform,opacity;
 }
-.jf-intro__streaks--close{z-index:95;opacity:0;filter:saturate(1.6) brightness(1.2) hue-rotate(-4deg)}
+.jf-intro__streaks--close{z-index:85;opacity:0;filter:saturate(1.6) brightness(1.2) hue-rotate(-4deg)}
 .jf-intro--play .jf-intro__streaks--open{animation:jfStreaksOpen .8s cubic-bezier(.7,0,.2,1) 0s both}
 .jf-intro--play .jf-intro__streaks--close{animation:jfStreaksClose .9s cubic-bezier(.45,0,.3,1) 3.48s both}
 .jf-intro__cover::before{
@@ -541,7 +541,7 @@ const INTRO_CSS = String.raw`
   width:clamp(220px,26vw,460px);
   height:200vh;
   opacity:0;
-  transform:rotate(-17deg) translate3d(-40vw,0,0);
+  transform:rotate(17deg) translate3d(-40vw,0,0);
   background:url(/intro/sword-fx-v.svg) center/100% 100% no-repeat;
   filter:saturate(1.5) brightness(1.2) hue-rotate(-4deg);
   pointer-events:none;
@@ -557,7 +557,7 @@ const INTRO_CSS = String.raw`
   width:clamp(220px,26vw,460px);
   height:200vh;
   opacity:0;
-  transform:rotate(-17deg) translate3d(-42vw,0,0);
+  transform:rotate(17deg) translate3d(-42vw,0,0);
   background:url(/intro/sword-fx-v.svg) center/100% 100% no-repeat;
   mix-blend-mode:screen;
   filter:blur(24px) saturate(1.6) brightness(1.25) hue-rotate(-4deg);
@@ -592,7 +592,7 @@ const INTRO_CSS = String.raw`
 .jf-intro--play .jf-intro__skip{animation:jfSkip 3.35s linear .18s both}
 .jf-intro__skip:focus-visible{outline:1px solid #fff;outline-offset:3px}
 @keyframes jfStreaksOpen{0%{opacity:1;transform:translate3d(-50%,-50%,0) rotate(-17deg) translate3d(0,0,0)}100%{opacity:1;transform:translate3d(-50%,-50%,0) rotate(-17deg) translate3d(-60%,0,0)}}
-@keyframes jfStreaksClose{0%{opacity:0;transform:translate3d(-50%,-50%,0) rotate(-17deg) translate3d(-60%,0,0)}14%{opacity:1}72%{opacity:1}100%{opacity:0;transform:translate3d(-50%,-50%,0) rotate(-17deg) translate3d(60%,0,0)}}
+@keyframes jfStreaksClose{0%{opacity:0;transform:translate3d(-50%,-50%,0) rotate(17deg) translate3d(-60%,0,0)}14%{opacity:1}72%{opacity:1}100%{opacity:0;transform:translate3d(-50%,-50%,0) rotate(17deg) translate3d(60%,0,0)}}
 @keyframes jfSmoke{0%,55%{opacity:0;transform:scale(.6) translate3d(0,0,0)}70%{opacity:.7;transform:scale(1) translate3d(2%,-4%,0)}100%{opacity:0;transform:scale(1.4) translate3d(6%,-10%,0)}}
 @keyframes jfSpark{0%,60%{opacity:0;transform:scale(.4) translate3d(0,0,0)}66%{opacity:1;transform:scale(1) translate3d(0,0,0)}100%{opacity:0;transform:scale(1.6) translate3d(6px,4px,0)}}
 @keyframes jfIgnition{0%{opacity:0;transform:translate3d(-14vw,-50%,0)}14%{opacity:1}82%{opacity:1}100%{opacity:0;transform:translate3d(112vw,-50%,0)}}
@@ -600,8 +600,8 @@ const INTRO_CSS = String.raw`
 @keyframes jfSceneEdge{0%,10%{opacity:0;transform:rotate(-17deg) translate3d(-38%,0,0)}28%{opacity:.82}64%{opacity:.18}100%{opacity:0;transform:rotate(-17deg) translate3d(50%,0,0)}}
 @keyframes jfTypeLeft{0%{opacity:0;transform:translate3d(-12vw,32px,0) skewX(-7deg) scaleX(.94)}20%,74%{opacity:.96;transform:translate3d(0,0,0) skewX(-7deg) scaleX(1)}100%{opacity:0;transform:translate3d(10vw,-10px,0) skewX(-7deg) scaleX(.97)}}
 @keyframes jfTypeRight{0%{opacity:0;transform:translate3d(12vw,30px,0) skewX(-7deg) scaleX(.94)}20%,72%{opacity:.98;transform:translate3d(0,0,0) skewX(-7deg) scaleX(1)}100%{opacity:0;transform:translate3d(-10vw,-8px,0) skewX(-7deg) scaleX(.97)}}
-@keyframes jfOccluder{0%{opacity:0;transform:rotate(-17deg) translate3d(-38vw,0,0)}16%{opacity:1}68%{opacity:1;transform:rotate(-17deg) translate3d(92vw,0,0)}100%{opacity:0;transform:rotate(-17deg) translate3d(146vw,0,0)}}
-@keyframes jfOccluderTrail{0%{opacity:0;transform:rotate(-17deg) translate3d(-42vw,0,0)}18%{opacity:.4}70%{opacity:.4;transform:rotate(-17deg) translate3d(88vw,0,0)}100%{opacity:0;transform:rotate(-17deg) translate3d(142vw,0,0)}}
+@keyframes jfOccluder{0%{opacity:0;transform:rotate(17deg) translate3d(-38vw,0,0)}16%{opacity:1}68%{opacity:1;transform:rotate(17deg) translate3d(92vw,0,0)}100%{opacity:0;transform:rotate(17deg) translate3d(146vw,0,0)}}
+@keyframes jfOccluderTrail{0%{opacity:0;transform:rotate(17deg) translate3d(-42vw,0,0)}18%{opacity:.4}70%{opacity:.4;transform:rotate(17deg) translate3d(88vw,0,0)}100%{opacity:0;transform:rotate(17deg) translate3d(142vw,0,0)}}
 @keyframes jfHeroFlare{0%{opacity:0}34%{opacity:.78}100%{opacity:0}}
 @keyframes jfCoverOut{0%,10%{transform:translate3d(0,0,0) skewX(0)}100%{transform:translate3d(116%,0,0) skewX(-6deg)}}
 @keyframes jfSkip{0%,8%{opacity:0}16%,82%{opacity:.68}100%{opacity:0}}
