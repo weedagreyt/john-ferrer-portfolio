@@ -299,6 +299,7 @@ export default function IntroSequence() {
         </div>
       </div>
 
+      <div className="jf-intro__occluder--trail" aria-hidden="true" />
       <div className="jf-intro__occluder" aria-hidden="true">
         <i />
       </div>
@@ -547,6 +548,22 @@ const INTRO_CSS = String.raw`
 }
 .jf-intro__occluder i{display:none}
 .jf-intro--play .jf-intro__occluder{animation:jfOccluder .76s cubic-bezier(.72,0,.18,1) 3.48s both}
+.jf-intro__occluder--trail{
+  position:absolute;
+  z-index:89;
+  left:-40vw;
+  top:-48vh;
+  width:clamp(220px,26vw,460px);
+  height:200vh;
+  opacity:0;
+  transform:rotate(-17deg) translate3d(-42vw,0,0);
+  background:url(/intro/sword-fx-v.svg) center/100% 100% no-repeat;
+  mix-blend-mode:screen;
+  filter:blur(24px);
+  pointer-events:none;
+  will-change:transform,opacity;
+}
+.jf-intro--play .jf-intro__occluder--trail{animation:jfOccluderTrail .84s cubic-bezier(.72,0,.18,1) 3.56s both}
 .jf-intro__hero-flare{
   position:absolute;
   inset:0;
@@ -583,6 +600,7 @@ const INTRO_CSS = String.raw`
 @keyframes jfTypeLeft{0%{opacity:0;transform:translate3d(-12vw,32px,0) skewX(-7deg) scaleX(.94)}20%,74%{opacity:.96;transform:translate3d(0,0,0) skewX(-7deg) scaleX(1)}100%{opacity:0;transform:translate3d(10vw,-10px,0) skewX(-7deg) scaleX(.97)}}
 @keyframes jfTypeRight{0%{opacity:0;transform:translate3d(12vw,30px,0) skewX(-7deg) scaleX(.94)}20%,72%{opacity:.98;transform:translate3d(0,0,0) skewX(-7deg) scaleX(1)}100%{opacity:0;transform:translate3d(-10vw,-8px,0) skewX(-7deg) scaleX(.97)}}
 @keyframes jfOccluder{0%{opacity:0;transform:rotate(-17deg) translate3d(-38vw,0,0)}16%{opacity:1}68%{opacity:1;transform:rotate(-17deg) translate3d(92vw,0,0)}100%{opacity:0;transform:rotate(-17deg) translate3d(146vw,0,0)}}
+@keyframes jfOccluderTrail{0%{opacity:0;transform:rotate(-17deg) translate3d(-42vw,0,0)}18%{opacity:.4}70%{opacity:.4;transform:rotate(-17deg) translate3d(88vw,0,0)}100%{opacity:0;transform:rotate(-17deg) translate3d(142vw,0,0)}}
 @keyframes jfHeroFlare{0%{opacity:0}34%{opacity:.78}100%{opacity:0}}
 @keyframes jfCoverOut{0%,10%{transform:translate3d(0,0,0) skewX(0)}100%{transform:translate3d(116%,0,0) skewX(-6deg)}}
 @keyframes jfSkip{0%,8%{opacity:0}16%,82%{opacity:.68}100%{opacity:0}}
@@ -598,7 +616,7 @@ const INTRO_CSS = String.raw`
   .jf-intro__type{font-size:clamp(94px,29vw,144px)}
   .jf-intro__type--create{left:-5vw;top:59%}
   .jf-intro__type--solve{right:-6vw;top:40%}
-  .jf-intro__occluder{width:118px;left:-46vw}
+  .jf-intro__occluder,.jf-intro__occluder--trail{width:118px;left:-46vw}
 }
 @keyframes jfMobileFramedScene{0%,100%{opacity:0}8%,72%{opacity:1}}
 @media(prefers-reduced-motion:reduce){.jf-intro{display:none!important}}
