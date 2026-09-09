@@ -55,7 +55,13 @@ export default function UnimotorsPage() {
             <div className={styles.unimotorsDetail}>
               <div className={styles.unimotorsDetailLeft}>
                 <p className={styles.copyWide}>Once the client chose the strongest direction, the focus shifted from broad exploration to refinement — building a logo and visual system that felt cohesive, memorable and practical to use.</p>
-                <div className={styles.unimotorsMirror}><img src={assets.hang} alt="UNIMOTORS mirror hang" /></div>
+                <div className={styles.unimotorsMirror}>
+                  <img
+                    src={assets.hang}
+                    alt="UNIMOTORS mirror hang"
+                    style={{ width: "100%", height: "100%", left: 0, top: 0, objectFit: "cover", objectPosition: "center", maxWidth: "none" }}
+                  />
+                </div>
               </div>
               <div className={styles.unimotorsCard}><img src={assets.card} alt="UNIMOTORS business card" /></div>
             </div>
