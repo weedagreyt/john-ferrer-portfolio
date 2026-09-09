@@ -1,0 +1,53 @@
+name: Final Launch QA
+
+on:
+  push:
+    branches: [audit/final-rendered-qa-v3]
+
+permissions:
+  contents: read
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - name: Install locked production dependencies
+        run: npm ci
+      - name: Verify production dependency security
+        run: npm audit --audit-level=high
+      - name: Add isolated browser test dependency
+        run: npm install --no-save --package-lock=false playwright@1.55.0
+      - run: npx playwright install --with-deps chromium
+      - name: Verify MP4 assets are readable
+        run: |
+          ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 public/work/art-exploration/unicorn-2.mp4
+          ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 public/work/retrophorics/brand-film.mp4
+          ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 public/work/retrophorics/motion-exploration.mp4
+      - name: Build production site
+        run: npm run build
+      - name: Run Chromium audit against production server
+        run: |
+          npm start > /tmp/portfolio-server.log 2>&1 &
+          for i in {1..60}; do
+            if curl -fsS http://127.0.0.1:3000 >/dev/null; then break; fi
+            sleep 1
+          done
+          curl -fsS http://127.0.0.1:3000 >/dev/null
+          node scripts/final-launch-qa.mjs
+      - name: Show server log on failure
+        if: failure()
+        run: cat /tmp/portfolio-server.log || true
+      - name: Upload final QA evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: final-launch-qa
+          path: qa-output
+          if-no-files-found: warn
+          retention-days: 3
