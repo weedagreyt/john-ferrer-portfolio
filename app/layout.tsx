@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Teko } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import "./hero-polish.css";
 import "./hero-media.css";
@@ -25,7 +26,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={raceDisplay.variable}>{children}</body>
+      <body className={raceDisplay.variable}>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
