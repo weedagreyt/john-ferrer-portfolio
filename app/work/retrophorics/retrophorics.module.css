@@ -7,7 +7,7 @@
 .three img { width: 100%; height: auto; border-radius: 12px; }
 .characters { display: grid; grid-template-columns: repeat(6, 1fr); gap: 35px; }
 .characters img { width: 100%; height: auto; border-radius: 10px; }
-.videoStill { position: relative; overflow: hidden; width: 100%; border: 0; margin: 0; padding: 0; border-radius: 14px; background: #171819; isolation: isolate; font: inherit; text-align: inherit; }
+.videoStill { position: relative; overflow: hidden; width: 100%; border: 0; margin: 0; padding: 0; border-radius: 0; background: #171819; isolation: isolate; font: inherit; text-align: inherit; }
 .videoStill:not(.noLabel)::after { content: ""; position: absolute; inset: 55% 0 0; z-index: 1; background: linear-gradient(180deg, transparent, rgba(10,11,12,.72)); pointer-events: none; }
 .videoStill > img { width: 100%; height: auto; display: block; }
 .videoStill > video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
