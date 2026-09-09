@@ -122,14 +122,7 @@ function preloadImage(src: string) {
     const image = new Image();
     image.decoding = "async";
     image.src = src;
-    image.onload = async () => {
-      try {
-        await image.decode();
-      } catch {
-        // onload already guarantees usable pixels.
-      }
-      resolve();
-    };
+    image.onload = () => resolve();
     image.onerror = () => resolve();
   });
 }
