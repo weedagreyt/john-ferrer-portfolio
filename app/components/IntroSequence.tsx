@@ -268,12 +268,7 @@ export default function IntroSequence() {
       <style>{INTRO_CSS}</style>
 
       <div className="jf-intro__cover" aria-hidden="true">
-        <div className="jf-intro__bars jf-intro__bars--open" aria-hidden="true">
-          <span className="jf-intro__bar jf-intro__bar--a" />
-          <span className="jf-intro__bar jf-intro__bar--b" />
-          <span className="jf-intro__bar jf-intro__bar--c" />
-          <span className="jf-intro__bar jf-intro__bar--d" />
-        </div>
+        <div className="jf-intro__streaks jf-intro__streaks--open" aria-hidden="true" />
 
         <div className="jf-intro__ignition">
           <span className="jf-intro__ignition-core" />
@@ -308,12 +303,7 @@ export default function IntroSequence() {
         <i />
       </div>
       <div className="jf-intro__hero-flare" aria-hidden="true" />
-      <div className="jf-intro__bars jf-intro__bars--close" aria-hidden="true">
-        <span className="jf-intro__bar jf-intro__bar--a" />
-        <span className="jf-intro__bar jf-intro__bar--b" />
-        <span className="jf-intro__bar jf-intro__bar--c" />
-        <span className="jf-intro__bar jf-intro__bar--d" />
-      </div>
+      <div className="jf-intro__streaks jf-intro__streaks--close" aria-hidden="true" />
 
       <button
         className="jf-intro__skip"
@@ -352,49 +342,25 @@ const INTRO_CSS = String.raw`
 .jf-intro--play .jf-intro__cover{
   animation:jfCoverOut .68s cubic-bezier(.83,0,.17,1) 3.72s both;
 }
-.jf-intro__bars{
+.jf-intro__streaks{
   position:absolute;
   z-index:5;
-  inset:-10%;
-  background:#050607;
-  overflow:hidden;
+  inset:-10% -30%;
+  background:
+    radial-gradient(circle at 76% 29%,rgba(240,24,32,.26),transparent 31%),
+    linear-gradient(104deg,rgba(3,4,5,.86) 0%,rgba(3,4,5,.18) 58%,rgba(3,4,5,.36) 100%),
+    linear-gradient(112deg,transparent 0 60%,rgba(240,24,32,.12) 61%,rgba(255,45,52,.72) 62%,rgba(120,4,10,.28) 66%,transparent 67%),
+    linear-gradient(112deg,transparent 0 48%,rgba(91,3,8,.42) 49%,rgba(240,24,32,.36) 51%,transparent 52%),
+    linear-gradient(112deg,transparent 0 81%,rgba(255,35,43,.88) 82%,rgba(94,2,8,.34) 85%,transparent 86%),
+    linear-gradient(112deg,transparent 0 12%,rgba(240,24,32,.06) 13%,rgba(255,255,255,.22) 13.35%,rgba(240,24,32,.10) 13.9%,transparent 15%),
+    linear-gradient(112deg,transparent 0 72%,rgba(240,24,32,.16) 73%,rgba(255,255,255,.22) 73.25%,rgba(240,24,32,.10) 74%,transparent 75%),
+    #050607;
   pointer-events:none;
   will-change:transform,opacity;
 }
-.jf-intro__bars--close{z-index:95;opacity:0}
-.jf-intro__bar{
-  position:absolute;
-  top:0;
-  height:100%;
-  opacity:.9;
-  background:linear-gradient(90deg,transparent,rgba(190,18,24,.42) 30%,rgba(190,18,24,.42) 70%,transparent);
-}
-.jf-intro__bar::before,
-.jf-intro__bar::after{
-  content:"";
-  position:absolute;
-  top:0;
-  width:2px;
-  height:100%;
-  background:linear-gradient(180deg,transparent,rgba(255,70,75,.95) 42%,rgba(255,175,175,1) 50%,rgba(255,70,75,.95) 58%,transparent);
-  box-shadow:0 0 14px 2px rgba(255,40,45,.55);
-}
-.jf-intro__bar::before{left:0}
-.jf-intro__bar::after{right:0}
-.jf-intro__bar--a{left:-6%;width:22%}
-.jf-intro__bar--b{left:20%;width:8%}
-.jf-intro__bar--c{left:36%;width:15%}
-.jf-intro__bar--d{left:60%;width:6%}
-.jf-intro--play .jf-intro__bars--open{animation:jfBarsOpen .82s cubic-bezier(.7,0,.2,1) 0s both}
-.jf-intro--play .jf-intro__bars--open .jf-intro__bar--a{animation:jfBarShiftOpen .82s cubic-bezier(.7,0,.2,1) 0s both}
-.jf-intro--play .jf-intro__bars--open .jf-intro__bar--b{animation:jfBarShiftOpen .6s cubic-bezier(.7,0,.2,1) .05s both}
-.jf-intro--play .jf-intro__bars--open .jf-intro__bar--c{animation:jfBarShiftOpen .7s cubic-bezier(.7,0,.2,1) .02s both}
-.jf-intro--play .jf-intro__bars--open .jf-intro__bar--d{animation:jfBarShiftOpen .52s cubic-bezier(.7,0,.2,1) .07s both}
-.jf-intro--play .jf-intro__bars--close{animation:jfBarsClose .78s cubic-bezier(.83,0,.17,1) 3.72s both}
-.jf-intro--play .jf-intro__bars--close .jf-intro__bar--a{animation:jfBarShiftClose .78s cubic-bezier(.83,0,.17,1) 3.72s both}
-.jf-intro--play .jf-intro__bars--close .jf-intro__bar--b{animation:jfBarShiftClose .56s cubic-bezier(.83,0,.17,1) 3.78s both}
-.jf-intro--play .jf-intro__bars--close .jf-intro__bar--c{animation:jfBarShiftClose .66s cubic-bezier(.83,0,.17,1) 3.75s both}
-.jf-intro--play .jf-intro__bars--close .jf-intro__bar--d{animation:jfBarShiftClose .5s cubic-bezier(.83,0,.17,1) 3.8s both}
+.jf-intro__streaks--close{z-index:95;opacity:0}
+.jf-intro--play .jf-intro__streaks--open{animation:jfStreaksOpen .8s cubic-bezier(.7,0,.2,1) 0s both}
+.jf-intro--play .jf-intro__streaks--close{animation:jfStreaksClose .78s cubic-bezier(.83,0,.17,1) 3.72s both}
 .jf-intro__cover::before{
   content:"";
   position:absolute;
@@ -570,7 +536,7 @@ const INTRO_CSS = String.raw`
   width:clamp(220px,26vw,460px);
   height:200vh;
   opacity:0;
-  transform:rotate(-4deg) translate3d(-40vw,0,0);
+  transform:rotate(-17deg) translate3d(-40vw,0,0);
   background:url(/intro/sword-fx-v.svg) center/100% 100% no-repeat;
   pointer-events:none;
   will-change:transform,opacity;
@@ -603,10 +569,8 @@ const INTRO_CSS = String.raw`
 }
 .jf-intro--play .jf-intro__skip{animation:jfSkip 3.35s linear .18s both}
 .jf-intro__skip:focus-visible{outline:1px solid #fff;outline-offset:3px}
-@keyframes jfBarsOpen{0%{opacity:1;transform:translate3d(0,0,0)}100%{opacity:1;transform:translate3d(-140%,0,0)}}
-@keyframes jfBarsClose{0%{opacity:0}8%{opacity:1;transform:translate3d(0,0,0)}100%{opacity:1;transform:translate3d(140%,0,0)}}
-@keyframes jfBarShiftOpen{0%{opacity:.9;transform:translate3d(0,0,0)}100%{opacity:.9;transform:translate3d(-170%,0,0)}}
-@keyframes jfBarShiftClose{0%{opacity:.9;transform:translate3d(0,0,0)}100%{opacity:.9;transform:translate3d(170%,0,0)}}
+@keyframes jfStreaksOpen{0%{opacity:1;transform:translate3d(0,0,0)}100%{opacity:1;transform:translate3d(-120%,0,0)}}
+@keyframes jfStreaksClose{0%{opacity:0}8%{opacity:1;transform:translate3d(0,0,0)}100%{opacity:1;transform:translate3d(120%,0,0)}}
 @keyframes jfSmoke{0%,55%{opacity:0;transform:scale(.6) translate3d(0,0,0)}70%{opacity:.7;transform:scale(1) translate3d(2%,-4%,0)}100%{opacity:0;transform:scale(1.4) translate3d(6%,-10%,0)}}
 @keyframes jfSpark{0%,60%{opacity:0;transform:scale(.4) translate3d(0,0,0)}66%{opacity:1;transform:scale(1) translate3d(0,0,0)}100%{opacity:0;transform:scale(1.6) translate3d(6px,4px,0)}}
 @keyframes jfIgnition{0%{opacity:0;transform:translate3d(-14vw,-50%,0)}14%{opacity:1}82%{opacity:1}100%{opacity:0;transform:translate3d(112vw,-50%,0)}}
@@ -614,7 +578,7 @@ const INTRO_CSS = String.raw`
 @keyframes jfSceneEdge{0%,10%{opacity:0;transform:rotate(-17deg) translate3d(-38%,0,0)}28%{opacity:.82}64%{opacity:.18}100%{opacity:0;transform:rotate(-17deg) translate3d(50%,0,0)}}
 @keyframes jfTypeLeft{0%{opacity:0;transform:translate3d(-12vw,32px,0) skewX(-7deg) scaleX(.94)}20%,74%{opacity:.96;transform:translate3d(0,0,0) skewX(-7deg) scaleX(1)}100%{opacity:0;transform:translate3d(10vw,-10px,0) skewX(-7deg) scaleX(.97)}}
 @keyframes jfTypeRight{0%{opacity:0;transform:translate3d(12vw,30px,0) skewX(-7deg) scaleX(.94)}20%,72%{opacity:.98;transform:translate3d(0,0,0) skewX(-7deg) scaleX(1)}100%{opacity:0;transform:translate3d(-10vw,-8px,0) skewX(-7deg) scaleX(.97)}}
-@keyframes jfOccluder{0%{opacity:0;transform:rotate(-4deg) translate3d(-38vw,0,0)}16%{opacity:1}68%{opacity:1;transform:rotate(-4deg) translate3d(92vw,0,0)}100%{opacity:0;transform:rotate(-4deg) translate3d(146vw,0,0)}}
+@keyframes jfOccluder{0%{opacity:0;transform:rotate(-17deg) translate3d(-38vw,0,0)}16%{opacity:1}68%{opacity:1;transform:rotate(-17deg) translate3d(92vw,0,0)}100%{opacity:0;transform:rotate(-17deg) translate3d(146vw,0,0)}}
 @keyframes jfHeroFlare{0%{opacity:0}34%{opacity:.78}100%{opacity:0}}
 @keyframes jfCoverOut{0%,10%{transform:translate3d(0,0,0) skewX(0)}100%{transform:translate3d(116%,0,0) skewX(-6deg)}}
 @keyframes jfSkip{0%,8%{opacity:0}16%,82%{opacity:.68}100%{opacity:0}}
