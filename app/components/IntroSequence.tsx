@@ -566,7 +566,7 @@ const INTRO_CSS = String.raw`
 .jf-intro--play .jf-intro__skip{animation:jfSkip 3.35s linear .18s both}
 .jf-intro__skip:focus-visible{outline:1px solid #fff;outline-offset:3px}
 @keyframes jfCurtainOpen{0%{opacity:1;transform:translate3d(0,0,0) rotate(0deg)}100%{opacity:1;transform:translate3d(-112%,0,0) rotate(-3deg)}}
-@keyframes jfCurtainClose{0%,10%{opacity:1;transform:translate3d(0,0,0) skewX(0)}100%{opacity:1;transform:translate3d(116%,0,0) skewX(-6deg)}}
+@keyframes jfCurtainClose{0%{opacity:0}8%,10%{opacity:1;transform:translate3d(0,0,0) skewX(0)}100%{opacity:1;transform:translate3d(116%,0,0) skewX(-6deg)}}
 @keyframes jfSmoke{0%,55%{opacity:0;transform:scale(.6) translate3d(0,0,0)}70%{opacity:.7;transform:scale(1) translate3d(2%,-4%,0)}100%{opacity:0;transform:scale(1.4) translate3d(6%,-10%,0)}}
 @keyframes jfSpark{0%,60%{opacity:0;transform:scale(.4) translate3d(0,0,0)}66%{opacity:1;transform:scale(1) translate3d(0,0,0)}100%{opacity:0;transform:scale(1.6) translate3d(6px,4px,0)}}
 @keyframes jfIgnition{0%{opacity:0;transform:translate3d(-14vw,-50%,0)}14%{opacity:1}82%{opacity:1}100%{opacity:0;transform:translate3d(112vw,-50%,0)}}
