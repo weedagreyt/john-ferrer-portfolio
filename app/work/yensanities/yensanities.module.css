@@ -1,5 +1,7 @@
 .intro { display: grid; grid-template-columns: 660fr 531fr; gap: 48px; align-items: start; margin-bottom: 28px; }
-.cover { width: 100%; aspect-ratio: 660 / 290; object-fit: cover; margin-top: 34px; border-radius: 12px; }
+/* aspect-ratio tuned so its bottom lines up with .brandLogo's, whose
+   column has no paragraph above it. */
+.cover { width: 100%; aspect-ratio: 660 / 320; object-fit: cover; margin-top: 34px; border-radius: 12px; }
 .brandLogo { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 12px; }
 .gallery { display: grid; gap: 30px; }
 .gallery img { border-radius: 12px; }

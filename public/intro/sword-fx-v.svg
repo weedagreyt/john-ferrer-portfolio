@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 1400" preserveAspectRatio="none">
+<defs>
+  <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+    <stop offset=".12" stop-color="#fff" stop-opacity="1"/>
+    <stop offset=".88" stop-color="#fff" stop-opacity="1"/>
+    <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+  </linearGradient>
+  <mask id="fadeMask"><rect width="240" height="1400" fill="url(#fade)"/></mask>
+
+  <linearGradient id="bloomGrad" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#4a0004" stop-opacity="0"/>
+    <stop offset=".28" stop-color="#8a0008" stop-opacity=".85"/>
+    <stop offset=".5" stop-color="#ff0a10" stop-opacity=".96"/>
+    <stop offset=".72" stop-color="#8a0008" stop-opacity=".85"/>
+    <stop offset="1" stop-color="#4a0004" stop-opacity="0"/>
+  </linearGradient>
+
+  <filter id="blurWide" x="-150%" y="-5%" width="400%" height="110%"><feGaussianBlur stdDeviation="20"/></filter>
+  <filter id="blurMed" x="-150%" y="-5%" width="400%" height="110%"><feGaussianBlur stdDeviation="8"/></filter>
+  <filter id="blurCore" x="-150%" y="-5%" width="400%" height="110%"><feGaussianBlur stdDeviation="1.1"/></filter>
+  <filter id="blurGlint" x="-400%" y="-400%" width="900%" height="900%"><feGaussianBlur stdDeviation="3.2"/></filter>
+
+  <pattern id="metal" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(24)">
+    <line x1="0" y1="0" x2="0" y2="7" stroke="#ffffff" stroke-opacity=".07" stroke-width="1"/>
+  </pattern>
+</defs>
+
+<g mask="url(#fadeMask)">
+  <rect x="34" y="0" width="9" height="1400" fill="url(#bloomGrad)" opacity=".28" filter="url(#blurWide)"/>
+  <rect x="190" y="0" width="7" height="1400" fill="url(#bloomGrad)" opacity=".24" filter="url(#blurWide)"/>
+
+  <rect x="88" y="0" width="64" height="1400" fill="url(#bloomGrad)" opacity=".85" filter="url(#blurWide)"/>
+  <rect x="103" y="0" width="34" height="1400" fill="url(#bloomGrad)" opacity=".95" filter="url(#blurMed)"/>
+  <rect x="88" y="0" width="64" height="1400" fill="url(#metal)" opacity=".4"/>
+  <rect x="118" y="0" width="3" height="1400" fill="#ff2b2b" opacity=".85" filter="url(#blurCore)"/>
+
+  <g transform="translate(120,830)">
+    <circle r="30" fill="#c8000a" opacity=".55" filter="url(#blurWide)"/>
+    <circle r="10" fill="#ff1414" opacity=".8" filter="url(#blurMed)"/>
+    <circle r="3.4" fill="#fff8f6" filter="url(#blurGlint)"/>
+    <rect x="-.8" y="-92" width="1.6" height="184" fill="#ff3b3b" opacity=".85" filter="url(#blurGlint)"/>
+    <rect x="-40" y="-.8" width="80" height="1.6" fill="#ff3b3b" opacity=".5" filter="url(#blurGlint)"/>
+  </g>
+</g>
+</svg>

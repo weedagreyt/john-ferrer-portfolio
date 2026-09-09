@@ -5,7 +5,8 @@
   align-items: center;
   margin-bottom: 28px;
 }
-.intro > img {
+.intro > img,
+.intro > video {
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
@@ -13,48 +14,56 @@
 }
 .masonry {
   display: grid;
-  grid-template-columns: 552fr 653fr;
-  gap: 35px;
+  /* Match the Figma gallery: the supporting mosaic is intentionally wider
+     than the left feature column so both columns resolve on the same bottom
+     edge without distributing extra space between rows. */
+  grid-template-columns: 62.65fr 95fr;
+  gap: 34px;
   align-items: start;
 }
 .leftCol,
 .rightArea,
 .stack {
   display: grid;
-  gap: 33px;
+  gap: 34px;
 }
 .leftCol img,
-.rightArea img {
+.rightArea img,
+.leftCol video,
+.rightArea video {
   width: 100%;
   height: auto;
   display: block;
   border-radius: 12px;
 }
+/* Every gap in this masonry - between columns, between rows, and between
+   images within a row - is the same size (per the Figma reference),
+   rather than each pair carrying its own one-off value. */
 .topPair {
   display: grid;
   grid-template-columns: 346fr 278fr;
-  gap: 29px;
+  gap: 34px;
   align-items: start;
 }
 .midPair {
   display: grid;
   grid-template-columns: 317fr 315fr;
-  gap: 21px;
+  gap: 34px;
   align-items: start;
 }
 .lower {
   display: grid;
   grid-template-columns: 361fr 262fr;
-  gap: 30px;
+  gap: 34px;
   align-items: start;
 }
 .lower .stack {
-  gap: 30px;
+  gap: 34px;
 }
 .bottomPair {
   display: grid;
   grid-template-columns: 298fr 319fr;
-  gap: 36px;
+  gap: 34px;
   align-items: start;
 }
 .tall {
@@ -94,6 +103,24 @@
   max-width: none;
   border-radius: 0;
 }
+/* On desktop, the final left portrait fills the exact remaining column
+   height so its lower edge stays level with the final right-hand mosaic row. */
+@media (min-width: 1001px) {
+  .masonry {
+    align-items: stretch;
+  }
+  .leftCol {
+    grid-template-rows: auto auto auto minmax(0, 1fr);
+  }
+  .leftCol > :last-child {
+    min-height: 0;
+  }
+  .leftCol > :last-child .poster6Crop {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+}
+
 @media (max-width: 1000px) {
   .intro {
     grid-template-columns: 1fr;
@@ -115,7 +142,7 @@
   .midPair,
   .lower,
   .bottomPair {
-    gap: 16px;
+    gap: 20px;
   }
 }
 @media (max-width: 650px) {
@@ -132,21 +159,7 @@
   .midPair,
   .lower,
   .bottomPair {
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-}
-
-/* Anchor the final artwork to the bottom edge of the desktop composition. */
-@media (min-width: 651px) {
-  .masonry {
-    align-items: stretch;
-  }
-  .rightArea {
-    height: 100%;
-    grid-template-rows: auto auto auto 1fr;
-  }
-  .bottomPair {
-    align-self: end;
+    grid-template-columns: 1fr;
+    gap: 18px;
   }
 }

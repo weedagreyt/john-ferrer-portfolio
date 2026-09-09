@@ -1,24 +1,32 @@
+import type { Metadata } from "next";
 import SiteNav from "../../components/SiteNav";
 import SiteFooter from "../../components/SiteFooter";
 import Reveal from "../../components/Reveal";
 import CaseStudyStory from "../../components/CaseStudyStory";
+import CaseStudyCta from "../../components/CaseStudyCta";
 import styles from "../case-study.module.css";
 import local from "./dope.module.css";
 
+export const metadata: Metadata = {
+  title: "DOPE Marketing — John Ferrer",
+  description:
+    "Five years of print, campaign and internal creative work for a fast-moving direct-mail marketing company.",
+};
+
 const assets = {
-  printProducts: "https://www.figma.com/api/mcp/asset/a6bec33f-2973-4df2-909b-c8c8e86ea1f1.png",
-  postcards: "https://www.figma.com/api/mcp/asset/2bde42ae-40a4-4382-af28-6f558c00af9d.png",
-  targeted: "https://www.figma.com/api/mcp/asset/0a5f43a0-9bac-45df-a57b-0fe3a51317ec.png",
-  sign: "https://www.figma.com/api/mcp/asset/d1e5a67f-a70b-42fa-b386-3677a6e94bcd.png",
-  yardsigns: "https://www.figma.com/api/mcp/asset/ca0a9826-a652-4d5b-a78e-46ac32af812b.png",
-  rollup: "https://www.figma.com/api/mcp/asset/5b2be463-3a5b-414b-98a3-5cde687ec36f.png",
-  mascot: "https://www.figma.com/api/mcp/asset/5305a6b0-6cc6-4b8b-924d-8ae525cc96bf.png",
-  brochure: "https://www.figma.com/api/mcp/asset/2f766a15-86bb-478f-bdcf-476771cfebe2.png",
-  social1: "https://www.figma.com/api/mcp/asset/c4bd82a4-002d-43ef-8666-f787d86d8f33.png",
-  flyer: "https://www.figma.com/api/mcp/asset/2410d660-6d61-42e2-8c05-0128974e66a1.png",
-  social2: "https://www.figma.com/api/mcp/asset/88932d33-0226-47ca-ba61-3f4157fa97c7.png",
-  social3: "https://www.figma.com/api/mcp/asset/12f8f175-71df-4bc1-a8e6-cde1b02dfa35.png",
-  next: "https://www.figma.com/api/mcp/asset/47ffa696-06fd-4374-a3ed-7a49ded1fe1d.svg",
+  printProducts: "/work/dope-marketing/print-products.jpg",
+  postcards: "/work/dope-marketing/postcards.jpg",
+  targeted: "/work/dope-marketing/targeted.jpg",
+  sign: "/work/dope-marketing/sign.jpg",
+  yardsigns: "/work/dope-marketing/yard-signs.jpg",
+  rollup: "/work/dope-marketing/rollup.jpg",
+  mascot: "/work/dope-marketing/mascot.png",
+  brochure: "/work/dope-marketing/brochure.jpg",
+  social1: "/work/dope-marketing/social-1.jpg",
+  flyer: "/work/dope-marketing/flyer.jpg",
+  social2: "/work/dope-marketing/social-2.jpg",
+  social3: "/work/dope-marketing/social-3.jpg",
+  next: "/work/dope-marketing/next.svg",
 };
 
 export default function DopeMarketingPage() {
@@ -54,6 +62,7 @@ export default function DopeMarketingPage() {
         </div>
       </article>
 
+      <Reveal><CaseStudyCta /></Reveal>
       <Reveal className={styles.next}><small>Next Project</small><a href="/work/yensanities"><h2>YENSANITIES</h2><img src={assets.next} alt="" /></a></Reveal>
       <SiteFooter />
     </main>

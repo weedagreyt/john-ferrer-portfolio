@@ -79,36 +79,6 @@ header a[href="/"]::after,
   }
 }
 
-/* Cinematic intro final polish: remove curved/crawling artifacts completely. */
-.jf-intro__line,
-.jf-intro__line-glow,
-.jf-intro__line-core {
-  display: none !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
-}
-
-/* The shared atmosphere asset contains curved beam paths, so the intro uses CSS-built straight beams instead. */
-.jf-intro__atmosphere {
-  display: none !important;
-}
-
-.jf-intro__cover::before {
-  background:
-    radial-gradient(circle at 76% 29%, rgba(240, 24, 32, .26), transparent 31%),
-    linear-gradient(104deg, rgba(3, 4, 5, .86) 0%, rgba(3, 4, 5, .18) 58%, rgba(3, 4, 5, .36) 100%),
-    linear-gradient(112deg, transparent 0 60%, rgba(240, 24, 32, .12) 61%, rgba(255, 45, 52, .72) 62%, rgba(120, 4, 10, .28) 66%, transparent 67%),
-    linear-gradient(112deg, transparent 0 48%, rgba(91, 3, 8, .42) 49%, rgba(240, 24, 32, .36) 51%, transparent 52%),
-    linear-gradient(112deg, transparent 0 81%, rgba(255, 35, 43, .88) 82%, rgba(94, 2, 8, .34) 85%, transparent 86%) !important;
-}
-
-.jf-intro__cover::after {
-  background:
-    linear-gradient(112deg, transparent 0 12%, rgba(240, 24, 32, .06) 13%, rgba(255, 255, 255, .22) 13.35%, rgba(240, 24, 32, .10) 13.9%, transparent 15%),
-    linear-gradient(112deg, transparent 0 72%, rgba(240, 24, 32, .16) 73%, rgba(255, 255, 255, .22) 73.25%, rgba(240, 24, 32, .10) 74%, transparent 75%),
-    linear-gradient(180deg, rgba(0, 0, 0, .16), transparent 42%, rgba(0, 0, 0, .52)) !important;
-}
-
 @media (max-width: 760px) {
   /* Remove any small/cropped technical labels in portrait mode. */
   .jf-intro__logo-lockup span,
@@ -137,13 +107,6 @@ header a[href="/"]::after,
     object-position: center center !important;
   }
 
-  .jf-intro__cover::before {
-    background:
-      radial-gradient(circle at 72% 27%, rgba(240, 24, 32, .30), transparent 32%),
-      linear-gradient(104deg, rgba(3, 4, 5, .90) 0%, rgba(3, 4, 5, .22) 58%, rgba(3, 4, 5, .40) 100%),
-      linear-gradient(112deg, transparent 0 58%, rgba(240, 24, 32, .12) 59%, rgba(255, 45, 52, .72) 60%, rgba(120, 4, 10, .28) 65%, transparent 66%),
-      linear-gradient(112deg, transparent 0 78%, rgba(255, 35, 43, .78) 79%, rgba(94, 2, 8, .32) 83%, transparent 84%) !important;
-  }
 }
 
 /* Keep the closing CTA sharp at every viewport size using vector artwork. */

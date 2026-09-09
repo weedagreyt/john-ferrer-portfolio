@@ -1,18 +1,26 @@
+import type { Metadata } from "next";
 import SiteNav from "../../components/SiteNav";
 import SiteFooter from "../../components/SiteFooter";
 import Reveal from "../../components/Reveal";
 import CaseStudyStory from "../../components/CaseStudyStory";
+import CaseStudyCta from "../../components/CaseStudyCta";
 import styles from "../case-study.module.css";
 
+export const metadata: Metadata = {
+  title: "UNIMOTORS — John Ferrer",
+  description:
+    "An automotive identity built from brand-character exploration into a clear, recognizable visual system.",
+};
+
 const assets = {
-  hero: "https://www.figma.com/api/mcp/asset/4e5ca8b8-94ae-45f1-8951-8aed9ce1d339.png",
-  direction1: "https://www.figma.com/api/mcp/asset/8ee6baa5-888f-4975-af52-bcf915865b75.png",
-  direction2: "https://www.figma.com/api/mcp/asset/a77b6778-89ec-4f22-9c35-e4d20130a44f.png",
-  direction3: "https://www.figma.com/api/mcp/asset/18a41cd5-75b3-43fd-b01a-926432635a6d.png",
-  card: "https://www.figma.com/api/mcp/asset/3c815ae3-d0b9-4865-a05a-35d9850fa79a.png",
-  hang: "https://www.figma.com/api/mcp/asset/f3063a87-e540-402c-bafe-4cb165f5393a.png",
-  vehicle: "https://www.figma.com/api/mcp/asset/86d9efe9-f5fd-41c3-8281-cc0f703553e4.png",
-  next: "https://www.figma.com/api/mcp/asset/c3bde017-f2fb-48a7-a370-65e8ef742145.svg",
+  hero: "/work/unimotors/hero.jpg",
+  direction1: "/work/unimotors/direction-1.jpg",
+  direction2: "/work/unimotors/direction-2.jpg",
+  direction3: "/work/unimotors/direction-3.jpg",
+  card: "/work/unimotors/card.jpg",
+  hang: "/work/unimotors/hang.jpg",
+  vehicle: "/work/unimotors/vehicle.jpg",
+  next: "/work/unimotors/next.svg",
 };
 
 export default function UnimotorsPage() {
@@ -57,6 +65,7 @@ export default function UnimotorsPage() {
         </div>
       </article>
 
+      <Reveal><CaseStudyCta /></Reveal>
       <Reveal className={styles.next}><small>Next Project</small><a href="/work/dope-marketing"><h2>DOPE MARKETING</h2><img src={assets.next} alt="" /></a></Reveal>
       <SiteFooter />
     </main>

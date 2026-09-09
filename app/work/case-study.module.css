@@ -192,7 +192,9 @@
   max-width: none;
 }
 .koveMoodboards {
-  aspect-ratio: 854/596.6166;
+  /* Tuned so its bottom lines up with .koveMoodPhoto's, whose column
+     also carries the intro paragraph above it. */
+  aspect-ratio: 854/608;
   clip-path: polygon(3% 0, 100% 0, 97% 100%, 0 100%);
 }
 .koveMoodboards img {
@@ -218,7 +220,9 @@
   display: block;
 }
 .koveExterior {
-  aspect-ratio: 600/582.353;
+  /* Matches .twoUp's 594fr/600fr column ratio exactly, so this ends up
+     the same rendered height as the square .koveProduct beside it. */
+  aspect-ratio: 600 / 594;
   clip-path: polygon(0 0, 95% 0, 100% 100%, 5% 100%);
 }
 .koveExterior img {
@@ -259,7 +263,9 @@
   clip-path: polygon(4% 0, 100% 0, 96% 100%, 0 100%);
 }
 .kovePoster {
-  aspect-ratio: 465/620;
+  /* Tuned so its bottom lines up with .koveEventPhoto's, whose column
+     also carries the paragraph above it. */
+  aspect-ratio: 465/578;
   clip-path: polygon(0 0, 94% 0, 100% 100%, 6% 100%);
 }
 .koveEventPhoto img,
@@ -305,20 +311,26 @@
   display: grid;
   grid-template-columns: 596fr 559fr;
   gap: 30px;
-  align-items: start;
+  align-items: stretch;
 }
 .unimotorsDetailLeft {
   display: grid;
-  gap: 0;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 26px;
 }
 .unimotorsDetailLeft .copyWide {
   margin: 0;
-  min-height: 147px;
   box-sizing: border-box;
   max-width: none;
 }
 .unimotorsMirror {
-  aspect-ratio: 596/472;
+  /* Tuned so its bottom lines up with .unimotorsCard's, whose column
+     also carries the paragraph above it. min-height on that paragraph
+     used to be 147px - way past its real ~76px, which pushed this
+     ratio too low and dragged the paragraph's red border-left past
+     the end of the actual text. */
+  /* The flexible row preserves the lower edge shared with the card. */
+  min-height: 0;
   clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
 }
 .unimotorsMirror img {
@@ -440,6 +452,13 @@
   }
   .eventLeft {
     gap: 22px;
+  }
+  .unimotorsDetailLeft {
+    grid-template-rows: auto auto;
+    gap: 0;
+  }
+  .unimotorsMirror {
+    aspect-ratio: 596/546;
   }
   .unimotorsDetailLeft .copyWide {
     min-height: 0;
@@ -590,4 +609,85 @@
   .titleBlock h1 { font-size: clamp(32px,9vw,39px); }
   .next h2 { font-size: clamp(27px,8vw,34px); }
   .next img { flex-shrink: 0; }
+}
+
+:global(.case-study-cta) {
+  width: min(1240px, calc(100% - 48px));
+  margin: 0 auto 42px;
+  padding: 44px 48px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  border: 1px solid rgba(247, 247, 247, .16);
+  border-left: 3px solid #e11212;
+  background:
+    radial-gradient(circle at 82% 40%, rgba(225, 18, 18, .17), transparent 28%),
+    linear-gradient(112deg, #121416 0%, #0a0b0c 74%);
+}
+:global(.case-study-cta)::after {
+  content: "";
+  position: absolute;
+  right: -4%;
+  top: 0;
+  width: 34%;
+  height: 100%;
+  opacity: .5;
+  background: linear-gradient(120deg, transparent 18%, rgba(225, 18, 18, .24) 19%, transparent 20%);
+  pointer-events: none;
+}
+:global(.case-study-cta > *) { position: relative; z-index: 1; }
+:global(.case-study-cta p) {
+  margin: 0 0 8px;
+  color: #e11212;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+:global(.case-study-cta h2) {
+  margin: 0;
+  font-family: Arial Black, Arial, sans-serif;
+  font-size: clamp(30px, 3.4vw, 48px);
+  font-style: italic;
+  font-weight: 900;
+  line-height: 1.03;
+  letter-spacing: -.02em;
+  text-transform: uppercase;
+}
+:global(.case-study-cta h2 span) { color: #e11212; }
+:global(.case-study-cta a) {
+  min-height: 52px;
+  padding: 0 22px 0 24px;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border: 1px solid #e11212;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  transition: background .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+:global(.case-study-cta a:hover) {
+  background: #c61111;
+  box-shadow: 0 0 24px rgba(225, 18, 18, .26);
+  transform: translateY(-2px);
+}
+@media (max-width: 650px) {
+  :global(.case-study-cta) {
+    width: min(100% - 32px, 1240px);
+    margin-bottom: 30px;
+    padding: 32px 24px;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 24px;
+  }
+  :global(.case-study-cta a) { width: 100%; }
 }

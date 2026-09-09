@@ -1,0 +1,8 @@
+node_modules/
+.next/
+.claude/
+package-lock.json
+dev-with-node.cmd
+dev-server.log
+AGENTS.md
+CLAUDE.md

@@ -101,9 +101,6 @@
     border-color 0.35s ease,
     box-shadow 0.35s ease;
 }
-.card:nth-child(even) {
-  clip-path: polygon(0 0, 92% 0, 100% 100%, 8% 100%);
-}
 .card::before {
   content: "";
   position: absolute;
@@ -230,8 +227,7 @@
     gap: 14px;
     padding-bottom: 82px;
   }
-  .card,
-  .card:nth-child(even) {
+  .card {
     clip-path: polygon(4% 0, 100% 0, 96% 100%, 0 100%);
   }
   .card::before {
@@ -284,11 +280,12 @@
   aspect-ratio: 4 / 5;
   border-radius: 0;
 }
-.grid > div:nth-child(odd) .card {
-  clip-path: polygon(7% 0, 100% 0, 93% 100%, 0 100%);
-}
-.grid > div:nth-child(even) .card {
-  clip-path: polygon(0 0, 93% 0, 100% 100%, 7% 100%);
+.grid > div .card {
+  /* Gentler shear than the original 7%: a steeper diagonal drags a
+     large triangular void into the row gap below/above it (the void
+     reaches the full card height right at the corner), which read as
+     uneven top/bottom spacing next to the flat side-by-side gap. */
+  clip-path: polygon(4% 0, 100% 0, 96% 100%, 0 100%);
 }
 .cardCopy {
   padding: 32px clamp(28px, 3vw, 40px) 36px;
@@ -311,11 +308,8 @@
     aspect-ratio: 4 / 5;
     border-radius: 0;
   }
-  .grid > div:nth-child(odd) .card {
+  .grid > div .card {
     clip-path: polygon(4% 0, 100% 0, 96% 100%, 0 100%);
-  }
-  .grid > div:nth-child(even) .card {
-    clip-path: polygon(0 0, 96% 0, 100% 100%, 4% 100%);
   }
   .cardCopy {
     padding: 24px 24px 28px;
