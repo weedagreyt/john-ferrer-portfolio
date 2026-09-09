@@ -345,22 +345,26 @@ const INTRO_CSS = String.raw`
 .jf-intro__streaks{
   position:absolute;
   z-index:5;
-  inset:-10% -30%;
+  left:50%;
+  top:50%;
+  width:220vmax;
+  height:220vmax;
+  transform:translate3d(-50%,-50%,0) rotate(-17deg);
   background:
     radial-gradient(circle at 76% 29%,rgba(240,24,32,.26),transparent 31%),
-    linear-gradient(104deg,rgba(3,4,5,.86) 0%,rgba(3,4,5,.18) 58%,rgba(3,4,5,.36) 100%),
-    linear-gradient(112deg,transparent 0 60%,rgba(240,24,32,.12) 61%,rgba(255,45,52,.72) 62%,rgba(120,4,10,.28) 66%,transparent 67%),
-    linear-gradient(112deg,transparent 0 48%,rgba(91,3,8,.42) 49%,rgba(240,24,32,.36) 51%,transparent 52%),
-    linear-gradient(112deg,transparent 0 81%,rgba(255,35,43,.88) 82%,rgba(94,2,8,.34) 85%,transparent 86%),
-    linear-gradient(112deg,transparent 0 12%,rgba(240,24,32,.06) 13%,rgba(255,255,255,.22) 13.35%,rgba(240,24,32,.10) 13.9%,transparent 15%),
-    linear-gradient(112deg,transparent 0 72%,rgba(240,24,32,.16) 73%,rgba(255,255,255,.22) 73.25%,rgba(240,24,32,.10) 74%,transparent 75%),
+    linear-gradient(90deg,rgba(3,4,5,.86) 0%,rgba(3,4,5,.18) 58%,rgba(3,4,5,.36) 100%),
+    linear-gradient(90deg,transparent 0 60%,rgba(240,24,32,.12) 61%,rgba(255,45,52,.72) 62%,rgba(120,4,10,.28) 66%,transparent 67%),
+    linear-gradient(90deg,transparent 0 48%,rgba(91,3,8,.42) 49%,rgba(240,24,32,.36) 51%,transparent 52%),
+    linear-gradient(90deg,transparent 0 81%,rgba(255,35,43,.88) 82%,rgba(94,2,8,.34) 85%,transparent 86%),
+    linear-gradient(90deg,transparent 0 12%,rgba(240,24,32,.06) 13%,rgba(255,255,255,.22) 13.35%,rgba(240,24,32,.10) 13.9%,transparent 15%),
+    linear-gradient(90deg,transparent 0 72%,rgba(240,24,32,.16) 73%,rgba(255,255,255,.22) 73.25%,rgba(240,24,32,.10) 74%,transparent 75%),
     #050607;
   pointer-events:none;
   will-change:transform,opacity;
 }
 .jf-intro__streaks--close{z-index:95;opacity:0}
 .jf-intro--play .jf-intro__streaks--open{animation:jfStreaksOpen .8s cubic-bezier(.7,0,.2,1) 0s both}
-.jf-intro--play .jf-intro__streaks--close{animation:jfStreaksClose .78s cubic-bezier(.83,0,.17,1) 3.72s both}
+.jf-intro--play .jf-intro__streaks--close{animation:jfStreaksClose .9s cubic-bezier(.45,0,.3,1) 3.48s both}
 .jf-intro__cover::before{
   content:"";
   position:absolute;
@@ -569,8 +573,8 @@ const INTRO_CSS = String.raw`
 }
 .jf-intro--play .jf-intro__skip{animation:jfSkip 3.35s linear .18s both}
 .jf-intro__skip:focus-visible{outline:1px solid #fff;outline-offset:3px}
-@keyframes jfStreaksOpen{0%{opacity:1;transform:translate3d(0,0,0)}100%{opacity:1;transform:translate3d(-120%,0,0)}}
-@keyframes jfStreaksClose{0%{opacity:0}8%{opacity:1;transform:translate3d(0,0,0)}100%{opacity:1;transform:translate3d(120%,0,0)}}
+@keyframes jfStreaksOpen{0%{opacity:1;transform:translate3d(-50%,-50%,0) rotate(-17deg) translate3d(0,0,0)}100%{opacity:1;transform:translate3d(-50%,-50%,0) rotate(-17deg) translate3d(-60%,0,0)}}
+@keyframes jfStreaksClose{0%{opacity:0;transform:translate3d(-50%,-50%,0) rotate(-17deg) translate3d(-60%,0,0)}14%{opacity:1}72%{opacity:1}100%{opacity:0;transform:translate3d(-50%,-50%,0) rotate(-17deg) translate3d(60%,0,0)}}
 @keyframes jfSmoke{0%,55%{opacity:0;transform:scale(.6) translate3d(0,0,0)}70%{opacity:.7;transform:scale(1) translate3d(2%,-4%,0)}100%{opacity:0;transform:scale(1.4) translate3d(6%,-10%,0)}}
 @keyframes jfSpark{0%,60%{opacity:0;transform:scale(.4) translate3d(0,0,0)}66%{opacity:1;transform:scale(1) translate3d(0,0,0)}100%{opacity:0;transform:scale(1.6) translate3d(6px,4px,0)}}
 @keyframes jfIgnition{0%{opacity:0;transform:translate3d(-14vw,-50%,0)}14%{opacity:1}82%{opacity:1}100%{opacity:0;transform:translate3d(112vw,-50%,0)}}
