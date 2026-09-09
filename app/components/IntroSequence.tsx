@@ -520,12 +520,12 @@ const INTRO_CSS = String.raw`
   width:5px;
   height:5px;
   border-radius:50%;
-  background:#fff3ef;
+  background:#fff8f6;
   opacity:0;
   box-shadow:
-    0 0 3px 1px rgba(255,255,255,.85),
-    0 0 12px 4px rgba(220,0,10,.95),
-    0 0 30px 11px rgba(150,0,6,.5);
+    0 0 2px 1px rgba(255,255,255,.75),
+    0 0 12px 4px rgba(255,10,16,.95),
+    0 0 30px 11px rgba(138,0,8,.55);
 }
 .jf-intro__sparks--open span:nth-child(1){left:14%;top:28%}
 .jf-intro__sparks--open span:nth-child(2){left:58%;top:52%}
