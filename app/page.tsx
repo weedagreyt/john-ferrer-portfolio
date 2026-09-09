@@ -37,8 +37,12 @@ function ArrowIcon() {
 }
 
 export default function HomePage() {
+  const skipIntroFromGesture = () => {
+    document.querySelector<HTMLElement>(".jf-intro")?.click();
+  };
+
   return (
-    <main className="race-home">
+    <main className="race-home" onWheel={skipIntroFromGesture} onTouchMove={skipIntroFromGesture}>
       <IntroSequence />
 
       <section id="top" className="hero">
