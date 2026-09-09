@@ -22,7 +22,7 @@ const projectScenes = [
     r1: "0.18deg",
     sliceAngle: "-20deg",
     sliceScale: "1.15",
-    glarePos: "tr",
+    sliceTop: "10%",
   },
   {
     src: "/intro/scene-02.jpg",
@@ -41,7 +41,7 @@ const projectScenes = [
     r1: "-0.18deg",
     sliceAngle: "-10deg",
     sliceScale: "0.6",
-    glarePos: "bl",
+    sliceTop: "58%",
   },
   {
     src: "/intro/scene-03.jpg",
@@ -60,7 +60,7 @@ const projectScenes = [
     sliceAngle: "-16deg",
     sliceScale: "1",
     sliceDouble: true,
-    glarePos: "tl",
+    sliceTop: "22%",
   },
   {
     src: "/intro/scene-04-unimotors.jpg",
@@ -78,7 +78,7 @@ const projectScenes = [
     r1: "-0.15deg",
     sliceAngle: "-24deg",
     sliceScale: "1.2",
-    glarePos: "br",
+    sliceTop: "68%",
   },
   {
     src: "/intro/scene-05.jpg",
@@ -97,7 +97,7 @@ const projectScenes = [
     r1: "0.16deg",
     sliceAngle: "-8deg",
     sliceScale: "0.55",
-    glarePos: "bl",
+    sliceTop: "38%",
   },
 ] as const;
 
@@ -258,6 +258,7 @@ export default function IntroSequence() {
       "--r1": scene.r1,
       "--slice-angle": scene.sliceAngle,
       "--slice-scale": scene.sliceScale,
+      "--slice-top": scene.sliceTop,
     }) as CSSProperties;
 
   const skip = () => {
@@ -275,6 +276,8 @@ export default function IntroSequence() {
 
       <div className="jf-intro__cover" aria-hidden="true">
         <img className="jf-intro__atmosphere" src="/racing-atmosphere.svg" alt="" />
+
+        <div className="jf-intro__open-sweep" aria-hidden="true" />
 
         <div className="jf-intro__speedfx" aria-hidden="true">
           <span />
@@ -302,7 +305,6 @@ export default function IntroSequence() {
                 </picture>
               )}
               {"sliceDouble" in scene && scene.sliceDouble && <span className="jf-intro__scene-slice2" />}
-              <span className={`jf-intro__scene-glare jf-intro__scene-glare--${scene.glarePos}`} />
               <span className="jf-intro__scene-index">0{index + 1}</span>
             </figure>
           ))}
@@ -387,6 +389,20 @@ const INTRO_CSS = String.raw`
   box-shadow:inset 0 0 120px rgba(0,0,0,.72);
   background:linear-gradient(180deg,rgba(0,0,0,.12),transparent 42%,rgba(0,0,0,.48));
 }
+.jf-intro__open-sweep{
+  position:absolute;
+  z-index:7;
+  left:-40vw;
+  top:-48vh;
+  width:clamp(260px,30vw,520px);
+  height:200vh;
+  opacity:0;
+  transform:rotate(-4deg) translate3d(-40vw,0,0);
+  background:url(/intro/sword-fx-v.svg) center/100% 100% no-repeat;
+  pointer-events:none;
+  will-change:transform,opacity;
+}
+.jf-intro--play .jf-intro__open-sweep{animation:jfOccluder .72s cubic-bezier(.72,0,.18,1) .04s both}
 .jf-intro__speedfx{
   position:absolute;
   inset:0;
@@ -420,23 +436,23 @@ const INTRO_CSS = String.raw`
   position:absolute;
   left:0;
   top:50%;
-  width:340px;
-  height:3px;
+  width:460px;
+  height:6px;
   border-radius:99px;
   transform:translateY(-50%);
-  background:linear-gradient(90deg,transparent,rgba(240,24,32,.08) 26%,rgba(240,24,32,.34) 52%,rgba(240,24,32,.7) 76%,#fff 96%,#fff 100%);
+  background:linear-gradient(90deg,transparent,rgba(240,24,32,.1) 22%,rgba(240,24,32,.4) 48%,rgba(240,24,32,.8) 74%,#fff 95%,#fff 100%);
 }
 .jf-intro__ignition-core::after{
   content:"";
   position:absolute;
-  right:-3px;
+  right:-5px;
   top:50%;
-  width:7px;
-  height:7px;
+  width:12px;
+  height:12px;
   border-radius:50%;
   background:#fff;
   transform:translateY(-50%);
-  box-shadow:0 0 8px 2px rgba(255,255,255,.95),0 0 22px 6px rgba(240,24,32,.75),0 0 44px 14px rgba(240,24,32,.35);
+  box-shadow:0 0 10px 3px rgba(255,255,255,.95),0 0 28px 8px rgba(240,24,32,.8),0 0 56px 18px rgba(240,24,32,.4);
 }
 .jf-intro--play .jf-intro__ignition{
   animation:jfIgnition .85s cubic-bezier(.6,0,.25,1) .08s both;
@@ -478,28 +494,14 @@ const INTRO_CSS = String.raw`
   position:absolute;
   z-index:3;
   left:-18%;
-  top:14%;
+  top:var(--slice-top,14%);
   width:calc(var(--slice-scale,1) * 136%);
   height:64px;
   background:url(/intro/sword-fx-h.svg) center/100% 100% no-repeat;
   transform:rotate(var(--slice-angle,-17deg)) translate3d(-35%,0,0);
   opacity:0;
 }
-.jf-intro__scene-slice2{top:26%;height:48px}
-.jf-intro__scene-glare{
-  position:absolute;
-  z-index:2;
-  width:58%;
-  height:58%;
-  opacity:0;
-  pointer-events:none;
-  background:linear-gradient(135deg,transparent 36%,rgba(255,255,255,.16) 50%,transparent 64%);
-}
-.jf-intro__scene-glare--tr{top:-8%;right:-8%}
-.jf-intro__scene-glare--tl{top:-8%;left:-8%}
-.jf-intro__scene-glare--br{bottom:-8%;right:-8%}
-.jf-intro__scene-glare--bl{bottom:-8%;left:-8%}
-.jf-intro--play .jf-intro__scene-glare{animation:jfSceneGlare var(--duration) ease-out var(--delay) both}
+.jf-intro__scene-slice2{top:calc(var(--slice-top,14%) + 16%);height:48px}
 .jf-intro--play .jf-intro__scene{
   animation:jfScene var(--duration) cubic-bezier(.16,1,.3,1) var(--delay) both;
 }
@@ -597,7 +599,6 @@ const INTRO_CSS = String.raw`
 @keyframes jfIgnition{0%{opacity:0;transform:translate3d(-14vw,-50%,0)}14%{opacity:1}82%{opacity:1}100%{opacity:0;transform:translate3d(112vw,-50%,0)}}
 @keyframes jfScene{0%{opacity:0;transform:translate3d(var(--x0),var(--y0),0) scale(var(--s0)) rotate(var(--r0))}8%{opacity:1}72%{opacity:1}100%{opacity:0;transform:translate3d(var(--x1),var(--y1),0) scale(var(--s1)) rotate(var(--r1))}}
 @keyframes jfSceneEdge{0%,10%{opacity:0;transform:rotate(-17deg) translate3d(-38%,0,0)}28%{opacity:.82}64%{opacity:.18}100%{opacity:0;transform:rotate(-17deg) translate3d(50%,0,0)}}
-@keyframes jfSceneGlare{0%,10%{opacity:0;transform:translate3d(-4%,-4%,0)}30%{opacity:1}70%{opacity:.55;transform:translate3d(3%,3%,0)}100%{opacity:0;transform:translate3d(5%,5%,0)}}
 @keyframes jfTypeLeft{0%{opacity:0;transform:translate3d(-12vw,32px,0) skewX(-7deg) scaleX(.94)}20%,74%{opacity:.96;transform:translate3d(0,0,0) skewX(-7deg) scaleX(1)}100%{opacity:0;transform:translate3d(10vw,-10px,0) skewX(-7deg) scaleX(.97)}}
 @keyframes jfTypeRight{0%{opacity:0;transform:translate3d(12vw,30px,0) skewX(-7deg) scaleX(.94)}20%,72%{opacity:.98;transform:translate3d(0,0,0) skewX(-7deg) scaleX(1)}100%{opacity:0;transform:translate3d(-10vw,-8px,0) skewX(-7deg) scaleX(.97)}}
 @keyframes jfMicro{0%,8%{opacity:0}18%,82%{opacity:.48}100%{opacity:0}}
