@@ -361,6 +361,7 @@ const INTRO_CSS = String.raw`
   width:116%;
   height:116%;
   max-width:none;
+  z-index:1;
   object-fit:cover;
   object-position:68% 48%;
   opacity:.16;
@@ -368,7 +369,7 @@ const INTRO_CSS = String.raw`
   pointer-events:none;
 }
 .jf-intro--play .jf-intro__atmosphere{
-  animation:jfAtmosphere 4.4s cubic-bezier(.25,.1,.4,1) both;
+  animation:jfAtmosphere 1.1s cubic-bezier(.25,.1,.4,1) both;
 }
 .jf-intro__cover::before{
   content:"";
