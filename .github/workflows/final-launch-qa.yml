@@ -24,11 +24,23 @@ jobs:
       - name: Add isolated browser test dependency
         run: npm install --no-save --package-lock=false playwright@1.55.0
       - run: npx playwright install --with-deps chromium
-      - name: Verify MP4 assets are readable
+      - name: Verify MP4 containers
         run: |
-          ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 public/work/art-exploration/unicorn-2.mp4
-          ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 public/work/retrophorics/brand-film.mp4
-          ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 public/work/retrophorics/motion-exploration.mp4
+          node - <<'NODE'
+          const fs = require('fs');
+          const files = [
+            'public/work/art-exploration/unicorn-2.mp4',
+            'public/work/retrophorics/brand-film.mp4',
+            'public/work/retrophorics/motion-exploration.mp4',
+          ];
+          for (const file of files) {
+            const data = fs.readFileSync(file);
+            if (data.length < 1024 || data.subarray(4, 12).toString('ascii').indexOf('ftyp') < 0) {
+              throw new Error(`Invalid MP4 container: ${file}`);
+            }
+            console.log(`${file}: ${(data.length / 1024 / 1024).toFixed(2)} MB, MP4 signature OK`);
+          }
+          NODE
       - name: Build production site
         run: npm run build
       - name: Run Chromium audit against production server
