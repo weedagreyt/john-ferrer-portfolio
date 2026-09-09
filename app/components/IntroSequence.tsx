@@ -358,14 +358,14 @@ const INTRO_CSS = String.raw`
   height:220vmax;
   transform:translate3d(-50%,-50%,0) rotate(-17deg);
   background:
-    radial-gradient(circle at 76% 29%,rgba(240,24,32,.26),transparent 31%),
-    linear-gradient(90deg,rgba(3,4,5,.86) 0%,rgba(3,4,5,.18) 58%,rgba(3,4,5,.36) 100%),
-    linear-gradient(90deg,transparent 0 60%,rgba(240,24,32,.12) 61%,rgba(255,45,52,.72) 62%,rgba(120,4,10,.28) 66%,transparent 67%),
-    linear-gradient(90deg,transparent 0 48%,rgba(91,3,8,.42) 49%,rgba(240,24,32,.36) 51%,transparent 52%),
-    linear-gradient(90deg,transparent 0 81%,rgba(255,35,43,.88) 82%,rgba(94,2,8,.34) 85%,transparent 86%),
-    linear-gradient(90deg,transparent 0 12%,rgba(240,24,32,.06) 13%,rgba(255,255,255,.22) 13.35%,rgba(240,24,32,.10) 13.9%,transparent 15%),
-    linear-gradient(90deg,transparent 0 72%,rgba(240,24,32,.16) 73%,rgba(255,255,255,.22) 73.25%,rgba(240,24,32,.10) 74%,transparent 75%),
-    #050607;
+    radial-gradient(circle at 76% 29%,rgba(200,0,10,.34),transparent 32%),
+    linear-gradient(90deg,rgba(3,4,5,.92) 0%,rgba(3,4,5,.22) 58%,rgba(3,4,5,.42) 100%),
+    linear-gradient(90deg,transparent 0 59%,rgba(70,0,4,.4) 60%,rgba(210,0,10,.9) 62%,rgba(60,0,3,.4) 66%,transparent 67%),
+    linear-gradient(90deg,transparent 0 47%,rgba(60,0,3,.55) 49%,rgba(190,0,9,.45) 51%,transparent 52%),
+    linear-gradient(90deg,transparent 0 80%,rgba(215,0,10,.95) 82%,rgba(60,0,3,.45) 85%,transparent 86%),
+    linear-gradient(90deg,transparent 0 12.8%,rgba(120,0,6,.35) 13.1%,rgba(255,255,255,.16) 13.35%,rgba(120,0,6,.35) 13.6%,transparent 15%),
+    linear-gradient(90deg,transparent 0 72.8%,rgba(120,0,6,.35) 73.1%,rgba(255,255,255,.16) 73.35%,rgba(120,0,6,.35) 73.6%,transparent 75%),
+    #030304;
   pointer-events:none;
   will-change:transform,opacity;
 }
@@ -375,12 +375,12 @@ const INTRO_CSS = String.raw`
   mix-blend-mode:screen;
   filter:saturate(1.6) brightness(1.2) hue-rotate(-4deg);
   background:
-    radial-gradient(circle at 76% 29%,rgba(240,24,32,.26),transparent 31%),
-    linear-gradient(90deg,transparent 0 60%,rgba(240,24,32,.12) 61%,rgba(255,45,52,.72) 62%,rgba(120,4,10,.28) 66%,transparent 67%),
-    linear-gradient(90deg,transparent 0 48%,rgba(91,3,8,.42) 49%,rgba(240,24,32,.36) 51%,transparent 52%),
-    linear-gradient(90deg,transparent 0 81%,rgba(255,35,43,.88) 82%,rgba(94,2,8,.34) 85%,transparent 86%),
-    linear-gradient(90deg,transparent 0 12%,rgba(240,24,32,.06) 13%,rgba(255,255,255,.22) 13.35%,rgba(240,24,32,.10) 13.9%,transparent 15%),
-    linear-gradient(90deg,transparent 0 72%,rgba(240,24,32,.16) 73%,rgba(255,255,255,.22) 73.25%,rgba(240,24,32,.10) 74%,transparent 75%);
+    radial-gradient(circle at 76% 29%,rgba(200,0,10,.3),transparent 32%),
+    linear-gradient(90deg,transparent 0 59%,rgba(70,0,4,.35) 60%,rgba(210,0,10,.85) 62%,rgba(60,0,3,.35) 66%,transparent 67%),
+    linear-gradient(90deg,transparent 0 47%,rgba(60,0,3,.5) 49%,rgba(190,0,9,.4) 51%,transparent 52%),
+    linear-gradient(90deg,transparent 0 80%,rgba(215,0,10,.9) 82%,rgba(60,0,3,.4) 85%,transparent 86%),
+    linear-gradient(90deg,transparent 0 12.9%,rgba(120,0,6,.3) 13.15%,rgba(255,255,255,.1) 13.35%,rgba(120,0,6,.3) 13.55%,transparent 15%),
+    linear-gradient(90deg,transparent 0 72.9%,rgba(120,0,6,.3) 73.15%,rgba(255,255,255,.1) 73.35%,rgba(120,0,6,.3) 73.55%,transparent 75%);
 }
 .jf-intro--play .jf-intro__streaks--open{animation:jfStreaksOpen .8s cubic-bezier(.7,0,.2,1) 0s both}
 .jf-intro--play .jf-intro__streaks--close{animation:jfStreaksClose .9s cubic-bezier(.45,0,.3,1) 3.48s both}
@@ -520,12 +520,12 @@ const INTRO_CSS = String.raw`
   width:5px;
   height:5px;
   border-radius:50%;
-  background:#fff8f5;
+  background:#fff3ef;
   opacity:0;
   box-shadow:
-    0 0 6px 2px rgba(255,255,255,.9),
-    0 0 16px 5px rgba(255,90,40,.85),
-    0 0 34px 10px rgba(240,24,32,.5);
+    0 0 3px 1px rgba(255,255,255,.85),
+    0 0 12px 4px rgba(220,0,10,.95),
+    0 0 30px 11px rgba(150,0,6,.5);
 }
 .jf-intro__sparks--open span:nth-child(1){left:14%;top:28%}
 .jf-intro__sparks--open span:nth-child(2){left:58%;top:52%}
