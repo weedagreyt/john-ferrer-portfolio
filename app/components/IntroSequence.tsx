@@ -7,7 +7,7 @@ const INTRO_VERSION = "jf:intro:v15";
 
 const projectScenes = [
   {
-    src: "/intro/scene-01.jpg",
+    src: "/KOVE Kafe - Intro.png",
     delay: 0.52,
     duration: 0.92,
     position: "52% 50%",
@@ -44,7 +44,7 @@ const projectScenes = [
     sliceTop: "58%",
   },
   {
-    src: "/intro/scene-03.jpg",
+    src: "/DOPE - Intro.png",
     delay: 1.74,
     duration: 0.9,
     position: "54% 50%",
@@ -63,7 +63,7 @@ const projectScenes = [
     sliceTop: "22%",
   },
   {
-    src: "/intro/scene-04-unimotors.jpg",
+    src: "/Unimotors - Intro.png",
     delay: 2.34,
     duration: 0.86,
     position: "50% 50%",
@@ -81,7 +81,7 @@ const projectScenes = [
     sliceTop: "68%",
   },
   {
-    src: "/intro/scene-05.jpg",
+    src: "/Retrophorics - Intro.png",
     mobileSrc: "/retrophorics-mobile-intro.jpg",
     delay: 2.9,
     duration: 0.96,
