@@ -387,8 +387,7 @@ const INTRO_CSS = String.raw`
   inset:0;
   z-index:48;
   pointer-events:none;
-  box-shadow:inset 0 0 120px rgba(0,0,0,.72);
-  background:linear-gradient(180deg,rgba(0,0,0,.12),transparent 42%,rgba(0,0,0,.48));
+  background:radial-gradient(130% 130% at 50% 42%,transparent 52%,rgba(0,0,0,.55) 100%);
 }
 .jf-intro__open-sweep{
   position:absolute;
