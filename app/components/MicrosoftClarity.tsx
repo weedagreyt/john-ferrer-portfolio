@@ -8,7 +8,7 @@ export default function MicrosoftClarity() {
   if (!clarityProjectId) return null;
 
   return (
-    <Script id="microsoft-clarity-loader" strategy="afterInteractive">
+    <Script id="microsoft-clarity-loader" strategy="beforeInteractive">
       {`
         (function(c,l,a,r,i,t,y){
           c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
