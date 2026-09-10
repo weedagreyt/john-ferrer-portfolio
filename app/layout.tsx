@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Teko } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import EmployerEngagementAnalytics from "./components/EmployerEngagementAnalytics";
+import MicrosoftClarity from "./components/MicrosoftClarity";
 import "./globals.css";
 import "./hero-polish.css";
 import "./hero-media.css";
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en">
       <body className={raceDisplay.variable}>
         {children}
+        <MicrosoftClarity />
         <EmployerEngagementAnalytics />
         <Analytics />
       </body>
