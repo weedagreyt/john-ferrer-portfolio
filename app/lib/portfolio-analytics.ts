@@ -2,6 +2,12 @@ import { track } from "@vercel/analytics";
 
 const APPLICATION_SOURCE_KEY = "jf_portfolio_application_source";
 
+type ClarityFunction = (...args: unknown[]) => void;
+
+type ClarityWindow = Window & {
+  clarity?: ClarityFunction;
+};
+
 function clean(value: string | null | undefined, fallback: string) {
   const normalized = (value || "")
     .trim()
@@ -11,6 +17,29 @@ function clean(value: string | null | undefined, fallback: string) {
     .slice(0, 80);
 
   return normalized || fallback;
+}
+
+function sendToClarity(
+  name: string,
+  source: string,
+  detailKey?: string,
+  detailValue?: string,
+) {
+  const clarity = (window as ClarityWindow).clarity;
+  if (typeof clarity !== "function") return;
+
+  try {
+    clarity("set", "application_source", source);
+    clarity("set", "portfolio_page", clean(window.location.pathname, "home"));
+
+    if (detailKey && detailValue) {
+      clarity(`set`, `portfolio_${clean(detailKey, "detail")}`, clean(detailValue, "unknown"));
+    }
+
+    clarity("event", name);
+  } catch {
+    // Clarity should never affect the portfolio experience if tracking is unavailable.
+  }
 }
 
 export function captureApplicationSource() {
@@ -50,6 +79,8 @@ export function trackPortfolioEvent(
   try {
     track(name, data);
   } catch {
-    // Analytics should never affect the portfolio experience if tracking is unavailable.
+    // Vercel Analytics should never affect the portfolio experience if tracking is unavailable.
   }
+
+  sendToClarity(name, source, detailKey, detailValue);
 }
