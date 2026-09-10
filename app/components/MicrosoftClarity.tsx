@@ -1,6 +1,6 @@
 import Script from "next/script";
 
-const clarityProjectId = (process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID || "")
+const clarityProjectId = (process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID || "yg2zcjt0u8")
   .trim()
   .replace(/[^a-zA-Z0-9_-]/g, "");
 
