@@ -2,6 +2,7 @@
 
 import { useRef, useState, type FormEvent } from "react";
 import { ArrowIcon } from "../components/UiIcons";
+import { trackPortfolioEvent } from "../lib/portfolio-analytics";
 import styles from "./contact.module.css";
 
 export default function ContactForm() {
@@ -49,6 +50,7 @@ export default function ContactForm() {
       }
       setStatus("success");
       setNotice("Thank you! Your message has been submitted. I’ll get back to you soon.");
+      trackPortfolioEvent("Contact Form Sent", "page", "/contact");
       form.reset();
     } catch {
       setStatus("error");
