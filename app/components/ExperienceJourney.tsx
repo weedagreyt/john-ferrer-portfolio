@@ -103,7 +103,7 @@ function ArrowIcon() {
 
 export default function ExperienceJourney() {
   const sectionRef = useRef<HTMLElement | null>(null);
-  const chapterRefs = useRef<Array<HTMLElement | null>>([]);
+  const zoneRefs = useRef<Array<HTMLDivElement | null>>([]);
   const navRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -118,20 +118,13 @@ export default function ExperienceJourney() {
       const sectionRect = section.getBoundingClientRect();
       if (sectionRect.bottom < 0 || sectionRect.top > window.innerHeight) return;
 
-      const target = window.innerHeight * 0.48;
+      const target = window.innerHeight * 0.5;
       let nextIndex = 0;
-      let closest = Number.POSITIVE_INFINITY;
 
-      chapterRefs.current.forEach((chapter, index) => {
-        if (!chapter) return;
-        const rect = chapter.getBoundingClientRect();
-        const center = rect.top + rect.height / 2;
-        const distance = Math.abs(center - target);
-
-        if (distance < closest) {
-          closest = distance;
-          nextIndex = index;
-        }
+      zoneRefs.current.forEach((zone, index) => {
+        if (!zone) return;
+        const rect = zone.getBoundingClientRect();
+        if (rect.top <= target) nextIndex = index;
       });
 
       setActiveIndex((current) => (current === nextIndex ? current : nextIndex));
@@ -165,12 +158,14 @@ export default function ExperienceJourney() {
 
   const jumpToChapter = (index: number) => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    chapterRefs.current[index]?.scrollIntoView({
+    setActiveIndex(index);
+    zoneRefs.current[index]?.scrollIntoView({
       behavior: reducedMotion ? "auto" : "smooth",
       block: "center",
     });
   };
 
+  const activeExperience = experience[activeIndex];
   const progress = experience.length > 1 ? (activeIndex / (experience.length - 1)) * 100 : 0;
 
   return (
@@ -192,68 +187,63 @@ export default function ExperienceJourney() {
           </a>
         </div>
 
-        <div className="journey-layout">
-          <aside className="journey-sticky" aria-label="Career timeline navigation">
-            <nav className="journey-nav">
-              <span className="journey-nav-line" aria-hidden="true" />
-              <span className="journey-nav-progress" style={{ height: `${progress}%` }} aria-hidden="true" />
-              <span className="journey-overlap-rail" aria-hidden="true" />
+        <div className="journey-story">
+          <div className="journey-stage">
+            <aside className="journey-stage-nav" aria-label="Career timeline navigation">
+              <nav className="journey-nav">
+                <span className="journey-nav-line" aria-hidden="true" />
+                <span className="journey-nav-progress" style={{ height: `${progress}%` }} aria-hidden="true" />
 
-              {experience.map((item, index) => (
-                <button
-                  ref={(node) => {
-                    navRefs.current[index] = node;
-                  }}
-                  className={`journey-nav-item${activeIndex === index ? " is-active" : ""}`}
-                  type="button"
-                  key={`${item.role}-${item.dates}`}
-                  onClick={() => jumpToChapter(index)}
-                  aria-current={activeIndex === index ? "step" : undefined}
-                >
-                  <span className="journey-nav-marker" aria-hidden="true" />
-                  <span className="journey-nav-date">{item.dates}</span>
-                  <span className="journey-nav-stage">{item.stage}</span>
-                </button>
-              ))}
-            </nav>
-            <p className="journey-overlap-note">Parallel track = overlapping roles.</p>
-          </aside>
+                {experience.map((item, index) => (
+                  <button
+                    ref={(node) => {
+                      navRefs.current[index] = node;
+                    }}
+                    className={`journey-nav-item${activeIndex === index ? " is-active" : ""}`}
+                    type="button"
+                    key={`${item.role}-${item.dates}`}
+                    onClick={() => jumpToChapter(index)}
+                    aria-current={activeIndex === index ? "step" : undefined}
+                  >
+                    <span className="journey-nav-marker" aria-hidden="true" />
+                    <span className="journey-nav-date">{item.dates}</span>
+                    <span className="journey-nav-stage">{item.stage}</span>
+                  </button>
+                ))}
+              </nav>
+            </aside>
 
-          <div className="journey-chapters">
-            {experience.map((item, index) => (
+            <div className="journey-card-frame" aria-live="polite" aria-atomic="true">
               <article
-                ref={(node) => {
-                  chapterRefs.current[index] = node;
-                }}
-                className={`journey-card${activeIndex === index ? " is-active" : ""}`}
-                key={`${item.company}-${item.dates}`}
+                className="journey-card journey-card-single"
+                key={`${activeExperience.company}-${activeExperience.dates}`}
               >
                 <div className="journey-card-meta">
-                  <span>{item.stage}</span>
-                  <time>{item.dates}</time>
+                  <span>{activeExperience.stage}</span>
+                  <time>{activeExperience.dates}</time>
                 </div>
 
-                <h3>{item.role}</h3>
-                <p className="journey-company">{item.company}</p>
-                <p className="journey-description">{item.description}</p>
+                <h3>{activeExperience.role}</h3>
+                <p className="journey-company">{activeExperience.company}</p>
+                <p className="journey-description">{activeExperience.description}</p>
 
                 <div className="journey-skills" aria-label="Skills and focus areas">
-                  {item.skills.map((skill) => (
+                  {activeExperience.skills.map((skill) => (
                     <span key={skill}>{skill}</span>
                   ))}
                 </div>
 
-                {item.projects ? (
+                {activeExperience.projects ? (
                   <div className="journey-projects" aria-label="Project work highlights">
-                    {item.projects.map((project) => (
+                    {activeExperience.projects.map((project) => (
                       <span key={project}>{project}</span>
                     ))}
                   </div>
                 ) : null}
 
-                {item.links ? (
+                {activeExperience.links ? (
                   <div className="journey-links">
-                    {item.links.map((link) => (
+                    {activeExperience.links.map((link) => (
                       <a href={link.href} key={link.href}>
                         {link.label} <ArrowIcon />
                       </a>
@@ -261,6 +251,18 @@ export default function ExperienceJourney() {
                   </div>
                 ) : null}
               </article>
+            </div>
+          </div>
+
+          <div className="journey-scroll-zones" aria-hidden="true">
+            {experience.map((item, index) => (
+              <div
+                ref={(node) => {
+                  zoneRefs.current[index] = node;
+                }}
+                className="journey-scroll-zone"
+                key={`scroll-${item.stage}`}
+              />
             ))}
           </div>
         </div>
