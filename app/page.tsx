@@ -3,7 +3,8 @@
 import IntroSequence from "./components/IntroSequence";
 import SiteNav from "./components/SiteNav";
 import SiteFooter from "./components/SiteFooter";
-import { projectSummaries, resumeUrl, siteAssets } from "./lib/portfolio";
+import ExperienceJourney from "./components/ExperienceJourney";
+import { projectSummaries, siteAssets } from "./lib/portfolio";
 
 const assets = {
   heroPortrait: "/hero-portrait-retina.avif",
@@ -16,15 +17,6 @@ const projects = [
   { ...projectSummaries.kove, image: assets.kove, href: "/work/kove" },
   { ...projectSummaries.unimotors, image: assets.unimotors, href: "/work/unimotors" },
   { ...projectSummaries.dope, image: assets.dope, href: "/work/dope-marketing" },
-] as const;
-
-const experience = [
-  { role: "Print Production / Designer", company: "Bothends Computer Solutions", years: "2015–2019" },
-  { role: "Founder", company: "SciHigh Clothing", years: "2016" },
-  { role: "Creative Director", company: "West Shadows Production", years: "2016–2019" },
-  { role: "Graphic Design Department Head", company: "Project Pentagon", years: "2019" },
-  { role: "Freelance Graphic Designer", company: "Project-Based Work", years: "2019–2020" },
-  { role: "Senior Graphic Designer", company: "DOPE Marketing", years: "2021–2025" },
 ] as const;
 
 function ArrowIcon() {
@@ -113,33 +105,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="approach-section experience-home">
-        <div className="shell">
-          <div className="experience-home-head">
-            <div>
-              <p className="micro-label">My Journey</p>
-              <h2 className="experience-tenure" aria-label="10 plus years of experience">
-                <span className="experience-tenure-number">10+</span>
-                <span className="experience-tenure-copy">
-                  <span>Years of</span>
-                  <span>Experience</span>
-                </span>
-              </h2>
-            </div>
-            <a className="experience-resume-link" href={resumeUrl} target="_blank" rel="noreferrer">Download Résumé <ArrowIcon /></a>
-          </div>
-          <div className="experience-home-track">
-            {experience.map((item) => (
-              <article className="experience-home-item" key={`${item.company}-${item.years}`}>
-                <span className="experience-home-dot" aria-hidden="true" />
-                <time>{item.years}</time>
-                <h3>{item.role}</h3>
-                <p>{item.company}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ExperienceJourney />
 
       <section className="build-section">
         <div className="build-art" aria-hidden="true" />
