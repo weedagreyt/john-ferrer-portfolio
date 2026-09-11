@@ -2,10 +2,20 @@
 
 import { useEffect, useRef, useState } from "react";
 import { resumeUrl } from "../lib/portfolio";
+import archiveSciHigh from "../lib/archive-sci-high";
+import archiveBothends from "../lib/archive-bothends";
+import archiveWestShadows from "../lib/archive-west-shadows";
+import archiveProjectPentagon from "../lib/archive-project-pentagon";
 
 type ExperienceLink = {
   label: string;
   href: string;
+};
+
+type ExperienceArchive = {
+  image: string;
+  caption: string;
+  tags: readonly string[];
 };
 
 type ExperienceItem = {
@@ -17,6 +27,7 @@ type ExperienceItem = {
   skills: readonly string[];
   projects?: readonly string[];
   links?: readonly ExperienceLink[];
+  archive?: ExperienceArchive;
 };
 
 const experience: readonly ExperienceItem[] = [
@@ -28,6 +39,12 @@ const experience: readonly ExperienceItem[] = [
     description:
       "Designed T-shirt collections, managed clothing production, and created content for the brand's target customers.",
     skills: ["T-Shirt Design", "Production", "Brand Content"],
+    archive: {
+      image: archiveSciHigh,
+      caption:
+        "Selected apparel graphics and lifestyle photography from the early Sci High Clothing brand.",
+      tags: ["Apparel", "Brand Identity", "Lifestyle"],
+    },
   },
   {
     stage: "Production",
@@ -37,6 +54,12 @@ const experience: readonly ExperienceItem[] = [
     description:
       "Assisted clients with their printing needs, designed promotional and large-format materials, prepared designs for print production, and operated printing equipment.",
     skills: ["Client Service", "Large Format", "Prepress", "Print Operations"],
+    archive: {
+      image: archiveBothends,
+      caption:
+        "Production and installation work including a Suzuki banner, mall kiosk, Philtrust Bank signage, and Pueblo de Panay fleet graphics.",
+      tags: ["Large Format", "Installation", "Fleet Graphics", "Kiosk"],
+    },
   },
   {
     stage: "Creative Direction",
@@ -46,6 +69,12 @@ const experience: readonly ExperienceItem[] = [
     description:
       "Handled graphic design projects for local clients, worked with engineering, architectural, photography, and video teams, and created content for social media advertising.",
     skills: ["Creative Direction", "Cross-Team Work", "Client Projects", "Social Advertising"],
+    archive: {
+      image: archiveWestShadows,
+      caption:
+        "A small archive of event promotion, campaign collateral, access passes, and live-event documentation.",
+      tags: ["Event Campaigns", "Print Collateral", "Promotions"],
+    },
   },
   {
     stage: "Leadership",
@@ -55,6 +84,12 @@ const experience: readonly ExperienceItem[] = [
     description:
       "Handled graphic design projects for local clients, worked with engineering, architectural, photography, and video teams, and created content for social media advertising.",
     skills: ["Design Leadership", "Cross-Team Work", "Client Delivery", "Social Advertising"],
+    archive: {
+      image: archiveProjectPentagon,
+      caption:
+        "Selected identity concepts, kiosk presentation work, 3D visualization, and entertainment artwork from Project Pentagon.",
+      tags: ["Identity", "3D Visualization", "Presentation", "Campaign Art"],
+    },
   },
   {
     stage: "Project Work",
@@ -106,6 +141,7 @@ export default function ExperienceJourney() {
   const chapterRefs = useRef<Array<HTMLElement | null>>([]);
   const navRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [openArchiveIndex, setOpenArchiveIndex] = useState<number | null>(null);
 
   useEffect(() => {
     let frame = 0;
@@ -205,6 +241,10 @@ export default function ExperienceJourney() {
     });
   };
 
+  const toggleArchive = (index: number) => {
+    setOpenArchiveIndex((current) => (current === index ? null : index));
+  };
+
   return (
     <section ref={sectionRef} id="experience" className="approach-section experience-home journey-section">
       <div className="shell">
@@ -247,48 +287,94 @@ export default function ExperienceJourney() {
           </aside>
 
           <div className="journey-chapters">
-            {experience.map((item, index) => (
-              <article
-                ref={(node) => {
-                  chapterRefs.current[index] = node;
-                }}
-                className={`journey-card${activeIndex === index ? " is-active" : ""}`}
-                key={`${item.company}-${item.dates}`}
-              >
-                <div className="journey-card-meta">
-                  <span>{item.stage}</span>
-                  <time>{item.dates}</time>
-                </div>
+            {experience.map((item, index) => {
+              const archiveOpen = openArchiveIndex === index;
 
-                <h3>{item.role}</h3>
-                <p className="journey-company">{item.company}</p>
-                <p className="journey-description">{item.description}</p>
+              return (
+                <article
+                  ref={(node) => {
+                    chapterRefs.current[index] = node;
+                  }}
+                  className={`journey-card${activeIndex === index ? " is-active" : ""}`}
+                  key={`${item.company}-${item.dates}`}
+                >
+                  <div className="journey-card-meta">
+                    <span>{item.stage}</span>
+                    <time>{item.dates}</time>
+                  </div>
 
-                <div className="journey-skills" aria-label="Skills and focus areas">
-                  {item.skills.map((skill) => (
-                    <span key={skill}>{skill}</span>
-                  ))}
-                </div>
+                  <h3>{item.role}</h3>
+                  <p className="journey-company">{item.company}</p>
+                  <p className="journey-description">{item.description}</p>
 
-                {item.projects ? (
-                  <div className="journey-projects" aria-label="Project work highlights">
-                    {item.projects.map((project) => (
-                      <span key={project}>{project}</span>
+                  <div className="journey-skills" aria-label="Skills and focus areas">
+                    {item.skills.map((skill) => (
+                      <span key={skill}>{skill}</span>
                     ))}
                   </div>
-                ) : null}
 
-                {item.links ? (
-                  <div className="journey-links">
-                    {item.links.map((link) => (
-                      <a href={link.href} key={link.href}>
-                        {link.label} <ArrowIcon />
-                      </a>
-                    ))}
-                  </div>
-                ) : null}
-              </article>
-            ))}
+                  {item.projects ? (
+                    <div className="journey-projects" aria-label="Project work highlights">
+                      {item.projects.map((project) => (
+                        <span key={project}>{project}</span>
+                      ))}
+                    </div>
+                  ) : null}
+
+                  {item.links ? (
+                    <div className="journey-links">
+                      {item.links.map((link) => (
+                        <a href={link.href} key={link.href}>
+                          {link.label} <ArrowIcon />
+                        </a>
+                      ))}
+                    </div>
+                  ) : null}
+
+                  {item.archive ? (
+                    <div className={`journey-archive-wrap${archiveOpen ? " is-open" : ""}`}>
+                      <button
+                        className="journey-archive-toggle"
+                        type="button"
+                        onClick={() => toggleArchive(index)}
+                        aria-expanded={archiveOpen}
+                      >
+                        <span>
+                          <small>Archive / Early Work</small>
+                          {archiveOpen ? "Close Archive" : "View Archive"}
+                        </span>
+                        <span className="journey-archive-toggle-icon" aria-hidden="true">
+                          {archiveOpen ? "−" : "+"}
+                        </span>
+                      </button>
+
+                      {archiveOpen ? (
+                        <div className="journey-archive-panel">
+                          <div className="journey-archive-image-wrap">
+                            <img
+                              className="journey-archive-image"
+                              src={item.archive.image}
+                              alt={`${item.company} archive highlights`}
+                            />
+                          </div>
+                          <div className="journey-archive-copy">
+                            <p>{item.archive.caption}</p>
+                            <div className="journey-archive-tags" aria-label="Archive categories">
+                              {item.archive.tags.map((tag) => (
+                                <span key={tag}>{tag}</span>
+                              ))}
+                            </div>
+                            <small>
+                              Historical work shown as career context, not as part of Selected Work.
+                            </small>
+                          </div>
+                        </div>
+                      ) : null}
+                    </div>
+                  ) : null}
+                </article>
+              );
+            })}
           </div>
         </div>
       </div>
