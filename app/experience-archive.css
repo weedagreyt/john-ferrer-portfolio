@@ -98,13 +98,21 @@
   pointer-events:none;
 }
 
+/* One real WebP file lives in /public; each role shows one quarter of the atlas. */
 .journey-archive-image{
   display:block;
   width:100%;
-  height:auto;
-  aspect-ratio:720/456;
-  object-fit:cover;
+  aspect-ratio:560/355;
+  background-image:url("/archive/experience/archive-atlas.webp");
+  background-size:100% 400%;
+  background-repeat:no-repeat;
+  background-color:#050607;
 }
+
+.journey-archive-image-sci-high{background-position:center 0%}
+.journey-archive-image-bothends{background-position:center 33.333%}
+.journey-archive-image-west-shadows{background-position:center 66.667%}
+.journey-archive-image-project-pentagon{background-position:center 100%}
 
 .journey-archive-copy{
   padding-top:2px;

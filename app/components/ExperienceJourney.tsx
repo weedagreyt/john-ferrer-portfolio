@@ -2,10 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import { resumeUrl } from "../lib/portfolio";
-import archiveSciHigh from "../lib/archive-sci-high";
-import archiveBothends from "../lib/archive-bothends";
-import archiveWestShadows from "../lib/archive-west-shadows";
-import archiveProjectPentagon from "../lib/archive-project-pentagon";
 
 type ExperienceLink = {
   label: string;
@@ -13,7 +9,7 @@ type ExperienceLink = {
 };
 
 type ExperienceArchive = {
-  image: string;
+  key: "sci-high" | "bothends" | "west-shadows" | "project-pentagon";
   caption: string;
   tags: readonly string[];
 };
@@ -40,7 +36,7 @@ const experience: readonly ExperienceItem[] = [
       "Designed T-shirt collections, managed clothing production, and created content for the brand's target customers.",
     skills: ["T-Shirt Design", "Production", "Brand Content"],
     archive: {
-      image: archiveSciHigh,
+      key: "sci-high",
       caption:
         "Selected apparel graphics and lifestyle photography from the early Sci High Clothing brand.",
       tags: ["Apparel", "Brand Identity", "Lifestyle"],
@@ -55,7 +51,7 @@ const experience: readonly ExperienceItem[] = [
       "Assisted clients with their printing needs, designed promotional and large-format materials, prepared designs for print production, and operated printing equipment.",
     skills: ["Client Service", "Large Format", "Prepress", "Print Operations"],
     archive: {
-      image: archiveBothends,
+      key: "bothends",
       caption:
         "Production and installation work including a Suzuki banner, mall kiosk, Philtrust Bank signage, and Pueblo de Panay fleet graphics.",
       tags: ["Large Format", "Installation", "Fleet Graphics", "Kiosk"],
@@ -70,7 +66,7 @@ const experience: readonly ExperienceItem[] = [
       "Handled graphic design projects for local clients, worked with engineering, architectural, photography, and video teams, and created content for social media advertising.",
     skills: ["Creative Direction", "Cross-Team Work", "Client Projects", "Social Advertising"],
     archive: {
-      image: archiveWestShadows,
+      key: "west-shadows",
       caption:
         "A small archive of event promotion, campaign collateral, access passes, and live-event documentation.",
       tags: ["Event Campaigns", "Print Collateral", "Promotions"],
@@ -85,7 +81,7 @@ const experience: readonly ExperienceItem[] = [
       "Handled graphic design projects for local clients, worked with engineering, architectural, photography, and video teams, and created content for social media advertising.",
     skills: ["Design Leadership", "Cross-Team Work", "Client Delivery", "Social Advertising"],
     archive: {
-      image: archiveProjectPentagon,
+      key: "project-pentagon",
       caption:
         "Selected identity concepts, kiosk presentation work, 3D visualization, and entertainment artwork from Project Pentagon.",
       tags: ["Identity", "3D Visualization", "Presentation", "Campaign Art"],
@@ -351,10 +347,10 @@ export default function ExperienceJourney() {
                       {archiveOpen ? (
                         <div className="journey-archive-panel">
                           <div className="journey-archive-image-wrap">
-                            <img
-                              className="journey-archive-image"
-                              src={item.archive.image}
-                              alt={`${item.company} archive highlights`}
+                            <div
+                              className={`journey-archive-image journey-archive-image-${item.archive.key}`}
+                              role="img"
+                              aria-label={`${item.company} archive highlights`}
                             />
                           </div>
                           <div className="journey-archive-copy">
