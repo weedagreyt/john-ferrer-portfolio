@@ -241,12 +241,17 @@ export default function ExperienceJourney() {
 
   useEffect(() => {
     if (!window.matchMedia("(max-width: 760px)").matches) return;
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    navRefs.current[activeIndex]?.scrollIntoView({
+    const button = navRefs.current[activeIndex];
+    const nav = button?.parentElement;
+    if (!button || !nav) return;
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const centeredLeft = button.offsetLeft - (nav.clientWidth - button.offsetWidth) / 2;
+
+    nav.scrollTo({
+      left: Math.max(0, centeredLeft),
       behavior: reducedMotion ? "auto" : "smooth",
-      block: "nearest",
-      inline: "center",
     });
   }, [activeIndex]);
 
