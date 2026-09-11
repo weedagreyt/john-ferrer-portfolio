@@ -9,7 +9,7 @@ type ExperienceLink = {
 };
 
 type ExperienceArchive = {
-  key: "sci-high" | "bothends" | "west-shadows" | "project-pentagon";
+  images: readonly string[];
   caption: string;
   tags: readonly string[];
 };
@@ -36,7 +36,12 @@ const experience: readonly ExperienceItem[] = [
       "Designed T-shirt collections, managed clothing production, and created content for the brand's target customers.",
     skills: ["T-Shirt Design", "Production", "Brand Content"],
     archive: {
-      key: "sci-high",
+      images: [
+        "/archive/experience/Sci%20High.jpg",
+        "/archive/experience/Sci%20High%20(2).jpg",
+        "/archive/experience/Sci%20High%20(3).jpg",
+        "/archive/experience/Sci%20High%20(4).jpg",
+      ],
       caption:
         "Selected apparel graphics and lifestyle photography from the early Sci High Clothing brand.",
       tags: ["Apparel", "Brand Identity", "Lifestyle"],
@@ -51,7 +56,12 @@ const experience: readonly ExperienceItem[] = [
       "Assisted clients with their printing needs, designed promotional and large-format materials, prepared designs for print production, and operated printing equipment.",
     skills: ["Client Service", "Large Format", "Prepress", "Print Operations"],
     archive: {
-      key: "bothends",
+      images: [
+        "/archive/experience/Both%20Ends.jpg",
+        "/archive/experience/Both%20Ends%20(2).jpg",
+        "/archive/experience/Both%20Ends%20(3).jpg",
+        "/archive/experience/Both%20Ends%20(4).jpg",
+      ],
       caption:
         "Production and installation work including a Suzuki banner, mall kiosk, Philtrust Bank signage, and Pueblo de Panay fleet graphics.",
       tags: ["Large Format", "Installation", "Fleet Graphics", "Kiosk"],
@@ -66,7 +76,13 @@ const experience: readonly ExperienceItem[] = [
       "Handled graphic design projects for local clients, worked with engineering, architectural, photography, and video teams, and created content for social media advertising.",
     skills: ["Creative Direction", "Cross-Team Work", "Client Projects", "Social Advertising"],
     archive: {
-      key: "west-shadows",
+      images: [
+        "/archive/experience/West%20Shadows.jpg",
+        "/archive/experience/West%20Shadows%20(2).jpg",
+        "/archive/experience/West%20Shadows%20(3).jpg",
+        "/archive/experience/West%20Shadows%20(4).jpg",
+        "/archive/experience/West%20Shadows%20(5).jpg",
+      ],
       caption:
         "A small archive of event promotion, campaign collateral, access passes, and live-event documentation.",
       tags: ["Event Campaigns", "Print Collateral", "Promotions"],
@@ -81,7 +97,11 @@ const experience: readonly ExperienceItem[] = [
       "Handled graphic design projects for local clients, worked with engineering, architectural, photography, and video teams, and created content for social media advertising.",
     skills: ["Design Leadership", "Cross-Team Work", "Client Delivery", "Social Advertising"],
     archive: {
-      key: "project-pentagon",
+      images: [
+        "/archive/experience/Project%20Pentagon%20(2).jpg",
+        "/archive/experience/Project%20Pentagon%20(3).jpg",
+        "/archive/experience/Project%20Pentagon%20(4).jpg",
+      ],
       caption:
         "Selected identity concepts, kiosk presentation work, 3D visualization, and entertainment artwork from Project Pentagon.",
       tags: ["Identity", "3D Visualization", "Presentation", "Campaign Art"],
@@ -346,12 +366,29 @@ export default function ExperienceJourney() {
 
                       {archiveOpen ? (
                         <div className="journey-archive-panel">
-                          <div className="journey-archive-image-wrap">
-                            <div
-                              className={`journey-archive-image journey-archive-image-${item.archive.key}`}
-                              role="img"
-                              aria-label={`${item.company} archive highlights`}
-                            />
+                          <div className="journey-archive-image-wrap" style={{ padding: 8 }}>
+                            <div style={{ columns: "180px 2", columnGap: 8 }}>
+                              {item.archive.images.map((image, imageIndex) => (
+                                <figure
+                                  key={image}
+                                  style={{
+                                    breakInside: "avoid",
+                                    margin: "0 0 8px",
+                                    overflow: "hidden",
+                                    border: "1px solid rgba(255,255,255,.10)",
+                                    background: "#050607",
+                                  }}
+                                >
+                                  <img
+                                    src={image}
+                                    alt={`${item.company} archive work ${imageIndex + 1}`}
+                                    loading="lazy"
+                                    decoding="async"
+                                    style={{ display: "block", width: "100%", height: "auto" }}
+                                  />
+                                </figure>
+                              ))}
+                            </div>
                           </div>
                           <div className="journey-archive-copy">
                             <p>{item.archive.caption}</p>
