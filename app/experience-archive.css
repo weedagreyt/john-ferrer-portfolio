@@ -1,0 +1,220 @@
+/* Experience archive drawers: historical work, intentionally secondary to Selected Work. */
+.journey-archive-wrap{
+  margin-top:28px;
+  padding-top:18px;
+  border-top:1px solid rgba(255,255,255,.09);
+}
+
+.journey-archive-toggle{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  width:100%;
+  min-height:54px;
+  padding:0;
+  border:0;
+  background:transparent;
+  color:#fff;
+  text-align:left;
+  cursor:pointer;
+}
+
+.journey-archive-toggle>span:first-child{
+  display:grid;
+  gap:4px;
+  font-family:var(--font-race-display),"Arial Narrow",Impact,sans-serif;
+  font-size:22px;
+  font-weight:700;
+  line-height:.95;
+  letter-spacing:.02em;
+  text-transform:uppercase;
+}
+
+.journey-archive-toggle small{
+  color:#ef171f;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:8px;
+  font-weight:900;
+  line-height:1.2;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+
+.journey-archive-toggle-icon{
+  display:grid;
+  place-items:center;
+  flex:0 0 34px;
+  width:34px;
+  height:34px;
+  border:1px solid rgba(239,23,31,.42);
+  color:#ef171f;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:22px;
+  font-weight:300;
+  line-height:1;
+  transition:background .2s ease,border-color .2s ease,transform .2s ease;
+}
+
+.journey-archive-toggle:hover .journey-archive-toggle-icon,
+.journey-archive-toggle:focus-visible .journey-archive-toggle-icon{
+  border-color:#ef171f;
+  background:rgba(239,23,31,.09);
+}
+
+.journey-archive-toggle:focus-visible{
+  outline:2px solid rgba(239,23,31,.8);
+  outline-offset:7px;
+}
+
+.journey-archive-panel{
+  display:grid;
+  grid-template-columns:minmax(0,1.55fr) minmax(180px,.7fr);
+  gap:22px;
+  align-items:start;
+  margin-top:17px;
+  animation:journeyArchiveIn .34s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.journey-archive-image-wrap{
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.12);
+  background:#050607;
+}
+
+.journey-archive-image-wrap::after{
+  content:"ARCHIVE";
+  position:absolute;
+  right:10px;
+  bottom:8px;
+  padding:3px 5px;
+  background:rgba(5,6,7,.78);
+  color:rgba(255,255,255,.46);
+  font-size:7px;
+  font-weight:900;
+  line-height:1;
+  letter-spacing:.15em;
+  pointer-events:none;
+}
+
+.journey-archive-image{
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:720/456;
+  object-fit:cover;
+}
+
+.journey-archive-copy{
+  padding-top:2px;
+}
+
+.journey-archive-copy>p{
+  margin:0!important;
+  color:rgba(255,255,255,.72)!important;
+  font-size:12px!important;
+  line-height:1.55!important;
+}
+
+.journey-archive-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:15px;
+}
+
+.journey-archive-tags span{
+  display:inline-flex;
+  align-items:center;
+  min-height:26px;
+  padding:5px 7px;
+  border:1px solid rgba(255,255,255,.1);
+  color:rgba(255,255,255,.58);
+  font-size:8px;
+  font-weight:800;
+  line-height:1.15;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+}
+
+.journey-archive-copy>small{
+  display:block;
+  margin-top:16px;
+  padding-top:12px;
+  border-top:1px solid rgba(255,255,255,.07);
+  color:rgba(255,255,255,.34);
+  font-size:9px;
+  line-height:1.45;
+}
+
+@keyframes journeyArchiveIn{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:none}
+}
+
+@media(max-width:960px){
+  .journey-archive-panel{
+    grid-template-columns:1fr;
+  }
+
+  .journey-archive-copy{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+    gap:10px 18px;
+    align-items:start;
+  }
+
+  .journey-archive-tags{
+    margin-top:0;
+    justify-content:flex-end;
+  }
+
+  .journey-archive-copy>small{
+    grid-column:1/-1;
+    margin-top:4px;
+  }
+}
+
+@media(max-width:760px){
+  .journey-archive-wrap{
+    margin-top:22px;
+    padding-top:14px;
+  }
+
+  .journey-archive-toggle{
+    min-height:50px;
+  }
+
+  .journey-archive-toggle>span:first-child{
+    font-size:20px;
+  }
+
+  .journey-archive-panel{
+    gap:14px;
+    margin-top:13px;
+  }
+
+  .journey-archive-copy{
+    display:block;
+  }
+
+  .journey-archive-tags{
+    justify-content:flex-start;
+    margin-top:12px;
+  }
+
+  .journey-archive-copy>small{
+    margin-top:13px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .journey-archive-panel{
+    animation:none!important;
+  }
+
+  .journey-archive-toggle-icon{
+    transition:none!important;
+  }
+}
