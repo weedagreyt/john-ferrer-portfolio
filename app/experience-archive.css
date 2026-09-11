@@ -148,6 +148,79 @@
   line-height:1.45;
 }
 
+/* Case-study links use the same footer language as archives: arrow means navigate away. */
+.journey-links{
+  position:relative;
+  display:grid!important;
+  gap:0!important;
+  margin-top:28px!important;
+  padding-top:34px;
+  border-top:1px solid rgba(255,255,255,.09);
+}
+
+.journey-links::before{
+  content:"SELECTED WORK / CASE STUDY";
+  position:absolute;
+  top:17px;
+  left:0;
+  color:#ef171f;
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:8px;
+  font-weight:900;
+  line-height:1.2;
+  letter-spacing:.16em;
+}
+
+.journey-links a{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:20px!important;
+  width:100%;
+  min-height:54px!important;
+  padding:0!important;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  color:#fff!important;
+  font-family:var(--font-race-display),"Arial Narrow",Impact,sans-serif!important;
+  font-size:22px!important;
+  font-weight:700!important;
+  line-height:.95!important;
+  letter-spacing:.02em!important;
+  text-transform:uppercase;
+  transform:none!important;
+}
+
+.journey-links a:last-child{
+  border-bottom:0;
+}
+
+.journey-links a .race-arrow{
+  flex:0 0 34px;
+  width:34px!important;
+  height:34px!important;
+  padding:8px;
+  border:1px solid rgba(239,23,31,.42);
+  stroke:#ef171f!important;
+  transition:background .2s ease,border-color .2s ease,transform .2s ease;
+}
+
+.journey-links a:hover,
+.journey-links a:focus-visible{
+  color:#fff!important;
+}
+
+.journey-links a:hover .race-arrow,
+.journey-links a:focus-visible .race-arrow{
+  border-color:#ef171f;
+  background:rgba(239,23,31,.09);
+  transform:translateX(2px);
+}
+
+.journey-links a:focus-visible{
+  outline:2px solid rgba(239,23,31,.8);
+  outline-offset:7px;
+}
+
 @keyframes journeyArchiveIn{
   from{opacity:0;transform:translateY(10px)}
   to{opacity:1;transform:none}
@@ -186,8 +259,9 @@
     min-height:50px;
   }
 
-  .journey-archive-toggle>span:first-child{
-    font-size:20px;
+  .journey-archive-toggle>span:first-child,
+  .journey-links a{
+    font-size:20px!important;
   }
 
   .journey-archive-panel{
@@ -207,6 +281,19 @@
   .journey-archive-copy>small{
     margin-top:13px;
   }
+
+  .journey-links{
+    margin-top:22px!important;
+    padding-top:30px;
+  }
+
+  .journey-links::before{
+    top:14px;
+  }
+
+  .journey-links a{
+    min-height:50px!important;
+  }
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -214,7 +301,8 @@
     animation:none!important;
   }
 
-  .journey-archive-toggle-icon{
+  .journey-archive-toggle-icon,
+  .journey-links a .race-arrow{
     transition:none!important;
   }
 }
