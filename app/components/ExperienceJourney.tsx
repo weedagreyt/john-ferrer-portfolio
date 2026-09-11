@@ -101,6 +101,7 @@ const experience: readonly ExperienceItem[] = [
         "/archive/experience/Project%20Pentagon%20(2).jpg",
         "/archive/experience/Project%20Pentagon%20(3).jpg",
         "/archive/experience/Project%20Pentagon%20(4).jpg",
+        "/archive/experience/Project%20Pentagon%20(5).jpg",
       ],
       caption:
         "Selected identity concepts, kiosk presentation work, 3D visualization, and entertainment artwork from Project Pentagon.",
