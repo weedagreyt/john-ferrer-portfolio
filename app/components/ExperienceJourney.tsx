@@ -103,7 +103,7 @@ function ArrowIcon() {
 
 export default function ExperienceJourney() {
   const sectionRef = useRef<HTMLElement | null>(null);
-  const zoneRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const chapterRefs = useRef<Array<HTMLElement | null>>([]);
   const navRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -118,13 +118,20 @@ export default function ExperienceJourney() {
       const sectionRect = section.getBoundingClientRect();
       if (sectionRect.bottom < 0 || sectionRect.top > window.innerHeight) return;
 
-      const target = window.innerHeight * 0.5;
+      const target = window.innerHeight * 0.48;
       let nextIndex = 0;
+      let closest = Number.POSITIVE_INFINITY;
 
-      zoneRefs.current.forEach((zone, index) => {
-        if (!zone) return;
-        const rect = zone.getBoundingClientRect();
-        if (rect.top <= target) nextIndex = index;
+      chapterRefs.current.forEach((chapter, index) => {
+        if (!chapter) return;
+        const rect = chapter.getBoundingClientRect();
+        const center = rect.top + rect.height / 2;
+        const distance = Math.abs(center - target);
+
+        if (distance < closest) {
+          closest = distance;
+          nextIndex = index;
+        }
       });
 
       setActiveIndex((current) => (current === nextIndex ? current : nextIndex));
@@ -146,6 +153,40 @@ export default function ExperienceJourney() {
   }, []);
 
   useEffect(() => {
+    const syncTimelineToCards = () => {
+      if (window.matchMedia("(max-width: 760px)").matches) {
+        navRefs.current.forEach((button) => {
+          if (button) button.style.removeProperty("--journey-nav-height");
+        });
+        return;
+      }
+
+      chapterRefs.current.forEach((chapter, index) => {
+        const button = navRefs.current[index];
+        if (!chapter || !button) return;
+
+        const style = window.getComputedStyle(chapter);
+        const marginBottom = Number.parseFloat(style.marginBottom) || 0;
+        const height = Math.ceil(chapter.getBoundingClientRect().height + marginBottom);
+        button.style.setProperty("--journey-nav-height", `${height}px`);
+      });
+    };
+
+    syncTimelineToCards();
+
+    const observer = new ResizeObserver(syncTimelineToCards);
+    chapterRefs.current.forEach((chapter) => {
+      if (chapter) observer.observe(chapter);
+    });
+
+    window.addEventListener("resize", syncTimelineToCards);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", syncTimelineToCards);
+    };
+  }, []);
+
+  useEffect(() => {
     if (!window.matchMedia("(max-width: 760px)").matches) return;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -158,15 +199,11 @@ export default function ExperienceJourney() {
 
   const jumpToChapter = (index: number) => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    setActiveIndex(index);
-    zoneRefs.current[index]?.scrollIntoView({
+    chapterRefs.current[index]?.scrollIntoView({
       behavior: reducedMotion ? "auto" : "smooth",
       block: "center",
     });
   };
-
-  const activeExperience = experience[activeIndex];
-  const progress = experience.length > 1 ? (activeIndex / (experience.length - 1)) * 100 : 0;
 
   return (
     <section ref={sectionRef} id="experience" className="approach-section experience-home journey-section">
@@ -187,63 +224,63 @@ export default function ExperienceJourney() {
           </a>
         </div>
 
-        <div className="journey-story">
-          <div className="journey-stage">
-            <aside className="journey-stage-nav" aria-label="Career timeline navigation">
-              <nav className="journey-nav">
-                <span className="journey-nav-line" aria-hidden="true" />
-                <span className="journey-nav-progress" style={{ height: `${progress}%` }} aria-hidden="true" />
+        <div className="journey-layout">
+          <aside className="journey-sticky" aria-label="Career timeline navigation">
+            <nav className="journey-nav">
+              {experience.map((item, index) => (
+                <button
+                  ref={(node) => {
+                    navRefs.current[index] = node;
+                  }}
+                  className={`journey-nav-item${activeIndex === index ? " is-active" : ""}${index < activeIndex ? " is-past" : ""}`}
+                  type="button"
+                  key={`${item.role}-${item.dates}`}
+                  onClick={() => jumpToChapter(index)}
+                  aria-current={activeIndex === index ? "step" : undefined}
+                >
+                  <span className="journey-nav-marker" aria-hidden="true" />
+                  <span className="journey-nav-date">{item.dates}</span>
+                  <span className="journey-nav-stage">{item.stage}</span>
+                </button>
+              ))}
+            </nav>
+          </aside>
 
-                {experience.map((item, index) => (
-                  <button
-                    ref={(node) => {
-                      navRefs.current[index] = node;
-                    }}
-                    className={`journey-nav-item${activeIndex === index ? " is-active" : ""}`}
-                    type="button"
-                    key={`${item.role}-${item.dates}`}
-                    onClick={() => jumpToChapter(index)}
-                    aria-current={activeIndex === index ? "step" : undefined}
-                  >
-                    <span className="journey-nav-marker" aria-hidden="true" />
-                    <span className="journey-nav-date">{item.dates}</span>
-                    <span className="journey-nav-stage">{item.stage}</span>
-                  </button>
-                ))}
-              </nav>
-            </aside>
-
-            <div className="journey-card-frame" aria-live="polite" aria-atomic="true">
+          <div className="journey-chapters">
+            {experience.map((item, index) => (
               <article
-                className="journey-card journey-card-single"
-                key={`${activeExperience.company}-${activeExperience.dates}`}
+                ref={(node) => {
+                  chapterRefs.current[index] = node;
+                }}
+                className={`journey-card${activeIndex === index ? " is-active" : ""}`}
+                key={`${item.company}-${item.dates}`}
               >
                 <div className="journey-card-meta">
-                  <span>{activeExperience.stage}</span>
-                  <time>{activeExperience.dates}</time>
+                  <span>{item.stage}</span>
+                  <time>{item.dates}</time>
                 </div>
 
-                <h3>{activeExperience.role}</h3>
-                <p className="journey-company">{activeExperience.company}</p>
-                <p className="journey-description">{activeExperience.description}</p>
+                <h3>{item.role}</h3>
+                <p className="journey-company">{item.company}</p>
+                <p className="journey-description">{item.description}</p>
 
                 <div className="journey-skills" aria-label="Skills and focus areas">
-                  {activeExperience.skills.map((skill) => (
+                  {item.skills.map((skill) => (
                     <span key={skill}>{skill}</span>
                   ))}
                 </div>
 
-                {activeExperience.projects ? (
+                {item.projects ? (
                   <div className="journey-projects" aria-label="Project work highlights">
-                    {activeExperience.projects.map((project) => (
+                    {item.projects.map((project) => (
                       <span key={project}>{project}</span>
                     ))}
                   </div>
                 ) : null}
 
-                {activeExperience.links ? (
+                {item.links ? (
                   <div className="journey-links">
-                    {activeExperience.links.map((link) => (
+                    {item.links.map((link) => (
                       <a href={link.href} key={link.href}>
                         {link.label} <ArrowIcon />
                       </a>
@@ -251,18 +288,6 @@ export default function ExperienceJourney() {
                   </div>
                 ) : null}
               </article>
-            </div>
-          </div>
-
-          <div className="journey-scroll-zones" aria-hidden="true">
-            {experience.map((item, index) => (
-              <div
-                ref={(node) => {
-                  zoneRefs.current[index] = node;
-                }}
-                className="journey-scroll-zone"
-                key={`scroll-${item.stage}`}
-              />
             ))}
           </div>
         </div>
