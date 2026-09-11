@@ -365,7 +365,7 @@ export default function ExperienceJourney() {
                               ))}
                             </div>
                             <small>
-                              Historical work shown as career context, not as part of Selected Work.
+                              Historical work shown as career context—not as part of Selected Work.
                             </small>
                           </div>
                         </div>
