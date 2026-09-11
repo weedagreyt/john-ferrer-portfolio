@@ -62,7 +62,7 @@ const experience: readonly ExperienceItem[] = [
     company: "Selected client & brand projects",
     dates: "Nov 2019 – Dec 2020",
     description:
-      "A concentrated period of project-based design work across brand design, social media, asset design, vehicle graphics, and comics editing.",
+      "Selected client and brand projects across brand design, social media, asset design, vehicle decals, and comics editing.",
     skills: ["Brand Design", "Social Media", "Asset Design", "Production"],
     projects: [
       "Toomics Global — Comics Editing",
@@ -104,6 +104,7 @@ function ArrowIcon() {
 export default function ExperienceJourney() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const chapterRefs = useRef<Array<HTMLElement | null>>([]);
+  const navRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
@@ -151,6 +152,17 @@ export default function ExperienceJourney() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!window.matchMedia("(max-width: 760px)").matches) return;
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    navRefs.current[activeIndex]?.scrollIntoView({
+      behavior: reducedMotion ? "auto" : "smooth",
+      block: "nearest",
+      inline: "center",
+    });
+  }, [activeIndex]);
+
   const jumpToChapter = (index: number) => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     chapterRefs.current[index]?.scrollIntoView({
@@ -189,6 +201,9 @@ export default function ExperienceJourney() {
 
               {experience.map((item, index) => (
                 <button
+                  ref={(node) => {
+                    navRefs.current[index] = node;
+                  }}
                   className={`journey-nav-item${activeIndex === index ? " is-active" : ""}`}
                   type="button"
                   key={`${item.role}-${item.dates}`}
