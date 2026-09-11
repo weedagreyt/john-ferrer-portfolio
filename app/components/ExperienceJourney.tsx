@@ -8,6 +8,12 @@ type ExperienceLink = {
   href: string;
 };
 
+type ExperienceArchive = {
+  images: readonly string[];
+  caption: string;
+  tags: readonly string[];
+};
+
 type ExperienceItem = {
   stage: string;
   role: string;
@@ -17,6 +23,7 @@ type ExperienceItem = {
   skills: readonly string[];
   projects?: readonly string[];
   links?: readonly ExperienceLink[];
+  archive?: ExperienceArchive;
 };
 
 const experience: readonly ExperienceItem[] = [
@@ -28,6 +35,17 @@ const experience: readonly ExperienceItem[] = [
     description:
       "Designed T-shirt collections, managed clothing production, and created content for the brand's target customers.",
     skills: ["T-Shirt Design", "Production", "Brand Content"],
+    archive: {
+      images: [
+        "/archive/experience/Sci%20High.jpg",
+        "/archive/experience/Sci%20High%20(2).jpg",
+        "/archive/experience/Sci%20High%20(3).jpg",
+        "/archive/experience/Sci%20High%20(4).jpg",
+      ],
+      caption:
+        "Selected apparel graphics and lifestyle photography from the early Sci High Clothing brand.",
+      tags: ["Apparel", "Brand Identity", "Lifestyle"],
+    },
   },
   {
     stage: "Production",
@@ -37,6 +55,17 @@ const experience: readonly ExperienceItem[] = [
     description:
       "Assisted clients with their printing needs, designed promotional and large-format materials, prepared designs for print production, and operated printing equipment.",
     skills: ["Client Service", "Large Format", "Prepress", "Print Operations"],
+    archive: {
+      images: [
+        "/archive/experience/Both%20Ends.jpg",
+        "/archive/experience/Both%20Ends%20(2).jpg",
+        "/archive/experience/Both%20Ends%20(3).jpg",
+        "/archive/experience/Both%20Ends%20(4).jpg",
+      ],
+      caption:
+        "Production and installation work including a Suzuki banner, mall kiosk, Philtrust Bank signage, and Pueblo de Panay fleet graphics.",
+      tags: ["Large Format", "Installation", "Fleet Graphics", "Kiosk"],
+    },
   },
   {
     stage: "Creative Direction",
@@ -46,6 +75,18 @@ const experience: readonly ExperienceItem[] = [
     description:
       "Handled graphic design projects for local clients, worked with engineering, architectural, photography, and video teams, and created content for social media advertising.",
     skills: ["Creative Direction", "Cross-Team Work", "Client Projects", "Social Advertising"],
+    archive: {
+      images: [
+        "/archive/experience/West%20Shadows.jpg",
+        "/archive/experience/West%20Shadows%20(2).jpg",
+        "/archive/experience/West%20Shadows%20(3).jpg",
+        "/archive/experience/West%20Shadows%20(4).jpg",
+        "/archive/experience/West%20Shadows%20(5).jpg",
+      ],
+      caption:
+        "A small archive of event promotion, campaign collateral, access passes, and live-event documentation.",
+      tags: ["Event Campaigns", "Print Collateral", "Promotions"],
+    },
   },
   {
     stage: "Leadership",
@@ -55,6 +96,17 @@ const experience: readonly ExperienceItem[] = [
     description:
       "Handled graphic design projects for local clients, worked with engineering, architectural, photography, and video teams, and created content for social media advertising.",
     skills: ["Design Leadership", "Cross-Team Work", "Client Delivery", "Social Advertising"],
+    archive: {
+      images: [
+        "/archive/experience/Project%20Pentagon%20(2).jpg",
+        "/archive/experience/Project%20Pentagon%20(3).jpg",
+        "/archive/experience/Project%20Pentagon%20(4).jpg",
+        "/archive/experience/Project%20Pentagon%20(5).jpg",
+      ],
+      caption:
+        "Selected identity concepts, kiosk presentation work, 3D visualization, and entertainment artwork from Project Pentagon.",
+      tags: ["Identity", "3D Visualization", "Presentation", "Campaign Art"],
+    },
   },
   {
     stage: "Project Work",
@@ -103,9 +155,10 @@ function ArrowIcon() {
 
 export default function ExperienceJourney() {
   const sectionRef = useRef<HTMLElement | null>(null);
-  const zoneRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const chapterRefs = useRef<Array<HTMLElement | null>>([]);
   const navRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [openArchiveIndex, setOpenArchiveIndex] = useState<number | null>(null);
 
   useEffect(() => {
     let frame = 0;
@@ -118,13 +171,20 @@ export default function ExperienceJourney() {
       const sectionRect = section.getBoundingClientRect();
       if (sectionRect.bottom < 0 || sectionRect.top > window.innerHeight) return;
 
-      const target = window.innerHeight * 0.5;
+      const target = window.innerHeight * 0.48;
       let nextIndex = 0;
+      let closest = Number.POSITIVE_INFINITY;
 
-      zoneRefs.current.forEach((zone, index) => {
-        if (!zone) return;
-        const rect = zone.getBoundingClientRect();
-        if (rect.top <= target) nextIndex = index;
+      chapterRefs.current.forEach((chapter, index) => {
+        if (!chapter) return;
+        const rect = chapter.getBoundingClientRect();
+        const center = rect.top + rect.height / 2;
+        const distance = Math.abs(center - target);
+
+        if (distance < closest) {
+          closest = distance;
+          nextIndex = index;
+        }
       });
 
       setActiveIndex((current) => (current === nextIndex ? current : nextIndex));
@@ -146,6 +206,40 @@ export default function ExperienceJourney() {
   }, []);
 
   useEffect(() => {
+    const syncTimelineToCards = () => {
+      if (window.matchMedia("(max-width: 760px)").matches) {
+        navRefs.current.forEach((button) => {
+          if (button) button.style.removeProperty("--journey-nav-height");
+        });
+        return;
+      }
+
+      chapterRefs.current.forEach((chapter, index) => {
+        const button = navRefs.current[index];
+        if (!chapter || !button) return;
+
+        const style = window.getComputedStyle(chapter);
+        const marginBottom = Number.parseFloat(style.marginBottom) || 0;
+        const height = Math.ceil(chapter.getBoundingClientRect().height + marginBottom);
+        button.style.setProperty("--journey-nav-height", `${height}px`);
+      });
+    };
+
+    syncTimelineToCards();
+
+    const observer = new ResizeObserver(syncTimelineToCards);
+    chapterRefs.current.forEach((chapter) => {
+      if (chapter) observer.observe(chapter);
+    });
+
+    window.addEventListener("resize", syncTimelineToCards);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", syncTimelineToCards);
+    };
+  }, []);
+
+  useEffect(() => {
     if (!window.matchMedia("(max-width: 760px)").matches) return;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -158,15 +252,15 @@ export default function ExperienceJourney() {
 
   const jumpToChapter = (index: number) => {
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    setActiveIndex(index);
-    zoneRefs.current[index]?.scrollIntoView({
+    chapterRefs.current[index]?.scrollIntoView({
       behavior: reducedMotion ? "auto" : "smooth",
       block: "center",
     });
   };
 
-  const activeExperience = experience[activeIndex];
-  const progress = experience.length > 1 ? (activeIndex / (experience.length - 1)) * 100 : 0;
+  const toggleArchive = (index: number) => {
+    setOpenArchiveIndex((current) => (current === index ? null : index));
+  };
 
   return (
     <section ref={sectionRef} id="experience" className="approach-section experience-home journey-section">
@@ -187,83 +281,134 @@ export default function ExperienceJourney() {
           </a>
         </div>
 
-        <div className="journey-story">
-          <div className="journey-stage">
-            <aside className="journey-stage-nav" aria-label="Career timeline navigation">
-              <nav className="journey-nav">
-                <span className="journey-nav-line" aria-hidden="true" />
-                <span className="journey-nav-progress" style={{ height: `${progress}%` }} aria-hidden="true" />
+        <div className="journey-layout">
+          <aside className="journey-sticky" aria-label="Career timeline navigation">
+            <nav className="journey-nav">
+              {experience.map((item, index) => (
+                <button
+                  ref={(node) => {
+                    navRefs.current[index] = node;
+                  }}
+                  className={`journey-nav-item${activeIndex === index ? " is-active" : ""}${index < activeIndex ? " is-past" : ""}`}
+                  type="button"
+                  key={`${item.role}-${item.dates}`}
+                  onClick={() => jumpToChapter(index)}
+                  aria-current={activeIndex === index ? "step" : undefined}
+                >
+                  <span className="journey-nav-marker" aria-hidden="true" />
+                  <span className="journey-nav-date">{item.dates}</span>
+                  <span className="journey-nav-stage">{item.stage}</span>
+                </button>
+              ))}
+            </nav>
+          </aside>
 
-                {experience.map((item, index) => (
-                  <button
-                    ref={(node) => {
-                      navRefs.current[index] = node;
-                    }}
-                    className={`journey-nav-item${activeIndex === index ? " is-active" : ""}`}
-                    type="button"
-                    key={`${item.role}-${item.dates}`}
-                    onClick={() => jumpToChapter(index)}
-                    aria-current={activeIndex === index ? "step" : undefined}
-                  >
-                    <span className="journey-nav-marker" aria-hidden="true" />
-                    <span className="journey-nav-date">{item.dates}</span>
-                    <span className="journey-nav-stage">{item.stage}</span>
-                  </button>
-                ))}
-              </nav>
-            </aside>
+          <div className="journey-chapters">
+            {experience.map((item, index) => {
+              const archiveOpen = openArchiveIndex === index;
 
-            <div className="journey-card-frame" aria-live="polite" aria-atomic="true">
-              <article
-                className="journey-card journey-card-single"
-                key={`${activeExperience.company}-${activeExperience.dates}`}
-              >
-                <div className="journey-card-meta">
-                  <span>{activeExperience.stage}</span>
-                  <time>{activeExperience.dates}</time>
-                </div>
+              return (
+                <article
+                  ref={(node) => {
+                    chapterRefs.current[index] = node;
+                  }}
+                  className={`journey-card${activeIndex === index ? " is-active" : ""}`}
+                  key={`${item.company}-${item.dates}`}
+                >
+                  <div className="journey-card-meta">
+                    <span>{item.stage}</span>
+                    <time>{item.dates}</time>
+                  </div>
 
-                <h3>{activeExperience.role}</h3>
-                <p className="journey-company">{activeExperience.company}</p>
-                <p className="journey-description">{activeExperience.description}</p>
+                  <h3>{item.role}</h3>
+                  <p className="journey-company">{item.company}</p>
+                  <p className="journey-description">{item.description}</p>
 
-                <div className="journey-skills" aria-label="Skills and focus areas">
-                  {activeExperience.skills.map((skill) => (
-                    <span key={skill}>{skill}</span>
-                  ))}
-                </div>
-
-                {activeExperience.projects ? (
-                  <div className="journey-projects" aria-label="Project work highlights">
-                    {activeExperience.projects.map((project) => (
-                      <span key={project}>{project}</span>
+                  <div className="journey-skills" aria-label="Skills and focus areas">
+                    {item.skills.map((skill) => (
+                      <span key={skill}>{skill}</span>
                     ))}
                   </div>
-                ) : null}
 
-                {activeExperience.links ? (
-                  <div className="journey-links">
-                    {activeExperience.links.map((link) => (
-                      <a href={link.href} key={link.href}>
-                        {link.label} <ArrowIcon />
-                      </a>
-                    ))}
-                  </div>
-                ) : null}
-              </article>
-            </div>
-          </div>
+                  {item.projects ? (
+                    <div className="journey-projects" aria-label="Project work highlights">
+                      {item.projects.map((project) => (
+                        <span key={project}>{project}</span>
+                      ))}
+                    </div>
+                  ) : null}
 
-          <div className="journey-scroll-zones" aria-hidden="true">
-            {experience.map((item, index) => (
-              <div
-                ref={(node) => {
-                  zoneRefs.current[index] = node;
-                }}
-                className="journey-scroll-zone"
-                key={`scroll-${item.stage}`}
-              />
-            ))}
+                  {item.links ? (
+                    <div className="journey-links">
+                      {item.links.map((link) => (
+                        <a href={link.href} key={link.href}>
+                          {link.label} <ArrowIcon />
+                        </a>
+                      ))}
+                    </div>
+                  ) : null}
+
+                  {item.archive ? (
+                    <div className={`journey-archive-wrap${archiveOpen ? " is-open" : ""}`}>
+                      <button
+                        className="journey-archive-toggle"
+                        type="button"
+                        onClick={() => toggleArchive(index)}
+                        aria-expanded={archiveOpen}
+                      >
+                        <span>
+                          <small>Archive / Early Work</small>
+                          {archiveOpen ? "Close Archive" : "View Archive"}
+                        </span>
+                        <span className="journey-archive-toggle-icon" aria-hidden="true">
+                          {archiveOpen ? "−" : "+"}
+                        </span>
+                      </button>
+
+                      {archiveOpen ? (
+                        <div className="journey-archive-panel">
+                          <div className="journey-archive-image-wrap" style={{ padding: 8 }}>
+                            <div style={{ columns: "180px 2", columnGap: 8 }}>
+                              {item.archive.images.map((image, imageIndex) => (
+                                <figure
+                                  key={image}
+                                  style={{
+                                    breakInside: "avoid",
+                                    margin: "0 0 8px",
+                                    overflow: "hidden",
+                                    border: "1px solid rgba(255,255,255,.10)",
+                                    background: "#050607",
+                                  }}
+                                >
+                                  <img
+                                    src={image}
+                                    alt={`${item.company} archive work ${imageIndex + 1}`}
+                                    loading="lazy"
+                                    decoding="async"
+                                    style={{ display: "block", width: "100%", height: "auto" }}
+                                  />
+                                </figure>
+                              ))}
+                            </div>
+                          </div>
+                          <div className="journey-archive-copy">
+                            <p>{item.archive.caption}</p>
+                            <div className="journey-archive-tags" aria-label="Archive categories">
+                              {item.archive.tags.map((tag) => (
+                                <span key={tag}>{tag}</span>
+                              ))}
+                            </div>
+                            <small>
+                              Historical work shown as career context—not as part of Selected Work.
+                            </small>
+                          </div>
+                        </div>
+                      ) : null}
+                    </div>
+                  ) : null}
+                </article>
+              );
+            })}
           </div>
         </div>
       </div>
