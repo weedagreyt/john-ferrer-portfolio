@@ -1,4 +1,4 @@
-/* Scroll-driven homepage experience journey. Keeps the established 10+ years hierarchy while making the career path interactive. */
+/* Single-card, scroll-driven Experience / My Journey presentation. */
 
 .experience-home-head,
 .journey-head{
@@ -6,7 +6,7 @@
   align-items:flex-end!important;
   justify-content:space-between!important;
   gap:40px!important;
-  margin-bottom:64px!important;
+  margin-bottom:58px!important;
 }
 
 .experience-home .micro-label{
@@ -56,32 +56,53 @@
 .journey-section{
   position:relative!important;
   overflow:clip;
-  padding:92px 0 120px!important;
+  padding:92px 0 118px!important;
 }
 
-.journey-layout{
+/* The sticky stage and the long invisible scroll zones share the same grid cell. */
+.journey-story{
   position:relative;
-  z-index:2;
   display:grid;
-  grid-template-columns:minmax(220px,270px) minmax(0,1fr);
-  gap:clamp(42px,6vw,88px);
-  align-items:start;
-  width:min(100%,1080px);
+  grid-template-columns:minmax(0,1fr);
+  grid-template-rows:auto;
+  width:min(100%,1100px);
   margin:0 auto;
 }
 
-.journey-sticky{
+.journey-stage,
+.journey-scroll-zones{
+  grid-column:1;
+  grid-row:1;
+}
+
+.journey-stage{
   position:sticky;
-  top:104px;
+  top:82px;
+  z-index:3;
   align-self:start;
+  display:grid;
+  grid-template-columns:minmax(220px,265px) minmax(0,1fr);
+  gap:clamp(42px,6vw,86px);
+  align-items:center;
+  min-height:calc(100vh - 112px);
+  pointer-events:none;
+}
+
+.journey-stage-nav,
+.journey-card-frame{
   min-width:0;
+  pointer-events:auto;
+}
+
+.journey-stage-nav{
+  align-self:center;
 }
 
 .journey-nav{
   position:relative;
   display:flex;
   flex-direction:column;
-  padding-left:44px;
+  padding-left:42px;
 }
 
 .journey-nav-line,
@@ -101,45 +122,31 @@
 
 .journey-nav-progress{
   max-height:calc(100% - 36px);
-  background:linear-gradient(180deg,#ef171f 0%,#ef171f 72%,rgba(239,23,31,.46) 100%);
-  box-shadow:0 0 18px rgba(239,23,31,.28);
-  transition:height .4s cubic-bezier(.2,.8,.2,1);
-}
-
-/* A second lane branches away and returns, representing overlapping early-career roles. */
-.journey-overlap-rail{
-  position:absolute;
-  left:15px;
-  top:15%;
-  width:18px;
-  height:49%;
-  border-top:1px solid rgba(239,23,31,.48);
-  border-right:1px solid rgba(239,23,31,.48);
-  border-bottom:1px solid rgba(239,23,31,.48);
-  border-radius:0 14px 14px 0;
-  pointer-events:none;
+  background:#ef171f;
+  box-shadow:0 0 16px rgba(239,23,31,.26);
+  transition:height .52s cubic-bezier(.2,.8,.2,1);
 }
 
 .journey-nav-item{
   position:relative;
   display:grid;
-  gap:2px;
+  gap:3px;
   width:100%;
-  min-height:76px;
-  padding:10px 8px;
+  min-height:72px;
+  padding:9px 8px;
   border:0;
   background:transparent;
   color:#fff;
   text-align:left;
   cursor:pointer;
-  opacity:.42;
+  opacity:.38;
   transform:translateX(0);
-  transition:opacity .28s ease,transform .28s ease,color .28s ease;
+  transition:opacity .3s ease,transform .3s ease;
 }
 
 .journey-nav-item:hover,
 .journey-nav-item:focus-visible{
-  opacity:.8;
+  opacity:.78;
 }
 
 .journey-nav-item.is-active{
@@ -149,25 +156,25 @@
 
 .journey-nav-marker{
   position:absolute;
-  left:-35px;
+  left:-34px;
   top:18px;
-  width:11px;
-  height:11px;
+  width:10px;
+  height:10px;
   border:2px solid #070809;
   border-radius:50%;
   background:#4c4e52;
-  box-shadow:0 0 0 1px rgba(255,255,255,.18);
-  transition:background .28s ease,box-shadow .28s ease,transform .28s ease;
+  box-shadow:0 0 0 1px rgba(255,255,255,.17);
+  transition:background .3s ease,box-shadow .3s ease,transform .3s ease;
 }
 
 .journey-nav-item.is-active .journey-nav-marker{
   background:#ef171f;
-  box-shadow:0 0 0 1px #ef171f,0 0 20px rgba(239,23,31,.7);
-  transform:scale(1.12);
+  box-shadow:0 0 0 1px #ef171f,0 0 18px rgba(239,23,31,.66);
+  transform:scale(1.14);
 }
 
 .journey-nav-date{
-  color:rgba(255,255,255,.48);
+  color:rgba(255,255,255,.46);
   font-size:9px;
   font-weight:800;
   line-height:1.2;
@@ -183,44 +190,34 @@
   line-height:.95;
   letter-spacing:.015em;
   text-transform:uppercase;
-  transition:color .28s ease;
+  transition:color .3s ease;
 }
 
 .journey-nav-item.is-active .journey-nav-stage{
   color:#ef171f;
 }
 
-.journey-overlap-note{
-  margin:12px 0 0 44px!important;
-  color:rgba(255,255,255,.36)!important;
-  font-size:10px!important;
-  line-height:1.4!important;
-  letter-spacing:.04em;
-}
-
-.journey-chapters{
-  min-width:0;
+.journey-card-frame{
+  display:flex;
+  align-items:center;
+  min-height:570px;
 }
 
 .journey-card{
   position:relative;
-  min-height:318px;
-  margin:0 0 22px;
-  padding:38px clamp(28px,4vw,48px) 36px;
+  width:100%;
+  min-height:390px;
+  padding:40px clamp(30px,4vw,50px) 38px;
   overflow:hidden;
-  border:1px solid rgba(255,255,255,.09);
+  border:1px solid rgba(239,23,31,.38);
   background:
-    linear-gradient(112deg,rgba(255,255,255,.028),transparent 48%),
-    rgba(10,11,13,.76);
-  opacity:.46;
-  transform:translateY(8px) scale(.987);
-  transition:
-    opacity .38s ease,
-    transform .42s cubic-bezier(.2,.8,.2,1),
-    border-color .35s ease,
-    box-shadow .35s ease,
-    background .35s ease;
-  scroll-margin-top:120px;
+    linear-gradient(112deg,rgba(239,23,31,.055),transparent 48%),
+    rgba(10,11,13,.94);
+  box-shadow:0 24px 70px rgba(0,0,0,.24);
+}
+
+.journey-card-single{
+  animation:journeyCardIn .58s cubic-bezier(.2,.8,.2,1) both;
 }
 
 .journey-card::before{
@@ -229,9 +226,6 @@
   inset:0 auto 0 0;
   width:3px;
   background:#ef171f;
-  transform:scaleY(0);
-  transform-origin:center;
-  transition:transform .4s cubic-bezier(.2,.8,.2,1);
 }
 
 .journey-card::after{
@@ -246,18 +240,17 @@
   pointer-events:none;
 }
 
-.journey-card.is-active{
-  opacity:1;
-  transform:none;
-  border-color:rgba(239,23,31,.38);
-  background:
-    linear-gradient(112deg,rgba(239,23,31,.055),transparent 48%),
-    rgba(10,11,13,.94);
-  box-shadow:0 24px 70px rgba(0,0,0,.24);
-}
-
-.journey-card.is-active::before{
-  transform:scaleY(1);
+@keyframes journeyCardIn{
+  from{
+    opacity:0;
+    transform:translateY(22px) scale(.985);
+    filter:blur(3px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+    filter:blur(0);
+  }
 }
 
 .journey-card-meta{
@@ -341,24 +334,24 @@
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
   gap:0 18px;
-  margin-top:26px;
+  margin-top:24px;
   border-top:1px solid rgba(255,255,255,.09);
 }
 
 .journey-projects span{
   min-width:0;
-  padding:10px 0;
+  padding:9px 0;
   border-bottom:1px solid rgba(255,255,255,.07);
-  color:rgba(255,255,255,.62);
-  font-size:11px;
-  line-height:1.4;
+  color:rgba(255,255,255,.6);
+  font-size:10.5px;
+  line-height:1.35;
 }
 
 .journey-links{
   display:flex;
   flex-wrap:wrap;
-  gap:10px 22px;
-  margin-top:26px;
+  gap:8px 22px;
+  margin-top:24px;
 }
 
 .journey-links a{
@@ -385,14 +378,25 @@
   transform:translateX(3px);
 }
 
+/* Each invisible zone is intentionally almost one viewport tall so career stages do not switch too quickly. */
+.journey-scroll-zones{
+  position:relative;
+  z-index:1;
+  pointer-events:none;
+}
+
+.journey-scroll-zone{
+  height:clamp(680px,92vh,980px);
+}
+
 @media(max-width:960px){
-  .journey-layout{
+  .journey-stage{
     grid-template-columns:minmax(190px,220px) minmax(0,1fr);
     gap:32px;
   }
 
   .journey-card{
-    padding:32px 30px;
+    padding:34px 30px;
   }
 }
 
@@ -401,7 +405,7 @@
   .journey-head{
     align-items:flex-start!important;
     gap:24px!important;
-    margin-bottom:42px!important;
+    margin-bottom:40px!important;
   }
 
   .experience-tenure{
@@ -413,18 +417,21 @@
     padding:66px 0 78px!important;
   }
 
-  .journey-layout{
-    display:block;
+  .journey-story{
     width:100%;
   }
 
-  .journey-sticky{
-    position:sticky;
-    top:64px;
-    z-index:5;
-    margin-bottom:20px;
-    padding:10px 0 12px;
-    background:linear-gradient(180deg,rgba(7,8,9,.98) 0%,rgba(7,8,9,.94) 74%,rgba(7,8,9,.82) 100%);
+  .journey-stage{
+    top:62px;
+    display:block;
+    min-height:calc(100svh - 76px);
+    padding-top:10px;
+  }
+
+  .journey-stage-nav{
+    margin-bottom:16px;
+    padding:8px 0 10px;
+    background:linear-gradient(180deg,rgba(7,8,9,.98),rgba(7,8,9,.91));
     border-bottom:1px solid rgba(255,255,255,.08);
     backdrop-filter:blur(12px);
   }
@@ -445,9 +452,7 @@
 
   .journey-nav-line,
   .journey-nav-progress,
-  .journey-overlap-rail,
-  .journey-nav-marker,
-  .journey-overlap-note{
+  .journey-nav-marker{
     display:none;
   }
 
@@ -457,7 +462,7 @@
     min-height:56px;
     padding:8px 11px;
     border:1px solid rgba(255,255,255,.1);
-    opacity:.56;
+    opacity:.54;
     transform:none;
   }
 
@@ -476,13 +481,13 @@
     font-size:17px;
   }
 
+  .journey-card-frame{
+    min-height:0;
+  }
+
   .journey-card{
     min-height:0;
-    margin-bottom:16px;
     padding:28px 22px 28px 25px;
-    opacity:.52;
-    transform:translateY(7px) scale(.992);
-    scroll-margin-top:145px;
   }
 
   .journey-card-meta{
@@ -493,30 +498,40 @@
   }
 
   .journey-card h3{
-    font-size:clamp(31px,10vw,42px)!important;
+    font-size:clamp(30px,9.5vw,41px)!important;
   }
 
   .journey-company{
-    margin-bottom:20px!important;
+    margin-bottom:19px!important;
     font-size:13px!important;
   }
 
   .journey-description{
     font-size:13px!important;
-    line-height:1.6!important;
+    line-height:1.58!important;
   }
 
   .journey-skills{
-    margin-top:20px;
+    margin-top:19px;
   }
 
   .journey-projects{
-    grid-template-columns:1fr;
-    margin-top:22px;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:0 12px;
+    margin-top:20px;
+  }
+
+  .journey-projects span{
+    padding:7px 0;
+    font-size:9px;
   }
 
   .journey-links{
-    margin-top:22px;
+    margin-top:20px;
+  }
+
+  .journey-scroll-zone{
+    height:clamp(620px,88svh,820px);
   }
 }
 
@@ -536,9 +551,11 @@
   .journey-nav-progress,
   .journey-nav-item,
   .journey-nav-marker,
-  .journey-card,
-  .journey-card::before,
   .journey-links a{
     transition:none!important;
+  }
+
+  .journey-card-single{
+    animation:none!important;
   }
 }
