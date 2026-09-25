@@ -73,7 +73,7 @@ const experience: readonly ExperienceItem[] = [
     company: "West Shadows Production",
     dates: "Aug 2016 – Sep 2019",
     description:
-      "Handled graphic design projects for local clients, worked with engineering, architectural, photography, and video teams, and created content for social media advertising.",
+      "Led the creative direction and designed promotional graphics and event materials for parties and live events produced by West Shadows Production.",
     skills: ["Creative Direction", "Cross-Team Work", "Client Projects", "Social Advertising"],
     archive: {
       images: [
