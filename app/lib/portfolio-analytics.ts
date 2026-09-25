@@ -1,6 +1,8 @@
 import { track } from "@vercel/analytics";
 
 const APPLICATION_SOURCE_KEY = "jf_portfolio_application_source";
+const CLARITY_VISITOR_ID_KEY = "jf_clarity_visitor_id";
+const CLARITY_SESSION_ID_KEY = "jf_clarity_session_id";
 
 type ClarityFunction = (...args: unknown[]) => void;
 
@@ -19,6 +21,53 @@ function clean(value: string | null | undefined, fallback: string) {
   return normalized || fallback;
 }
 
+function randomId(prefix: string) {
+  try {
+    if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+      return `${prefix}_${crypto.randomUUID()}`;
+    }
+  } catch {
+    // Fall through to a non-identifying random value.
+  }
+
+  return `${prefix}_${Date.now().toString(36)}_${Math.random().toString(36).slice(2)}`;
+}
+
+function getOrCreateId(storage: Storage, key: string, prefix: string) {
+  const existing = storage.getItem(key);
+  if (existing) return existing;
+
+  const id = randomId(prefix);
+  storage.setItem(key, id);
+  return id;
+}
+
+function identifyClarity(source: string) {
+  const clarity = (window as ClarityWindow).clarity;
+  if (typeof clarity !== "function") return;
+
+  try {
+    // Anonymous browser ID persists locally; session ID is scoped to this tab/session.
+    // No recruiter name, email, or other personal information is sent.
+    const visitorId = getOrCreateId(
+      window.localStorage,
+      CLARITY_VISITOR_ID_KEY,
+      "visitor",
+    );
+    const sessionId = getOrCreateId(
+      window.sessionStorage,
+      CLARITY_SESSION_ID_KEY,
+      "session",
+    );
+    const pageId = clean(window.location.pathname, "home");
+    const friendlyName = source === "direct" ? undefined : source;
+
+    clarity("identify", visitorId, sessionId, pageId, friendlyName);
+  } catch {
+    // Tracking must never affect the portfolio if storage or Clarity is unavailable.
+  }
+}
+
 function sendToClarity(
   name: string,
   source: string,
@@ -29,11 +78,12 @@ function sendToClarity(
   if (typeof clarity !== "function") return;
 
   try {
+    identifyClarity(source);
     clarity("set", "application_source", source);
     clarity("set", "portfolio_page", clean(window.location.pathname, "home"));
 
     if (detailKey && detailValue) {
-      clarity(`set`, `portfolio_${clean(detailKey, "detail")}`, clean(detailValue, "unknown"));
+      clarity("set", `portfolio_${clean(detailKey, "detail")}`, clean(detailValue, "unknown"));
     }
 
     clarity("event", name);
