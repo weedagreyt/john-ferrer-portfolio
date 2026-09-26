@@ -1,0 +1,19 @@
+@media (max-width: 760px) {
+  /* Retrophorics should fill the viewport without the extra mobile overscan. */
+  .jf-intro .jf-intro__scene[data-mobile-framed] {
+    --s0: 1;
+    --s1: 1.035;
+    inset: 0 !important;
+    background: #030405;
+  }
+
+  .jf-intro--play .jf-intro__scene[data-mobile-framed] {
+    animation-name: jfScene !important;
+  }
+
+  .jf-intro .jf-intro__scene[data-mobile-framed] img {
+    object-fit: cover !important;
+    object-position: var(--mobile-position) !important;
+    transform: scale(1) !important;
+  }
+}
