@@ -30,7 +30,7 @@ export default function ContactPage() {
           <div className={styles.infoList}>
             <a href="mailto:hello@johnferrer.com" className={styles.infoRow}><span><img src={assets.mail} alt="" /></span><div><b>Email</b><p>hello@johnferrer.com</p></div></a>
             <a href="tel:+16893400216" className={styles.infoRow}><span><img src={assets.phone} alt="" /></span><div><b>Phone</b><p>+1 689 340 0216</p></div></a>
-            <div className={styles.infoRow}><span><img src={assets.pin} alt="" /></span><div><b>Location</b><p>Arlington, VA</p></div></div>
+            <div className={styles.infoRow}><span><img src={assets.pin} alt="" /></span><div><b>Location</b><p>Orlando, FL</p></div></div>
           </div>
         </Reveal>
 
