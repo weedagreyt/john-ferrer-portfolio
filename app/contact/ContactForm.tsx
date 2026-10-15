@@ -35,7 +35,7 @@ export default function ContactForm() {
     const controller = new AbortController();
     const timer = window.setTimeout(() => controller.abort(), 20000);
     try {
-      const response = await fetch("https://formsubmit.co/ajax/weetotwee@gmail.com", {
+      const response = await fetch("https://formsubmit.co/ajax/hello@johnferrer.com", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({ ...values, _subject: `Portfolio inquiry: ${values.subject}`, _template: "table", _honey: "" }),
@@ -45,7 +45,7 @@ export default function ContactForm() {
       if (!response.ok || !(result.success === true || result.success === "true")) throw new Error("Submission failed");
       if (/activat|confirm.*email/i.test(String(result.message || ""))) {
         setStatus("error");
-        setNotice("The contact form is awaiting activation. Please email weetotwee@gmail.com directly for now.");
+        setNotice("The contact form is awaiting activation. Please email hello@johnferrer.com directly for now.");
         return;
       }
       setStatus("success");
@@ -54,7 +54,7 @@ export default function ContactForm() {
       form.reset();
     } catch {
       setStatus("error");
-      setNotice("We couldn’t confirm your submission. Your message is still here—please try again, or email weetotwee@gmail.com directly.");
+      setNotice("We couldn’t confirm your submission. Your message is still here—please try again, or email hello@johnferrer.com directly.");
     } finally {
       window.clearTimeout(timer);
       busy.current = false;
@@ -77,7 +77,7 @@ export default function ContactForm() {
       </fieldset>
       <div aria-live="polite" aria-atomic="true">{notice && <p className={status === "success" ? styles.success : styles.error} role={status === "error" ? "alert" : "status"}>{notice}</p>}</div>
       <p className={styles.secure}>Your message is processed by FormSubmit and sent to my inbox.</p>
-      <a className={styles.directEmail} href="mailto:weetotwee@gmail.com">Prefer email? weetotwee@gmail.com</a>
+      <a className={styles.directEmail} href="mailto:hello@johnferrer.com">Prefer email? hello@johnferrer.com</a>
     </form>
   );
 }

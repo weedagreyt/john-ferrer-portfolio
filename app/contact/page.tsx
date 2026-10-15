@@ -28,7 +28,7 @@ export default function ContactPage() {
           <h1>Let’s create<br /><span>something amazing.</span></h1>
           <p className={styles.intro}>Have a project in mind or want to collaborate? Fill out the form and I’ll get back to you as soon as possible.</p>
           <div className={styles.infoList}>
-            <a href="mailto:weetotwee@gmail.com" className={styles.infoRow}><span><img src={assets.mail} alt="" /></span><div><b>Email</b><p>weetotwee@gmail.com</p></div></a>
+            <a href="mailto:hello@johnferrer.com" className={styles.infoRow}><span><img src={assets.mail} alt="" /></span><div><b>Email</b><p>hello@johnferrer.com</p></div></a>
             <a href="tel:+16893400216" className={styles.infoRow}><span><img src={assets.phone} alt="" /></span><div><b>Phone</b><p>+1 689 340 0216</p></div></a>
             <div className={styles.infoRow}><span><img src={assets.pin} alt="" /></span><div><b>Location</b><p>Arlington, VA</p></div></div>
           </div>
