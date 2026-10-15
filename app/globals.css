@@ -10,6 +10,7 @@
 html {
   scroll-behavior: smooth;
   overflow-x: clip;
+  background: #060607;
 }
 body {
   margin: 0;
