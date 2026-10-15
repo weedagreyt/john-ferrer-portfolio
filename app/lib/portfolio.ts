@@ -1,4 +1,4 @@
-export const resumeUrl = "https://drive.google.com/file/d/1JzH0wXGffM_iplyQ8bkOOlfRHDjreQxp/view?usp=sharing";
+export const resumeUrl = "/resume.pdf";
 
 export const siteAssets = {
   logo: "/john-ferrer-logo.svg",
